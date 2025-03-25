@@ -23,7 +23,7 @@ namespace GhostPlugin
         public List<Player> StopRagdollList { get; } = new ();
         public Dictionary<StartTeam, List<ICustomRole>> Roles { get; } = new();
         private Harmony Harmony { get; set; }
-        public override Version Version { get; } = new(3, 9, 9);
+        public override Version Version { get; } = new(4, 0, 0);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
