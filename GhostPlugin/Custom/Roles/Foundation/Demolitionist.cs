@@ -15,7 +15,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override string CustomInfo { get; set; } = "Demolitionist";
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfPrivate;
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
-        public int Chance { get; set; } = 20;
+        public int Chance { get; set; } = 40;
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {
