@@ -245,6 +245,7 @@
         <Compile Include="Objects\PlasmaCube.cs" />
         <Compile Include="Objects\SpawnLaserObject.cs" />
         <Compile Include="Objects\SpawnParticleSpark.cs" />
+        <Compile Include="Objects\SpawnPlasma.cs" />
         <Compile Include="Patches\Scp106Patch.cs" />
         <Compile Include="Patches\Scp939Patch_2.cs" />
         <Compile Include="Plugin.cs" />
