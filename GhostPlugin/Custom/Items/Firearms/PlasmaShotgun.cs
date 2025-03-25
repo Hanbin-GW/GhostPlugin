@@ -65,7 +65,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                 //PrimitiveObjectToy bullet = spark.SpawmSparkAmmoNoSpread(ev.Player, ev.Firearm.Base.transform.position, 25f,color ,0.5f);
                 PrimitiveObjectToy bullet = spark.SpawnEnergyGuage(ev.Player, ev.Firearm.Base.transform.position);
                 var bulletCollision = bullet.gameObject.AddComponent<BulletCollision>();
-                bulletCollision.Initialize(150, ev.Player);
+                bulletCollision.Initialize(125, ev.Player);
             }
             base.OnShot(ev);
         }
