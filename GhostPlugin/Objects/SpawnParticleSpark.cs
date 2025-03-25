@@ -78,57 +78,7 @@ namespace GhostPlugin.Objects
             return pObject;
         }
         
-        /// <summary>
-        /// used in plasma Assult Rife
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="position"></param>
-        /// <returns>pObject</returns>
-        public PrimitiveObjectToy SpawnPlasmaAmmo(Player player, Vector3 position)
-        {
-            PrimitiveObjectToy pObject = null;
-            float forwardForce = 200f;
-            foreach (GameObject value in NetworkClient.prefabs.Values) 
-            {
-                if (value.TryGetComponent<PrimitiveObjectToy>(out var component)) {
-                    pObject = UnityEngine.Object.Instantiate(component); 
-                    pObject.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0])); 
-                    break;
-                }
-            }
-            if (pObject != null) 
-            { 
-                pObject.NetworkPrimitiveType = PrimitiveType.Cube; 
-                pObject.transform.localScale = Vector3.one * 0.125f; 
-                pObject.NetworkScale = Vector3.one * 0.125f; 
-                pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
-
-                //pObject.Position = position + player.CameraTransform.forward + randomOffset;
-                pObject.Position = position + player.CameraTransform.forward;
-                //Color glowColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
-                Color glowColor = new Color(1.0f, 0.5f, 0.0f, 0.1f) * 50f;
-                pObject.NetworkMaterialColor = glowColor; 
-                pObject.MaterialColor = glowColor;
-                
-                var rb = pObject.GetComponent<Rigidbody>();
-                if (rb == null)
-                    rb = pObject.gameObject.AddComponent<Rigidbody>();
-
-                rb.useGravity = true; 
-                rb.mass = 1f; 
-                rb.drag = 0.5f; 
-                rb.angularDrag = 0.1f;
-
-                Vector3 shootDirection = player.GameObject.transform.forward;
-                rb.velocity = shootDirection * forwardForce; 
-                var collider = pObject.GetComponent<Collider>(); 
-                if (collider == null) 
-                    pObject.gameObject.AddComponent<BoxCollider>();
-                
-                UnityEngine.Object.Destroy(pObject.gameObject, 10f);
-            } 
-            return pObject;
-        }
+        
         /// <summary>
         /// Used in plasma shotgun
         /// </summary>
@@ -243,9 +193,9 @@ namespace GhostPlugin.Objects
             }
         }
         
-        public void SpawnREDSpark(Player player, Vector3 position)
+        public void SpawnREDSpark(Player player, Vector3 position,float spawncount)
         {
-            for (int i = 0; i < SpawnCount; i++)
+            for (int i = 0; i < spawncount; i++)
             {
                 PrimitiveObjectToy pObject = null;
 

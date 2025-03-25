@@ -1,17 +1,18 @@
 using System;
 using AdminToys;
 using Exiled.API.Features;
+using GhostPlugin.Custom.Items.MonoBehavior;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace GhostPlugin.Objects
 {
-    public class SpawnLaserObject
+    public class SpawmPlasma
     {
-        private const float BlockSize = 0.08f;
+        private const float BlockSize = 0.05f;
         private const float Speed = 200f; // ✅ 초당 200m 속도 설정
 
-        public void SpawnLaser(Player player)
+        public void SpawnPlasma(Player player)
         {
             Vector3 startPosition = player.CameraTransform.position;
             Vector3 direction = player.CameraTransform.forward.normalized;
@@ -44,9 +45,10 @@ namespace GhostPlugin.Objects
                 pObject.Scale = Vector3.one * BlockSize;
                 pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible;
 
-                Color glowColor = new Color(0f, 1f, 1f, 0.1f)*50;
+                Color glowColor = new Color(1.0f, 0.5f, 0.0f, 0.1f) * 50f;
                 pObject.NetworkMaterialColor = glowColor;
-
+                var bulletcollision = pObject.gameObject.AddComponent<FireBulletCollision>();
+                bulletcollision.Initialize(90, player);
                 // ✅ Rigidbody로 이동 설정
                 Rigidbody rb = pObject.GetComponent<Rigidbody>();
                 if (rb == null)
@@ -55,7 +57,7 @@ namespace GhostPlugin.Objects
                 rb.useGravity = false;   // 중력 비활성화
                 rb.isKinematic = false;  // 물리 이동 활성화
                 rb.velocity = direction * Speed; // ✅ 초당 200m 속도 설정
-
+                
                 // ✅ Collider 삭제 (충돌 방지)
                 Collider collider = pObject.GetComponent<Collider>();
                 if (collider != null)
