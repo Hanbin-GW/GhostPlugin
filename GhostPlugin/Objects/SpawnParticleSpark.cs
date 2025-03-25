@@ -1,0 +1,314 @@
+using System;
+using System.Collections;
+using AdminToys;
+using Exiled.API.Features;
+using Mirror;
+using UnityEngine;
+namespace GhostPlugin.Objects
+{
+    public class SpawnParticleSpark
+    {
+        private const int SpawnCount = 5;
+        private const float SpawnRange = 2.0f;
+
+        /// <summary>
+        /// Enersize Ammo
+        /// </summary>
+        /// <param name="player">Attacker</param>
+        /// <param name="position">object crate position</param>
+        /// <param name="count">object count</param>
+        /// <param name="forwardForce">speed</param>
+        /// <param name="spawnRange"></param>
+        /// <param name="glowColor">Color</param>
+        /// <returns></returns>
+        public PrimitiveObjectToy SpawmSparkAmmo(Player player, Vector3 position, int count, float forwardForce, float spawnRange,Color glowColor)
+        {
+            PrimitiveObjectToy pObject = null;
+            for (int i = 0; i < count; i++)
+            {
+
+                foreach (GameObject value in NetworkClient.prefabs.Values)
+                {
+                    if (value.TryGetComponent<PrimitiveObjectToy>(out var component))
+                    {
+                        pObject = UnityEngine.Object.Instantiate(component);
+                        pObject.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0]));
+                        break;
+                    }
+                }
+
+                if (pObject != null)
+                {
+                    pObject.NetworkPrimitiveType = PrimitiveType.Cube;
+                    pObject.transform.localScale = Vector3.one * 0.05f;
+                    pObject.NetworkScale = Vector3.one * 0.05f;
+                    pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
+
+                    Vector3 randomOffset = new Vector3(
+                        UnityEngine.Random.Range(-spawnRange, spawnRange),
+                        UnityEngine.Random.Range(0.5f, 0.5f), // 높이 랜덤값
+                        UnityEngine.Random.Range(-spawnRange, spawnRange)
+                    );
+
+                    //pObject.Position = player.Position + player.GameObject.transform.forward + randomOffset;
+                    pObject.Position = position + player.GameObject.transform.forward * 1.5f + randomOffset;
+                    pObject.NetworkPosition = position + player.GameObject.transform.forward * 1.5f + randomOffset;
+                    //Color glowColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
+                    //Color glowColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
+                    pObject.NetworkMaterialColor = glowColor;
+                    pObject.MaterialColor = glowColor;
+
+                    var rb = pObject.GetComponent<Rigidbody>();
+                    if (rb == null)
+                        rb = pObject.gameObject.AddComponent<Rigidbody>();
+
+                    rb.useGravity = true;
+                    rb.mass = 1f;
+                    rb.drag = 0.5f;
+                    rb.angularDrag = 0.1f;
+                    Vector3 shootDirection = player.GameObject.transform.forward;
+                    rb.velocity = shootDirection * forwardForce; 
+                    var collider = pObject.GetComponent<Collider>();
+                    if (collider == null)
+                        pObject.gameObject.AddComponent<BoxCollider>();
+
+                    UnityEngine.Object.Destroy(pObject.gameObject, 1.5f);
+                }
+            }
+            return pObject;
+        }
+        
+        /// <summary>
+        /// used in plasma Assult Rife
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="position"></param>
+        /// <returns>pObject</returns>
+        public PrimitiveObjectToy SpawmPlasmaAmmo(Player player, Vector3 position)
+        {
+            PrimitiveObjectToy pObject = null;
+            float forwardForce = 200f;
+            foreach (GameObject value in NetworkClient.prefabs.Values) 
+            {
+                if (value.TryGetComponent<PrimitiveObjectToy>(out var component)) {
+                    pObject = UnityEngine.Object.Instantiate(component); 
+                    pObject.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0])); 
+                    break;
+                }
+            }
+            if (pObject != null) 
+            { 
+                pObject.NetworkPrimitiveType = PrimitiveType.Cube; 
+                pObject.transform.localScale = Vector3.one * 0.1f; 
+                pObject.NetworkScale = Vector3.one * 0.1f; 
+                pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
+
+                //pObject.Position = position + player.CameraTransform.forward + randomOffset;
+                pObject.Position = position + player.CameraTransform.forward;
+                //Color glowColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
+                Color glowColor = new Color(1.0f, 0.5f, 0.0f, 0.1f) * 50f;
+                pObject.NetworkMaterialColor = glowColor; 
+                pObject.MaterialColor = glowColor;
+                
+                var rb = pObject.GetComponent<Rigidbody>();
+                if (rb == null)
+                    rb = pObject.gameObject.AddComponent<Rigidbody>();
+
+                rb.useGravity = true; 
+                rb.mass = 1f; 
+                rb.drag = 0.5f; 
+                rb.angularDrag = 0.1f;
+
+                Vector3 shootDirection = player.GameObject.transform.forward;
+                rb.velocity = shootDirection * forwardForce; 
+                var collider = pObject.GetComponent<Collider>(); 
+                if (collider == null) 
+                    pObject.gameObject.AddComponent<BoxCollider>();
+                
+                UnityEngine.Object.Destroy(pObject.gameObject, 10f);
+            } 
+            return pObject;
+        }
+        /// <summary>
+        /// Used in plasma shotgun
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="position"></param>
+        /// <returns></returns>
+        public PrimitiveObjectToy SpawnEnergyGuage(Player player, Vector3 position)
+        {
+            PrimitiveObjectToy pObject = null;
+            float forwardForce = 25f;
+            foreach (GameObject value in NetworkClient.prefabs.Values) 
+            {
+                if (value.TryGetComponent<PrimitiveObjectToy>(out var component)) {
+                    pObject = UnityEngine.Object.Instantiate(component); 
+                    pObject.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0])); 
+                    break;
+                }
+            }
+            
+            if (pObject != null) 
+            { 
+                pObject.NetworkPrimitiveType = PrimitiveType.Cube; 
+                pObject.transform.localScale = Vector3.one * 0.15f; 
+                pObject.NetworkScale = Vector3.one * 0.15f; 
+                pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
+
+                //pObject.Position = position + player.CameraTransform.forward + randomOffset;
+                pObject.Position = position + player.GameObject.transform.forward * 1.1f;
+                pObject.NetworkPosition = position + player.GameObject.transform.forward * 1.1f;
+                //Color glowColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
+                Color glowColor = new Color(0.0f, 0.0f, 1.0f, 0.1f) * 50f;
+                pObject.NetworkMaterialColor = glowColor; 
+                pObject.MaterialColor = glowColor;
+                    
+                var rb = pObject.GetComponent<Rigidbody>();
+                if (rb == null)
+                    rb = pObject.gameObject.AddComponent<Rigidbody>();
+
+                rb.useGravity = true;
+                rb.isKinematic = false;
+                rb.mass = 1f; 
+                rb.drag = 0.5f; 
+                rb.angularDrag = 0.1f;
+
+                Vector3 shootDirection = player.GameObject.transform.forward;
+                rb.velocity = shootDirection * forwardForce; 
+                var collider = pObject.GetComponent<Collider>(); 
+                if (collider == null)  
+                    pObject.gameObject.AddComponent<BoxCollider>();
+                UnityEngine.Object.Destroy(pObject.gameObject, 10f);
+            } 
+            return pObject;
+        }
+
+        /// <summary>
+        /// used empty shell
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="position"></param>
+        /// <param name="glowColor"></param>
+        public void SpawnSpark(Player player, Vector3 position,Color glowColor)
+        {
+            for (int i = 0; i < SpawnCount; i++)
+            {
+                PrimitiveObjectToy pObject = null;
+
+                foreach (GameObject value in NetworkClient.prefabs.Values)
+                {
+                    if (value.TryGetComponent<PrimitiveObjectToy>(out var component))
+                    {
+                        pObject = UnityEngine.Object.Instantiate(component);
+                        pObject.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0]));
+                        break;
+                    }
+                }
+
+                if (pObject != null)
+                {
+                    pObject.NetworkPrimitiveType = PrimitiveType.Cube;
+                    pObject.transform.localScale = Vector3.one * 0.03f;
+                    pObject.NetworkScale = Vector3.one * 0.03f;
+                    pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
+
+                    Vector3 randomOffset = new Vector3(
+                        UnityEngine.Random.Range(-SpawnRange, SpawnRange),
+                        UnityEngine.Random.Range(1f, 3f), // 높이 랜덤값
+                        UnityEngine.Random.Range(-SpawnRange, SpawnRange)
+                    );
+
+                    //pObject.Position = player.Position + player.GameObject.transform.forward + randomOffset;
+                    pObject.Position = position + player.GameObject.transform.forward * 1.05f + randomOffset;
+                    //Color glowColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
+                    
+                    pObject.NetworkMaterialColor = glowColor;
+                    pObject.MaterialColor = glowColor;
+
+                    var rb = pObject.GetComponent<Rigidbody>();
+                    if (rb == null)
+                        rb = pObject.gameObject.AddComponent<Rigidbody>();
+
+                    rb.useGravity = true;
+                    rb.mass = 1f;
+                    rb.drag = 0.5f;
+                    rb.angularDrag = 0.1f;
+
+                    var collider = pObject.GetComponent<Collider>();
+                    if (collider == null)
+                        pObject.gameObject.AddComponent<BoxCollider>();
+
+                    UnityEngine.Object.Destroy(pObject.gameObject, 10f);
+                }
+            }
+        }
+        
+        public void SpawnREDSpark(Player player, Vector3 position)
+        {
+            for (int i = 0; i < SpawnCount; i++)
+            {
+                PrimitiveObjectToy pObject = null;
+
+                foreach (GameObject value in NetworkClient.prefabs.Values)
+                {
+                    if (value.TryGetComponent<PrimitiveObjectToy>(out var component))
+                    {
+                        pObject = UnityEngine.Object.Instantiate(component);
+                        pObject.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0]));
+                        break;
+                    }
+                }
+
+                if (pObject != null)
+                {
+                    pObject.NetworkPrimitiveType = PrimitiveType.Cube;
+                    pObject.transform.localScale = Vector3.one * 0.05f;
+                    pObject.NetworkScale = Vector3.one * 0.05f;
+                    pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
+
+                    Vector3 randomOffset = new Vector3(
+                        UnityEngine.Random.Range(-SpawnRange, SpawnRange),
+                        UnityEngine.Random.Range(2f, 3f), // 높이 랜덤값
+                        UnityEngine.Random.Range(-SpawnRange, SpawnRange)
+                    );
+
+                    //pObject.Position = player.Position + player.GameObject.transform.forward + randomOffset;
+                    pObject.Position = position + player.GameObject.transform.forward + randomOffset;
+                    //Color glowColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
+                    Color glowColor = new Color(1.0f, 0.0f, 0.0f,0.1f) * 50f;
+                    pObject.NetworkMaterialColor = glowColor;
+                    pObject.MaterialColor = glowColor;
+
+                    var rb = pObject.GetComponent<Rigidbody>();
+                    if (rb == null)
+                        rb = pObject.gameObject.AddComponent<Rigidbody>();
+
+                    rb.useGravity = true;
+                    rb.mass = 1f;
+                    rb.drag = 0.5f;
+                    rb.angularDrag = 0.1f;
+
+                    var collider = pObject.GetComponent<Collider>();
+                    if (collider == null)
+                        pObject.gameObject.AddComponent<BoxCollider>();
+
+                    UnityEngine.Object.Destroy(pObject.gameObject, 10f);
+                }
+            }
+        }
+        /// <summary>
+        /// Not Used
+        /// </summary>
+        /// <param name="cube"></param>
+        /// <returns></returns>
+        private IEnumerator ShrinkAndDestroyCube(PrimitiveObjectToy cube)
+        {
+            while (cube.transform.localScale.x > 0.05f)
+            {
+                cube.transform.localScale -= Vector3.one * 0.1f * Time.deltaTime;
+                yield return null;
+            }
+            UnityEngine.Object.Destroy(cube.gameObject);
+        }
+    }
+}

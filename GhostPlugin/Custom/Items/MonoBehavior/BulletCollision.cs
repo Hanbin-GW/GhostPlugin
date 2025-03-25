@@ -1,0 +1,37 @@
+using Exiled.API.Enums;
+using Exiled.API.Features;
+using UnityEngine;
+
+namespace GhostPlugin.Custom.Items.MonoBehavior
+{
+    public class BulletCollision : MonoBehaviour
+    {
+        private int _damage;
+        private Player _attacker;
+
+        public void Initialize(int damage, Player attacker)
+        {
+            _damage = damage;
+            _attacker = attacker;
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            Player target = Player.Get(collision.collider) ?? Player.Get(collision.collider.GetComponentInParent<Collider>());
+
+            if (target != null && target != _attacker)
+            {
+                Log.Debug($"Hit Player: {target.Nickname} - Damage: {_damage}");
+
+                target.Hurt(_damage, DamageType.E11Sr, _attacker.Nickname);
+                _attacker.ShowHitMarker(150);
+
+                Destroy(gameObject, 7f);
+            }
+            else
+            {
+                Destroy(gameObject,4f);
+            }
+        }
+    }
+}

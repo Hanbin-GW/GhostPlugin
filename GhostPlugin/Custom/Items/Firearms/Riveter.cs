@@ -1,0 +1,36 @@
+using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Spawn;
+using Exiled.CustomItems.API.Features;
+using Exiled.Events.EventArgs.Player;
+using GhostPlugin.Objects;
+using UnityEngine;
+using YamlDotNet.Serialization;
+
+namespace GhostPlugin.Custom.Items.Firearms
+{
+    [CustomItem(ItemType.GunE11SR)]
+    public class Riveter : CustomWeapon
+    {
+        public override uint Id { get; set; } = 51;
+        public override string Name { get; set; } = "Riveter";
+        public override string Description { get; set; } = "AR 이지만 12게이지를 사용하는 연발 샷건입니다.";
+        public override float Weight { get; set; } = 7.5f;
+        public override SpawnProperties SpawnProperties { get; set; }
+        public override byte ClipSize { get; set; } = 15;
+        public override ItemType Type { get; set; } = ItemType.GunE11SR;
+        [YamlIgnore] 
+        public override float Damage { get; set; }
+        
+        protected override void OnShot(ShotEventArgs ev)
+        {
+            if (Check(ev.Player.CurrentItem))
+            {
+                ev.CanHurt = false;
+                PlasmaCube dragonbreath = new PlasmaCube(); 
+                Color glowColor = new Color(1.0f, 0.0f, 0.0f, 0.1f) * 50f;
+                dragonbreath.SpawmSparkBuckshot(ev.Player, ev.Firearm.Base.transform.position,10,25f,0.1f,glowColor); 
+            }
+            base.OnShot(ev);
+        }
+    }
+}

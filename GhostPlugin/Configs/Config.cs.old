@@ -1,0 +1,185 @@
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using Exiled.API.Features;
+using Exiled.API.Interfaces;
+using Exiled.Loader;
+using GhostPlugin.Configs.CustomConfigs;
+
+namespace GhostPlugin.Configs
+{
+    public class Config : IConfig
+    {
+        public bool IsEnabled { get; set; } = true;
+        public bool Debug { get; set; } = false;
+        public bool EnableClassicEvent { get; set; } = true;
+        public bool EnableCustomRoles { get; set; } = false;
+        public bool EnableCustomItems { get; set; } = false;
+        public bool EnableNoobSupport { get; set; } = true;
+        public bool EnableHarmony { get; set; } = false;
+        public bool EnableSsss { get; set; } = false;
+        public bool EnableBlackoutMode { get; set; } = false;
+        public CustomRolesConfig RoleConfigs { get; private set; } = null!;
+
+       
+
+        /// <summary>
+        /// Ghost Plugin Classic Config
+        /// </summary>
+        public static BroadcastSystem JoinMessage { get; set; } = new()
+        {
+            Duration = 5,
+            Message =
+                "<b>Welcome, %name% this is <color=#6203fc>G</color><color=#7724ff>h</color><color=#8033ff>o</color><color=#8b45ff>s</color><color=#995cff>t</color> <color=#00ffae>server!</color></b>",
+            Override = false
+        };
+
+        public List<string> messages { get; set; } = new List<string>()
+        {
+            "test",
+            "test1"
+        };
+
+        [Description("라운드 시작 message")]
+        public string RoundStartMSG { get; set; } = "<size=38>👻라운드가 시작되었습니다...👻</size>\n<size=30>Good Luck</size>";
+
+        [Description("저위험군 봉쇄 15분 메세지")] public string Lcz15 { get; set; } = "저위험군 봉쇄 15분 남음.";
+
+        [Description("저위험군 봉쇄 15분 메세지 시간(초단위)")]
+        public ushort Lcz15Time { get; set; } = 10;
+
+        [Description("저위험군 봉쇄 10분 메세지")] public string Lcz10 { get; set; } = "저위험군 봉쇄 10분 남음.";
+
+        [Description("저위험군 봉쇄 10분 메세지 시간(초단위)")]
+        public ushort Lcz10Time { get; set; } = 10;
+
+        [Description("저위험군 봉쇄 5분 메세지")] public string Lcz5 { get; set; } = "저위험군 봉쇄 5분 남음.";
+
+        [Description("저위험군 봉쇄 5분 메세지 시간(초단위)")]
+        public ushort Lcz5Time { get; set; } = 10;
+
+        [Description("저위험군 봉쇄 1분 메세지")] public string Lcz1 { get; set; } = "저위험군 봉쇄 1분 남음.";
+
+        [Description("저위험군 봉쇄 1분 메세지 시간(초단위)")]
+        public ushort Lcz1Time { get; set; } = 10;
+
+        [Description("저위험군 봉쇄 30초 메세지")] public string Lcz30 { get; set; } = "저위험군 봉쇄 30초 남음.";
+
+        [Description("저위험군 봉쇄 30초 메세지 시간(초단위)")]
+        public ushort Lcz30Time { get; set; } = 10;
+
+        [Description("저위험군 봉쇄 시작 메세지")] public string LcZstart { get; set; } = "저위험군 봉쇄 됨";
+
+        [Description("저위험군 봉쇄 시작 메세지 시간(초단위)")]
+        public ushort LcZstarttime { get; set; } = 10;
+
+        [Description("저위험군 봉쇄 메세지를 오직 저위험군에만 띄울까요?(저위험군 봉쇄 시작은 제외)")]
+        public bool OnlyLcZinMessage { get; set; } = true;
+
+        [Description("NTF 지원 메세지({0} = MTF 유닛 이름, {1} = MTF 유닛 숫자, {2} = SCP-049-2를 제외한 재격리 대기중인 SCP 개체)")]
+        public string NtfRespawn { get; set; } =
+            "<color=#1100ff>M</color><color=#3021ff>T</color><color=#4c40ff>F</color> {0}-{1}(이)가 지원이 왔습니다.\n재격리 대기 중인 SCP개체는 {2}마리입니다.";
+
+        [Description("NTF 지원 메세지 시간")] public ushort NtfRespawntime { get; set; } = 10;
+
+        [Description("오늘의 공지사할 적기")]
+        public string AnnouncmentMessage { get; set; } =
+            "<size=38><b><color=#6900ff>📣공</color><color=#7919ff>지</color><color=#852eff>사</color><color=#8f40ff>항📣</color></b></size>\n<size=34>오늘의 공시사항은 없습니다!\n즐거운 하루 되십시오!</size>";
+
+        /// <summary>
+        /// CustomRoles Config
+        /// </summary>
+        public string RolesFolder { get; set; } = Path.Combine(Paths.Configs, "CustomRoles");
+
+        public string RolesFile { get; set; } = "CustomRoles.yml";
+
+        public void LoadConfigs()
+        {
+            if (!Directory.Exists(RolesFolder))
+                Directory.CreateDirectory(RolesFolder);
+
+            string filePath = Path.Combine(RolesFolder, RolesFile);
+            if (!File.Exists(filePath))
+            {
+                RoleConfigs = new CustomConfigs.CustomRolesConfig();
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(RoleConfigs));
+            }
+            else
+            {
+                RoleConfigs = Loader.Deserializer.Deserialize<CustomConfigs.CustomRolesConfig>(File.ReadAllText(filePath));
+                File.WriteAllText(filePath, Loader.Serializer.Serialize(RoleConfigs));
+            }
+        }
+
+        /// <summary>
+        // Noob Suppport Config
+        // /// </summary>
+        public string MicroHidLowEnergyMessage { get; set; } = "레일건의 베터리가 매우 부족합니다...";
+
+        public string MicroHidEnergyMessage { get; set; } = "남은 에너지: {0}%";
+
+        public bool ShowHintOnEquipItem { get; set; }
+
+        public string Scp207HintMessage { get; set; } = "당신은 {0} 개의 SCP-207 를 마셧습니다!";
+
+        public string AntiScp207HintMessage { get; set; } = "당신은 {0} 개의 Anti SCP-207 를 마셧습니다!";
+
+        public string CardiacArrestMessage { get; set; } = "심정지 가 감지되었습니다.. 대량의 의료용 아이탬 또는 아드레난린 주사기를 사용하여 회복하십시요..!";
+
+        public string PoisonMessage { get; set; } = "당신은 중독되었습니다..!\n<color=green>SCP-500</color> 을 사용하여 독을 완화하십시요...!";
+        public string LowHpMessage { get; set; } = "HP 가 매우낮습니다...\n가능한 빨리 의료장비를 사용하십시요..!";
+
+        public string A7Info { get; set; } = "A7 에 피격당하셧습니다...\nA7 의 피격시 화상효과가 일어납니다..";
+
+        public string Looking096 { get; set; } = "SCP096 이 당신을 추적하고있습니다..!\n폭주가 끝날때까지 버티십시요..!";
+
+        public string JailbirdUseMessage { get; set; } = "남은 돌진공격 수: {0}";
+
+        public string ScpHealMessage { get; set; } = "적을 처치하여 {0} 의 HP 를 회복하셧습니다.";
+
+        public string BleedingMessage { get; set; } = "출혈이 감지되었습니다..\n의료용 아이탬을 사용하십시요..!";
+
+        public string PocketDimensionMessage { get; set; } = "당신의 신체가 썩어가고 있습니다..!\n빨리 이곳에서 나가십시요...!";
+
+        public int DelayLczMessageTime { get; set; } = 18;
+
+        public string Lcz15_hint { get; set; } =
+            "저위험군에서 나갈수 없으신가요?\n키카드를 얻어서 914에서 업그래이드 하세요\n O5 같은 권한이 높은 키카드를 얻으셧다면 바로 나가셔도 됩니다!";
+
+        public string Lcz10_hint { get; set; } =
+            "저위험군 폐쇠까지 10분 남았습니다!\n키카드를 얻어서 914에서 업그래이드 하세요\n O5 같은 권한이 높은 키카드를 얻으셧다면 바로 나가셔도 됩니다!";
+
+        public string Lcz5_hint { get; set; } = "저위험군 폐쇠까지 5분 남았습니다!\n슬슬 나갈 준비를 해야합니다..";
+
+        public string Lcz1_hint { get; set; } = "저위험군 폐쇠까지 1분 남았습니다!\n곧 저위험군의 검문소가 자동으로 열릴겁니다...";
+
+        public string Lcz30s_hint { get; set; } = "저위험군 폐쇠까지 30초 남았습니다!\n지금 나가지 않으면, 죽음이 당신을 기달립니다...";
+
+        public string GrenadeMessage { get; set; } = "좌클릭 으로 멀리,  우클릭으로 가까이 던질수 있습니다!";
+
+        public string AdrenalineMessage { get; set; } =
+            "아드레난린 주사기를 사용하여 <color=red>SCP049 의 심정지 공격</color>을 <color=green>무력화</color> 시킬수 있습니다!";
+
+        public string Scp049SpawnMessage { get; set; } =
+            "당신은 <color=red>SCP-049</color> 입니다..!\n시체의 [E] 키를 꾹눌러 <color=green>SCP-049-2</color> 를 만들수 있습니다..!";
+
+        public string Scp0492SpawnMessage { get; set; } =
+            "당신은 <color=#c77036>SCP-049-2</color> 입니다..!\n<color=red>SCP-049</color> 가 당신을 부활시킬수 있습니다..!";
+
+        public string Scp079SpawnMessage { get; set; } =
+            "당신은 <color=#757aff>SCP-079</color> 입니다..!\n SCP들을 도와 제단의 접근 권한티어를 올리고 시설을 장학하십시요!";
+
+        public string DclassSpawnMessage { get; set; } = "당신은 <color=orange>D-Class</color> 입니다..!\n시설에서 탈출하십시요..!";
+
+        public string ScientistSpawnMessage { get; set; } = "당신은 <color=yellow>과학자</color> 입니다..!\n시설에서 탈출하십시요..!";
+
+        public string FacilityGuardSpawnMessage { get; set; } =
+            "당신은 <color=#9c9c9c>시설경비</color> 입니다..!\n반란죄수를 사살하고, 과학자의 탈출을 도우십시요!";
+
+        public string ChaosInsurgencySpawnMessage { get; set; } =
+            "당신은 <color=#418234>혼돈의 반란</color> 입니다..!\n반란죄수를 구출하고, 시설을 파괴하십시요!";
+
+        public string NtfSpawnMessage { get; set; } =
+            "당신은 <color=#196fe0>특수작전부대</color> 입니다..!\n과학자를 구출하고, 시설을 정리하십시요!";
+    }
+}

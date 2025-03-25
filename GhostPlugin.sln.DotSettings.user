@@ -1,0 +1,44 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F1403_002FSystem_002EDrawing_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F14_002E0_0020dll_002F0Harmony_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F14_002E0_0020dll_002FAssembly_002DCSharp_002Dfirstpass_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F14_002E0_0020dll_002FAssembly_002DCSharp_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F14_002E0_0020dll_002FHintServiceMeow_002DExiled_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F14_002E0_0020dll_002FMapEditorReborn_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F14_002E0_0020dll_002FMirror_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F14_002E0_0020dll_002FRueI_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F14_002E0_0020dll_002FUnityEngine_002ECoreModule_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F14_002E0_0020dll_002FUnityEngine_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F14_002E0_0020dll_002FUnityEngine_002EPhysicsModule_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F14_002E0_0020dll_002FUnity_002ETextMeshPro_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F1_002E0_002E7_002FAudioPlayerApi_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F1_002E0_002E7_002FNVorbis_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F1_002E0_002E7_002FSystem_002EBuffers_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F1_002E0_002E7_002FSystem_002EMemory_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F1_002E0_002E7_002FSystem_002ENumerics_002EVectors_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F1_002E0_002E7_002FSystem_002ERuntime_002ECompilerServices_002EUnsafe_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002F1_002E0_002E7_002FSystem_002EValueTuple_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FAssembly_002DCSharp_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled9_002E6_002E0_002FEXILED_002FPlugins_002FExiled_002ECustomItems_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled9_002E6_002E0_002FEXILED_002FPlugins_002FExiled_002ECustomRoles_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled9_002E6_002E0_002FEXILED_002FPlugins_002FExiled_002EEvents_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled9_002E6_002E0_002FSCP_0020Secret_0020Laboratory_002FLabAPI_002DBeta_002Fdependencies_002FExiled_002EAPI_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled9_002E6_002E0_002FSCP_0020Secret_0020Laboratory_002FLabAPI_002DBeta_002Fdependencies_002FMono_002EPosix_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled9_002E6_002E0_002FSCP_0020Secret_0020Laboratory_002FLabAPI_002DBeta_002Fdependencies_002FSemanticVersioning_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled9_002E6_002E0_002FSCP_0020Secret_0020Laboratory_002FLabAPI_002DBeta_002Fplugins_002FExiled_002ELoader_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FRiderProjects_002FEffect_002FEffect_002Fobj_002FRelease_002FEffect_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FRiderProjects_002FParticle_002FParticle_002Fobj_002FRelease_002FParticle_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FRiderProjects_002FReinforcements_002FReinforcements_002Fobj_002FRelease_002FReinforcements_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeEditing/Unity/EnablePerformanceCriticalCodeHighlighting/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/CodeInspection/PencilsConfiguration/ActualSeverity/@EntryValue">WARNING</s:String>
+	<s:String x:Key="/Default/CodeInspection/PencilsConfiguration/FiltersState/=CodeStyle/@EntryIndexedValue">Off</s:String>
+	<s:String x:Key="/Default/CodeInspection/PencilsConfiguration/FiltersState/=NamingFilter/@EntryIndexedValue">Off</s:String>
+	<s:String x:Key="/Default/CodeInspection/PencilsConfiguration/FiltersState/=SpellingFilter/@EntryIndexedValue">Off</s:String>
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
+  &lt;Assembly Path="/Users/hanbin/RiderProjects/GhostPlugin/packages/ExMod.Exiled.9.2.2/lib/net48/Assembly-CSharp-Publicized.dll" /&gt;
+  &lt;Assembly Path="/Users/hanbin/RiderProjects/Reinforcements/Reinforcements/obj/Release/Reinforcements.dll" /&gt;
+  &lt;Assembly Path="/Users/hanbin/RiderProjects/GhostPlugin/packages/ExMod.Exiled.9.4.0/lib/net48/Assembly-CSharp-Publicized.dll" /&gt;
+  &lt;Assembly Path="/Users/hanbin/RiderProjects/GhostPlugin/GhostPlugin/bin/Release/RueI.dll" /&gt;
+  &lt;Assembly Path="/Users/hanbin/Documents/14.0 dll/Assembly-CSharp.dll" /&gt;
+&lt;/AssemblyExplorer&gt;</s:String>
+	<s:Boolean x:Key="/Default/Environment/InlayHints/GeneralInlayHintsOptions/EnableInlayHints/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>
