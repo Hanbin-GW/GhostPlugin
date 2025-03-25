@@ -20,6 +20,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override List<string> Inventory { get; set; } = new List<string>()
         {
             ItemType.KeycardMTFOperative.ToString(),
+            ItemType.ArmorCombat.ToString(),
             ItemType.GunFSP9.ToString(),
             34.ToString(),
             34.ToString(),
