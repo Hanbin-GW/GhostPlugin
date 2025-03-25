@@ -22,16 +22,15 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override List<string> Inventory { get; set; } = new List<string>()
         {
             ItemType.KeycardChaosInsurgency.ToString(),
-            33.ToString(),
-            44.ToString(),
+            31.ToString(),
             ItemType.ArmorCombat.ToString(),
+            ItemType.Radio.ToString(),
             ItemType.SCP500.ToString(),
         };
 
         public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
         {
-            { AmmoType.Ammo12Gauge, 16 },
-            { AmmoType.Ammo44Cal, 20 },
+            { AmmoType.Nato9, 100 },
         };
     }
 }
