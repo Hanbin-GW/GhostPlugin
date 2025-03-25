@@ -2,6 +2,7 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.Objects;
 using InventorySystem.Items.Firearms.Attachments;
 using PlayerRoles;
 using PlayerStatsSystem;
@@ -44,6 +45,8 @@ namespace GhostPlugin.Custom.Items.Firearms
         
         protected override void OnShot(ShotEventArgs ev)
         {
+            SpawnLaserObject spawnLaserObject = new SpawnLaserObject();
+            spawnLaserObject.SpawnLaser(ev.Player);
             base.OnShot(ev);
         }
     }
