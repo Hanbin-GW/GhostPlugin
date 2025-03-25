@@ -144,6 +144,7 @@
         <Compile Include="API\ExcemptionType.cs" />
         <Compile Include="API\ICustomRole.cs" />
         <Compile Include="API\StartTeam.cs" />
+        <Compile Include="Commands\ChangeGravity.cs" />
         <Compile Include="Commands\Chat.cs" />
         <Compile Include="Commands\Chat_RueI.cs" />
         <Compile Include="Commands\EnergyWaveEffect.cs" />
