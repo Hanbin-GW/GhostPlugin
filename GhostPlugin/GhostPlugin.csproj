@@ -146,8 +146,8 @@
         <Compile Include="API\StartTeam.cs" />
         <Compile Include="Commands\ChangeGravity.cs" />
         <Compile Include="Commands\Chat.cs" />
-        <Compile Include="Commands\Chat_RueI.cs" />
         <Compile Include="Commands\EnergyWaveEffect.cs" />
+        <Compile Include="Commands\GetPositionCommand.cs" />
         <Compile Include="Commands\MERSCH.cs" />
         <Compile Include="Commands\RoleInfo.cs" />
         <Compile Include="Commands\SpawnPrim.cs" />
