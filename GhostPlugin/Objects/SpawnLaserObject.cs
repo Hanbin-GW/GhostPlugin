@@ -9,7 +9,7 @@ namespace GhostPlugin.Objects
     public class SpawnLaserObject
     {
         private const float BlockSize = 0.08f;
-        private const float Speed = 200f; // ✅ 초당 200m 속도 설정
+        private const float Speed = 0f;
 
         public void SpawnLaser(Player player)
         {
@@ -40,7 +40,7 @@ namespace GhostPlugin.Objects
                 pObject.transform.position = startPosition;
 
                 pObject.NetworkPrimitiveType = PrimitiveType.Cube;
-                pObject.NetworkScale = Vector3.one * BlockSize;
+                pObject.NetworkScale = new Vector3(0.08f, 0.08f, 3f);
                 pObject.Scale = Vector3.one * BlockSize;
                 pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible;
 
@@ -56,13 +56,8 @@ namespace GhostPlugin.Objects
                 rb.isKinematic = false;  // 물리 이동 활성화
                 rb.velocity = direction * Speed; // ✅ 초당 200m 속도 설정
 
-                // ✅ Collider 삭제 (충돌 방지)
-                Collider collider = pObject.GetComponent<Collider>();
-                if (collider != null)
-                    Object.Destroy(collider);
-
                 // ✅ 정확히 1초 후 삭제
-                Object.Destroy(pObject.gameObject, 1f);
+                Object.Destroy(pObject.gameObject, 5f);
             }
         }
     }

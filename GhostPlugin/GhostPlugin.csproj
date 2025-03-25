@@ -85,14 +85,8 @@
         <Reference Include="NVorbis">
           <HintPath>..\..\..\Documents\1.0.7\NVorbis.dll</HintPath>
         </Reference>
-        <Reference Include="Particle">
-          <HintPath>..\..\Particle\Particle\obj\Release\Particle.dll</HintPath>
-        </Reference>
         <Reference Include="PluginAPI, Version=13.1.5.0, Culture=neutral, processorArchitecture=Amd64">
           <HintPath>..\packages\ExMod.Exiled.9.5.1\lib\net48\PluginAPI.dll</HintPath>
-        </Reference>
-        <Reference Include="Reinforcements">
-          <HintPath>..\..\Reinforcements\Reinforcements\obj\Release\Reinforcements.dll</HintPath>
         </Reference>
         <Reference Include="SemanticVersioning">
           <HintPath>..\..\..\Documents\Exiled9.6.0\SCP Secret Laboratory\LabAPI-Beta\dependencies\SemanticVersioning.dll</HintPath>

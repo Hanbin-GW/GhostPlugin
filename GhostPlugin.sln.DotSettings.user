@@ -40,5 +40,6 @@
   &lt;Assembly Path="/Users/hanbin/RiderProjects/GhostPlugin/packages/ExMod.Exiled.9.4.0/lib/net48/Assembly-CSharp-Publicized.dll" /&gt;
   &lt;Assembly Path="/Users/hanbin/RiderProjects/GhostPlugin/GhostPlugin/bin/Release/RueI.dll" /&gt;
   &lt;Assembly Path="/Users/hanbin/Documents/14.0 dll/Assembly-CSharp.dll" /&gt;
+  &lt;Assembly Path="/Users/hanbin/RiderProjects/Particle/Particle/obj/Release/Particle.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/Environment/InlayHints/GeneralInlayHintsOptions/EnableInlayHints/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>
