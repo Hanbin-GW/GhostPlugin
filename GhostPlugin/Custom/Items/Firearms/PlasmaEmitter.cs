@@ -34,7 +34,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
             ev.Player.CameraTransform.eulerAngles = currentRotation;*/
             SpawnParticleSpark spark = new SpawnParticleSpark();
-            PrimitiveObjectToy bullet = spark.SpawmPlasmaAmmo(ev.Player, ev.Firearm.Base.transform.position);
+            PrimitiveObjectToy bullet = spark.SpawnPlasmaAmmo(ev.Player, ev.Firearm.Base.transform.position);
             var bulletCollision = bullet.gameObject.AddComponent<BulletCollision>();
             bulletCollision.Initialize(80, ev.Player);
             ev.CanHurt = false;

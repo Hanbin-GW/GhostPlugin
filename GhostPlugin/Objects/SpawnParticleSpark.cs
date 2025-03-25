@@ -84,7 +84,7 @@ namespace GhostPlugin.Objects
         /// <param name="player"></param>
         /// <param name="position"></param>
         /// <returns>pObject</returns>
-        public PrimitiveObjectToy SpawmPlasmaAmmo(Player player, Vector3 position)
+        public PrimitiveObjectToy SpawnPlasmaAmmo(Player player, Vector3 position)
         {
             PrimitiveObjectToy pObject = null;
             float forwardForce = 200f;
@@ -99,8 +99,8 @@ namespace GhostPlugin.Objects
             if (pObject != null) 
             { 
                 pObject.NetworkPrimitiveType = PrimitiveType.Cube; 
-                pObject.transform.localScale = Vector3.one * 0.1f; 
-                pObject.NetworkScale = Vector3.one * 0.1f; 
+                pObject.transform.localScale = Vector3.one * 0.125f; 
+                pObject.NetworkScale = Vector3.one * 0.125f; 
                 pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
 
                 //pObject.Position = position + player.CameraTransform.forward + randomOffset;
