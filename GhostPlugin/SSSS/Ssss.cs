@@ -143,6 +143,12 @@ namespace GhostPlugin.SSSS
                     KeyCode.B,true,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.Scp457Id, "Scp457"
                     ,KeyCode.J,true,"J"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.Scp106Id,"Scp106",
+                    KeyCode.X,true,"X"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ExplosionId,"Explosion",
+                    KeyCode.I,true,"I"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.Speedy096Id,"Scp096",
+                    KeyCode.Alpha9,true,"9"));
             }
 
             if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)

@@ -85,16 +85,19 @@ namespace GhostPlugin.EventHandlers
             if (settingBase is SSKeybindSetting ssKeybindSetting && ssKeybindSetting.SyncIsPressed)
             {
                 if ((ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ActiveCamoId
-                    || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ChargeId
-                    || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DetectId
-                    || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DoorPickingId
-                    || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.HealingMistId
-                    || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.RemoveDisguiseId 
-                    || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.FocousId
-                    || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.EnhanseVisionId
-                    || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.GhostId
-                    || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Scp457Id)
-                    && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ChargeId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DetectId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DoorPickingId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.HealingMistId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.RemoveDisguiseId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.FocousId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.EnhanseVisionId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.GhostId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Scp457Id
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Scp106Id
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ExplosionId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Speedy096Id)
+            && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
                 {
                     string response = String.Empty;
                     if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ActiveCamoId)
@@ -188,6 +191,48 @@ namespace GhostPlugin.EventHandlers
                         {
                             scp457Ability.SelectAbility(player);
                             scp457Ability.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.Scp457ActivationMessage);
+                        }
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
+                    }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Scp106Id)
+                    {
+                        var scp106Ability = abilities.FirstOrDefault(ability => ability.GetType() == typeof(SCP106));
+                        if (scp106Ability != null && scp106Ability.CanUseAbility(player, out response))
+                        {
+                            scp106Ability.SelectAbility(player);
+                            scp106Ability.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.Scp457ActivationMessage);
+                        }
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
+                    }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ExplosionId)
+                    {
+                        var scpexAbility = abilities.FirstOrDefault(ability => ability.GetType() == typeof(Explotion));
+                        if (scpexAbility != null && scpexAbility.CanUseAbility(player, out response))
+                        {
+                            scpexAbility.SelectAbility(player);
+                            scpexAbility.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.Scp457ActivationMessage);
+                        }
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
+                    }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Speedy096Id)
+                    {
+                        var scp096Ability = abilities.FirstOrDefault(ability => ability.GetType() == typeof(Speedy096));
+                        if (scp096Ability != null && scp096Ability.CanUseAbility(player, out response))
+                        {
+                            scp096Ability.SelectAbility(player);
+                            scp096Ability.UseAbility(player);
                             player.ShowHint(Plugin.Instance.Config.SsssConfig.Scp457ActivationMessage);
                         }
                         else
