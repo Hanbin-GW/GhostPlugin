@@ -4,7 +4,7 @@ using AdminToys;
 using Exiled.API.Features;
 using Mirror;
 using UnityEngine;
-namespace GhostPlugin.Objects
+namespace GhostPlugin.Methods.Objects
 {
     public class SpawnParticleSpark
     {

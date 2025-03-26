@@ -4,7 +4,7 @@ using Exiled.API.Features;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace GhostPlugin.Objects
+namespace GhostPlugin.Methods.Objects
 {
     public class SpawnLaserObject
     {

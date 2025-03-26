@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Exiled.API.Features;
 
-namespace GhostPlugin.Methods
+namespace GhostPlugin.Methods.Music
 {
     public class MusicManager
     {

@@ -3,7 +3,7 @@ using Discord;
 using Exiled.API.Features;
 using UnityEngine;
 
-namespace GhostPlugin.Methods
+namespace GhostPlugin.Methods.Music
 {
     public class JukeboxManagement
     {

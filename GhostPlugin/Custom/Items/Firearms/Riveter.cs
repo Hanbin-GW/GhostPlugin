@@ -2,9 +2,9 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
-using GhostPlugin.Objects;
 using UnityEngine;
 using YamlDotNet.Serialization;
+using GhostPlugin.Methods.Objects;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {

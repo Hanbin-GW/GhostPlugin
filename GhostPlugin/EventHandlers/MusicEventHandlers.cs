@@ -5,8 +5,8 @@ using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Server;
-using GhostPlugin.Methods;
 using GhostPlugin.Methods.Legacy;
+using GhostPlugin.Methods.Music;
 using MEC;
 using PlayerRoles;
 

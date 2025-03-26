@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using CommandSystem;
 using Exiled.API.Features;
-using GhostPlugin.Methods;
+using GhostPlugin.Methods.Music;
 using RemoteAdmin;
 using UnityEngine;
 using MapEditorReborn.API.Features;

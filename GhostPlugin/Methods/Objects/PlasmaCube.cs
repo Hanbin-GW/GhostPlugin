@@ -4,7 +4,7 @@ using Exiled.API.Features;
 using Mirror;
 using UnityEngine;
 using GhostPlugin.Custom.Items.MonoBehavior;
-namespace GhostPlugin.Objects
+namespace GhostPlugin.Methods.Objects
 {
     public class PlasmaCube
     {
