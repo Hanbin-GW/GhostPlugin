@@ -8,7 +8,6 @@ namespace GhostPlugin.Methods.Legacy
     public class AudioManagemanet
     {
         private AudioPlayerBase SharedAudioPlayer;
-        private bool IsMusicPlaying = false;
         /// <summary>
         /// SCPSLAudioApi's play music
         /// </summary>
@@ -32,9 +31,10 @@ namespace GhostPlugin.Methods.Legacy
             }
             
             StopLobbyMusic();
-            IsMusicPlaying = true;
+            
             SharedAudioPlayer.CurrentPlay = filepath;
             SharedAudioPlayer.Loop = false;  // 특정 곡은 반복하지 않음
+            SharedAudioPlayer.Volume = 20f;
             SharedAudioPlayer.Play(-1);
             Log.Info($"특정 곡이 재생 중입니다: {filepath}");
         }
@@ -44,7 +44,7 @@ namespace GhostPlugin.Methods.Legacy
         /// </summary>
         public void StopLobbyMusic()
         {
-            if (SharedAudioPlayer != null && IsMusicPlaying == true)
+            if (SharedAudioPlayer != null)
             {
                 SharedAudioPlayer = AudioPlayerBase.Get(Server.Host.ReferenceHub);
                 SharedAudioPlayer.Loop = false;

@@ -206,7 +206,6 @@ namespace GhostPlugin.EventHandlers
                                 string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "audio");
                                 string filePath = Path.Combine(directory, Plugin.Instance.Config.MusicConfig.Lcz30sec);
                                 AudioManagemanet.PlaySpecificMusic(filePath);
-                                Timing.CallDelayed(40, () => AudioManagemanet.StopLobbyMusic());
                             }
                         }
                         break;

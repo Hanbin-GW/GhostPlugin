@@ -155,6 +155,7 @@
         <Compile Include="Commands\EnergyWaveEffect.cs" />
         <Compile Include="Commands\Jukebox\ManageJukebox.cs" />
         <Compile Include="Commands\RoleInfo.cs" />
+        <Compile Include="Commands\SetAllItemGravity.cs" />
         <Compile Include="Configs\Config.cs.old" />
         <Compile Include="Configs\CustomConfigs\CustomItemsConfig.cs" />
         <Compile Include="Configs\CustomConfigs\CustomRolesAbilitiesConfig.cs" />
