@@ -154,9 +154,7 @@
         <Compile Include="Commands\Chat_RueI.cs" />
         <Compile Include="Commands\EnergyWaveEffect.cs" />
         <Compile Include="Commands\Jukebox\ManageJukebox.cs" />
-        <Compile Include="Commands\MERSCH.cs" />
         <Compile Include="Commands\RoleInfo.cs" />
-        <Compile Include="Commands\SpawnPrim.cs" />
         <Compile Include="Configs\Config.cs.old" />
         <Compile Include="Configs\CustomConfigs\CustomItemsConfig.cs" />
         <Compile Include="Configs\CustomConfigs\CustomRolesAbilitiesConfig.cs" />
