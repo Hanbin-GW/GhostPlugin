@@ -13,13 +13,17 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
 
         public Vector3 SpeakerScale { get; set; } = new Vector3(1f, 1f, 1f);
 
-        public string RespawnMtfBgm { get; set; } = "77part2ost.ogg";
         public string Lcz15min { get; set; } = "74-Melancholy_trimmed.ogg";
         public string Lcz10min { get; set; } = "74-Melancholy_trimmed.ogg";
         public string Lcz5min { get; set; } = "77-Fearofthedark.ogg";
         public string Lcz1min { get; set; } = "77-Cauterizer.ogg";
         public string Lcz30sec { get; set; } = "Slow_Light.ogg";
 
+        public string ChaosSpawmBgm { get; set; } = "Flower Crown of Poppy.ogg";
+        public string CSquadSpawmBgm { get; set; } = "Flower Crown of Poppy.ogg";
+        public string RespawnMtfBgm { get; set; } = "77part2ost.ogg";
+
+        public string ReinforcementsSpawmBgm { get; set; } = "77part2ost.ogg";
         public bool EnableSpecialEvent { get; set; } = false;
         public string[] AllowedSteamIDs { get; set; } = 
         {

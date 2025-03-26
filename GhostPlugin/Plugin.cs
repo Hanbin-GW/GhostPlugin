@@ -29,7 +29,7 @@ namespace GhostPlugin
         /// </summary>
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(4, 1, 0);
+        public override Version Version { get; } = new(4, 2, 0);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
@@ -41,7 +41,7 @@ namespace GhostPlugin
         {
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             EffectDirectory = Path.Combine(appDataPath, "EXILED", "Plugins", "Effects_Audio");
-            AudioDirectory = Path.Combine(appDataPath, "EXILED", "Plugins", "Audio");
+            AudioDirectory = Path.Combine(appDataPath, "EXILED", "Plugins", "audio");
         }
 
         public override void OnEnabled()

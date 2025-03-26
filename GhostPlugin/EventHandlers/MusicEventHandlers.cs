@@ -77,7 +77,7 @@ namespace GhostPlugin.EventHandlers
                 return;
             if (ev.Wave.Faction == Faction.FoundationStaff)
             {
-                MusicManager.StopMusic();
+                //MusicManager.StopMusic();
                 string filePath = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.RespawnMtfBgm);
                 /*AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("GlobalAudioPlayer",onIntialCreation: (p) =>
                 {
@@ -90,8 +90,8 @@ namespace GhostPlugin.EventHandlers
 
             if (ev.Wave.Faction == Faction.FoundationEnemy)
             {
-                MusicManager.StopMusic();
-                string filePath = Path.Combine(Plugin.Instance.AudioDirectory, "Flower Crown of Poppy.ogg");
+                //MusicManager.StopMusic();
+                string filePath = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.ChaosSpawmBgm);
                 MusicManager.PlaySpecificMusic(filePath);
                 Timing.CallDelayed(50f, () => MusicManager.StopMusic());
             }
@@ -204,7 +204,7 @@ namespace GhostPlugin.EventHandlers
                             if (player.CurrentRoom.Zone == ZoneType.LightContainment)  // 특정 구역에 있는지 확인
                             {
                                 string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "audio");
-                                string filePath = Path.Combine(directory, "Slow_Light.ogg");
+                                string filePath = Path.Combine(directory, Plugin.Instance.Config.MusicConfig.Lcz30sec);
                                 AudioManagemanet.PlaySpecificMusic(filePath);
                                 Timing.CallDelayed(40, () => AudioManagemanet.StopLobbyMusic());
                             }
