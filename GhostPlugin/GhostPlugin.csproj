@@ -73,6 +73,9 @@
         <Reference Include="HintServiceMeow">
           <HintPath>..\..\..\Documents\14.0 dll\HintServiceMeow-Exiled.dll</HintPath>
         </Reference>
+        <Reference Include="MapEditorReborn">
+          <HintPath>..\..\..\Documents\14.0 dll\MapEditorReborn.dll</HintPath>
+        </Reference>
         <Reference Include="Mirror">
           <HintPath>..\..\..\Documents\14.0 dll\Mirror.dll</HintPath>
         </Reference>
@@ -87,6 +90,9 @@
         </Reference>
         <Reference Include="PluginAPI, Version=13.1.5.0, Culture=neutral, processorArchitecture=Amd64">
           <HintPath>..\packages\ExMod.Exiled.9.5.1\lib\net48\PluginAPI.dll</HintPath>
+        </Reference>
+        <Reference Include="SCPSLAudioApi">
+          <HintPath>..\..\..\Documents\Depend\SCPSLAudioApi.dll</HintPath>
         </Reference>
         <Reference Include="SemanticVersioning">
           <HintPath>..\..\..\Documents\Exiled9.6.0\SCP Secret Laboratory\LabAPI-Beta\dependencies\SemanticVersioning.dll</HintPath>
@@ -138,6 +144,7 @@
         <Compile Include="Commands\Chat.cs" />
         <Compile Include="Commands\Chat_RueI.cs" />
         <Compile Include="Commands\EnergyWaveEffect.cs" />
+        <Compile Include="Commands\Jukebox\ManageJukebox.cs" />
         <Compile Include="Commands\MERSCH.cs" />
         <Compile Include="Commands\RoleInfo.cs" />
         <Compile Include="Commands\SpawnPrim.cs" />
@@ -149,6 +156,7 @@
         <Compile Include="Configs\Object.cs" />
         <Compile Include="Configs\ServerEventsConfigs\BlackoutModeConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\ClassicConfig.cs" />
+        <Compile Include="Configs\ServerEventsConfigs\MusicConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\NoobSupportConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\ServerEventsMasterConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\SsssConfig.cs" />
@@ -232,9 +240,13 @@
         <Compile Include="EventHandlers\ClassicPlugin.cs" />
         <Compile Include="EventHandlers\CustomItemHandler.cs" />
         <Compile Include="EventHandlers\CustomRoleHandler.cs" />
+        <Compile Include="EventHandlers\MusicEventHandlers.cs" />
         <Compile Include="EventHandlers\Methods.cs" />
         <Compile Include="EventHandlers\NoobSupport.cs" />
         <Compile Include="EventHandlers\SsssEventHandler.cs" />
+        <Compile Include="Methods\JukeboxManagement.cs" />
+        <Compile Include="Methods\Legacy\AudioManagemanet.cs" />
+        <Compile Include="Methods\MusicManager.cs" />
         <Compile Include="MyCustomKeyBind.cs" />
         <Compile Include="Objects\PlasmaCube.cs" />
         <Compile Include="Objects\SpawnLaserObject.cs" />

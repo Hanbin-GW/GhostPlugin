@@ -15,7 +15,8 @@ namespace GhostPlugin.Configs
         
         [Description("There is a LOT of debug statements, turn this on if you really need top check something, otherwise keep it off to avoid flooding your server console")]
         public bool Debug { get; set; } = false;
-
+        [YamlIgnore]
+        public MusicConfig MusicConfig { get; set; } = null!;
         [YamlIgnore]
         public CustomItemsConfig CustomItemsConfig { get; set; } = null!;
         [YamlIgnore]
@@ -29,12 +30,12 @@ namespace GhostPlugin.Configs
 
         public string ConfigFolder { get; set; } =
             Path.Combine(Paths.Configs, "GhostServerPluginPackage");
-        
         public string CustomItemConfigFile { get; set; } = "CustomItems.yml";
         public string CustomRolesConfigFile { get; set; } = "CustomRoles.yml";
         public string CustomRolesAbilitiesConfigFile { get; set; } = "CustomAbilities.yml";
-        public string MicroDamageReductionConfigFile { get; set; } = "MicroDamageReduction.yml";
+        //public string MicroDamageReductionConfigFile { get; set; } = "MicroDamageReduction.yml";
         public string ServerEventsMasterConfigFile { get; set; } = "ServerEvents.yml";
+        public string MusicEventConfigFile { get; set; } = "MusicEvents.yml";
         public string SsssConfigFile { get; set; } = "Ssss.yml";
 
         public void LoadConfigs()
@@ -64,6 +65,18 @@ namespace GhostPlugin.Configs
             {
                 CustomRolesConfig = Loader.Deserializer.Deserialize<CustomRolesConfig>(File.ReadAllText(crFilePath));
                 File.WriteAllText(crFilePath, Loader.Serializer.Serialize(CustomRolesConfig));
+            }
+
+            string musicFilePath = Path.Combine(ConfigFolder, MusicEventConfigFile);
+            if (!File.Exists(musicFilePath))
+            {
+                MusicConfig = new MusicConfig();
+                File.WriteAllText(musicFilePath, Loader.Serializer.Serialize(MusicConfig));
+            }
+            else
+            {
+                MusicConfig = Loader.Deserializer.Deserialize<MusicConfig>(File.ReadAllText(musicFilePath));
+                File.WriteAllText(musicFilePath, Loader.Serializer.Serialize(MusicConfig));
             }
             
             string caFilePath = Path.Combine(ConfigFolder, CustomRolesAbilitiesConfigFile);

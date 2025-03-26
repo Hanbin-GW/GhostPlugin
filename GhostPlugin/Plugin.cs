@@ -12,6 +12,7 @@ using GhostPlugin.API;
 using GhostPlugin.Configs;
 using GhostPlugin.EventHandlers;
 using HarmonyLib;
+using MapEditorReborn.API.Features.Objects;
 using UserSettings.ServerSpecific;
 using Server = Exiled.Events.Handlers.Server;
 
@@ -23,17 +24,24 @@ namespace GhostPlugin
         public List<Player> StopRagdollList { get; } = new ();
         public Dictionary<StartTeam, List<ICustomRole>> Roles { get; } = new();
         private Harmony Harmony { get; set; }
-        public override Version Version { get; } = new(4, 0, 3);
+        /// <summary>
+        /// Speakers List
+        /// </summary>
+        public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
+        public int CurrentId = 1;
+        public override Version Version { get; } = new(4, 1, 0);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
         //private MyCustomKeyBind _myCustomKeyBind;
         public SsssEventHandler SsssEventHandler;
         public readonly string AudioDirectory;
+        public readonly string EffectDirectory;
         public Plugin()
         {
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            AudioDirectory = Path.Combine(appDataPath, "EXILED", "Plugins", "Effects_Audio");
+            EffectDirectory = Path.Combine(appDataPath, "EXILED", "Plugins", "Effects_Audio");
+            AudioDirectory = Path.Combine(appDataPath, "EXILED", "Plugins", "Audio");
         }
 
         public override void OnEnabled()
@@ -52,7 +60,7 @@ namespace GhostPlugin
                 return;
             }
 
-            Log.Send($"[GHOST.API] {Instance.Name} is enabled By {Instance.Author} | Version: {Instance.Version}",LogLevel.Info, ConsoleColor.Red);
+            Log.Send($"[GHOST.API] {Instance.Name} is enabled By {Instance.Author} | Version: {Instance.Version}",LogLevel.Info, ConsoleColor.DarkYellow);
             Config.LoadConfigs();
             if(Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled){BlackoutMod.RegisterEvents();}
 
@@ -161,6 +169,8 @@ namespace GhostPlugin
             if (Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled) { ClassicPlugin.RegisterEvents(); }
             if (Config.CustomRolesConfig.IsEnabled) {CustomRoleHandler.RegisterEvents();}
             if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.RegisterEvents();}
+            //music event
+            if (Config.MusicConfig.OnEnabled) {MusicEventHandlers.RegisterEvents();}
 
             /*if (Config.EnableHarmony)
             {
@@ -226,7 +236,9 @@ namespace GhostPlugin
             
             //Noob Support
             if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.UnregisterEvents();}
-            
+            //Music Event
+            if(Config.MusicConfig.OnEnabled) {MusicEventHandlers.UnregisterEvents();}
+
             //CustomRoles
             if (Config.CustomRolesConfig.IsEnabled)
             {
