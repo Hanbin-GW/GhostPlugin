@@ -264,7 +264,6 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="SSSS\SpecificMenu.cs" />
         <Compile Include="SSSS\Ssss.cs" />
-        <Compile Include="Translation.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
