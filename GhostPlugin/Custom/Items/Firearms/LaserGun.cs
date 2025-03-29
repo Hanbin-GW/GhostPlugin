@@ -79,7 +79,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         [Description("How long does the laser stay on the screen")]
         public float LaserVisibleTime { get; set; } = 0.5f;
         [Description("How big is the laser")]
-        public Vector3 LaserScale { get; set; } = new Vector3(0.2f, 0.2f, 0.2f);
+        public Vector3 LaserScale { get; set; } = new Vector3(0.05f, 0.05f, 0.05f);
         
         protected override void SubscribeEvents()
         {
@@ -96,8 +96,9 @@ namespace GhostPlugin.Custom.Items.Firearms
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
+            ev.CanHurt = false;
             Log.Debug($"VVUP Custom Items: Laser Gun, spawning laser going from {ev.Player.Position} to {ev.Position}");
-            var color = GetRandomLaserColor();
+            //var color = GetRandomLaserColor();
             //var laserColor = new Color(color.Red, color.Green, color.Blue);
             var laserColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
             var direction = ev.Position - ev.Player.Position;
@@ -109,7 +110,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             var laser = Primitive.Create(PrimitiveType.Cylinder, PrimitiveFlags.Visible, laserPos, rotation.eulerAngles,
                 scale, true, laserColor);
             var bulletCollision = laser.Base.gameObject.AddComponent<BulletCollision>();
-            bulletCollision.Initialize(120, ev.Player);
+            bulletCollision.Initialize(100, ev.Player);
             Timing.CallDelayed(LaserVisibleTime, laser.Destroy);
         }
         private (float Red, float Green, float Blue) GetRandomLaserColor()
