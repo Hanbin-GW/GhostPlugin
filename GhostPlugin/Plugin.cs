@@ -27,7 +27,7 @@ namespace GhostPlugin
         /// Speakers List
         /// </summary>
         public int CurrentId = 1;
-        public override Version Version { get; } = new(4, 1,2);
+        public override Version Version { get; } = new(4, 1,3);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
@@ -98,6 +98,7 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.OverkillVests.Register();
                 Config.CustomItemsConfig.MachineGuns.Register();
                 Config.CustomItemsConfig.Riveters.Register();
+                Config.CustomItemsConfig.LaserGuns.Register();
             }
             
             //CustomRole Config
