@@ -2,13 +2,6 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using HintServiceMeow.Core.Enum;
-using HintServiceMeow.Core.Interface;
-using HintServiceMeow.Core.Models;
-using HintServiceMeow.UI.Extension;
-using HintServiceMeow.UI.Utilities;
-using HintServiceMeow.Core.Utilities;
-using Hint = HintServiceMeow.Core.Models.Hints.Hint;
 
 namespace GhostPlugin.EventHandlers
 {
@@ -46,47 +39,6 @@ namespace GhostPlugin.EventHandlers
             PlayerEvents.SpawningRagdoll -= OnSpawningRagdoll;
             ServerEvents.RoundStarted -= OnRoundStarted;
             //PlayerEvents.ChangingRole -= OnChangingRole;
-        }
-
-        private static void OnChangingRole(ChangingRoleEventArgs ev)
-        {
-            if (ev.NewRole == RoleTypeId.CustomRole)
-            {
-                GetContent(ev.Player);
-            }
-        }
-
-        private static void GetContent(Player player)
-        {
-            var customRole = CustomRole.Get((uint)player.Role.Type);
-            if (customRole?.CustomAbilities != null && customRole.CustomAbilities.Count > 0)
-            {
-                foreach (var ability in customRole.CustomAbilities)
-                {
-                    string response;
-                    bool isCooldown = ability is ActiveAbility activeAbilityCooldown
-                                      && !activeAbilityCooldown.CanUseAbility(player, out response, false);
-
-                    HintServiceMeow.Core.Models.Hints.Hint hint = new HintServiceMeow.Core.Models.Hints.Hint()
-                    {
-                        Text = $"<size=30><color={(isCooldown ? "#ff0000" : "#bcff57")}>{ability.Name}</color></size>",
-                        YCoordinate = 50,
-                        Alignment = HintAlignment.Left,
-                        Id = Guid.NewGuid().ToString()
-                    };
-
-                    PlayerDisplay display = PlayerDisplay.Get(player);
-                    if (display != null)
-                    {
-                        display.AddHint(hint);
-                        Log.Info($"Hint added for {player.Nickname}: {ability.Name}");
-                    }
-                    else
-                    {
-                        Log.Warn($"Failed to get display for {player.Nickname}");
-                    }
-                }
-            }
         }
         
         private static void OnRoundStarted()

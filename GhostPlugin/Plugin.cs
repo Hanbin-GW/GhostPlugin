@@ -12,7 +12,6 @@ using GhostPlugin.API;
 using GhostPlugin.Configs;
 using GhostPlugin.EventHandlers;
 using HarmonyLib;
-using MapEditorReborn.API.Features.Objects;
 using UserSettings.ServerSpecific;
 using Server = Exiled.Events.Handlers.Server;
 
@@ -27,7 +26,6 @@ namespace GhostPlugin
         /// <summary>
         /// Speakers List
         /// </summary>
-        public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public int CurrentId = 1;
         public override Version Version { get; } = new(4, 1, 1);
         public override string Author { get; } = "Hanbin-GW";
@@ -169,8 +167,6 @@ namespace GhostPlugin
             if (Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled) { ClassicPlugin.RegisterEvents(); }
             if (Config.CustomRolesConfig.IsEnabled) {CustomRoleHandler.RegisterEvents();}
             if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.RegisterEvents();}
-            //music event
-            if (Config.MusicConfig.OnEnabled) {MusicEventHandlers.RegisterEvents();}
 
             /*if (Config.EnableHarmony)
             {
@@ -237,7 +233,6 @@ namespace GhostPlugin
             //Noob Support
             if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.UnregisterEvents();}
             //Music Event
-            if(Config.MusicConfig.OnEnabled) {MusicEventHandlers.UnregisterEvents();}
 
             //CustomRoles
             if (Config.CustomRolesConfig.IsEnabled)

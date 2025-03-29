@@ -37,7 +37,7 @@ namespace GhostPlugin.Custom.Items.Etc
         {
             if (Check(ev.Item))
             {
-                Plugin.Instance.EnsureMusicDirectoryExists();
+                /*Plugin.Instance.EnsureMusicDirectoryExists();
                 var path = Path.Combine(Plugin.Instance.AudioDirectory, "Battle_Rage.ogg");
                 if (!File.Exists(path))
                 {
@@ -51,7 +51,7 @@ namespace GhostPlugin.Custom.Items.Etc
                     {
                         Speaker speaker = p.AddSpeaker("Lcz_Music", isSpatial: false, maxDistance: 5000f);
                     });
-                effectPlayer.AddClip("Battle_Rage_Sound", 1f, false, true);
+                effectPlayer.AddClip("Battle_Rage_Sound", 1f, false, true);*/
                 ev.Player.ShowHint("<color=red>WRAAAGH!\nLET'S GO</color>",5);
                 ev.Player.EnableEffect<MovementBoost>(30, 30);
                 ev.Player.IsUsingStamina = false;

@@ -3,7 +3,6 @@ using System.Linq;
 using System;
 using CommandSystem;
 using Exiled.API.Features;
-using MEC;
 using PlayerRoles;
 
 namespace GhostPlugin.Commands
