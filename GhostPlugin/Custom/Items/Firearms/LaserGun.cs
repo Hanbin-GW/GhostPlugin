@@ -8,6 +8,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.API.Features.Toys;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.Custom.Items.MonoBehavior;
 using MEC;
 using UnityEngine;
 using Player = Exiled.Events.Handlers.Player;
@@ -23,6 +24,8 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Name { get; set; } = "<color=#FF0000>X-57 Helios Beam</color>";
         public override string Description { get; set; } = "It fires lasers!";
         public override float Weight { get; set; } = 2;
+        public override byte ClipSize { get; set; } = 10;
+
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
             Limit = 1,
@@ -95,7 +98,8 @@ namespace GhostPlugin.Custom.Items.Firearms
                 return;
             Log.Debug($"VVUP Custom Items: Laser Gun, spawning laser going from {ev.Player.Position} to {ev.Position}");
             var color = GetRandomLaserColor();
-            var laserColor = new Color(color.Red, color.Green, color.Blue);
+            //var laserColor = new Color(color.Red, color.Green, color.Blue);
+            var laserColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
             var direction = ev.Position - ev.Player.Position;
             var distance = direction.magnitude;
             var scale = new Vector3(LaserScale.x, distance * 0.5f, LaserScale.z);
@@ -104,6 +108,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             Log.Debug($"VVUP Custom Items: Laser Gun, Laser Info: Position: {laserPos}, Rotation: {rotation.eulerAngles}, Color: {laserColor}");
             var laser = Primitive.Create(PrimitiveType.Cylinder, PrimitiveFlags.Visible, laserPos, rotation.eulerAngles,
                 scale, true, laserColor);
+            var bulletCollision = laser.Base.gameObject.AddComponent<BulletCollision>();
+            bulletCollision.Initialize(120, ev.Player);
             Timing.CallDelayed(LaserVisibleTime, laser.Destroy);
         }
         private (float Red, float Green, float Blue) GetRandomLaserColor()
