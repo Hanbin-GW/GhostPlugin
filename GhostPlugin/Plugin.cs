@@ -179,7 +179,8 @@ namespace GhostPlugin
                 Log.Info($"{Harmony.Id} is enabled");
                 //Harmony.DEBUG = true;
             }*/
-            
+            Harmony = new Harmony($"Hanbin-GW.GhostPlugin.{DateTime.Now.Ticks}");
+            Harmony.PatchAll();
             //SSSS
             /*if (Config.SsssConfig.IsEnabled == true)
             {
