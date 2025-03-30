@@ -4,13 +4,14 @@ using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.API;
 using GhostPlugin.Custom.Abilities.Passive;
 using PlayerRoles;
 
 namespace GhostPlugin.Custom.Roles.Foundation
 {
     [CustomRole(RoleTypeId.FacilityGuard)]
-    public class LuckyGuard : CustomRole
+    public class LuckyGuard : CustomRole, ICustomRole
     {
         public override uint Id { get; set; } = 14;
         public override int MaxHealth { get; set; } = 100;
@@ -79,5 +80,8 @@ namespace GhostPlugin.Custom.Roles.Foundation
             Exiled.Events.Handlers.Player.Hurting -= OnHurting;
             base.UnsubscribeEvents();
         }
+
+        public StartTeam StartTeam { get; set; } = StartTeam.Guard;
+        public int Chance { get; set; } = 100;
     }
 }
