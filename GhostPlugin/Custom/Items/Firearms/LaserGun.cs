@@ -92,7 +92,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             Player.Shot -= OnShot;
             base.UnsubscribeEvents();
         }
-        private void OnShot(ShotEventArgs ev)
+
+        protected override void OnShot(ShotEventArgs ev)
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
