@@ -1,14 +1,6 @@
 using System;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using HintServiceMeow.Core.Enum;
-using HintServiceMeow.Core.Interface;
-using HintServiceMeow.Core.Models;
-using HintServiceMeow.UI.Extension;
-using HintServiceMeow.UI.Utilities;
 using HintServiceMeow.Core.Utilities;
-using Hint = HintServiceMeow.Core.Models.Hints.Hint;
 
 namespace GhostPlugin.EventHandlers
 {
@@ -151,8 +143,13 @@ namespace GhostPlugin.EventHandlers
 
         private static void OnRespawningTeam(RespawningTeamEventArgs ev)
         {
-            /*if (Reinforcements.Plugin.Instance == null || Reinforcements.Plugin.Instance.IsSpawnable || Reinforcements.Plugin.Instance.NextIsForced)
-                return;*/
+            if (Reinforcements.Plugin.Instance == null 
+                || Reinforcements.Plugin.Instance.IsSpawnable 
+                || Reinforcements.Plugin.Instance.NextIsForced
+                || C_Squad.Plugin.Instance == null
+                || C_Squad.Plugin.Instance.IsSpawnable
+                || C_Squad.Plugin.Instance.IsForced)
+                return;
             if (ev.Players.Count == 0)
             {
                 Log.Warn(
