@@ -109,7 +109,12 @@ namespace GhostPlugin.Custom.Items.Firearms
             Log.Debug($"VVUP Custom Items: Laser Gun, Laser Info: Position: {laserPos}, Rotation: {rotation.eulerAngles}, Color: {laserColor}");
             var laser = Primitive.Create(PrimitiveType.Cylinder, PrimitiveFlags.Visible, laserPos, rotation.eulerAngles,
                 scale, true, laserColor);
-            var bulletCollision = laser.Base.gameObject.AddComponent<BulletCollision>();
+            var collider = laser.GameObject.AddComponent<CapsuleCollider>();
+            collider.isTrigger = false; 
+            var rigidbody = laser.GameObject.AddComponent<Rigidbody>();
+            rigidbody.useGravity = false;
+            rigidbody.isKinematic = false;
+            var bulletCollision = laser.GameObject.AddComponent<BulletCollision>();
             bulletCollision.Initialize(100, ev.Player);
             Timing.CallDelayed(LaserVisibleTime, laser.Destroy);
         }
