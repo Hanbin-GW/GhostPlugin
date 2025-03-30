@@ -29,7 +29,7 @@ namespace GhostPlugin
         /// </summary>
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(4, 1, 1);
+        public override Version Version { get; } = new(4, 2, 0);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
@@ -118,6 +118,7 @@ namespace GhostPlugin
                 Config.CustomRolesConfig.Scp682s.Register();
                 Config.CustomRolesConfig.SoleStealer049s.Register();
                 Config.CustomRolesConfig.Scp049Aps.Register();
+                Config.CustomRolesConfig.LuckyGuards.Register();
                 Config.CustomRolesConfig.Demolitionists.Register();
                 Config.CustomRolesConfig.DwarfZombies.Register();
                 Config.CustomRolesConfig.ExplosiveZombies.Register();

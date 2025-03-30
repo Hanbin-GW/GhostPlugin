@@ -14,6 +14,7 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
         public Vector3 SpeakerScale { get; set; } = new Vector3(1f, 1f, 1f);
 
         public string RespawnMtfBgm { get; set; } = "77part2ost.ogg";
+        public string CSquad { get; set; } = "Flower Crown of Poppy.ogg";
         public string Lcz15min { get; set; } = "74-Melancholy_trimmed.ogg";
         public string Lcz10min { get; set; } = "74-Melancholy_trimmed.ogg";
         public string Lcz5min { get; set; } = "77-Fearofthedark.ogg";

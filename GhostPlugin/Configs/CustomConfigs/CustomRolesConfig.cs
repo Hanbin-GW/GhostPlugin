@@ -4,6 +4,7 @@ using GhostPlugin.Custom.Roles.ClassD;
 using GhostPlugin.Custom.Roles.Foundation;
 using GhostPlugin.Custom.Roles.Scps;
 using GhostPlugin.Custom.Roles.Scientist;
+using MapEditorReborn.Commands.UtilityCommands;
 
 
 namespace GhostPlugin.Configs.CustomConfigs
@@ -75,6 +76,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         public List<Scp049AP> Scp049Aps { get; set; } = new()
         {
             new Scp049AP()
+        };
+
+        public List<LuckyGuard> LuckyGuards { get; set; } = new()
+        {
+            new LuckyGuard()
         };
         public List<Demolitionist> Demolitionists { get; set; } = new()
         {

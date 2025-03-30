@@ -95,6 +95,14 @@ namespace GhostPlugin.EventHandlers
                 MusicManager.PlaySpecificMusic(filePath);
                 Timing.CallDelayed(50f, () => MusicManager.StopMusic());
             }
+
+            if (ev.Wave.Faction == Faction.FoundationEnemy && C_Squad.Plugin.Instance.IsSpawnable)
+            {
+                MusicManager.StopMusic();
+                string filePath = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.CSquad);
+                MusicManager.PlaySpecificMusic(filePath);
+                Timing.CallDelayed(50f, () => MusicManager.StopMusic());
+            }
         }
         
         /// <summary>
