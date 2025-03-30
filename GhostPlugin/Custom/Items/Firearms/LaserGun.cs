@@ -93,7 +93,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             base.UnsubscribeEvents();
         }
 
-        protected override void OnShot(ShotEventArgs ev)
+        private void OnShot(ShotEventArgs ev)
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
@@ -110,7 +110,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             Log.Debug($"VVUP Custom Items: Laser Gun, Laser Info: Position: {laserPos}, Rotation: {rotation.eulerAngles}, Color: {laserColor}");
             var laser = Primitive.Create(PrimitiveType.Cylinder, PrimitiveFlags.Visible, laserPos, rotation.eulerAngles,
                 scale, true, laserColor);
-            var collider = laser.GameObject.AddComponent<CapsuleCollider>();
+            var collider = laser.GameObject.AddComponent<Collider>();
             collider.isTrigger = false; 
             var rigidbody = laser.GameObject.AddComponent<Rigidbody>();
             rigidbody.useGravity = false;
