@@ -4,8 +4,8 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using GhostPlugin.Custom.Items.MonoBehavior;
-using GhostPlugin.Objects;
-using UnityEngine;
+using GhostPlugin.Methods.Objects;
+using YamlDotNet.Serialization;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
@@ -17,6 +17,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Description { get; set; } = "25발 플라즈마 소총입니다.\n뱀의손 전용 아이탬";
         public override float Weight { get; set; } = 5.5f;
         public override SpawnProperties SpawnProperties { get; set; }
+        [YamlIgnore]
         public override float Damage { get; set; }
         public override byte ClipSize { get; set; } = 30;
         public override ItemType Type { get; set; } = ItemType.GunCOM18;
@@ -34,8 +35,10 @@ namespace GhostPlugin.Custom.Items.Firearms
 
             ev.Player.CameraTransform.eulerAngles = currentRotation;*/
             SpawmPlasma spawmPlasma = new SpawmPlasma();
-            spawmPlasma.SpawnPlasma(ev.Player);
+            PrimitiveObjectToy plasma = spawmPlasma.SpawnLaserObjectInstance(ev.Player, ev.Firearm.Base.transform.position, ev.Firearm.Base.transform.forward);
             ev.CanHurt = false;
+            var plasmaCollision = plasma.gameObject.AddComponent<BulletCollision>();
+            plasmaCollision.Initialize(90,ev.Player);
             base.OnShot(ev);
         }
     }

@@ -5,22 +5,22 @@ using GhostPlugin.Custom.Items.MonoBehavior;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace GhostPlugin.Objects
+namespace GhostPlugin.Methods.Objects
 {
     public class SpawmPlasma
     {
         private const float BlockSize = 0.05f;
         private const float Speed = 200f; // ✅ 초당 200m 속도 설정
 
-        public void SpawnPlasma(Player player)
+        /*public void SpawnPlasma(Player player)
         {
             Vector3 startPosition = player.CameraTransform.position;
             Vector3 direction = player.CameraTransform.forward.normalized;
 
             SpawnLaserObjectInstance(player, startPosition, direction);
-        }
+        }*/
 
-        private void SpawnLaserObjectInstance(Player player, Vector3 startPosition, Vector3 direction)
+        public PrimitiveObjectToy SpawnLaserObjectInstance(Player player, Vector3 startPosition, Vector3 direction)
         {
             PrimitiveObjectToy pObject = null;
 
@@ -66,6 +66,8 @@ namespace GhostPlugin.Objects
                 // ✅ 정확히 1초 후 삭제
                 Object.Destroy(pObject.gameObject, 1f);
             }
+
+            return pObject;
         }
     }
 }
