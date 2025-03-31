@@ -209,10 +209,10 @@ namespace GhostPlugin.EventHandlers
                     {
                         foreach (Player player in Player.List)
                         {
-                            if (player.CurrentRoom.Zone == ZoneType.LightContainment)  // 특정 구역에 있는지 확인
+                            if (player.CurrentRoom.Zone == ZoneType.LightContainment)
                             {
                                 string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "audio");
-                                string filePath = Path.Combine(directory, "Slow_Light.ogg");
+                                string filePath = Path.Combine(directory, Plugin.Instance.Config.MusicConfig.Lcz30sec);
                                 AudioManagemanet.PlaySpecificMusic(filePath);
                                 Timing.CallDelayed(40, () => AudioManagemanet.StopLobbyMusic());
                             }

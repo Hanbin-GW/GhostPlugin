@@ -20,7 +20,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
         {
             Player target = Player.Get(collision.collider) ?? Player.Get(collision.collider.GetComponentInParent<Collider>());
 
-            if (target != null && target != _attacker)
+            if (target != null && target != _attacker && !(_attacker.LeadingTeam == target.LeadingTeam))
             {
                 Log.Debug($"Hit Player: {target.Nickname} - Damage: {_damage}");
                 target.EnableEffect<Burned>(duration: 5);
