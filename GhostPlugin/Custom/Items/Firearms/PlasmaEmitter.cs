@@ -5,6 +5,7 @@ using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using GhostPlugin.Custom.Items.MonoBehavior;
 using GhostPlugin.Methods.Objects;
+using UnityEngine;
 using YamlDotNet.Serialization;
 
 namespace GhostPlugin.Custom.Items.Firearms
@@ -34,8 +35,9 @@ namespace GhostPlugin.Custom.Items.Firearms
             currentRotation.y += recoilX;  // 좌우 회전 추가
 
             ev.Player.CameraTransform.eulerAngles = currentRotation;*/
-            SpawmPlasma spawmPlasma = new SpawmPlasma();
-            PrimitiveObjectToy plasma = spawmPlasma.SpawnLaserObjectInstance(ev.Player, ev.Firearm.Base.transform.position, ev.Firearm.Base.transform.forward);
+            SpawnParticleSpark spawmPlasma = new SpawnParticleSpark();
+            Color glowColor = new Color(1.0f, 0.5f, 0.0f, 0.1f) * 50f;
+            PrimitiveObjectToy plasma = spawmPlasma.SpawnPlasma(ev.Player, ev.Firearm.Base.transform.position, glowColor, 0.1f);
             ev.CanHurt = false;
             var plasmaCollision = plasma.gameObject.AddComponent<BulletCollision>();
             plasmaCollision.Initialize(90,ev.Player);
