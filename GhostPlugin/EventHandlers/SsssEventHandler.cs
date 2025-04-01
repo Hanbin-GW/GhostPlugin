@@ -3,6 +3,7 @@ using System.Linq;
 using Exiled.API.Features;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.Custom.Abilities.Active;
+using GhostPlugin.Custom.Items.Armor;
 using GhostPlugin.Custom.Items.Grenades;
 using GhostPlugin.SSSS;
 using UnityEngine;
@@ -96,7 +97,8 @@ namespace GhostPlugin.EventHandlers
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Scp457Id
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Scp106Id
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ExplosionId
-                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Speedy096Id)
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Speedy096Id
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.OverKillId)
             && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
                 {
                     string response = String.Empty;
@@ -241,6 +243,10 @@ namespace GhostPlugin.EventHandlers
                         }
                     }
                 }
+                else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.OverKillId)
+                {
+                    OverkillVest.Instance.OverKillHandler(player);
+                }
                 else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DetonateC4Id)
                 {
                     if (!C4.PlacedCharges.ContainsValue(player))
@@ -274,7 +280,7 @@ namespace GhostPlugin.EventHandlers
                         }
                     } 
                     player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssDetonateC4ActivationMessage);
-                    //string response = i == 1 ? $"\n<color=green>{i} C4 charge has been detonated!</color>" : $"\n<color=green>{i} C4 charges have been detonated!</color>"; player.SendConsoleMessage(response, "green");
+                    string response = i == 1 ? $"\n<color=green>{i} C4 charge has been detonated!</color>" : $"\n<color=green>{i} C4 charges have been detonated!</color>"; player.SendConsoleMessage(response, "green");
                 }
             }
         }

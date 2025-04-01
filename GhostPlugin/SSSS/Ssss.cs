@@ -156,6 +156,8 @@ namespace GhostPlugin.SSSS
                 settings.Add(new SSGroupHeader("커스텀 아이탬 능력키"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, "C4 폭발",
                     KeyCode.J, true, "무전기를 들고 커스텀 키바인드 키를 눌러 C4 를 폭파시킵니다!"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.OverKillId, "Overkill Activate",
+                    KeyCode.J,true,"해당 능력을 갖고 [J] 카를 가질시 랜덤으로 총을 얻을수 있습니다!"));
             }
             return settings.ToArray();
         }

@@ -18,6 +18,7 @@ namespace GhostPlugin.Configs
         public int Scp106Id { get; set; } = 10011;
         public int ExplosionId { get; set; } = 10012;
         public int Speedy096Id { get; set; } = 10013;
+        public int OverKillId { get; set; } = 10014;
         public string SsssActiveCamoActivationMessage { get; set; } = "Activated Active Camo";
         public string SsssChargeActivationMessage { get; set; } = "Activated Charge";
         public string SsssDoorPickingActivationMessage { get; set; } = "Activated Door Picking, Interact with the door you want to pick.";
@@ -30,5 +31,6 @@ namespace GhostPlugin.Configs
         public string SsssC4DetonatorNeeded { get; set; } = "기폭 장치(무전기)를 들고 있어야 합니다";
         public string SsssC4TooFarAway { get; set; } = "C4 로부터 너무 떨어져 계십니다, 가까이 가시는거를 고려하시기 바랍니다.";
         public string SsssDetonateC4ActivationMessage { get; set; } = "C4 폭발";
+        public string SsssOverkillActivationMessage { get; set; } = "오버킬 능력 활성화!";
     }
 }

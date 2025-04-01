@@ -6,6 +6,7 @@ using Exiled.API.Features;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.Custom.Abilities.Active;
 using InventorySystem;
 using InventorySystem.Items;
 using MEC;
@@ -22,6 +23,20 @@ namespace GhostPlugin.Custom.Items.Armor
         public override ItemType Type { get; set; } = ItemType.ArmorCombat;
         private readonly Dictionary<Player, CoroutineHandle> _altKeyCooldowns =
             new Dictionary<Player, CoroutineHandle>();
+
+        public static OverkillVest Instance { get; set; } = null!;
+        public void OverKillHandler(Player player)
+        {
+            if(!Check(player.CurrentArmor))
+                return;
+            if (_altKeyCooldowns.ContainsKey(player))
+            {
+                player.ShowHint("쿨다운이 아직 진행중입니다..\n능력을 사용할수 없습니다..", 5);
+            }
+            CoroutineHandle handle = Timing.RunCoroutine(CooldownCorutine(player));
+            _altKeyCooldowns[player] = handle;
+            GiveRandomWeapon(player);
+        }
         private void GiveRandomWeapon(Player player)
         {
             ItemType[] weaponTypes = Enum.GetValues(typeof(ItemType))
@@ -34,8 +49,9 @@ namespace GhostPlugin.Custom.Items.Armor
             player.Inventory.ServerSelectItem(serial);
             //player.AddItem(randomWeapon);
             player.ShowHint($"오버킬 능력으로 {randomWeapon} 을 받았습니다!", 5);
-
         }
+
+        
 
         private IEnumerator<float> CooldownCorutine(Player player)
         {
@@ -65,13 +81,13 @@ namespace GhostPlugin.Custom.Items.Armor
         }
         protected override void SubscribeEvents()
         {
-            Exiled.Events.Handlers.Player.TogglingNoClip += OnTogglingNoClip;
+            //Exiled.Events.Handlers.Player.TogglingNoClip += OnTogglingNoClip;
             base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
         {
-            Exiled.Events.Handlers.Player.TogglingNoClip -= OnTogglingNoClip;
+            //Exiled.Events.Handlers.Player.TogglingNoClip -= OnTogglingNoClip;
             base.UnsubscribeEvents();
         }
     }
