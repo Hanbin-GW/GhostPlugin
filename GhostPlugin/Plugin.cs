@@ -166,7 +166,7 @@ namespace GhostPlugin
             if (Instance.Config.CustomRolesAbilitiesConfig.IsEnabled)
                 CustomAbility.RegisterAbilities();
             
-            if (Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled) { ClassicPlugin.RegisterEvents(); }
+            if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled) { ClassicPlugin.RegisterEvents(); }
             if (Config.CustomRolesConfig.IsEnabled) {CustomRoleHandler.RegisterEvents();}
             if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.RegisterEvents();}
             //music event
