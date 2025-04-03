@@ -20,7 +20,7 @@ namespace GhostPlugin.Methods.Music
                 Directory.CreateDirectory(path);  // 폴더 생성
             }
             else
-            {
+            { 
                 Log.Info("음악 폴더가 이미 존재합니다.");
             }
         }
