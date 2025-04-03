@@ -19,7 +19,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
         {
             Player target = Player.Get(collision.collider) ?? Player.Get(collision.collider.GetComponentInParent<Collider>());
 
-            if (target != null && target != _attacker)
+            if (target != null && target != _attacker && !(target.Role.Team == _attacker.Role.Team))
             {
                 Log.Debug($"Hit Player: {target.Nickname} - Damage: {_damage}");
 
