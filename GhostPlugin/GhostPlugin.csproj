@@ -10,6 +10,8 @@
         <AppDesignerFolder>Properties</AppDesignerFolder>
         <RootNamespace>GhostPlugin</RootNamespace>
         <AssemblyName>GhostPlugin</AssemblyName>
+        <Version>5.0.0-alpha.1</Version>
+        <InformationalVersion>5.0.0-alpha.1</InformationalVersion>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <LangVersion>latest</LangVersion>
@@ -228,6 +230,7 @@
         <Compile Include="Custom\Roles\Chaos\JuggernautChaos.cs" />
         <Compile Include="Custom\Roles\Chaos\Ninja.cs" />
         <Compile Include="Custom\Roles\ClassD\D-Alpha.cs" />
+        <Compile Include="Custom\Roles\ClassD\Dwarf.cs" />
         <Compile Include="Custom\Roles\Foundation\ContainmentSpecialList.cs" />
         <Compile Include="Custom\Roles\Foundation\Demolitionist.cs" />
         <Compile Include="Custom\Roles\Foundation\Elite.cs" />
