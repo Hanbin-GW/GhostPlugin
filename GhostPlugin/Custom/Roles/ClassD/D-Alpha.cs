@@ -22,7 +22,7 @@ namespace GhostPlugin.Custom.Roles.ClassD
         public override string CustomInfo { get; set; } = "Test Subject";
         public override RoleTypeId Role { get; set; } = RoleTypeId.ClassD;
         public StartTeam StartTeam { get; set; } = StartTeam.ClassD;
-        public int Chance { get; set; } = 100;
+        public int Chance { get; set; } = 60;
         
         private readonly Dictionary<Player, CoroutineHandle> _altKeyCooldowns = new Dictionary<Player, CoroutineHandle>();
         private readonly int _altKeyCooldownDuration = 40;
