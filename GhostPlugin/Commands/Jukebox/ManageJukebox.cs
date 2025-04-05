@@ -25,9 +25,10 @@ namespace GhostPlugin.Commands.Jukebox
 
         private static readonly List<string> AllowedGroups = new List<string>()
         {
-            "donator",
-            "admin",
-            "owner",
+            "후원자-(donator)",
+            "서버 관리자",
+            "서버 운영자",
+            "부서버장"
         };
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -78,7 +79,7 @@ namespace GhostPlugin.Commands.Jukebox
                 return false;
             }
 
-            string schematicName = "LargeSpeaker";
+            string schematicName = "Speaker";
             Vector3 spawnPosition = player.Position + player.Transform.forward * 1 + player.Transform.up;
             Quaternion rotation = Quaternion.identity;
             

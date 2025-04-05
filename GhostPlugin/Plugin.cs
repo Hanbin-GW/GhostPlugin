@@ -18,7 +18,7 @@ using Server = Exiled.Events.Handlers.Server;
 
 namespace GhostPlugin
 {
-    public class Plugin : Plugin<MasterConfig,Translation>
+    public class Plugin : Plugin<MasterConfig>
     {
         public static Plugin Instance;
         public List<Player> StopRagdollList { get; } = new ();
@@ -29,7 +29,7 @@ namespace GhostPlugin
         /// </summary>
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(5, 0, 0);
+        public override Version Version { get; } = new(5, 0, 1,2000);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
@@ -60,7 +60,7 @@ namespace GhostPlugin
                 return;
             }
 
-            Log.Send($"[GHOST.API] {Instance.Name} is enabled By {Instance.Author} | Version: {Instance.Version}",LogLevel.Info, ConsoleColor.DarkYellow);
+            Log.Send($"[Exiled.API] {Instance.Name} is enabled By {Instance.Author} | Version: {Instance.Version} - Beta",LogLevel.Info, ConsoleColor.DarkYellow);
             Config.LoadConfigs();
             if(Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled){BlackoutMod.RegisterEvents();}
 
