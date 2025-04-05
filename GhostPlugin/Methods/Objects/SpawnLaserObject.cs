@@ -60,9 +60,8 @@ namespace GhostPlugin.Methods.Objects
                     if (rb == null)
                         rb = segment.gameObject.AddComponent<Rigidbody>();
 
-                    rb.useGravity = false; 
-                    rb.isKinematic = false;
-
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
                     Object.Destroy(segment.gameObject, 2f);
                 }
             }
