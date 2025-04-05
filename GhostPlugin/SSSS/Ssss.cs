@@ -33,6 +33,7 @@ namespace GhostPlugin.SSSS
                     CustomRole.Get(typeof(JuggernautChaos)),
                     CustomRole.Get(typeof(Ninja)),
                     CustomRole.Get(typeof(D_Alpha)),
+                    CustomRole.Get(typeof(Dwarf)),
                     CustomRole.Get(typeof(ContainmentSpecialList)),
                     CustomRole.Get(typeof(Demolitionist)),
                     CustomRole.Get(typeof(Elite)),

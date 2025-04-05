@@ -81,6 +81,10 @@ namespace GhostPlugin.Configs.CustomConfigs
             new Demolitionist()
         };
 
+        public List<Dwarf> Dwarves { get; set; } = new()
+        {
+            new Dwarf()
+        };
         public List<DwarfZombie> DwarfZombies { get; set; } = new()
         {
             new DwarfZombie()

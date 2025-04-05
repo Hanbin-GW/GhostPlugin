@@ -119,6 +119,7 @@ namespace GhostPlugin
                 Config.CustomRolesConfig.SoleStealer049s.Register();
                 Config.CustomRolesConfig.Scp049Aps.Register();
                 Config.CustomRolesConfig.Demolitionists.Register();
+                Config.CustomRolesConfig.Dwarves.Register();
                 Config.CustomRolesConfig.DwarfZombies.Register();
                 Config.CustomRolesConfig.ExplosiveZombies.Register();
                 Config.CustomRolesConfig.EodSoldierZombies.Register();
