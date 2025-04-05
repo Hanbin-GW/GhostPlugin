@@ -60,9 +60,10 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         protected override void OnShot(ShotEventArgs ev)
         {
-            SpawnParticleSpark spark = new SpawnParticleSpark();
-            Color glowColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
-            spark.SpawnSpark(ev.Player, ev.Firearm.Base.transform.position,glowColor);
+            if (!Check(ev.Player.CurrentItem))
+                return;
+            SpawnLaserObject spawnLaserObject = new SpawnLaserObject();
+            spawnLaserObject.SpawnLaser(ev.Player);
             ev.Firearm.Penetration = 500;
             ev.Firearm.DamageFalloffDistance = 300;
             base.OnShot(ev);

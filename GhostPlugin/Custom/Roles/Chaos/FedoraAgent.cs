@@ -22,7 +22,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override List<string> Inventory { get; set; } = new List<string>()
         {
             ItemType.KeycardChaosInsurgency.ToString(),
-            31.ToString(),
+            33.ToString(),
             ItemType.ArmorCombat.ToString(),
             ItemType.Radio.ToString(),
             ItemType.SCP500.ToString(),

@@ -24,7 +24,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 Log.Debug($"Hit Player: {target.Nickname} - Damage: {_damage}");
 
                 target.Hurt(_damage, DamageType.E11Sr, _attacker.Nickname);
-                _attacker.ShowHitMarker(150);
+                _attacker.ShowHitMarker();
 
                 Destroy(gameObject, 7f);
             }
