@@ -10,8 +10,6 @@
         <AppDesignerFolder>Properties</AppDesignerFolder>
         <RootNamespace>GhostPlugin</RootNamespace>
         <AssemblyName>GhostPlugin</AssemblyName>
-        <Version>5.0.0-alpha.1</Version>
-        <InformationalVersion>5.0.0-alpha.1</InformationalVersion>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <LangVersion>latest</LangVersion>
@@ -80,6 +78,9 @@
         </Reference>
         <Reference Include="HintServiceMeow">
           <HintPath>..\..\..\Documents\14.0 dll\HintServiceMeow-Exiled.dll</HintPath>
+        </Reference>
+        <Reference Include="LabApi">
+          <HintPath>..\..\..\Documents\1403\LabApi.dll</HintPath>
         </Reference>
         <Reference Include="LabApi, Version=0.4.0.0, Culture=neutral, processorArchitecture=Amd64">
           <HintPath>..\packages\ExMod.Exiled.9.6.0-beta4\lib\net48\LabApi.dll</HintPath>
@@ -156,7 +157,10 @@
         <Compile Include="Commands\Chat_RueI.cs" />
         <Compile Include="Commands\EnergyWaveEffect.cs" />
         <Compile Include="Commands\Jukebox\ManageJukebox.cs" />
+        <Compile Include="Commands\MusicCommand\ForcePlayMusic.cs" />
+        <Compile Include="Commands\MusicCommand\StopMusic.cs" />
         <Compile Include="Commands\RoleInfo.cs" />
+        <Compile Include="Commands\SendBroadcast.cs" />
         <Compile Include="Commands\SetAllItemGravity.cs" />
         <Compile Include="Configs\Config.cs.old" />
         <Compile Include="Configs\CustomConfigs\CustomItemsConfig.cs" />
@@ -255,6 +259,7 @@
         <Compile Include="EventHandlers\Methods.cs" />
         <Compile Include="EventHandlers\NoobSupport.cs" />
         <Compile Include="EventHandlers\SsssEventHandler.cs" />
+        <Compile Include="Methods\Administration\SendBroadcastGhost.cs" />
         <Compile Include="Methods\Legacy\AudioManagemanet.cs" />
         <Compile Include="Methods\Music\JukeboxManagement.cs" />
         <Compile Include="Methods\Music\MusicManager.cs" />
@@ -269,7 +274,6 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="SSSS\SpecificMenu.cs" />
         <Compile Include="SSSS\Ssss.cs" />
-        <Compile Include="Translation.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
