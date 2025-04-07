@@ -8,11 +8,11 @@ using Object = UnityEngine.Object;
 
 namespace GhostPlugin.Custom.Items.MonoBehavior
 {
-    public class BulletExplosion
+    public class BulletExplosion : MonoBehaviour
     {
         private Player _player;
         
-        public void Initialize(int damage, Player attacker)
+        public void Initialize(Player attacker)
         {
             _player = attacker;
         }
