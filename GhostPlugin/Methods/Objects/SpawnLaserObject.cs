@@ -37,7 +37,7 @@ namespace GhostPlugin.Methods.Objects
             {
                 float segmentSpacing = 0.2f; // 큐브 간 0.2 단위 거리로 직선 배치
                 int segmentCount = 25;
-                Vector3 pos = startPosition + direction * segmentSpacing * 1;
+                //Vector3 pos = startPosition + direction * segmentSpacing * 1;
                 /*pObject.NetworkPosition = startPosition;
                 pObject.Position = startPosition;
                 pObject.transform.position = startPosition;
@@ -48,10 +48,12 @@ namespace GhostPlugin.Methods.Objects
                 pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible;
                 for (int i = 0; i < segmentCount; i++)
                 {
+                    Vector3 pos = startPosition + direction * segmentSpacing * 1;
                     PrimitiveObjectToy segment = Object.Instantiate(pObject);
                     segment.transform.position = pos;
                     segment.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0]));
-
+                    segment.Scale = new Vector3(0.1f, 0.1f, 0.1f);
+                    segment.NetworkScale = new Vector3(0.1f, 0.1f, 0.1f);
                     Color glowColor = new Color(0f, 1f, 1f, 0.1f) * 50;
                     segment.MaterialColor = glowColor;
                     segment.NetworkMaterialColor = glowColor;

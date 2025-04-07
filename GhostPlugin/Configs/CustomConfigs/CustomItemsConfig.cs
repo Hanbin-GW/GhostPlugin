@@ -5,6 +5,7 @@ using GhostPlugin.Custom.Items.Etc;
 using GhostPlugin.Custom.Items.Firearms;
 using GhostPlugin.Custom.Items.Grenades;
 using GhostPlugin.Custom.Items.Keycard;
+using MapEditorReborn.Commands.UtilityCommands;
 
 namespace GhostPlugin.Configs.CustomConfigs
 {
@@ -27,6 +28,10 @@ namespace GhostPlugin.Configs.CustomConfigs
             new ShockwaveGun()
         };
 
+        public List<GernadeLuncher> GernadeLunchers { get; private set; } = new List<GernadeLuncher>()
+        {
+            new GernadeLuncher()
+        };
         public List<ReconBattleRife> FtacReacon { get; private set; } = new List<ReconBattleRife>()
         {
             new ReconBattleRife()

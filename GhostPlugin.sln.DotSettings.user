@@ -54,5 +54,6 @@
   &lt;Assembly Path="/Users/hanbin/RiderProjects/GhostPlugin/packages/ExMod.Exiled.9.6.0-beta4/lib/net48/Exiled.API.dll" /&gt;
   &lt;Assembly Path="/Users/hanbin/Documents/Depend/SCPSLAudioApi.dll" /&gt;
   &lt;Assembly Path="/Users/hanbin/Documents/1403/LabApi.dll" /&gt;
+  &lt;Assembly Path="/Users/hanbin/RiderProjects/GhostPlugin/packages/ExMod.Exiled.9.6.0-beta4/lib/net48/NorthwoodLib.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/Environment/InlayHints/GeneralInlayHintsOptions/EnableInlayHints/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>

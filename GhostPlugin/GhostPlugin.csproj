@@ -37,9 +37,6 @@
         <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
           <HintPath>..\packages\Lib.Harmony.2.2.2\lib\net48\0Harmony.dll</HintPath>
         </Reference>
-        <Reference Include="Assembly-CSharp">
-          <HintPath>..\..\..\Documents\14.0 dll\Assembly-CSharp.dll</HintPath>
-        </Reference>
         <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
           <HintPath>..\packages\ExMod.Exiled.9.6.0-beta4\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
         </Reference>
@@ -203,6 +200,7 @@
         <Compile Include="Custom\Items\Firearms\Basilisk.cs" />
         <Compile Include="Custom\Items\Firearms\Bolter.cs" />
         <Compile Include="Custom\Items\Firearms\ExplosiveRoundRevolver.cs" />
+        <Compile Include="Custom\Items\Firearms\GernadeLuncher.cs" />
         <Compile Include="Custom\Items\Firearms\LaserCannon.cs" />
         <Compile Include="Custom\Items\Firearms\MachineGun.cs" />
         <Compile Include="Custom\Items\Firearms\MORS.cs" />
