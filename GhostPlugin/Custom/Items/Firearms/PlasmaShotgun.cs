@@ -55,8 +55,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             {
                 ev.CanHurt = false;
                 SpawnParticleSpark spark = new SpawnParticleSpark();
-                Color color = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
-                spark.SpawnSpark(ev.Player, ev.Firearm.Base.transform.position,color);
+                /*Color color = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
+                spark.SpawnSpark(ev.Player, ev.Firearm.Base.transform.position,color);*/
                 //PrimitiveObjectToy bullet = spark.SpawmSparkAmmoNoSpread(ev.Player, ev.Firearm.Base.transform.position, 25f,color ,0.5f);
                 PrimitiveObjectToy bullet = spark.SpawnEnergyGuage(ev.Player, ev.Firearm.Base.transform.position);
                 var bulletCollision = bullet.gameObject.AddComponent<BulletCollision>();
