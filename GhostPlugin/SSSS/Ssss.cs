@@ -15,6 +15,8 @@ using GhostPlugin.Custom.Roles.Scps;
 using NorthwoodLib.Pools;
 using UnityEngine;
 using UserSettings.ServerSpecific;
+using Reinforcements.Roles;
+using C_Squad.Roles;
 
 namespace GhostPlugin.SSSS
 {
@@ -48,6 +50,12 @@ namespace GhostPlugin.SSSS
                     CustomRole.Get(typeof(SoleStealer049)),
                     CustomRole.Get(typeof(Scp049AP)),
                     CustomRole.Get(typeof(Tanker106)),
+                    CustomRole.Get(typeof(SniperAgent)),
+                    CustomRole.Get(typeof(LargeAgent)),
+                    CustomRole.Get(typeof(ReinforcementsCommander)),
+                    CustomRole.Get(typeof(Agent)),
+                    CustomRole.Get(typeof(Specialist)),
+                    CustomRole.Get(typeof(Commander)),
                 };
 				stringBuilder.AppendLine("<size=40>CustomRoles - [특수직업]</size>");
                 foreach (var role in customRoles)
