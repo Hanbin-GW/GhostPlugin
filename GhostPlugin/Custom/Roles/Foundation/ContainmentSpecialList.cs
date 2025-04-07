@@ -18,7 +18,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override string CustomInfo { get; set; } = "Containment SpecialList";
         public StartTeam StartTeam { get; set; } = StartTeam.Guard;
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfPrivate;
-        public int Chance { get; set; } = 30;
+        public int Chance { get; set; } = 80;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {

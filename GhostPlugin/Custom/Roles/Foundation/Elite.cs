@@ -22,7 +22,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfSergeant;
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         public bool DebugMode = false;
-        public int Chance { get; set; } = 40;
+        public int Chance { get; set; } = 50;
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>()
         {
             new HealOnKill()

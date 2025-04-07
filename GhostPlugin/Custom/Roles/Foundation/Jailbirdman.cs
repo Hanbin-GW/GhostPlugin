@@ -25,7 +25,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         private readonly Dictionary<Player, CoroutineHandle> _altKeyCooldowns = new Dictionary<Player, CoroutineHandle>();
         private readonly int _altKeyCooldownDuration = 40;
-        public int Chance { get; set; } = 50;
+        public int Chance { get; set; } = 65;
     
         public override List<string> Inventory { get; set; } = new()
         {
