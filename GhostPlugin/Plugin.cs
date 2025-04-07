@@ -29,7 +29,7 @@ namespace GhostPlugin
         /// </summary>
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(5, 0, 2,2000);
+        public override Version Version { get; } = new(5, 0, 4,900);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
@@ -70,6 +70,7 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.HackingDevices.Register();
                 Config.CustomItemsConfig.Morses.Register();
                 Config.CustomItemsConfig.ShockwaveGuns.Register();
+                Config.CustomItemsConfig.GernadeLunchers.Register();
                 Config.CustomItemsConfig.FtacReacon.Register();
                 Config.CustomItemsConfig.PoisonGuns.Register();
                 Config.CustomItemsConfig.ClusterGrenades.Register();
