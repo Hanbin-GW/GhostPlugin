@@ -45,14 +45,14 @@ namespace GhostPlugin.EventHandlers
         { 
             MusicManager.EnsureMusicDirectoryExists();
             var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.LobbySongPath);
-            AudioClipStorage.LoadClip(path,"MainSong");
+            AudioClipStorage.LoadClip(path,"lobby_music");
 
-            AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("GlobalAudioPlayer",onIntialCreation: (p) =>
+            AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("Lobby",onIntialCreation: (p) =>
             {
                 p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
             });
 
-            globalPlayer.AddClip("MainSong", volume: Plugin.Instance.Config.MusicConfig.Volume, loop: Plugin.Instance.Config.MusicConfig.Loop, destroyOnEnd: false);
+            globalPlayer.AddClip("lobby_music", volume: Plugin.Instance.Config.MusicConfig.Volume, loop: Plugin.Instance.Config.MusicConfig.Loop, destroyOnEnd: false);
             Log.Info("main song playing");
         }
         
@@ -61,11 +61,10 @@ namespace GhostPlugin.EventHandlers
         /// </summary>
         public static void OnRoundStarted()
         {
-            /*if(!AudioPlayer.AudioPlayerByName.TryGetValue("GlobalAudioPlayer",out AudioPlayer ap))
+            if (!AudioPlayer.TryGet("Lobby", out AudioPlayer lobbyPlayer))
                 return;
-            //ap.ClipsById.Clear();
-            ap.RemoveAllClips();*/
-            MusicManager.StopMusic();
+
+            lobbyPlayer.RemoveAllClips();
         }
         /// <summary>
         /// Play a music when the Military forces are spawned.
