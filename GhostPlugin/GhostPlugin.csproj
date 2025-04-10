@@ -260,6 +260,7 @@
         <Compile Include="Methods\Music\JukeboxManagement.cs" />
         <Compile Include="Methods\Music\MusicManager.cs" />
         <Compile Include="Methods\Objects\PlasmaCube.cs" />
+        <Compile Include="Methods\Objects\SpawnDoorType.cs" />
         <Compile Include="Methods\Objects\SpawnLaserObject.cs" />
         <Compile Include="Methods\Objects\SpawnParticleSpark.cs" />
         <Compile Include="Methods\Objects\SpawnPlasma.cs" />
