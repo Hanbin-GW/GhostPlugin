@@ -8,9 +8,6 @@ namespace GhostPlugin.Methods.Objects
 {
     public class SpawnLaserObject
     {
-        private const float BlockSize = 0.08f;
-        private const float Speed = 0f;
-
         public void SpawnLaser(Player player)
         {
             Vector3 startPosition = player.CameraTransform.position;
