@@ -171,6 +171,7 @@ namespace GhostPlugin
             if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled) { ClassicPlugin.RegisterEvents(); }
             if (Config.CustomRolesConfig.IsEnabled) {CustomRoleHandler.RegisterEvents();}
             if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.RegisterEvents();}
+            if (Config.Scp914Config.IsEnabled) {Scp914Handler.RegisterEvents();}
             //music event
             if (Config.MusicConfig.OnEnabled) {MusicEventHandlers.RegisterEvents();}
 
@@ -238,6 +239,8 @@ namespace GhostPlugin
             
             //Noob Support
             if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.UnregisterEvents();}
+            //Scp914 Event
+            if (Config.Scp914Config.IsEnabled) {Scp914Handler.UnregisterEvents();}
             //Music Event
             if(Config.MusicConfig.OnEnabled) {MusicEventHandlers.UnregisterEvents();}
 

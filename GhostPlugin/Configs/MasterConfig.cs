@@ -1,5 +1,7 @@
+using System;
 using System.ComponentModel;
 using System.IO;
+using Discord;
 using Exiled.API.Features;
 using Exiled.API.Interfaces;
 using Exiled.Loader;
@@ -27,6 +29,8 @@ namespace GhostPlugin.Configs
         public ServerEventsMasterConfig ServerEventsMasterConfig { get; set; } = null!;
         [YamlIgnore]
         public SsssConfig SsssConfig { get; set; } = null!;
+        [YamlIgnore] 
+        public Scp914Config Scp914Config { get; set; } = null!;
 
         public string ConfigFolder { get; set; } =
             Path.Combine(Paths.Configs, "GhostServerPluginPackage");
@@ -37,6 +41,8 @@ namespace GhostPlugin.Configs
         public string ServerEventsMasterConfigFile { get; set; } = "ServerEvents.yml";
         public string MusicEventConfigFile { get; set; } = "MusicEvents.yml";
         public string SsssConfigFile { get; set; } = "Ssss.yml";
+
+        public string Scp914ConfigFile { get; set; } = "Scp914.yml";
 
         public void LoadConfigs()
         {
@@ -101,6 +107,19 @@ namespace GhostPlugin.Configs
             {
                 ServerEventsMasterConfig = Loader.Deserializer.Deserialize<ServerEventsMasterConfig>(File.ReadAllText(serverEventsFilePath));
                 File.WriteAllText(serverEventsFilePath, Loader.Serializer.Serialize(ServerEventsMasterConfig));
+            }
+
+            string scp914FilePath = Path.Combine(ConfigFolder, Scp914ConfigFile);
+            if (!File.Exists(scp914FilePath))
+            {
+                Log.Send("Scp914.yml Config is missing, create new...", LogLevel.Warn, ConsoleColor.DarkRed);
+                Scp914Config = new Scp914Config();
+                File.WriteAllText(scp914FilePath, Loader.Serializer.Serialize(Scp914Config));
+            }
+            else
+            {
+                Scp914Config = Loader.Deserializer.Deserialize<Scp914Config>(File.ReadAllText(scp914FilePath));
+                File.WriteAllText(scp914FilePath, Loader.Serializer.Serialize(Scp914Config));
             }
 
             string ssssFilePath = Path.Combine(ConfigFolder, SsssConfigFile);
