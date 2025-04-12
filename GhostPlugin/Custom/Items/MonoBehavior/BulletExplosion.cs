@@ -29,11 +29,11 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
             if (target != null && target != _player)
             {
                 _player.ShowHitMarker(2);
-                ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
-                grenade.FuseTime = 1f;
-                grenade.ChangeItemOwner(Server.Host, _player);
-                grenade.SpawnActive(hitPosition);
             }
+            ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
+            grenade.FuseTime = 1f;
+            grenade.ChangeItemOwner(Server.Host, _player);
+            grenade.SpawnActive(hitPosition);
         }
         IEnumerator CreateTrailEffect(Vector3 startPos, Vector3 direction, int count, float spacing)
         {
