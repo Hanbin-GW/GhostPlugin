@@ -63,7 +63,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         protected override void OnShot(ShotEventArgs ev)
         {
-            if (!Check(ev.Player.CurrentItem))
+            if (Check(ev.Player.CurrentItem))
             {
                 ev.CanHurt = false;
                 SpawnParticleSpark spark = new SpawnParticleSpark();
