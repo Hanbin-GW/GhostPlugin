@@ -17,7 +17,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override string CustomInfo { get; set; } = "FedoraAgent";
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosRepressor;
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
-        public int Chance { get; set; } = 0;
+        public int Chance { get; set; } = 60;
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {
