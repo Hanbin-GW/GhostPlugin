@@ -60,7 +60,7 @@ namespace GhostPlugin
                 return;
             }
 
-            Log.Send($"[Exiled.API] {Instance.Name} is enabled By {Instance.Author} | Version: {Instance.Version} - Beta",LogLevel.Info, ConsoleColor.DarkYellow);
+            Log.Send($"[Exiled.API] {Instance.Name} is enabled By {Instance.Author} | Version: {Instance.Version} - Beta.2",LogLevel.Info, ConsoleColor.DarkYellow);
             Config.LoadConfigs();
             if(Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled){BlackoutMod.RegisterEvents();}
 
