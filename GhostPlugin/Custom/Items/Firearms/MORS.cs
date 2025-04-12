@@ -64,7 +64,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                 return;
             SpawnLaserObject spawnLaserObject = new SpawnLaserObject();
             spawnLaserObject.SpawnLaser(ev.Player);
-            ev.Firearm.Penetration = 500;
+            ev.Firearm.Penetration *= DamageMultiplier;
             ev.Firearm.DamageFalloffDistance = 300;
             base.OnShot(ev);
         }
