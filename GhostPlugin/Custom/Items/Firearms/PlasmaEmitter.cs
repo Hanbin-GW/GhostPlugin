@@ -4,7 +4,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using GhostPlugin.Custom.Items.MonoBehavior;
-using GhostPlugin.Objects;
+using GhostPlugin.Methods.Objects;
 using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Firearms

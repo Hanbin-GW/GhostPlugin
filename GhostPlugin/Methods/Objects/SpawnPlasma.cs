@@ -5,7 +5,7 @@ using GhostPlugin.Custom.Items.MonoBehavior;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace GhostPlugin.Objects
+namespace GhostPlugin.Methods.Objects
 {
     public class SpawmPlasma
     {
