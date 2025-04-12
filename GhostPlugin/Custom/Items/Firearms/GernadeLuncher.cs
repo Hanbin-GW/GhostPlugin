@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using AdminToys;
+using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
@@ -6,6 +8,7 @@ using Exiled.Events.EventArgs.Player;
 using GhostPlugin.Custom.Items.MonoBehavior;
 using GhostPlugin.Methods.Objects;
 using UnityEngine;
+using YamlDotNet.Serialization;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
@@ -17,8 +20,37 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Description { get; set; } = "수류탄을 발사하는 리볼버 입니다!";
         public override float Weight { get; set; } = 4f;
         public override ItemType Type { get; set; } = ItemType.GunRevolver;
-        public override SpawnProperties SpawnProperties { get; set; }
-        public override float Damage { get; set; }
+
+        public override SpawnProperties SpawnProperties { get; set; } = new()
+        {
+            Limit = 1,
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>
+            {
+                new()
+                {
+                    Chance = 10,
+                    Location = SpawnLocationType.InsideHidChamber,
+                },
+                new()
+                {
+                    Chance = 10,
+                    Location = SpawnLocationType.InsideHczArmory,
+                },
+                new()
+                {
+                    Chance = 20,
+                    Location = SpawnLocationType.Inside049Armory,
+                },
+                new()
+                {
+                    Chance = 10,
+                    Location = SpawnLocationType.Inside096,
+                },
+            }
+        };
+
+        [YamlIgnore] 
+        public override float Damage { get; set; } = 0;
 
         protected override void OnShot(ShotEventArgs ev)
         {
