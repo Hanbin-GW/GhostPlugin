@@ -24,33 +24,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override float Weight { get; set; } = 1f;
 
         [CanBeNull]
-        public override SpawnProperties SpawnProperties { get; set; } = new()
-        {
-            Limit = 1,
-            DynamicSpawnPoints = new List<DynamicSpawnPoint>
-            {
-                new()
-                {
-                    Chance = 10,
-                    Location = SpawnLocationType.InsideHidChamber,
-                },
-                new()
-                {
-                    Chance = 10,
-                    Location = SpawnLocationType.InsideHczArmory,
-                },
-                new()
-                {
-                    Chance = 20,
-                    Location = SpawnLocationType.Inside049Armory,
-                },
-                new()
-                {
-                    Chance = 10,
-                    Location = SpawnLocationType.Inside096,
-                },
-            }
-        };
+        public override SpawnProperties SpawnProperties { get; set; }
 
         public override float Damage { get; set; } = 0;
         public override byte ClipSize { get; set; } = 1;
