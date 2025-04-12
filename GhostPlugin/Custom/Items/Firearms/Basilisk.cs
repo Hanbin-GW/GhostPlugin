@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
@@ -17,7 +19,35 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override ItemType Type { get; set; } = ItemType.GunRevolver;
         public override float Damage { get; set; } = 95;
         public override byte ClipSize { get; set; } = 6;
-        public override SpawnProperties SpawnProperties { get; set; }
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 2,
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>
+            {
+                new DynamicSpawnPoint()
+                {
+                    Chance = 10,
+                    Location = SpawnLocationType.InsideLczArmory,
+                },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.InsideHczArmory,
+                },
+                new()
+                {
+                    Chance = 35,
+                    Location = SpawnLocationType.Inside049Armory,
+                },
+
+                new()
+                {
+                    Chance = 40,
+                    Location = SpawnLocationType.Inside079Armory,
+                },
+            }
+        };
 
         public override AttachmentName[] Attachments { get; set; } = new AttachmentName[]
         {
