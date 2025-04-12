@@ -20,7 +20,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Description { get; set; } = "수류탄을 발사하는 리볼버 입니다!";
         public override float Weight { get; set; } = 4f;
         public override ItemType Type { get; set; } = ItemType.GunRevolver;
-
+        public override byte ClipSize { get; set; } = 5;
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
             Limit = 1,
@@ -51,6 +51,15 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         [YamlIgnore] 
         public override float Damage { get; set; } = 0;
+
+        protected override void OnShooting(ShootingEventArgs ev)
+        {
+            if (Check(ev.Player.CurrentItem))
+            {
+                ev.Firearm.AmmoDrain = 5;
+            }
+            base.OnShooting(ev);
+        }
 
         protected override void OnShot(ShotEventArgs ev)
         {
