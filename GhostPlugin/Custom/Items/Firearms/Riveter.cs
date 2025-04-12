@@ -27,9 +27,9 @@ namespace GhostPlugin.Custom.Items.Firearms
             {
                 ev.CanHurt = false;
                 PlasmaCube dragonbreath = new PlasmaCube();
-                SpawnParticleSpark spark = new SpawnParticleSpark();
+                //SpawnParticleSpark spark = new SpawnParticleSpark();
                 Color glowColor = new Color(1.0f, 0.0f, 0.0f, 0.1f) * 50f;
-                spark.SpawnREDSpark(ev.Player,ev.Firearm.Base.transform.position,1);
+                //spark.SpawnREDSpark(ev.Player,ev.Firearm.Base.transform.position,1);
                 dragonbreath.SpawmSparkBuckshot(ev.Player, ev.Firearm.Base.transform.position,10,25f,0.1f,glowColor); 
             }
             base.OnShot(ev);

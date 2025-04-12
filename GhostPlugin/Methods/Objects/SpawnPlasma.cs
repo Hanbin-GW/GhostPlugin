@@ -43,7 +43,7 @@ namespace GhostPlugin.Methods.Objects
                 pObject.NetworkPrimitiveType = PrimitiveType.Cube;
                 pObject.NetworkScale = Vector3.one * BlockSize;
                 pObject.Scale = Vector3.one * BlockSize;
-                pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible;
+                pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
 
                 Color glowColor = new Color(1.0f, 0.5f, 0.0f, 0.1f) * 50f;
                 pObject.NetworkMaterialColor = glowColor;
