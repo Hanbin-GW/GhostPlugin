@@ -37,6 +37,10 @@ namespace GhostPlugin.Configs.CustomConfigs
             new Jailbirdman()
         };
 
+        public List<Gunslinger> Gunslingers { get; set; } = new()
+        {
+            new Gunslinger()
+        };
         public List<O5Administrator> Administrators { get; set; } = new()
         {
             new O5Administrator()
