@@ -29,7 +29,7 @@ namespace GhostPlugin
         /// </summary>
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(5, 1, 3);
+        public override Version Version { get; } = new(5, 1, 4);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
@@ -60,7 +60,7 @@ namespace GhostPlugin
                 return;
             }
 
-            Log.Send($"[Exiled.API] {Instance.Name} is enabled By {Instance.Author} | Version: {Instance.Version} - Beta.2",LogLevel.Info, ConsoleColor.DarkYellow);
+            Log.Send($"[Exiled.API] {Instance.Name} is enabled By {Instance.Author} | Version: {Instance.Version}",LogLevel.Info, ConsoleColor.DarkRed);
             Config.LoadConfigs();
             if(Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled){BlackoutMod.RegisterEvents();}
 
