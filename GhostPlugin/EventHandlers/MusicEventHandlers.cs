@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using Discord;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Map;
@@ -63,8 +64,7 @@ namespace GhostPlugin.EventHandlers
         {
             if (!AudioPlayer.TryGet("Lobby", out AudioPlayer lobbyPlayer))
                 return;
-
-            lobbyPlayer.RemoveAllClips();
+            lobbyPlayer.ClipsById.Clear();
         }
         /// <summary>
         /// Play a music when the Military forces are spawned.
@@ -78,13 +78,21 @@ namespace GhostPlugin.EventHandlers
             {
                 //MusicManager.StopMusic();
                 string filePath = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.RespawnMtfBgm);
-                /*AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("GlobalAudioPlayer",onIntialCreation: (p) =>
+                if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsSafeMode)
                 {
-                    p.AddSpeaker("Main", isSpatial: false, volume: _plugin.Config.Volume ,maxDistance: 5000f);
-                });*/
-                MusicManager.PlaySpecificMusic(filePath);
-                Timing.CallDelayed(50f, () => MusicManager.StopMusic());
+                    Log.Send("The SafeMode Is Enabled! Not using Methods!", LogLevel.Info, ConsoleColor.Green);
+                    AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("GlobalAudioPlayer",onIntialCreation: (p) =>
+                    {
+                        p.AddSpeaker("Main", isSpatial: false, volume: Plugin.Instance.Config.MusicConfig.Volume ,maxDistance: 5000f);
+                    });
+                    Timing.CallDelayed(50f, () => globalPlayer.ClipsById.Clear());
 
+                }
+                else
+                {
+                    MusicManager.PlaySpecificMusic(filePath);
+                    Timing.CallDelayed(50f, () => MusicManager.StopMusic());
+                }
             }
 
             if (ev.Wave.Faction == Faction.FoundationEnemy)

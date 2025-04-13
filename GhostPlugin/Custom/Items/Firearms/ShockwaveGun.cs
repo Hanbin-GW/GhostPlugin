@@ -45,8 +45,8 @@ namespace GhostPlugin.Custom.Items.Firearms
         
         protected override void OnShot(ShotEventArgs ev)
         {
-            SpawnLaserObject spawnLaserObject = new SpawnLaserObject();
-            spawnLaserObject.SpawnLaser(ev.Player);
+            /*SpawnLaserObject spawnLaserObject = new SpawnLaserObject();
+            spawnLaserObject.SpawnLaser(ev.Player);*/
             base.OnShot(ev);
         }
     }

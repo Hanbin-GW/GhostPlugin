@@ -34,7 +34,8 @@ namespace GhostPlugin.EventHandlers
             MapEvents.AnnouncingNtfEntrance += OnAnnouncingNtfEntrance;
             PlayerEvents.Verified += OnVerified;
             ServerEvents.RoundStarted += OnRoundStarted; 
-            //ServerEvents.RestartingRound += OnRestartingRound;
+            ServerEvents.RestartingRound += OnRestartingRound;
+            ServerEvents.RoundEnded += OnRoundEnded;
             PlayerEvents.Left += OnPlayerLeft;
         }
 
@@ -53,8 +54,15 @@ namespace GhostPlugin.EventHandlers
             MapEvents.AnnouncingNtfEntrance -= OnAnnouncingNtfEntrance;
             PlayerEvents.Verified -= OnVerified;
             ServerEvents.RoundStarted -= OnRoundStarted; 
-            //ServerEvents.RestartingRound -= OnRestartingRound;
+            ServerEvents.RestartingRound -= OnRestartingRound;
+            ServerEvents.RoundEnded -= OnRoundEnded;
             PlayerEvents.Left -= OnPlayerLeft;
+        }
+
+        private static void OnRoundEnded(RoundEndedEventArgs ev)
+        {
+            if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsSafeMode)
+                Map.Broadcast(5,"<color=green>SafeMode</color> Is Activated...<color=orange>Restarting the Server</color>");
         }
 
         private static void OnRestartingRound()
@@ -69,7 +77,8 @@ namespace GhostPlugin.EventHandlers
                     .SendToAuthenticated<RoundRestartMessage>();
                 Timing.CallDelayed(5, () => { Shutdown.Quit(); });
             }*/
-            Server.ExecuteCommand("sr");
+            if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsSafeMode)
+                Timing.CallDelayed(3.5f, () => Server.ExecuteCommand("sr"));
         }
         
         private static void OnLookingAtScp096(AddingTargetEventArgs ev)
