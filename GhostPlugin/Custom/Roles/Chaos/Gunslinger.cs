@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
 
@@ -17,6 +18,17 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override List<string> Inventory { get; set; } = new List<string>()
         {
             45.ToString(),
+            ItemType.KeycardChaosInsurgency.ToString(),
+            ItemType.Painkillers.ToString(),
+            ItemType.GunAK.ToString(),
+            44.ToString(),
+        };
+
+        public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
+        {
+            { AmmoType.Nato762, 120 },
+            { AmmoType.Nato556, 120 },
+            { AmmoType.Nato9, 150 },
         };
     }
 }
