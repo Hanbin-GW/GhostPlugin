@@ -106,8 +106,11 @@ namespace GhostPlugin.Methods.Objects
                 pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
 
                 //pObject.Position = position + player.CameraTransform.forward + randomOffset;
-                pObject.Position = position + player.GameObject.transform.forward * 1.1f;
-                pObject.NetworkPosition = position + player.GameObject.transform.forward * 1.1f;
+                //pObject.Position = position + player.GameObject.transform.forward * 1.1f;
+                //pObject.NetworkPosition = position + player.GameObject.transform.forward * 1.1f;
+                Vector3 spawnOffset = player.GameObject.transform.forward * 2.0f;
+                pObject.Position = position + spawnOffset;
+                pObject.NetworkPosition = position + spawnOffset;
                 //Color glowColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
                 Color glowColor = new Color(0.0f, 0.0f, 1.0f, 0.1f) * 50f;
                 pObject.NetworkMaterialColor = glowColor; 
@@ -125,6 +128,8 @@ namespace GhostPlugin.Methods.Objects
 
                 Vector3 shootDirection = player.GameObject.transform.forward;
                 rb.velocity = shootDirection * forwardForce; 
+                //Test Code
+                rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
                 var collider = pObject.GetComponent<Collider>(); 
                 if (collider == null)  
                     pObject.gameObject.AddComponent<BoxCollider>();

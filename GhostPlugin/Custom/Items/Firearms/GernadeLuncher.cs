@@ -68,8 +68,9 @@ namespace GhostPlugin.Custom.Items.Firearms
                 ev.CanHurt = false;
                 SpawnParticleSpark spark = new SpawnParticleSpark();
                 Color color = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
+                Vector3 position = ev.Firearm.Base.transform.position + ev.Firearm.Base.transform.forward * 0.5f;
                 PrimitiveObjectToy bullet =
-                    spark.SpawmSparkAmmo(ev.Player, ev.Firearm.Base.transform.position, 1, 50, 0, color);
+                    spark.SpawmSparkAmmo(ev.Player, position, 1, 50, 0, color);
                 var bulletCollision = bullet.gameObject.AddComponent<BulletExplosion>();
                 bulletCollision.Initialize(ev.Player);
                 base.OnShot(ev);
