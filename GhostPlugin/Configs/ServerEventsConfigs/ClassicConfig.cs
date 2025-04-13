@@ -25,6 +25,8 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
 
         [Description("Enable The SafeMode?")] 
         public bool IsSafeMode { get; set; } = true;
+
+        public bool IsShowMiniMap { get; set; } = true;
         [Description("라운드 시작 message")]
         public string RoundStartMSG { get; set; } = "<size=38>👻라운드가 시작되었습니다...👻</size>\n<size=30>Good Luck</size>";
 

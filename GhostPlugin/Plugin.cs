@@ -37,6 +37,7 @@ namespace GhostPlugin
         public SsssEventHandler SsssEventHandler;
         public readonly string AudioDirectory;
         public readonly string EffectDirectory;
+        public CasualFPSModeHandler CasualFPSModeHandler = new CasualFPSModeHandler();
         public Plugin()
         {
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -52,6 +53,9 @@ namespace GhostPlugin
                 Log.Error("Config is null!");
                 return;
             }
+            
+            if(Config.ServerEventsMasterConfig.ClassicConfig.IsShowMiniMap)
+                CasualFPSModeHandler.RegisterEvents();
 
             Config.LoadConfigs();
             if (Config.SsssConfig == null)
@@ -228,6 +232,8 @@ namespace GhostPlugin
         public override void OnDisabled()
         {
             
+            Instance = null;
+            if(Config.ServerEventsMasterConfig.ClassicConfig.IsShowMiniMap) {CasualFPSModeHandler.UnregisterEvents();}
             //BlackOut mode
             if(Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled){BlackoutMod.UnregisterEvents();}
             
