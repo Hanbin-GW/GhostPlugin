@@ -37,6 +37,11 @@ namespace GhostPlugin.Configs.CustomConfigs
             new Jailbirdman()
         };
 
+        public List<LuckyGuard> LuckyGuards { get; set; } = new()
+        {
+            new LuckyGuard()
+        };
+
         public List<Gunslinger> Gunslingers { get; set; } = new()
         {
             new Gunslinger()
