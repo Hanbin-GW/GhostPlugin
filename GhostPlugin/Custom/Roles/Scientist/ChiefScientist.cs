@@ -18,7 +18,7 @@ namespace GhostPlugin.Custom.Roles.Scientist
         public override string CustomInfo { get; set; } = "Chief Scientist";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scientist;
         public StartTeam StartTeam { get; set; } = StartTeam.Scientist;
-        public int Chance { get; set; } = 60;
+        public int Chance { get; set; } = 100;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
+using Exiled.API.Features.Items;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
@@ -63,6 +64,13 @@ namespace GhostPlugin.Custom.Items.Armor
                 }
             }
         }
+
+        protected override void OnAcquired(Player player, Item item, bool displayMessage)
+        {
+            Timing.CallDelayed(5, ()=>player.ShowHint(Name + $"\n{Description}",5));
+            base.OnAcquired(player, item, displayMessage);
+        }
+
         protected override void SubscribeEvents()
         {
             Exiled.Events.Handlers.Player.TogglingNoClip += OnTogglingNoClip;
