@@ -21,7 +21,8 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
         {
             ContactPoint contact = collision.contacts[0];
             Vector3 hitPosition = contact.point;
-
+            
+            Log.Info($"충돌한 대상: {collision.gameObject.name}");
             // 이펙트 출력
             SpawnExplosionEffect(hitPosition);
 
