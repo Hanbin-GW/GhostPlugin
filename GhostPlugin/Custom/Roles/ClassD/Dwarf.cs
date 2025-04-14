@@ -2,6 +2,7 @@ using Exiled.API.Features;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
 using MEC;
+using PlayerRoles;
 using UnityEngine;
 
 namespace GhostPlugin.Custom.Roles.ClassD
@@ -13,6 +14,7 @@ namespace GhostPlugin.Custom.Roles.ClassD
         public override string Name { get; set; } = "Dwarf";
         public override string Description { get; set; } = "매우 작은 외형의 D계급 인원입니다.";
         public override string CustomInfo { get; set; } = "Dwarf";
+        public override RoleTypeId Role { get; set; } = RoleTypeId.ClassD;
         public StartTeam StartTeam { get; set; } = StartTeam.ClassD;
         public int Chance { get; set; } = 70;
 
