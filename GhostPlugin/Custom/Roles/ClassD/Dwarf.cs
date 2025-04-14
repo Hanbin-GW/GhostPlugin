@@ -9,7 +9,7 @@ namespace GhostPlugin.Custom.Roles.ClassD
 {
     public class Dwarf : CustomRole, ICustomRole
     {
-        public override uint Id { get; set; } = 15;
+        public override uint Id { get; set; } = 16;
         public override int MaxHealth { get; set; } = 50;
         public override string Name { get; set; } = "Dwarf";
         public override string Description { get; set; } = "매우 작은 외형의 D계급 인원입니다.";
