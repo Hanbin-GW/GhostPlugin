@@ -17,12 +17,6 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
             Override = false
         };
 
-        public List<string> messages { get; set; } = new List<string>()
-        {
-            "test",
-            "test1"
-        };
-
         [Description("Enable The SafeMode?")] 
         public bool IsSafeMode { get; set; } = false;
         [Description("라운드 시작 message")]
