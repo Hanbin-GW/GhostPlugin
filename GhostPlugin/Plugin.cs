@@ -29,12 +29,13 @@ namespace GhostPlugin
         /// </summary>
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(5, 2, 0);
+        public override Version Version { get; } = new(5, 3, 3);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
         //private MyCustomKeyBind _myCustomKeyBind;
         public SsssEventHandler SsssEventHandler;
+        public CasualFPSModeHandler CasualFPSModeHandler;
         public readonly string AudioDirectory;
         public readonly string EffectDirectory;
         public Plugin()
@@ -219,6 +220,12 @@ namespace GhostPlugin
                 return;
             }
 
+            if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
+            {
+                CasualFPSModeHandler = new CasualFPSModeHandler(this);
+                CasualFPSModeHandler.RegisterEvents();
+            }
+
             /*if (Config.ServerEventsMasterConfig.SsssConfig.IsEnabled)
             {
                 _myCustomKeyBind = new MyCustomKeyBind();
@@ -261,7 +268,12 @@ namespace GhostPlugin
                 _myCustomKeyBind = new MyCustomKeyBind();
                 _myCustomKeyBind.Deactivate();
             }*/
-            
+            if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
+            {
+                CasualFPSModeHandler.UnregisterEvents();
+                CasualFPSModeHandler = null;
+            }
+
             //SSSS - REWORK
             Server.RoundStarted -= SsssEventHandler.OnRoundStarted;
             ServerSpecificSettingsSync.ServerOnSettingValueReceived -= SsssEventHandler.OnSettingValueReceived;

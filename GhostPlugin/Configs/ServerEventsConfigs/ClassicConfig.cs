@@ -28,6 +28,7 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
         [Description("라운드 시작 message")]
         public string RoundStartMSG { get; set; } = "<size=38>👻라운드가 시작되었습니다...👻</size>\n<size=30>Good Luck</size>";
 
+        public bool IsEnableFPSmap { get; set; } = false;
         [Description("저위험군 봉쇄 15분 메세지")] public string Lcz15 { get; set; } = "저위험군 봉쇄 15분 남음.";
 
         [Description("저위험군 봉쇄 15분 메세지 시간(초단위)")]

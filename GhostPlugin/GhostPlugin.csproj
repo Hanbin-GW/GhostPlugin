@@ -146,6 +146,7 @@
         <Compile Include="API\CustomHint\FileDotNet.cs" />
         <Compile Include="API\ExcemptionType.cs" />
         <Compile Include="API\ICustomRole.cs" />
+        <Compile Include="API\Map\SoundPing.cs" />
         <Compile Include="API\StartTeam.cs" />
         <Compile Include="Commands\Chat.cs" />
         <Compile Include="Commands\Chat_RueI.cs" />
@@ -250,6 +251,7 @@
         <Compile Include="Custom\Roles\Scps\SoleStealer049.cs" />
         <Compile Include="Custom\Roles\Scps\Tanker106.cs" />
         <Compile Include="EventHandlers\BlackoutMod.cs" />
+        <Compile Include="EventHandlers\CasualFPSModeHandler.cs" />
         <Compile Include="EventHandlers\ClassicPlugin.cs" />
         <Compile Include="EventHandlers\CustomItemHandler.cs" />
         <Compile Include="EventHandlers\CustomRoleHandler.cs" />
