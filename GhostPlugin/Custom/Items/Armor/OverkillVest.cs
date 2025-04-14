@@ -67,7 +67,7 @@ namespace GhostPlugin.Custom.Items.Armor
 
         protected override void OnAcquired(Player player, Item item, bool displayMessage)
         {
-            Timing.CallDelayed(5, ()=>player.ShowHint(Name + $"\n{Description}",5));
+            Timing.CallDelayed(7, ()=>player.ShowHint(Name + $"\n{Description}",5));
             base.OnAcquired(player, item, displayMessage);
         }
 
