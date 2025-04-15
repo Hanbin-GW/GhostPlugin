@@ -76,7 +76,7 @@ namespace GhostPlugin.EventHandlers
 
                 Log.Info($"[MiniMap] Room: {room.Name} at grid ({cx}, {cy})");
 
-                int roomRadius = 3;
+                int roomRadius = 2;
                 for (int dx = -roomRadius; dx <= roomRadius; dx++)
                 for (int dy = -roomRadius; dy <= roomRadius; dy++)
                 {
