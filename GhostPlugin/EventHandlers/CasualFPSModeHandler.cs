@@ -64,31 +64,29 @@ namespace GhostPlugin.EventHandlers
 
         private void InitializeMap()
         {
-            // 전체 맵을 벽으로 초기화
             for (int x = 0; x < MapSize; x++)
             for (int y = 0; y < MapSize; y++)
                 grid[x, y] = CellType.Wall;
 
-            // 각 Room 기준 주변 넓은 영역을 통로로 지정
             foreach (Room room in Room.List)
             {
-                //Vector3 pos = room.Position;
-                int cx = WorldToMapX(room.Position.x);
-                int cy = WorldToMapY(room.Position.z);
-
-                // 방 중심 기준으로 13x13 범위 (넓은 방처럼 보이게)
-                for (int dx = -6; dx <= 6; dx++)
-                    for (int dy = -6; dy <= 6; dy++)
-                    {
-                        int x = cx + dx;
-                        int y = cy + dy;
-
-                        if (x >= 0 && x < MapSize && y >= 0 && y < MapSize)
-                            grid[x, y] = CellType.Path;
-                    }
+                Vector3 pos = room.Position;
+                int cx = WorldToMapX(pos.x);
+                int cy = WorldToMapY(pos.z);
 
                 Log.Info($"[MiniMap] Room: {room.Name} at grid ({cx}, {cy})");
+
+                int roomRadius = 3;
+                for (int dx = -roomRadius; dx <= roomRadius; dx++)
+                for (int dy = -roomRadius; dy <= roomRadius; dy++)
+                {
+                    int x = cx + dx;
+                    int y = cy + dy;
+                    if (x >= 0 && y >= 0 && x < MapSize && y < MapSize)
+                        grid[x, y] = CellType.Path;
+                }
             }
+
         }
 
 
