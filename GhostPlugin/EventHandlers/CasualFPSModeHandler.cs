@@ -55,30 +55,42 @@ namespace GhostPlugin.EventHandlers
             Timing.KillCoroutines(updateHandle);
         }
 
-        private int WorldToMapX(float x) => Mathf.Clamp(Mathf.RoundToInt(x + MapSize / 2f), 0, MapSize - 1);
-        private int WorldToMapY(float z) => Mathf.Clamp(Mathf.RoundToInt(z + MapSize / 2f), 0, MapSize - 1);
+        /*private int WorldToMapX(float x) => Mathf.Clamp(Mathf.RoundToInt(x + MapSize / 2f), 0, MapSize - 1);
+        private int WorldToMapY(float z) => Mathf.Clamp(Mathf.RoundToInt(z + MapSize / 2f), 0, MapSize - 1);*/
+        private int WorldToMapX(float x) => Mathf.Clamp(Mathf.RoundToInt(x / 8f + MapSize / 2f), 0, MapSize - 1);
+        private int WorldToMapY(float z) => Mathf.Clamp(Mathf.RoundToInt(z / 8f + MapSize / 2f), 0, MapSize - 1);
+
+
 
         private void InitializeMap()
         {
+            // 전체 맵을 벽으로 초기화
             for (int x = 0; x < MapSize; x++)
-                for (int y = 0; y < MapSize; y++)
-                    grid[x, y] = CellType.Wall;
+            for (int y = 0; y < MapSize; y++)
+                grid[x, y] = CellType.Wall;
 
+            // 각 Room 기준 주변 넓은 영역을 통로로 지정
             foreach (Room room in Room.List)
             {
+                //Vector3 pos = room.Position;
                 int cx = WorldToMapX(room.Position.x);
                 int cy = WorldToMapY(room.Position.z);
 
-                for (int dx = -2; dx <= 2; dx++)
-                    for (int dy = -2; dy <= 2; dy++)
+                // 방 중심 기준으로 13x13 범위 (넓은 방처럼 보이게)
+                for (int dx = -6; dx <= 6; dx++)
+                    for (int dy = -6; dy <= 6; dy++)
                     {
                         int x = cx + dx;
                         int y = cy + dy;
-                        if (x >= 0 && y >= 0 && x < MapSize && y < MapSize)
+
+                        if (x >= 0 && x < MapSize && y >= 0 && y < MapSize)
                             grid[x, y] = CellType.Path;
                     }
+
+                Log.Info($"[MiniMap] Room: {room.Name} at grid ({cx}, {cy})");
             }
         }
+
 
         private IEnumerator<float> UpdateMap()
         {
@@ -90,7 +102,7 @@ namespace GhostPlugin.EventHandlers
                 {
                     UpdateGridForPlayer(player);
                     string hint = GenerateHint(player);
-                    player.ShowHint(hint, 1.1f);
+                    player.ShowHint(hint, 1f);
                 }
 
                 yield return Timing.WaitForSeconds(1f);
@@ -107,24 +119,28 @@ namespace GhostPlugin.EventHandlers
             int px = WorldToMapX(player.Position.x);
             int py = WorldToMapY(player.Position.z);
             grid[px, py] = CellType.Player;
+            Log.Debug($"[MiniMap] {player.Nickname} grid pos: ({px}, {py})");
         }
 
         private string GenerateHint(Player player)
         {
-            int centerX = WorldToMapX(player.Position.x);
-            int centerY = WorldToMapY(player.Position.z);
+            int playerX = WorldToMapX(player.Position.x);
+            int playerY = WorldToMapY(player.Position.z);
 
+            const int range = 15; // 좌우/상하 범위
             StringBuilder sb = new();
 
-            for (int y = centerY + 5; y >= centerY - 5; y--)
+            for (int y = range; y >= -range + 1; y--)
             {
-                for (int x = centerX - 5; x <= centerX + 5; x++)
+                for (int x = -range; x < range; x++)
                 {
-                    bool drewPing = false;
+                    int gx = playerX + x;
+                    int gy = playerY + y;
 
+                    bool drewPing = false;
                     foreach (var ping in soundPings)
                     {
-                        if (ping.X == x && ping.Y == y)
+                        if (ping.X == gx && ping.Y == gy)
                         {
                             sb.Append(ping.GetColoredDot());
                             drewPing = true;
@@ -134,15 +150,15 @@ namespace GhostPlugin.EventHandlers
 
                     if (drewPing) continue;
 
-                    if (x < 0 || y < 0 || x >= MapSize || y >= MapSize)
+                    if (gx < 0 || gy < 0 || gx >= MapSize || gy >= MapSize)
                     {
                         sb.Append(" ");
                         continue;
                     }
 
-                    switch (grid[x, y])
+                    switch (grid[gx, gy])
                     {
-                        case CellType.Wall: sb.Append("<color=#9c9c9c>■</color>"); break;
+                        case CellType.Wall: sb.Append("<color=#4f4f4f>■</color>"); break;
                         case CellType.Path: sb.Append("<color=black>■</color>"); break;
                         case CellType.Player: sb.Append("<color=green>■</color>"); break;
                         default: sb.Append(" "); break;
@@ -151,8 +167,9 @@ namespace GhostPlugin.EventHandlers
                 sb.AppendLine();
             }
 
-            return "<align=left><size=10>" + sb.ToString() + "</size>";
+            return "<align=left><size=7>" + sb.ToString() + "</size>";
         }
+
 
         public void AddPing(Vector3 pos, Team team)
         {
