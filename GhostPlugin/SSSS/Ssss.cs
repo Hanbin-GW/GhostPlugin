@@ -69,7 +69,7 @@ namespace GhostPlugin.SSSS
                     {
                         stringBuilder.AppendLine($"-- Ability: {ability.Name}, {ability.Description}");
                     }
-                    stringBuilder.AppendLine("");
+                    stringBuilder.AppendLine(string.Empty);
                 }
             }
             if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)
