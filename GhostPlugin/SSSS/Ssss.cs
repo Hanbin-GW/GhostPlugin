@@ -25,6 +25,7 @@ namespace GhostPlugin.SSSS
         public static ServerSpecificSettingBase[] GetSettings()
         {
             List<ServerSpecificSettingBase> settings = new List<ServerSpecificSettingBase>();
+            settings.Add(new SSGroupHeader($"{Plugin.Instance.Name} | Version {Plugin.Instance.Version}"));
             StringBuilder stringBuilder = StringBuilderPool.Shared.Rent();
             if (Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
             {

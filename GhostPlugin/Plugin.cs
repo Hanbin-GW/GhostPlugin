@@ -34,18 +34,22 @@ namespace GhostPlugin
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
         //private MyCustomKeyBind _myCustomKeyBind;
+        
         /// <summary>
         /// Minimap Dict
         /// </summary>
         public readonly Dictionary<int, bool> miniMapEnabled = new();
+        
         /// <summary>
         /// SSSS Ecent Handler
         /// </summary>
         public SsssEventHandler SsssEventHandler;
+        
         /// <summary>
         /// Casual FPS Mode
         /// </summary>
         public CasualFPSModeHandler CasualFPSModeHandler;
+        
         //Audio Dir
         public readonly string AudioDirectory;
         public readonly string EffectDirectory;
