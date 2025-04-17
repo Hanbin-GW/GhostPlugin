@@ -18,6 +18,7 @@ namespace GhostPlugin.Configs
         public int Scp106Id { get; set; } = 10011;
         public int ExplosionId { get; set; } = 10012;
         public int Speedy096Id { get; set; } = 10013;
+        public int MapToggleId { get; set; } = 20000;
         public string SsssActiveCamoActivationMessage { get; set; } = "Activated Active Camo";
         public string SsssChargeActivationMessage { get; set; } = "Activated Charge";
         public string SsssDoorPickingActivationMessage { get; set; } = "Activated Door Picking, Interact with the door you want to pick.";

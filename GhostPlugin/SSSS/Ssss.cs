@@ -166,6 +166,13 @@ namespace GhostPlugin.SSSS
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, "C4 폭발",
                     KeyCode.J, true, "무전기를 들고 커스텀 키바인드 키를 눌러 C4 를 폭파시킵니다!"));
             }
+
+            if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
+            {
+                settings.Add(new SSGroupHeader("Map Toggle Key"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.MapToggleId,"미니맵 ON/OFF"
+                    ,KeyCode.Y,true,"라운드 중 minimap 을 토글합니다."));
+            }
             return settings.ToArray();
         }
     }

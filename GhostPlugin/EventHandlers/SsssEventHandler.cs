@@ -56,7 +56,7 @@ namespace GhostPlugin.EventHandlers
                 }
             }
         }
-
+        
         public void OnSettingValueReceived(ReferenceHub hub, ServerSpecificSettingBase settingBase)
         {
             if (Plugin.Instance == null)
@@ -96,7 +96,8 @@ namespace GhostPlugin.EventHandlers
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Scp457Id
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Scp106Id
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ExplosionId
-                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Speedy096Id)
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Speedy096Id
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.MapToggleId)
             && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
                 {
                     string response = String.Empty;
@@ -114,6 +115,18 @@ namespace GhostPlugin.EventHandlers
                             player.ShowHint(response);
                         }
                     }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.MapToggleId)
+                    {
+                        if (!Plugin.Instance.miniMapEnabled.ContainsKey(player.Id))
+                            Plugin.Instance.miniMapEnabled[player.Id] = true;
+                        else
+                            Plugin.Instance.miniMapEnabled[player.Id] = !Plugin.Instance.miniMapEnabled[player.Id];
+                        
+                        player.ShowHint(Plugin.Instance.miniMapEnabled[player.Id]
+                            ? "<color=green>미니맵 ON</color>"
+                            : "<color=red>미니맵 OFF</color>", 2f);
+                    }
+                    
                     else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ChargeId)
                     {
                         var chargeAbility = abilities.FirstOrDefault(ability => ability.GetType() == typeof(ChargeAbility));

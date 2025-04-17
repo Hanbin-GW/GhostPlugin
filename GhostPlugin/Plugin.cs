@@ -29,13 +29,24 @@ namespace GhostPlugin
         /// </summary>
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(5, 4, 5);
+        public override Version Version { get; } = new(5, 4, 10);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
         //private MyCustomKeyBind _myCustomKeyBind;
+        /// <summary>
+        /// Minimap Dict
+        /// </summary>
+        public readonly Dictionary<int, bool> miniMapEnabled = new();
+        /// <summary>
+        /// SSSS Ecent Handler
+        /// </summary>
         public SsssEventHandler SsssEventHandler;
+        /// <summary>
+        /// Casual FPS Mode
+        /// </summary>
         public CasualFPSModeHandler CasualFPSModeHandler;
+        //Audio Dir
         public readonly string AudioDirectory;
         public readonly string EffectDirectory;
         public Plugin()
