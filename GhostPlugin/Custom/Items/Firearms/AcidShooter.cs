@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AdminToys;
 using CustomPlayerEffects;
 using Exiled.API.Features.Attributes;
@@ -17,7 +18,19 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Name { get; set; } = "Acid Shotter";
         public override string Description { get; set; } = "매우 강력한 독산이 들어간 12게이지를 가지고 있습니다.";
         public override float Weight { get; set; } = 3.5f;
-        public override SpawnProperties SpawnProperties { get; set; }
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+            StaticSpawnPoints = new List<StaticSpawnPoint>()
+            {
+                new StaticSpawnPoint()
+                {
+                    Position = new Vector3(113f, -1071f, 43),
+                    Chance = 100,
+                }
+            }
+        };
         public override ItemType Type { get; set; } = ItemType.GunCOM15;
         public override float Damage { get; set; } = 19f;
         public override byte ClipSize { get; set; } = 5;
