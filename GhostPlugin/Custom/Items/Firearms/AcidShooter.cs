@@ -26,7 +26,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             {
                 new StaticSpawnPoint()
                 {
-                    Position = new Vector3(113f, -1071f, 43),
+                    Position = new Vector3(113f, -1071f, 43) + Vector3.up,
                     Chance = 100,
                 }
             }
