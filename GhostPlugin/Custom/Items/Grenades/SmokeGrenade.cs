@@ -72,7 +72,10 @@ namespace GhostPlugin.Custom.Items.Grenades
                     
                     Timing.CallDelayed(10, () =>
                     {
-                        pickup.Destroy(); 
+                        if (pickup is not null && pickup.Base is not null)
+                        {
+                            pickup.Destroy(); 
+                        }
                     });
                 });
             }
