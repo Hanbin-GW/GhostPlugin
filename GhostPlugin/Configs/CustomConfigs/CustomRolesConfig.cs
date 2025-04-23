@@ -94,6 +94,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Dwarf()
         };
+
+        public List<SpyAgent> SpyAgents { get; set; } = new()
+        {
+            new SpyAgent()
+        };
         public List<DwarfZombie> DwarfZombies { get; set; } = new()
         {
             new DwarfZombie()
