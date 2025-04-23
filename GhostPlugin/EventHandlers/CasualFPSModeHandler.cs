@@ -70,8 +70,10 @@ namespace GhostPlugin.EventHandlers
             Timing.KillCoroutines(updateHandle);
         }
 
-        private int WorldToMapX(float x) => Mathf.Clamp(Mathf.RoundToInt(x / 10f + MapSize / 2f), 0, MapSize - 1);
-        private int WorldToMapY(float z) => Mathf.Clamp(Mathf.RoundToInt(z / 10f + MapSize / 2f), 0, MapSize - 1);
+        //private int WorldToMapX(float x) => Mathf.Clamp(Mathf.RoundToInt(x / 10f + MapSize / 2f), 0, MapSize - 1);
+        //private int WorldToMapY(float z) => Mathf.Clamp(Mathf.RoundToInt(z / 10f + MapSize / 2f), 0, MapSize - 1);
+        private int WorldToMapX(float x) => Mathf.Clamp(Mathf.RoundToInt(x / 8f + MapSize / 2f), 0, MapSize - 1);
+        private int WorldToMapY(float z) => Mathf.Clamp(Mathf.RoundToInt(z / 8f + MapSize / 2f), 0, MapSize - 1);
 
         private CellType[,] CreateEmptyGrid()
         {
@@ -89,6 +91,8 @@ namespace GhostPlugin.EventHandlers
             foreach (ZoneType zone in Enum.GetValues(typeof(ZoneType)))
                 zoneGrids[zone] = CreateEmptyGrid();
 
+            const int roomRadius = 4;
+
             foreach (Room room in Room.List)
             {
                 ZoneType zone = room.Zone;
@@ -97,8 +101,8 @@ namespace GhostPlugin.EventHandlers
                 int cx = WorldToMapX(room.Position.x);
                 int cy = WorldToMapY(room.Position.z);
 
-                for (int dx = -2; dx <= 2; dx++)
-                for (int dy = -2; dy <= 2; dy++)
+                for (int dx = -roomRadius; dx <= roomRadius; dx++)
+                for (int dy = -roomRadius; dy <= roomRadius; dy++)
                 {
                     int x = cx + dx;
                     int y = cy + dy;
@@ -107,7 +111,6 @@ namespace GhostPlugin.EventHandlers
                 }
             }
         }
-
         private IEnumerator<float> UpdateMap()
         {
             while (true)
