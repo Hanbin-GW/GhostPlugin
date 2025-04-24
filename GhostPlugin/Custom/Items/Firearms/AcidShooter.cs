@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AdminToys;
 using CustomPlayerEffects;
+using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
@@ -22,12 +23,12 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
             Limit = 1,
-            StaticSpawnPoints = new List<StaticSpawnPoint>()
+            RoomSpawnPoints = new List<RoomSpawnPoint>()
             {
-                new StaticSpawnPoint()
+                new RoomSpawnPoint()
                 {
-                    Position = new Vector3(113f, -1071f, 43) + Vector3.up,
-                    Chance = 100,
+                    Room = RoomType.HczNuke,
+                    Chance = 100
                 }
             }
         };
