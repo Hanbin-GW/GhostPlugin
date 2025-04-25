@@ -76,9 +76,6 @@
         <Reference Include="HintServiceMeow">
           <HintPath>..\..\..\Documents\14.0 dll\HintServiceMeow-Exiled.dll</HintPath>
         </Reference>
-        <Reference Include="LabApi, Version=0.5.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta5\lib\net48\LabApi.dll</HintPath>
-        </Reference>
         <Reference Include="MapEditorReborn">
           <HintPath>..\..\..\Documents\14.0 dll\MapEditorReborn.dll</HintPath>
         </Reference>
