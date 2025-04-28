@@ -21,18 +21,28 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
         {
             ContactPoint contact = collision.contacts[0];
             Vector3 hitPosition = contact.point;
-            
+
             Log.Info($"충돌한 대상: {collision.gameObject.name}");
             
+            // 타겟 충돌 처리
             Player target = Player.Get(collision.collider) ?? Player.Get(collision.collider.GetComponentInParent<Collider>());
             if (target != null && target != _player)
             {
                 _player.ShowHitMarker(2);
             }
+
+            // 수동으로 타이머 처리 (폭발 딜레이 적용)
+            StartCoroutine(SpawnDelayedGrenade(hitPosition, 1f));
+        }
+
+        
+        private IEnumerator SpawnDelayedGrenade(Vector3 position, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
             ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
-            grenade.FuseTime = 1f;
             grenade.ChangeItemOwner(Server.Host, _player);
-            grenade.SpawnActive(hitPosition);
+            grenade.SpawnActive(position);
         }
         IEnumerator CreateTrailEffect(Vector3 startPos, Vector3 direction, int count, float spacing)
         {
