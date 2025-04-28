@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using AdminToys;
 using Exiled.API.Features;
+using GhostPlugin.Custom.Items.MonoBehavior;
 using Mirror;
 using UnityEngine;
 namespace GhostPlugin.Methods.Objects
@@ -10,7 +11,8 @@ namespace GhostPlugin.Methods.Objects
     {
         private const int SpawnCount = 5;
         private const float SpawnRange = 2.0f;
-
+        
+        
         /// <summary>
         /// Enersize Ammo
         /// </summary>
@@ -21,7 +23,7 @@ namespace GhostPlugin.Methods.Objects
         /// <param name="spawnRange"></param>
         /// <param name="glowColor">Color</param>
         /// <returns></returns>
-        public PrimitiveObjectToy SpawmSparkAmmo(Player player, Vector3 position, int count, float forwardForce, float spawnRange,Color glowColor)
+        public PrimitiveObjectToy SpawnGrenade(Player player, Vector3 position, int count, float forwardForce, float spawnRange,Color glowColor)
         {
             PrimitiveObjectToy pObject = null;
             for (int i = 0; i < count; i++)
@@ -71,7 +73,11 @@ namespace GhostPlugin.Methods.Objects
                     var collider = pObject.GetComponent<Collider>();
                     if (collider == null)
                         pObject.gameObject.AddComponent<BoxCollider>();
-
+                    
+                    ///---------------------------Temporary Code----------------------------
+                    var bulletcollision = pObject.gameObject.AddComponent<BulletExplosion>();
+                    bulletcollision.Initialize(player);
+                    ///----------------------------------------------------------------------
                     UnityEngine.Object.Destroy(pObject.gameObject, 1.5f);
                 }
             }

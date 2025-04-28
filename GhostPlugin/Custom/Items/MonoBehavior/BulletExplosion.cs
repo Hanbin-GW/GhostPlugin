@@ -30,9 +30,13 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
             {
                 _player.ShowHitMarker(2);
             }
-
+            
+            ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
+            grenade.FuseTime = 1f;
+            grenade.ChangeItemOwner(Server.Host, _player);
+            grenade.SpawnActive(_player.Position + Vector3.forward * 1.25f);
             // 수동으로 타이머 처리 (폭발 딜레이 적용)
-            StartCoroutine(SpawnDelayedGrenade(hitPosition, 1f));
+            //StartCoroutine(SpawnDelayedGrenade(hitPosition, 1f));
         }
 
         

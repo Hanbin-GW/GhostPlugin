@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AdminToys;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
@@ -39,15 +40,28 @@ namespace GhostPlugin.Custom.Items.Firearms
             if (Check(ev.Player.CurrentItem))
             {
                 ev.CanHurt = false;
+
                 SpawnParticleSpark spark = new SpawnParticleSpark();
                 Color color = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
                 Vector3 position = ev.Firearm.Base.transform.position + ev.Firearm.Base.transform.forward * 0.5f;
-                PrimitiveObjectToy bullet =
-                    spark.SpawmSparkAmmo(ev.Player, position, 1, 50, 0, color);
-                var bulletCollision = bullet.gameObject.AddComponent<BulletExplosion>();
-                bulletCollision.Initialize(ev.Player);
-                base.OnShot(ev);
+
+                PrimitiveObjectToy bullet = spark.SpawnGrenade(ev.Player, position, 1, 50, 0, color);
+        
+                //ar bulletCollision = bullet.gameObject.AddComponent<BulletExplosion>();
+                //bulletCollision.Initialize(ev.Player);
+
+                /*CharacterController playerController = ev.Player.GameObject.GetComponent<CharacterController>();
+                Collider bulletCollider = bullet.gameObject.GetComponent<Collider>();
+
+                if (playerController != null && bulletCollider != null)
+                {
+                    Physics.IgnoreCollision(bulletCollider, playerController, true);
+                    Log.Info("발사자와 총알 간 충돌 무시 처리 완료.");
+                }*/
             }
+
+            base.OnShot(ev);
         }
+
     }
 }
