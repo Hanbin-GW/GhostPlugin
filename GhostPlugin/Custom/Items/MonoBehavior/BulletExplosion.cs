@@ -23,9 +23,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
             Vector3 hitPosition = contact.point;
             
             Log.Info($"충돌한 대상: {collision.gameObject.name}");
-            // 이펙트 출력
-            SpawnExplosionEffect(hitPosition);
-
+            
             Player target = Player.Get(collision.collider) ?? Player.Get(collision.collider.GetComponentInParent<Collider>());
             if (target != null && target != _player)
             {
@@ -60,16 +58,5 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 yield return new WaitForSeconds(0.05f);
             }
         }
-
-        private void SpawnExplosionEffect(Vector3 position)
-        {
-            GameObject effectPrefab = Resources.Load<GameObject>("Effects/ExplosionEffect"); // Resources/Effects/ExplosionEffect.prefab
-            if (effectPrefab != null)
-            {
-                GameObject effectInstance = Object.Instantiate(effectPrefab, position, Quaternion.identity);
-                Object.Destroy(effectInstance, 3f);
-            }
-        }
-
     }
 }
