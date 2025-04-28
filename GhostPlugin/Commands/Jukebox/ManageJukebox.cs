@@ -6,8 +6,8 @@ using Exiled.API.Features;
 using GhostPlugin.Methods.Music;
 using RemoteAdmin;
 using UnityEngine;
-using MapEditorReborn.API.Features;
-using MapEditorReborn.API.Features.Objects;
+using ProjectMER.Features;
+using ProjectMER.Features.Objects;
 
 namespace GhostPlugin.Commands.Jukebox
 {
@@ -81,13 +81,13 @@ namespace GhostPlugin.Commands.Jukebox
 
             string schematicName = "Speaker";
             Vector3 spawnPosition = player.Position + player.Transform.forward * 1 + player.Transform.up;
-            Quaternion rotation = Quaternion.identity;
+            Vector3 rotation = Vector3.forward;
             
             string inputSong = string.Join(" ", arguments);
             string audioDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "audio");
             string filePath = Path.Combine(audioDirectory, inputSong);
             
-            SchematicObject schematicObject = ObjectSpawner.SpawnSchematic(schematicName, spawnPosition, rotation,null,null!);
+            SchematicObject schematicObject = ObjectSpawner.SpawnSchematic(schematicName, spawnPosition, rotation);
             
             if (schematicObject != null)
             {
@@ -97,8 +97,8 @@ namespace GhostPlugin.Commands.Jukebox
                 GameObject schematicGameObject = schematicObject.gameObject;
                 Rigidbody rigidbody = schematicGameObject.AddComponent<Rigidbody>();
                 rigidbody.useGravity = true;
-                JukeboxManagement.PlayMusicSpeaker(filePath,schematicObject.Position,id);
-                response = $"스피커(ID: {id})가 생성되었습니다. 위치: {schematicObject.Position}";
+                JukeboxManagement.PlayMusicSpeaker(filePath,schematicObject.transform.position,id);
+                response = $"스피커(ID: {id})가 생성되었습니다. 위치: {schematicObject.transform.position}";
                 return true;
             }
 
@@ -122,7 +122,10 @@ namespace GhostPlugin.Commands.Jukebox
             
             if (Plugin.Instance.Speakers.TryGetValue(id, out SchematicObject schematicObject))
             {
-                schematicObject.Destroy();
+                if (schematicObject != null && schematicObject.gameObject != null)
+                {
+                    UnityEngine.Object.Destroy(schematicObject.gameObject);
+                }
                 Plugin.Instance.Speakers.Remove(id);
                 JukeboxManagement.StopMusicSpeaker(id);
                 response = $"스피커(ID: {id})가 제거되었습니다.";

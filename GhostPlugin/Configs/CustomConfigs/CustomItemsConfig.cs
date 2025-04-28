@@ -5,7 +5,6 @@ using GhostPlugin.Custom.Items.Etc;
 using GhostPlugin.Custom.Items.Firearms;
 using GhostPlugin.Custom.Items.Grenades;
 using GhostPlugin.Custom.Items.Keycard;
-using MapEditorReborn.Commands.UtilityCommands;
 
 namespace GhostPlugin.Configs.CustomConfigs
 {

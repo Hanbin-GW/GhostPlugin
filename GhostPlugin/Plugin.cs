@@ -12,7 +12,7 @@ using GhostPlugin.API;
 using GhostPlugin.Configs;
 using GhostPlugin.EventHandlers;
 using HarmonyLib;
-using MapEditorReborn.API.Features.Objects;
+using ProjectMER.Features.Objects;
 using UserSettings.ServerSpecific;
 using Server = Exiled.Events.Handlers.Server;
 
@@ -29,7 +29,7 @@ namespace GhostPlugin
         /// </summary>
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(5, 5, 1);
+        public override Version Version { get; } = new(5, 5, 2);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;

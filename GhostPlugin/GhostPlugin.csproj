@@ -79,9 +79,6 @@
         <Reference Include="LabApi, Version=0.6.0.0, Culture=neutral, processorArchitecture=Amd64">
           <HintPath>..\packages\ExMod.Exiled.9.6.0-beta7\lib\net48\LabApi.dll</HintPath>
         </Reference>
-        <Reference Include="MapEditorReborn">
-          <HintPath>..\..\..\Documents\14.0 dll\MapEditorReborn.dll</HintPath>
-        </Reference>
         <Reference Include="Mirror">
           <HintPath>..\..\..\Documents\14.0 dll\Mirror.dll</HintPath>
         </Reference>
@@ -93,6 +90,9 @@
         </Reference>
         <Reference Include="NVorbis">
           <HintPath>..\..\..\Documents\AudioPlayerAPI\NVorbis.dll</HintPath>
+        </Reference>
+        <Reference Include="ProjectMER">
+          <HintPath>..\..\..\Documents\1403\ProjectMER.dll</HintPath>
         </Reference>
         <Reference Include="Reinforcements">
           <HintPath>..\..\Reinforcements\Reinforcements\obj\Release\Reinforcements.dll</HintPath>
