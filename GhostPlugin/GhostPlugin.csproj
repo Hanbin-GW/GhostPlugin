@@ -260,6 +260,7 @@
         <Compile Include="EventHandlers\SsssEventHandler.cs" />
         <Compile Include="Methods\Administration\SendBroadcastGhost.cs" />
         <Compile Include="Methods\Legacy\AudioManagemanet.cs" />
+        <Compile Include="Methods\MER\ObjectManager.cs" />
         <Compile Include="Methods\Music\JukeboxManagement.cs" />
         <Compile Include="Methods\Music\MusicManager.cs" />
         <Compile Include="Methods\Objects\PlasmaCube.cs" />
