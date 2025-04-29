@@ -42,7 +42,7 @@ namespace GhostPlugin.EventHandlers
         /// <summary>
         /// During the round is not started, the music is playing...
         /// </summary>
-        public static void OnWaitingPlayers()
+        /*public static void OnWaitingPlayers()
         { 
             MusicManager.EnsureMusicDirectoryExists();
             var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.LobbySongPath);
@@ -55,6 +55,31 @@ namespace GhostPlugin.EventHandlers
 
             globalPlayer.AddClip("lobby_music", volume: Plugin.Instance.Config.MusicConfig.Volume, loop: Plugin.Instance.Config.MusicConfig.Loop, destroyOnEnd: false);
             Log.Info("main song playing");
+        }*/
+        public static void OnWaitingPlayers()
+        { 
+            MusicManager.EnsureMusicDirectoryExists();
+            var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.LobbySongPath);
+            AudioClipStorage.LoadClip(path, "lobby_music");
+
+            AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("Lobby");
+
+            // AudioPlayer가 완전히 준비된 이후에 스피커 추가
+            if (globalPlayer != null)
+            {
+                globalPlayer.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
+
+                globalPlayer.AddClip("lobby_music",
+                    volume: Plugin.Instance.Config.MusicConfig.Volume,
+                    loop: Plugin.Instance.Config.MusicConfig.Loop,
+                    destroyOnEnd: false);
+
+                Log.Info("main song playing");
+            }
+            else
+            {
+                Log.Error("globalPlayer를 생성하지 못했습니다!");
+            }
         }
         
         /// <summary>
