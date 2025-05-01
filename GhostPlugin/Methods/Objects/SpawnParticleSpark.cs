@@ -18,71 +18,69 @@ namespace GhostPlugin.Methods.Objects
         /// </summary>
         /// <param name="player">Attacker</param>
         /// <param name="position">object crate position</param>
-        /// <param name="count">object count</param>
         /// <param name="forwardForce">speed</param>
         /// <param name="spawnRange"></param>
         /// <param name="glowColor">Color</param>
         /// <returns></returns>
-        public PrimitiveObjectToy SpawnGrenade(Player player, Vector3 position, int count, float forwardForce, float spawnRange,Color glowColor)
+        public PrimitiveObjectToy SpawnGrenade(Player player, Vector3 position, float forwardForce, float spawnRange, Color glowColor)
         {
             PrimitiveObjectToy pObject = null;
-            for (int i = 0; i < count; i++)
+
+            foreach (GameObject value in NetworkClient.prefabs.Values)
             {
-
-                foreach (GameObject value in NetworkClient.prefabs.Values)
+                if (value.TryGetComponent<PrimitiveObjectToy>(out var component))
                 {
-                    if (value.TryGetComponent<PrimitiveObjectToy>(out var component))
-                    {
-                        pObject = UnityEngine.Object.Instantiate(component);
-                        pObject.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0]));
-                        break;
-                    }
-                }
-
-                if (pObject != null)
-                {
-                    pObject.NetworkPrimitiveType = PrimitiveType.Cube;
-                    pObject.transform.localScale = Vector3.one * 0.05f;
-                    pObject.NetworkScale = Vector3.one * 0.05f;
-                    pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
-
-                    Vector3 randomOffset = new Vector3(
-                        UnityEngine.Random.Range(-spawnRange, spawnRange),
-                        UnityEngine.Random.Range(0.5f, 0.5f), // 높이 랜덤값
-                        UnityEngine.Random.Range(-spawnRange, spawnRange)
-                    );
-
-                    //pObject.Position = player.Position + player.GameObject.transform.forward + randomOffset;
-                    pObject.Position = position + player.GameObject.transform.forward * 1.5f + randomOffset;
-                    pObject.NetworkPosition = position + player.GameObject.transform.forward * 1.5f + randomOffset;
-                    //Color glowColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
-                    //Color glowColor = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
-                    pObject.NetworkMaterialColor = glowColor;
-                    pObject.MaterialColor = glowColor;
-
-                    var rb = pObject.GetComponent<Rigidbody>();
-                    if (rb == null)
-                        rb = pObject.gameObject.AddComponent<Rigidbody>();
-
-                    rb.useGravity = true;
-                    rb.mass = 1f;
-                    rb.drag = 0.5f;
-                    rb.angularDrag = 0.1f;
-                    Vector3 shootDirection = player.GameObject.transform.forward;
-                    rb.velocity = shootDirection * forwardForce; 
-                    var collider = pObject.GetComponent<Collider>();
-                    if (collider == null)
-                        pObject.gameObject.AddComponent<BoxCollider>();
-                    
-                    ///---------------------------Temporary Code----------------------------
-                    var bulletcollision = pObject.gameObject.AddComponent<BulletExplosion>();
-                    bulletcollision.Initialize(player);
-                    ///----------------------------------------------------------------------
-                    UnityEngine.Object.Destroy(pObject.gameObject, 1.5f);
+                    pObject = UnityEngine.Object.Instantiate(component);
+                    pObject.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0]));
+                    break;
                 }
             }
+
+            if (pObject != null)
+            {
+                pObject.NetworkPrimitiveType = PrimitiveType.Cube;
+                pObject.transform.localScale = Vector3.one * 0.05f;
+                pObject.NetworkScale = Vector3.one * 0.05f;
+                pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
+
+                Vector3 randomOffset = new Vector3(
+                    UnityEngine.Random.Range(-spawnRange, spawnRange),
+                    0.5f,
+                    UnityEngine.Random.Range(-spawnRange, spawnRange)
+                );
+
+                pObject.NetworkPosition = position + player.GameObject.transform.forward * 1.5f + randomOffset;
+
+                pObject.NetworkMaterialColor = glowColor;
+                pObject.MaterialColor = glowColor;
+
+                var rb = pObject.GetComponent<Rigidbody>() ?? pObject.gameObject.AddComponent<Rigidbody>();
+                rb.useGravity = true;
+                rb.mass = 1f;
+                rb.drag = 0.5f;
+                rb.angularDrag = 0.1f;
+                Vector3 shootDirection = player.GameObject.transform.forward;
+                rb.velocity = shootDirection * forwardForce;
+
+                var collider = pObject.GetComponent<Collider>() ?? pObject.gameObject.AddComponent<BoxCollider>();
+
+                // 🔴 여기서 정확히 플레이어의 모든 Collider를 무시합니다 🔴
+                Collider[] playerColliders = player.GameObject.GetComponentsInChildren<Collider>();
+                foreach (Collider playerCol in playerColliders)
+                {
+                    Physics.IgnoreCollision(collider, playerCol, true);
+                }
+                Log.Info("발사자의 모든 Collider와 총알 간 충돌 무시 처리 완료.");
+
+                var bulletCollision = pObject.gameObject.AddComponent<BulletExplosion>();
+                bulletCollision.Initialize(player);
+
+                UnityEngine.Object.Destroy(pObject.gameObject, 5f);
+            }
+
             return pObject;
         }
+
         
         
         /// <summary>
@@ -136,9 +134,18 @@ namespace GhostPlugin.Methods.Objects
                 rb.velocity = shootDirection * forwardForce; 
                 //Test Code
                 rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-                var collider = pObject.GetComponent<Collider>(); 
+                /*var collider = pObject.GetComponent<Collider>(); 
                 if (collider == null)  
-                    pObject.gameObject.AddComponent<BoxCollider>();
+                    pObject.gameObject.AddComponent<BoxCollider>();*/
+                
+                CharacterController playerController = player.GameObject.GetComponent<CharacterController>();
+                Collider bulletCollider = pObject.GetComponent<Collider>();
+
+                if (playerController != null && bulletCollider != null)
+                {
+                    Physics.IgnoreCollision(bulletCollider, playerController, true);
+                }
+                
                 UnityEngine.Object.Destroy(pObject.gameObject, 10f);
             } 
             return pObject;

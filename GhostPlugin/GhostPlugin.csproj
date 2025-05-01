@@ -47,37 +47,37 @@
           <HintPath>..\..\..\Documents\AudioPlayerAPI\AudioPlayerApi.dll</HintPath>
         </Reference>
         <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta7\lib\net48\CommandSystem.Core.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\CommandSystem.Core.dll</HintPath>
         </Reference>
         <Reference Include="C_Squad">
           <HintPath>..\..\C-Squad\C-Squad\obj\Release\C_Squad.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.API, Version=9.6.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta7\lib\net48\Exiled.API.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\Exiled.API.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.CreditTags, Version=9.6.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta7\lib\net48\Exiled.CreditTags.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\Exiled.CreditTags.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.CustomItems, Version=9.6.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta7\lib\net48\Exiled.CustomItems.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\Exiled.CustomItems.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.CustomRoles, Version=9.6.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta7\lib\net48\Exiled.CustomRoles.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\Exiled.CustomRoles.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.Events, Version=9.6.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta7\lib\net48\Exiled.Events.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\Exiled.Events.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.Loader, Version=9.6.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta7\lib\net48\Exiled.Loader.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\Exiled.Loader.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.Permissions, Version=9.6.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta7\lib\net48\Exiled.Permissions.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\Exiled.Permissions.dll</HintPath>
         </Reference>
         <Reference Include="HintServiceMeow">
           <HintPath>..\..\..\Documents\14.0 dll\HintServiceMeow-Exiled.dll</HintPath>
         </Reference>
         <Reference Include="LabApi, Version=0.6.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta7\lib\net48\LabApi.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\LabApi.dll</HintPath>
         </Reference>
         <Reference Include="Mirror">
           <HintPath>..\..\..\Documents\14.0 dll\Mirror.dll</HintPath>
@@ -86,7 +86,7 @@
           <HintPath>..\..\..\Documents\Exiled9.6.0\SCP Secret Laboratory\LabAPI-Beta\dependencies\Mono.Posix.dll</HintPath>
         </Reference>
         <Reference Include="NorthwoodLib, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta7\lib\net48\NorthwoodLib.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\NorthwoodLib.dll</HintPath>
         </Reference>
         <Reference Include="NVorbis">
           <HintPath>..\..\..\Documents\AudioPlayerAPI\NVorbis.dll</HintPath>
@@ -135,7 +135,7 @@
           <HintPath>..\..\..\Documents\14.0 dll\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
         <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta7\lib\net48\YamlDotNet.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\YamlDotNet.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
@@ -185,6 +185,7 @@
         <Compile Include="Custom\Items\Armor\EnergyShildArmor.cs" />
         <Compile Include="Custom\Items\Armor\EODPadding.cs" />
         <Compile Include="Custom\Items\Armor\OverkillVest.cs" />
+        <Compile Include="Custom\Items\Etc\AmmoBox.cs" />
         <Compile Include="Custom\Items\Etc\Anti173.cs" />
         <Compile Include="Custom\Items\Etc\AromorPlateKit.cs" />
         <Compile Include="Custom\Items\Etc\BattleRage.cs" />
@@ -278,6 +279,9 @@
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Custom\Items\Medkit\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

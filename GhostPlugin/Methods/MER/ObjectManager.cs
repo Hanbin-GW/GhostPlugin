@@ -8,7 +8,7 @@ namespace GhostPlugin.Methods.MER
 {
     public class ObjectManager
     {
-        public void SpawnObject(String schematicName, Vector3 spawnPos, Vector3 rotation)
+        public static SchematicObject SpawnObject(String schematicName, Vector3 spawnPos, Vector3 rotation)
         {
             SchematicObject schematicObject = ObjectSpawner.SpawnSchematic(schematicName, spawnPos, rotation);
             if (schematicObject != null)
@@ -18,9 +18,10 @@ namespace GhostPlugin.Methods.MER
                 Rigidbody rigidbody = schematicGameObject.AddComponent<Rigidbody>();
                 rigidbody.useGravity = true;
             }
+            return schematicObject;
         }
 
-        public void RemoveObject(SchematicObject schematicObject)
+        public static void RemoveObject(SchematicObject schematicObject)
         {
             if (schematicObject != null && schematicObject.gameObject != null)
             {

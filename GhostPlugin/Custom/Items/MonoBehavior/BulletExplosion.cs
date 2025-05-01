@@ -16,30 +16,27 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
         {
             _player = attacker;
         }
-
+        
         private void OnCollisionEnter(Collision collision)
         {
             ContactPoint contact = collision.contacts[0];
-            Vector3 hitPosition = contact.point;
+            Vector3 explosionPosition = contact.point;
 
-            Log.Info($"충돌한 대상: {collision.gameObject.name}");
-            
-            // 타겟 충돌 처리
+            Log.Info($"충돌 대상: {collision.gameObject.name}, 발사자: {_player.DisplayNickname}");
+
+            ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
+            grenade.FuseTime = 0.5f; // 조금 더 빠른 폭발 원할 경우 0.2f 등으로 조정
+            grenade.ChangeItemOwner(Server.Host, _player);
+            grenade.SpawnActive(explosionPosition);
+
             Player target = Player.Get(collision.collider) ?? Player.Get(collision.collider.GetComponentInParent<Collider>());
             if (target != null && target != _player)
             {
-                _player.ShowHitMarker(2);
+                _player.ShowHitMarker();
             }
-            
-            ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
-            grenade.FuseTime = 1f;
-            grenade.ChangeItemOwner(Server.Host, _player);
-            grenade.SpawnActive(_player.Position + Vector3.forward * 1.25f);
-            // 수동으로 타이머 처리 (폭발 딜레이 적용)
-            //StartCoroutine(SpawnDelayedGrenade(hitPosition, 1f));
-        }
 
-        
+            Destroy(gameObject, 2f);
+        }
         private IEnumerator SpawnDelayedGrenade(Vector3 position, float delay)
         {
             yield return new WaitForSeconds(delay);
