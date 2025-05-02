@@ -22,6 +22,9 @@ namespace GhostPlugin.Custom.Items.Etc
         public override float Weight { get; set; } = 4f;
         public override ItemType Type { get; set; } = ItemType.Coin;
         public override SpawnProperties SpawnProperties { get; set; }
+        public int AllowedNumber = 3;
+        private int usednumber = 0;
+        public SchematicObject obj = null;
 
         protected override void SubscribeEvents()
         {
@@ -44,18 +47,22 @@ namespace GhostPlugin.Custom.Items.Etc
                 if (ev.IsThrown)
                 {
                     ev.Item.Destroy();
-                    SchematicObject Obj = ObjectManager.SpawnObject("Ammobox", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, Vector3.zero);
-                    Timing.CallDelayed(60, () => ObjectManager.RemoveObject(Obj));
+                    obj = ObjectManager.SpawnObject("Ammobox", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, Vector3.zero);
+                    Timing.CallDelayed(60, () => ObjectManager.RemoveObject(obj));
                 }
             }
         }
         
         private void OnButtonInteracted(ButtonInteractedEventArgs ev)
         {
-            if (ev.Schematic.name == "Ammobox") // 상호작용할 스키매틱 이름
+            if (ev.Schematic?.Name == "Ammobox") // 상호작용할 스키매틱 이름
             {
+                usednumber++;
+                if (usednumber > AllowedNumber)
+                {
+                    ObjectManager.RemoveObject(obj);
+                }
                 Player player = ev.Player;
-                // 탄약 지급
                 player.AddAmmo(AmmoType.Nato556,40);
                 player.ShowHint("<color=yellow>5.56mm 탄약 40개를 받았습니다!</color>", 3f);
             }
