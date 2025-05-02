@@ -76,8 +76,17 @@
         <Reference Include="HintServiceMeow">
           <HintPath>..\..\..\Documents\14.0 dll\HintServiceMeow-Exiled.dll</HintPath>
         </Reference>
+        <Reference Include="IndexRange, Version=1.0.3.0, Culture=neutral, PublicKeyToken=35e6a3c4212514c6, processorArchitecture=MSIL">
+          <HintPath>..\packages\IndexRange.1.0.3\lib\net47\IndexRange.dll</HintPath>
+        </Reference>
         <Reference Include="LabApi, Version=0.6.0.0, Culture=neutral, processorArchitecture=Amd64">
           <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\LabApi.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Primitives, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.Primitives.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
         </Reference>
         <Reference Include="Mirror">
           <HintPath>..\..\..\Documents\14.0 dll\Mirror.dll</HintPath>
@@ -85,6 +94,7 @@
         <Reference Include="Mono.Posix">
           <HintPath>..\..\..\Documents\Exiled9.6.0\SCP Secret Laboratory\LabAPI-Beta\dependencies\Mono.Posix.dll</HintPath>
         </Reference>
+        <Reference Include="mscorlib" />
         <Reference Include="NorthwoodLib, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
           <HintPath>..\packages\ExMod.Exiled.9.6.0-beta8\lib\net48\NorthwoodLib.dll</HintPath>
         </Reference>
@@ -115,8 +125,8 @@
         <Reference Include="System.Numerics.Vectors">
           <HintPath>..\..\..\Documents\1.0.7\System.Numerics.Vectors.dll</HintPath>
         </Reference>
-        <Reference Include="System.Runtime.CompilerServices.Unsafe">
-          <HintPath>..\..\..\Documents\AudioPlayerAPI\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+        <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.4.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
         </Reference>
         <Reference Include="System.ValueTuple">
           <HintPath>..\..\..\Documents\1.0.7\System.ValueTuple.dll</HintPath>
