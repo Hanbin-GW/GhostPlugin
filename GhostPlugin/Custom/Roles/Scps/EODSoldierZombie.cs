@@ -15,6 +15,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override string Name { get; set; } = "EOD Soldier Zombie";
         public override string Description { get; set; } = "당신은 군인이었던 좀비입니다!\nEOD 방탄복을 갖고있습니다\n80% 폭발 저항";
         public override string CustomInfo { get; set; } = "EOD Scp049-2";
+        public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
         public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
         public int Chance { get; set; } = 40;
 
