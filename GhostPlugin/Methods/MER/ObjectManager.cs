@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using Exiled.API.Features;
 using ProjectMER.Features;
 using ProjectMER.Features.Objects;
@@ -29,4 +29,4 @@ namespace GhostPlugin.Methods.MER
             }
         }
     }
-}
+}*/

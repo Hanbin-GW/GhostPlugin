@@ -12,7 +12,7 @@ using GhostPlugin.API;
 using GhostPlugin.Configs;
 using GhostPlugin.EventHandlers;
 using HarmonyLib;
-using ProjectMER.Features.Objects;
+//using ProjectMER.Features.Objects;
 using UserSettings.ServerSpecific;
 using Server = Exiled.Events.Handlers.Server;
 
@@ -27,9 +27,9 @@ namespace GhostPlugin
         /// <summary>
         /// Speakers List
         /// </summary>
-        public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
+        //public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(5, 6, 0);
+        public override Version Version { get; } = new(5, 6, 1);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
@@ -114,7 +114,7 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.LaserCannons.Register();
                 Config.CustomItemsConfig.Anti173s.Register();
                 Config.CustomItemsConfig.Basilisks.Register();
-                Config.CustomItemsConfig.AmmoBoxes.Register();
+                //Config.CustomItemsConfig.AmmoBoxes.Register();
                 Config.CustomItemsConfig.OverkillVests.Register();
                 Config.CustomItemsConfig.MachineGuns.Register();
                 Config.CustomItemsConfig.Riveters.Register();

@@ -91,9 +91,6 @@
         <Reference Include="NVorbis">
           <HintPath>..\..\..\Documents\AudioPlayerAPI\NVorbis.dll</HintPath>
         </Reference>
-        <Reference Include="ProjectMER">
-          <HintPath>..\..\..\Documents\1403\ProjectMER.dll</HintPath>
-        </Reference>
         <Reference Include="Reinforcements">
           <HintPath>..\..\Reinforcements\Reinforcements\obj\Release\Reinforcements.dll</HintPath>
         </Reference>

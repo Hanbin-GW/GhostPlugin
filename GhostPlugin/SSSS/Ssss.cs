@@ -77,7 +77,7 @@ namespace GhostPlugin.SSSS
             {
                 var customItems = new List<IEnumerable<CustomItem>>
                 {
-                    CustomItem.Get(typeof(AmmoBox)),
+                    //CustomItem.Get(typeof(AmmoBox)),
                     CustomItem.Get(typeof(EodPadding)),
                     CustomItem.Get(typeof(OverkillVest)),
                     CustomItem.Get(typeof(SmokeGrenade)),
