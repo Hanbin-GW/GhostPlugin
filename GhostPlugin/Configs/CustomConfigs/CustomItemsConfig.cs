@@ -105,6 +105,10 @@ namespace GhostPlugin.Configs.CustomConfigs
             new ArmorPlateKit()
         };
 
+        public List<ImpactGrenade> ImpactGrenades { get; private set; } = new List<ImpactGrenade>()
+        {
+            new ImpactGrenade()
+        };
         public List<StickyGrenade> StickyGrenades { get; private set; } = new List<StickyGrenade>()
         {
             new StickyGrenade()

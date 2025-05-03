@@ -103,6 +103,7 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.PlasmaShockwaveEmitters.Register();
                 Config.CustomItemsConfig.PhotonCannons.Register();
                 Config.CustomItemsConfig.ArmorPlateKits.Register();
+                Config.CustomItemsConfig.ImpactGrenades.Register();
                 Config.CustomItemsConfig.StickyGrenades.Register();
                 Config.CustomItemsConfig.PlasmaShotguns.Register();
                 Config.CustomItemsConfig.Bolters.Register();
