@@ -114,7 +114,7 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.LaserCannons.Register();
                 Config.CustomItemsConfig.Anti173s.Register();
                 Config.CustomItemsConfig.Basilisks.Register();
-                //Config.CustomItemsConfig.AmmoBoxes.Register();
+                Config.CustomItemsConfig.AmmoBoxes.Register();
                 Config.CustomItemsConfig.OverkillVests.Register();
                 Config.CustomItemsConfig.MachineGuns.Register();
                 Config.CustomItemsConfig.Riveters.Register();

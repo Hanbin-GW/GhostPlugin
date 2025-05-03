@@ -158,10 +158,10 @@ namespace GhostPlugin.Configs.CustomConfigs
             new Basilisk()
         };
 
-        /*public List<AmmoBox> AmmoBoxes { get; private set; } = new List<AmmoBox>()
+        public List<AmmoBox> AmmoBoxes { get; private set; } = new List<AmmoBox>()
         {
             new AmmoBox()
-        };*/
+        };
         public List<OverkillVest> OverkillVests { get; private set; } = new List<OverkillVest>()
         {
             new OverkillVest()
