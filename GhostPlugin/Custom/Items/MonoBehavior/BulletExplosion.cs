@@ -21,7 +21,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
         {
             rb = GetComponent<Rigidbody>();
         }
-        private void OnCollisionEnter_2(Collision collision)
+        private void OnCollisionEnter(Collision collision)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
             }
         }
 
-        private void OnCollisionEnter(Collision collision)
+        /*private void OnCollisionEnter(Collision collision)
         {
             if (hasCollided) return;
             hasCollided = true;
@@ -120,7 +120,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 _player.ShowHitMarker();
 
             Destroy(gameObject, 2f);
-        }
+        }*/
     }
 
 }
