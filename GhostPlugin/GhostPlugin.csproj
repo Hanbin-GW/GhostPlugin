@@ -274,6 +274,7 @@
         <Compile Include="Methods\MER\ObjectManager.cs" />
         <Compile Include="Methods\Music\JukeboxManagement.cs" />
         <Compile Include="Methods\Music\MusicManager.cs" />
+        <Compile Include="Methods\Objects\Cube.cs" />
         <Compile Include="Methods\Objects\PlasmaCube.cs" />
         <Compile Include="Methods\Objects\SpawnDoorType.cs" />
         <Compile Include="Methods\Objects\SpawnLaserObject.cs" />
