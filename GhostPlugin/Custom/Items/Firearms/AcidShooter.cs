@@ -41,16 +41,12 @@ namespace GhostPlugin.Custom.Items.Firearms
             if (Check(ev.Player.CurrentItem))
             {
                 ev.CanHurt = false;
-                /*PlasmaCube spark = new PlasmaCube(); 
                 Color glowColor = new Color(0.0f, 1.0f, 0.0f, 0.1f) * 50f;
-                PrimitiveObjectToy bullet = spark.SpawmSparkAmmo(ev.Player, ev.Firearm.Base.transform.position,10,25f,0.5f,glowColor); 
+                PrimitiveObjectToy bullet = PlasmaCube.SpawmSparkAmmo(ev.Player, ev.Firearm.Base.transform.position,10,25f,0.5f,glowColor); 
                 var bulletCollision = bullet.gameObject.AddComponent<PoisonBulletCollision>();
                 bulletCollision.Initialize(ev.Player); 
                 //ev.Player.EnableEffect<Decontaminating>(duration:5);
-                ev.Target.EnableEffect<Burned>(duration: 30);*/
-                
-                Color glowColor = new Color(0.0f, 1.0f, 0.0f, 0.1f) * 50f;
-                Cube.SpawnAcidAmmo(ev.Player, ev.Firearm.Base.transform.position,13,50f,0.25f,glowColor);
+                ev.Target.EnableEffect<Burned>(duration: 30);
             }
             base.OnShot(ev);
         }

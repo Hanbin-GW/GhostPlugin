@@ -21,17 +21,13 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Description { get; set; } = "수류탄을 발사하는 리볼버 입니다!";
         public override float Weight { get; set; } = 4f;
         public override ItemType Type { get; set; } = ItemType.GunRevolver;
-        public override byte ClipSize { get; set; } = 5;
+        public override byte ClipSize { get; set; } = 1;
         public override SpawnProperties SpawnProperties { get; set; }
         [YamlIgnore] 
         public override float Damage { get; set; } = 0;
 
         protected override void OnShooting(ShootingEventArgs ev)
         {
-            if (Check(ev.Player.CurrentItem))
-            {
-                ev.Firearm.AmmoDrain = 5;
-            }
             base.OnShooting(ev);
         }
 
@@ -43,7 +39,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
                 SpawnParticleSpark spark = new SpawnParticleSpark();
                 Color color = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
-                Vector3 position = ev.Firearm.Base.transform.position + ev.Firearm.Base.transform.forward * 1.5f;
+                Vector3 position = ev.Player.Position + ev.Player.Transform.forward * 3.0f;
 
                 PrimitiveObjectToy bullet = spark.SpawnGrenade(ev.Player, position, 50, 0, color);
         

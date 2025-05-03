@@ -43,13 +43,16 @@ namespace GhostPlugin.Methods.Objects
                 pObject.NetworkScale = Vector3.one * 0.05f;
                 pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
 
-                Vector3 randomOffset = new Vector3(
+                /*Vector3 randomOffset = new Vector3(
                     UnityEngine.Random.Range(-spawnRange, spawnRange),
                     0.5f,
                     UnityEngine.Random.Range(-spawnRange, spawnRange)
-                );
+                );*/
+                Vector3 spawnPos = position + player.GameObject.transform.forward * 3f;
 
-                pObject.NetworkPosition = position + player.GameObject.transform.forward * 1.5f + randomOffset;
+                pObject.transform.position = spawnPos;
+                pObject.Position = spawnPos;
+                pObject.NetworkPosition = spawnPos;
 
                 pObject.NetworkMaterialColor = glowColor;
                 pObject.MaterialColor = glowColor;
@@ -64,14 +67,14 @@ namespace GhostPlugin.Methods.Objects
 
                 var collider = pObject.GetComponent<Collider>() ?? pObject.gameObject.AddComponent<BoxCollider>();
 
-                // 🔴 여기서 정확히 플레이어의 모든 Collider를 무시합니다 🔴
                 Collider[] playerColliders = player.GameObject.GetComponentsInChildren<Collider>();
                 foreach (Collider playerCol in playerColliders)
                 {
                     Physics.IgnoreCollision(collider, playerCol, true);
                 }
-                Log.Info("발사자의 모든 Collider와 총알 간 충돌 무시 처리 완료.");
-
+                Log.Debug("발사자의 모든 Collider와 총알 간 충돌 무시 처리 완료.");
+                Log.Debug($"[Spawn] Bullet position: {position}");
+                Log.Debug($"[Actual set] transform: {pObject.transform.position}");
                 var bulletCollision = pObject.gameObject.AddComponent<BulletExplosion>();
                 bulletCollision.Initialize(player);
 

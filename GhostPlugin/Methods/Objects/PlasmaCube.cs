@@ -8,7 +8,7 @@ namespace GhostPlugin.Methods.Objects
 {
     public class PlasmaCube
     {
-        public PrimitiveObjectToy SpawmSparkAmmo(Player player, Vector3 position, int count, float forwardForce, float spawnRange,Color glowColor)
+        public static PrimitiveObjectToy SpawmSparkAmmo(Player player, Vector3 position, int count, float forwardForce, float spawnRange,Color glowColor)
         {
             PrimitiveObjectToy pObject = null;
             for (int i = 0; i < count; i++)
@@ -111,7 +111,7 @@ namespace GhostPlugin.Methods.Objects
             return pObject;
         }
         
-        public PrimitiveObjectToy SpawmSparkBuckshot(Player player, Vector3 position, int count, float forwardForce, float spawnRange,Color glowColor)
+        public static PrimitiveObjectToy SpawmSparkBuckshot(Player player, Vector3 position, int count, float forwardForce, float spawnRange,Color glowColor)
         {
             PrimitiveObjectToy pObject = null;
             for (int i = 0; i < count; i++)
