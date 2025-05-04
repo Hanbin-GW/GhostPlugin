@@ -148,7 +148,7 @@ namespace GhostPlugin.Methods.Objects
                     pObject.MaterialColor = glowColor;
                     ///---------------------------Temporary Code----------------------------
                     var bulletcollision = pObject.gameObject.AddComponent<FireBulletCollision>();
-                    bulletcollision.Initialize(5, player);
+                    bulletcollision.Initialize(15, player);
                     ///----------------------------------------------------------------------
                     var rb = pObject.GetComponent<Rigidbody>();
                     if (rb == null)
