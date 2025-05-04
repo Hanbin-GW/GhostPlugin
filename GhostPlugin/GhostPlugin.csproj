@@ -246,6 +246,7 @@
         <Compile Include="Custom\Roles\Foundation\ContainmentSpecialList.cs" />
         <Compile Include="Custom\Roles\Foundation\Demolitionist.cs" />
         <Compile Include="Custom\Roles\Foundation\Elite.cs" />
+        <Compile Include="Custom\Roles\Foundation\Enforcer.cs" />
         <Compile Include="Custom\Roles\Foundation\Jailbirdman.cs" />
         <Compile Include="Custom\Roles\Foundation\KSK.cs" />
         <Compile Include="Custom\Roles\Foundation\LuckyGuard.cs" />

@@ -99,6 +99,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new SpyAgent()
         };
+
+        public List<Enforcer> Enforcers { get; set; } = new()
+        {
+            new Enforcer()
+        };
         public List<DwarfZombie> DwarfZombies { get; set; } = new()
         {
             new DwarfZombie()
