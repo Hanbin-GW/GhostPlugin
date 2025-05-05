@@ -20,6 +20,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override string Description { get; set; } = "제단의 엘리트 요원";
         public override string CustomInfo { get; set; } = "Elite Agent";
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfSergeant;
+        public override bool DisplayCustomItemMessages { get; set; } = false;
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         public bool DebugMode = false;
         public int Chance { get; set; } = 80;

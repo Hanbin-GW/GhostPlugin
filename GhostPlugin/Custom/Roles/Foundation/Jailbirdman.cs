@@ -22,6 +22,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override string Description { get; set; } = "제일버드를 매우 잘다루는 베태랑 요원입니다.";
         public override string CustomInfo { get; set; } = "Jailbird Man";
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfSergeant;
+        public override bool DisplayCustomItemMessages { get; set; } = false;
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         private readonly Dictionary<Player, CoroutineHandle> _altKeyCooldowns = new Dictionary<Player, CoroutineHandle>();
         private readonly int _altKeyCooldownDuration = 40;

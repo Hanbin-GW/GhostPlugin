@@ -16,6 +16,8 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override string Name { get; set; } = "<color=#0096FF>Containment SpecialList</color>";
         public override string Description { get; set; } = "SCP 격리 전문 요원입니다.";
         public override string CustomInfo { get; set; } = "Containment SpecialList";
+        public override bool DisplayCustomItemMessages { get; set; } = false;
+
         public StartTeam StartTeam { get; set; } = StartTeam.Guard;
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfPrivate;
         public int Chance { get; set; } = 80;

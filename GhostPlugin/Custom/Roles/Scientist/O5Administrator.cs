@@ -11,6 +11,7 @@ namespace GhostPlugin.Custom.Roles.Scientist
     [CustomRole(RoleTypeId.Scientist)]
     public class O5Administrator : CustomRole, ICustomRole
     {
+        public override bool DisplayCustomItemMessages { get; set; } = false;
         public override uint Id { get; set; } = 7;
         public override int MaxHealth { get; set; } = 100;
         public override string Name { get; set; } = "<color=#ffc2b0>O5 Administrator</color>";

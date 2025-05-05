@@ -19,7 +19,7 @@ namespace GhostPlugin.Custom.Roles.Scientist
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scientist;
         public StartTeam StartTeam { get; set; } = StartTeam.Scientist;
         public int Chance { get; set; } = 100;
-
+        public override bool DisplayCustomItemMessages { get; set; } = false;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
             Limit = 1,

@@ -45,7 +45,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         // (get) Token: 0x060001FF RID: 511 RVA: 0x0000B678 File Offset: 0x00009878
         // (set) Token: 0x06000200 RID: 512 RVA: 0x0000B680 File Offset: 0x00009880
         public override RoleTypeId Role { get; set; } = RoleTypeId.FacilityGuard;
-
+        public override bool DisplayCustomItemMessages { get; set; } = false;
         // Token: 0x170000A8 RID: 168
         // (get) Token: 0x06000201 RID: 513 RVA: 0x0000B689 File Offset: 0x00009889
         // (set) Token: 0x06000202 RID: 514 RVA: 0x0000B691 File Offset: 0x00009891

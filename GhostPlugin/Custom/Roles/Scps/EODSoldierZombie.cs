@@ -18,7 +18,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
         public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
         public int Chance { get; set; } = 40;
-
+        public override bool DisplayCustomItemMessages { get; set; } = false;
         public override List<string> Inventory { get; set; } = new List<string>()
         {
             ItemType.KeycardMTFPrivate.ToString(),

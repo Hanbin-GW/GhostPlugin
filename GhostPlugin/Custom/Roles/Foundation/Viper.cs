@@ -29,7 +29,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
             ItemType.Medkit.ToString(),
             ItemType.Radio.ToString(),
         };
-
+        public override bool DisplayCustomItemMessages { get; set; } = false;
         public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
         {
             { AmmoType.Nato9, 60 },

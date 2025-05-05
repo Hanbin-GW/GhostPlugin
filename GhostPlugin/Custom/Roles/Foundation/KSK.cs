@@ -17,6 +17,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override string Description { get; set; } = "당신은 SCP 정예부대 이자 SCP682 격리 요원입니다..!\n682를 격리해 제단을 지키십시요..!";
         public override string CustomInfo { get; set; } = "KSK Hunter Unit";
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfPrivate;
+        public override bool DisplayCustomItemMessages { get; set; } = false;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {

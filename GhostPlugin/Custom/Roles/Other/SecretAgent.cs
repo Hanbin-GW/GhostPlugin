@@ -20,7 +20,7 @@ namespace GhostPlugin.Custom.Roles.Other
         public override string Name { get; set; } = "SecretAgent";
         public override string Description { get; set; } = "";
         public override string CustomInfo { get; set; } = "Secret Agent";
-
+        public override bool DisplayCustomItemMessages { get; set; } = false;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
             Limit = 1,
