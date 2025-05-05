@@ -23,6 +23,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override string Description { get; set; } = "카오스의 유령 저격팀입니다.";
         public override string CustomInfo { get; set; } = "Phantom";
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosRifleman;
+        public override bool DisplayCustomItemMessages { get; set; } = false;
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>()
         {
