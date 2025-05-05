@@ -30,7 +30,7 @@ namespace GhostPlugin
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(5, 7, 2);
+        public override Version Version { get; } = new(5, 8, 0);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
@@ -226,6 +226,7 @@ namespace GhostPlugin
                     }
 
                     Server.RoundStarted += SsssEventHandler.OnRoundStarted;
+                    Server.WaitingForPlayers += SsssEventHandler.OnWaitingForPlayers;
                     ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
                     Log.Info("SsssEventHandler 이벤트 정상 등록됨");
                 }
@@ -296,6 +297,7 @@ namespace GhostPlugin
 
             //SSSS - REWORK
             Server.RoundStarted -= SsssEventHandler.OnRoundStarted;
+            Server.WaitingForPlayers -= SsssEventHandler.OnWaitingForPlayers;
             ServerSpecificSettingsSync.ServerOnSettingValueReceived -= SsssEventHandler.OnSettingValueReceived;
             SsssEventHandler = null;
             Instance = null;

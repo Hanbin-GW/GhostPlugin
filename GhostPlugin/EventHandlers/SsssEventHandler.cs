@@ -36,6 +36,25 @@ namespace GhostPlugin.EventHandlers
 
             Log.Debug("✅ SsssEventHandler가 정상적으로 생성되었습니다.");
         }*/
+        public void OnWaitingForPlayers()
+        {
+            if (!Plugin.Instance.Config.SsssConfig.IsEnabled)
+                return;
+
+            foreach (PlayerAPI player in Player.List)
+            {
+                Log.Debug($"VVUP: Sending SSSS settings early to {player.Nickname}");
+                try
+                {
+                    ServerSpecificSettingsSync.DefinedSettings = Ssss.GetMinimalMusicSetting();
+                    ServerSpecificSettingsSync.SendToPlayer(player.ReferenceHub);
+                }
+                catch (InvalidCastException ex)
+                {
+                    Log.Error($"VVUP: InvalidCastException occurred: {ex.Message}");
+                }
+            }
+        }
 
         public void OnRoundStarted()
         {

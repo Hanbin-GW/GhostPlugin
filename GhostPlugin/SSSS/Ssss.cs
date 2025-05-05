@@ -22,6 +22,22 @@ namespace GhostPlugin.SSSS
 {
     public class Ssss
     {
+        public static ServerSpecificSettingBase[] GetMinimalMusicSetting()
+        {
+            List<ServerSpecificSettingBase> settings = new List<ServerSpecificSettingBase>();
+
+            settings.Add(new SSGroupHeader("🎵 음악 재생 설정"));
+            settings.Add(new SSTwoButtonsSetting(
+                Plugin.Instance.Config.SsssConfig.MusicToggleId,
+                "로비 및 이벤트 음악 설정",
+                "듣기",  // Option A
+                "끄기",  // Option B
+                false,   // 기본값: 듣기
+                "음악 재생 여부를 설정합니다." // 설명
+            ));
+
+            return settings.ToArray();
+        }
         public static ServerSpecificSettingBase[] GetSettings()
         {
             List<ServerSpecificSettingBase> settings = new List<ServerSpecificSettingBase>();
