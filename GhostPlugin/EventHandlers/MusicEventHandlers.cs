@@ -62,7 +62,11 @@ namespace GhostPlugin.EventHandlers
             var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.LobbySongPath);
             AudioClipStorage.LoadClip(path, "lobby_music");
 
-            AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("Lobby");
+            AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("Lobby", condition: (hub) =>
+            {
+                var plr = Player.Get(hub);
+                return !Plugin.Instance.musicDisabledPlayers.TryGetValue(plr.Id, out bool disabled) || !disabled;
+            });
 
             // AudioPlayer가 완전히 준비된 이후에 스피커 추가
             if (globalPlayer != null)

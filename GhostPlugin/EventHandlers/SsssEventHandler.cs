@@ -82,6 +82,24 @@ namespace GhostPlugin.EventHandlers
             
             if (player == null)
                 return;
+            
+            if (settingBase is SSTwoButtonsSetting musicSetting &&
+                musicSetting.SettingId == Plugin.Instance.Config.SsssConfig.MusicToggleId)
+            {
+                if (!Player.TryGet(hub, out player)) return;
+
+                if (musicSetting.SyncIsA)
+                {
+                    Plugin.Instance.musicDisabledPlayers[player.Id] = false;
+                    player.ShowHint("<color=green>🎵 음악 듣기 설정됨</color>", 2f);
+                }
+                else if (musicSetting.SyncIsB)
+                {
+                    Plugin.Instance.musicDisabledPlayers[player.Id] = true;
+                    player.ShowHint("<color=red>🔇 음악 끄기 설정됨</color>", 2f);
+                }
+                return;
+            }
             if (settingBase is SSKeybindSetting ssKeybindSetting && ssKeybindSetting.SyncIsPressed)
             {
                 if ((ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ActiveCamoId

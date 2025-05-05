@@ -7,7 +7,7 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
         public bool OnEnabled { get; set; } = true; 
         public string LobbySongPath { get; set; } = "Epic SciFi Military by Infraction No Copyright Music  War.ogg";
         public string WarheadBGMPath { get; set; } = "badending.ogg";
-        public float Volume { get; set; } = 1f;
+        public float Volume { get; set; } = 0.4f;
 
         public bool Loop { get; set; } = true;
 

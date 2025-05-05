@@ -28,6 +28,7 @@ namespace GhostPlugin
         /// Speakers List
         /// </summary>
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
+        public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
         public override Version Version { get; } = new(5, 7, 1);
         public override string Author { get; } = "Hanbin-GW";
