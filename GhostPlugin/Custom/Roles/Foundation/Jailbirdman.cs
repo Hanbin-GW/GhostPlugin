@@ -25,7 +25,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         private readonly Dictionary<Player, CoroutineHandle> _altKeyCooldowns = new Dictionary<Player, CoroutineHandle>();
         private readonly int _altKeyCooldownDuration = 40;
-        public int Chance { get; set; } = 65;
+        public int Chance { get; set; } = 100;
     
         public override List<string> Inventory { get; set; } = new()
         {
@@ -104,13 +104,13 @@ namespace GhostPlugin.Custom.Roles.Foundation
 
         protected override void SubscribeEvents()
         {
-            Exiled.Events.Handlers.Player.TogglingNoClip += OnTogglingNoclip;
+            //Exiled.Events.Handlers.Player.TogglingNoClip += OnTogglingNoclip;
             base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
         {
-            Exiled.Events.Handlers.Player.TogglingNoClip -= OnTogglingNoclip;
+            //Exiled.Events.Handlers.Player.TogglingNoClip -= OnTogglingNoclip;
             base.UnsubscribeEvents();
         }
     }
