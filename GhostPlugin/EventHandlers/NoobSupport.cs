@@ -48,14 +48,18 @@ namespace GhostPlugin.EventHandlers
     {
       if (ev.Player.Role == (Role) null)
         return;
-      if (ev.Player.Role == RoleTypeId.Scp079)
+      /*if (ev.Player.Role == RoleTypeId.Scp079)
       {
         if (ev.Player.SessionVariables.ContainsKey("079_LockPoints"))
           ev.Player.SessionVariables["079_LockPoints"] = (object) 100f;
         else
           ev.Player.SessionVariables.Add("079_LockPoints", (object) 100f);
         Log.Info("SCP-079 spawned with initial Lockdown Points: 100.");
-      }
+      }*/
+      if (ev.Player.Role == RoleTypeId.CustomRole)
+        Timing.CallDelayed(15,
+          () => ev.Player.ShowHint(new string('\n',10) + "당신은 일반유저와 다른 <color=green>특수직업</color>을 부여받았습니다!\n`.ri`명령어를 쳐서 자세한 정보를 알수 있습니다!",
+            5));
       if (ev.NewRole == RoleTypeId.Scp049)
         ev.Player.ShowHint(new string('\n', 10) + string.Format(Plugin.Instance.Config.ServerEventsMasterConfig.NoobSupportConfig.Scp049SpawnMessage), 5f);
       if (ev.NewRole == RoleTypeId.ClassD)
