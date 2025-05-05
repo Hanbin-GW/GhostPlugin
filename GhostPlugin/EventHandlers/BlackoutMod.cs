@@ -78,7 +78,7 @@ namespace GhostPlugin.EventHandlers
                 Log.Send($"[{Plugin.Instance.Name}] The Facility IsBlackout status: {IsBlackout}", LogLevel.Debug, ConsoleColor.DarkMagenta);
                 
                 if (IsBlackout)
-                { 
+                {
                     Cassie.Message(Plugin.Instance.Config.ServerEventsMasterConfig.BlackoutModeConfig.CassieMessage, false, 
                         false, true);
                     Log.Info("The Facility will be blackout for 100 seconds...");
@@ -86,16 +86,20 @@ namespace GhostPlugin.EventHandlers
                     Timing.WaitForSeconds(2f);
                     foreach (var player in Player.List)
                     {
+                        if (Plugin.Instance.Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled)
+                        {
+                            player.ShowHint("<color=white>" + new string('\n',10) + "제단의 전력이 파손되어 시설 전체가 정전상태가 되었습니다!\n전력이 복구될때까지 손전을을 사용하고 조심하셔야 됩니다!" + "</color>",10);
+                        }
                         if (!player.Items.Any(item => item.Type == ItemType.Flashlight) || !player.Items.Any(item => item.Type == ItemType.Lantern))
                         {
                             // 플래시라이트가 없으면 추가
-                            player.AddItem(ItemType.Lantern);
-                            player.ShowHint("플래시라이트를 받았습니다!", 5);
+                            player.AddItem(ItemType.Flashlight);
+                            //player.ShowHint("플래시라이트를 받았습니다!", 5);
                         }
                         else
                         {
                             // 이미 플래시라이트가 있는 경우 처리 (선택 사항)
-                            player.ShowHint("이미 플래시라이트를 소지하고 있습니다.", 5);
+                            //player.ShowHint("이미 플래시라이트를 소지하고 있습니다.", 5);
                         }                    }
                     Timing.CallDelayed(100, () =>
                     {
