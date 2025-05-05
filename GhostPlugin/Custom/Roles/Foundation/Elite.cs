@@ -28,12 +28,12 @@ namespace GhostPlugin.Custom.Roles.Foundation
             new HealOnKill()
             {
                 Name = "HealOnKill",
-                Description = "Heals the player when they kill someone.",
+                Description = "누군가를 처치시 HP 가 회복됩니다.",
             },
             new EnhancedGoggleVision()
             {
                 Name = "Enhance Vision",
-                Description = "Scp-1344 의 효과를 일시적으로 부여"
+                Description = "Scp-1344 의 효과를 일시적으로 부여합니다."
             }
         };
         public override List<string> Inventory { get; set; } = new()
