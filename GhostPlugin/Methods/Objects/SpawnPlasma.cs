@@ -10,7 +10,7 @@ namespace GhostPlugin.Methods.Objects
     public class SpawmPlasma
     {
         private const float BlockSize = 0.05f;
-        private const float Speed = 200f; // ✅ 초당 200m 속도 설정
+        private const float Speed = 120f;
 
         public void SpawnPlasma(Player player)
         {
@@ -53,6 +53,7 @@ namespace GhostPlugin.Methods.Objects
                 Rigidbody rb = pObject.GetComponent<Rigidbody>();
                 if (rb == null)
                     rb = pObject.gameObject.AddComponent<Rigidbody>();
+                rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
                 rb.useGravity = false;   // 중력 비활성화
                 rb.isKinematic = false;  // 물리 이동 활성화
