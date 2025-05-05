@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.CustomRoles.API.Features;
+using Exiled.Events.EventArgs.Player;
 using GhostPlugin.Custom.Abilities.Active;
 using GhostPlugin.Custom.Items.Grenades;
 using GhostPlugin.SSSS;
@@ -15,28 +16,38 @@ namespace GhostPlugin.EventHandlers
     {
         public Plugin Plugin;
         public SsssEventHandler(Plugin plugin) => Plugin = plugin;
-        /*public SsssEventHandler(Plugin plugin)
-        {
-            if (plugin == null)
+        public void OnVerified(VerifiedEventArgs ev)
+        { 
+            if (Plugin.Instance.SsssEventHandler == null)
+                return;
+            if (!Plugin.Instance.Config.SsssConfig.IsEnabled)
+                   return;
+            if (!Round.IsStarted)
             {
-                throw new ArgumentNullException(nameof(plugin), " Plugin 객체가 null입니다!");
+                try
+                {
+                    ServerSpecificSettingsSync.DefinedSettings = Ssss.GetMinimalMusicSetting();
+                    ServerSpecificSettingsSync.SendToPlayer(ev.Player.ReferenceHub);
+                }
+                catch (InvalidCastException ex)
+                {
+                    Log.Error($"VVUP: InvalidCastException occurred: {ex.Message}");
+                }
             }
-
-            Plugin = plugin;
-
-            if (Plugin.Config == null)
+               
+            Log.Debug($"VVUP: Adding SSSS functions to {ev.Player.Nickname}");
+            try
             {
-                throw new NullReferenceException(" Plugin.Config가 null입니다!");
+                ServerSpecificSettingsSync.DefinedSettings = Ssss.GetSettings();
+                ServerSpecificSettingsSync.SendToPlayer(ev.Player.ReferenceHub);
             }
-
-            if (Plugin.Config.SsssConfig == null)
+            catch (InvalidCastException ex)
             {
-                throw new NullReferenceException(" Plugin.Config.SsssConfig가 null입니다!");
+                Log.Error($"VVUP: InvalidCastException occurred: {ex.Message}");
             }
+        }
 
-            Log.Debug("✅ SsssEventHandler가 정상적으로 생성되었습니다.");
-        }*/
-        public void OnWaitingForPlayers()
+        /*public void OnWaitingForPlayers()
         {
             if (!Plugin.Instance.Config.SsssConfig.IsEnabled)
                 return;
@@ -54,7 +65,7 @@ namespace GhostPlugin.EventHandlers
                     Log.Error($"VVUP: InvalidCastException occurred: {ex.Message}");
                 }
             }
-        }
+        }*/
 
         public void OnRoundStarted()
         {

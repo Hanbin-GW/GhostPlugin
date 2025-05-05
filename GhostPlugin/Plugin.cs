@@ -226,7 +226,7 @@ namespace GhostPlugin
                     }
 
                     Server.RoundStarted += SsssEventHandler.OnRoundStarted;
-                    Server.WaitingForPlayers += SsssEventHandler.OnWaitingForPlayers;
+                    Exiled.Events.Handlers.Player.Verified += SsssEventHandler.OnVerified;
                     ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
                     Log.Info("SsssEventHandler 이벤트 정상 등록됨");
                 }
@@ -297,7 +297,7 @@ namespace GhostPlugin
 
             //SSSS - REWORK
             Server.RoundStarted -= SsssEventHandler.OnRoundStarted;
-            Server.WaitingForPlayers -= SsssEventHandler.OnWaitingForPlayers;
+            Exiled.Events.Handlers.Player.Verified -= SsssEventHandler.OnVerified;
             ServerSpecificSettingsSync.ServerOnSettingValueReceived -= SsssEventHandler.OnSettingValueReceived;
             SsssEventHandler = null;
             Instance = null;
