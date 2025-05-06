@@ -34,16 +34,19 @@ namespace GhostPlugin.EventHandlers
                     Log.Error($"VVUP: InvalidCastException occurred: {ex.Message}");
                 }
             }
-               
-            Log.Debug($"VVUP: Adding SSSS functions to {ev.Player.Nickname}");
-            try
+            
+            else
             {
-                ServerSpecificSettingsSync.DefinedSettings = Ssss.GetSettings();
-                ServerSpecificSettingsSync.SendToPlayer(ev.Player.ReferenceHub);
-            }
-            catch (InvalidCastException ex)
-            {
-                Log.Error($"VVUP: InvalidCastException occurred: {ex.Message}");
+                Log.Debug($"VVUP: Adding SSSS functions to {ev.Player.Nickname}");
+                try
+                {
+                    ServerSpecificSettingsSync.DefinedSettings = Ssss.GetSettings();
+                    ServerSpecificSettingsSync.SendToPlayer(ev.Player.ReferenceHub);
+                }
+                catch (InvalidCastException ex)
+                {
+                    Log.Error($"VVUP: InvalidCastException occurred: {ex.Message}");
+                }
             }
         }
 
