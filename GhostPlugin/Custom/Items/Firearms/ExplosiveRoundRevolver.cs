@@ -1,9 +1,11 @@
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Items;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using GhostPlugin.Custom.Items.Grenades;
+using GhostPlugin.Custom.Items.MonoBehavior;
 using JetBrains.Annotations;
 using UnityEngine;
 using YamlDotNet.Serialization;
@@ -20,6 +22,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Name { get; set; } = "<color=#FF0000>Rocket Luncher</color>";
         public override string Description { get; set; } = "해당 무기는 폭탄을 생성합니다.";
         public override float Weight { get; set; } = 1f;
+        public float FuseTime { get; set; } = 1f;
 
         [CanBeNull]
         public override SpawnProperties SpawnProperties { get; set; }
@@ -57,7 +60,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             base.OnReloaded(ev);
         }
 
-        /*protected override void OnShot(ShotEventArgs ev)
+        protected override void OnShot(ShotEventArgs ev)
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
@@ -66,11 +69,11 @@ namespace GhostPlugin.Custom.Items.Firearms
             ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
             grenade.Base.GetComponent<StickyGrenadeBehavior>();
             grenade.FuseTime = FuseTime;
-            grenade.ScpDamageMultiplier = ScpGrenadeDamageMultiplier;
+            grenade.ScpDamageMultiplier = 1.5f;
             grenade.SpawnActive(ev.Position);
-        }*/
+        }
         
-        protected override void OnShot(ShotEventArgs ev)
+        /*protected override void OnShot(ShotEventArgs ev)
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
@@ -97,6 +100,6 @@ namespace GhostPlugin.Custom.Items.Firearms
             {
                 rb.velocity = ev.Player.CameraTransform.forward * velocity;
             }
-        }
+        }*/
     }
 }
