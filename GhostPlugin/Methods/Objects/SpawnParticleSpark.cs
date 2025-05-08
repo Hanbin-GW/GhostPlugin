@@ -95,7 +95,7 @@ namespace GhostPlugin.Methods.Objects
         public PrimitiveObjectToy SpawnEnergyGuage(Player player, Vector3 position)
         {
             PrimitiveObjectToy pObject = null;
-            float forwardForce = 20f;
+            float forwardForce = 15f;
             foreach (GameObject value in NetworkClient.prefabs.Values) 
             {
                 if (value.TryGetComponent<PrimitiveObjectToy>(out var component)) {

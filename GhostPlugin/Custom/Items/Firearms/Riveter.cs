@@ -27,7 +27,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             {
                 ev.CanHurt = false;
                 Color glowColor = new Color(1.0f, 0.0f, 0.0f, 0.1f) * 50f;
-                PlasmaCube.SpawmSparkBuckshot(ev.Player, ev.Firearm.Base.transform.position,10,20f,0.1f,glowColor); 
+                PlasmaCube.SpawmSparkBuckshot(ev.Player, ev.Firearm.Base.transform.position,10,15f,0.1f,glowColor); 
             }
             base.OnShot(ev);
         }
