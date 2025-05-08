@@ -204,6 +204,7 @@
         <Compile Include="Custom\Items\Etc\SCP500A.cs" />
         <Compile Include="Custom\Items\Etc\Spike_Jailbird.cs" />
         <Compile Include="Custom\Items\Etc\Stim.cs" />
+        <Compile Include="Custom\Items\Etc\TrophySystem.cs" />
         <Compile Include="Custom\Items\Firearms\AcidShooter.cs" />
         <Compile Include="Custom\Items\Firearms\Basilisk.cs" />
         <Compile Include="Custom\Items\Firearms\Bolter.cs" />
