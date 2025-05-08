@@ -50,6 +50,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
             ItemType.KeycardChaosInsurgency.ToString(),
             ItemType.ArmorCombat.ToString(),
             ItemType.Medkit.ToString(),
+            30.ToString(),
             17.ToString(),
             14.ToString(),
             12.ToString(),

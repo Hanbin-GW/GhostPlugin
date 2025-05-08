@@ -42,6 +42,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
             11.ToString(), //EOD Padding
             51.ToString(), //Riveter
             28.ToString(), //Armor Plate Kit
+            30.ToString(),
             34.ToString(), //C4
             ItemType.Radio.ToString(), //Radio
         };
