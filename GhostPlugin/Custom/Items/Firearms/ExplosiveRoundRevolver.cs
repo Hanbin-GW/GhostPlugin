@@ -11,7 +11,7 @@ using Player = Exiled.Events.Handlers.Player;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
-    [CustomItem(ItemType.GunA7)]
+    [CustomItem(ItemType.GunLogicer)]
     public class ExplosiveRoundRevolver : CustomWeapon
     {
         [YamlIgnore] 
@@ -24,9 +24,10 @@ namespace GhostPlugin.Custom.Items.Firearms
         [CanBeNull]
         public override SpawnProperties SpawnProperties { get; set; }
 
+        public float velocity = 30f;
         public override float Damage { get; set; } = 0;
         public override byte ClipSize { get; set; } = 1;
-        private float FuseTimes { get; set; } = 10f;
+        //private float FuseTimes { get; set; } = 10f;
         //private float ScpGrenadeDamageMultiplier { get; set; } = .5f;
         public int MaxReload = 3;
         private int currentReload = 0;
@@ -41,7 +42,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             Player.Shot -= OnShot;
         }
 
-        protected override void OnReloading(ReloadingWeaponEventArgs ev)
+        protected override void OnReloaded(ReloadedWeaponEventArgs ev)
         {
             if (Check(ev.Player.CurrentItem))
             {
@@ -53,7 +54,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                 }
                 ev.Player.ShowHint(new string('\n',10) + $"남은 장전횟수: {MaxReload - currentReload}");
             }
-            base.OnReloading(ev);
+            base.OnReloaded(ev);
         }
 
         /*protected override void OnShot(ShotEventArgs ev)
@@ -77,7 +78,6 @@ namespace GhostPlugin.Custom.Items.Firearms
             ev.CanHurt = false;
             var grenade = new ImpactGrenade
             {
-                FuseTime = FuseTimes,
                 ExplodeOnCollision = true
             };
 
@@ -90,11 +90,12 @@ namespace GhostPlugin.Custom.Items.Firearms
                 grenadeType: grenade.Type,
                 player: ev.Player
             );
-
+            grenade.TrackedSerials.Add(pickup.Serial);
+            grenade.ExplodeOnCollision = true;
             // pickup.Base는 ThrownProjectile
             if (pickup.Base.TryGetComponent<Rigidbody>(out var rb))
             {
-                rb.velocity = ev.Player.CameraTransform.forward * 100f; // 💥 총알처럼 직선으로 날아감
+                rb.velocity = ev.Player.CameraTransform.forward * velocity;
             }
         }
     }
