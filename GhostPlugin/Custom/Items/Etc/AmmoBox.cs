@@ -63,8 +63,12 @@ namespace GhostPlugin.Custom.Items.Etc
                     ObjectManager.RemoveObject(obj);
                 }
                 Player player = ev.Player;
-                player.AddAmmo(AmmoType.Nato556,40);
-                player.ShowHint("<color=yellow>5.56mm 탄약 40개를 받았습니다!</color>", 3f);
+                player.AddAmmo(AmmoType.Nato556,80);
+                player.AddAmmo(AmmoType.Nato9, 90);
+                player.AddAmmo(AmmoType.Ammo44Cal, 18);
+                player.AddAmmo(AmmoType.Ammo12Gauge, 10);
+                player.AddAmmo(AmmoType.Nato762, 60);
+                player.ShowHint("<color=yellow>탄약 제공 완료 받았습니다!</color>", 3f);
             }
         }
     }
