@@ -48,7 +48,7 @@ namespace GhostPlugin.Methods.Objects
                     0.5f,
                     UnityEngine.Random.Range(-spawnRange, spawnRange)
                 );*/
-                Vector3 spawnPos = position + player.GameObject.transform.forward * 3f;
+                Vector3 spawnPos = position + player.GameObject.transform.forward * 1.05f;
 
                 pObject.transform.position = spawnPos;
                 pObject.Position = spawnPos;
