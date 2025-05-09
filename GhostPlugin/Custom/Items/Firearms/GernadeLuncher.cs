@@ -41,7 +41,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                 Color color = new Color(0.0f, 1.0f, 1.0f, 0.1f) * 50f;
                 Vector3 position = ev.Player.Position + ev.Player.Transform.forward * 3.0f;
 
-                spark.SpawnGrenade(ev.Player, position, 50, 0, color);
+                spark.SpawnGrenade(ev.Player, position, 10, 0, color);
         
                 //ar bulletCollision = bullet.gameObject.AddComponent<BulletExplosion>();
                 //bulletCollision.Initialize(ev.Player);
