@@ -8,13 +8,13 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
 {
     public class BulletExplosion : MonoBehaviour
     {
-        private Player _player;
+        private Player player;
         private Rigidbody rb;
         private bool hasCollided = false;
 
-        public void Initialize(Player attacker)
+        public void Initialize(Player player)
         {
-            _player = attacker;
+            this.player = player;
         }
 
         private void Awake()
@@ -28,7 +28,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 if (!hasCollided) hasCollided = true;
                 else return;
 
-                if (_player == null)
+                if (player == null)
                 {
                     Log.Error("BulletExplosion: _player is null!");
                     return;
@@ -41,7 +41,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 }
 
                 // 자기 자신 무시
-                if (collision.collider.gameObject == _player.GameObject)
+                if (collision.collider.gameObject == player.GameObject)
                 {
                     Log.Debug("BulletExplosion: 자기 자신과 충돌 - 무시됨");
                     return;
@@ -66,13 +66,13 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
 
                 ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
                 grenade.FuseTime = 0.8f;
-                grenade.ChangeItemOwner(Server.Host, _player);
+                grenade.ChangeItemOwner(grenade.Owner,player);
                 grenade.SpawnActive(spawnPoint);
 
                 Player target = Player.Get(collision.collider) ?? Player.Get(collision.collider.GetComponentInParent<Collider>());
-                if (target != null && target != _player)
+                if (target != null && target != player)
                 {
-                    _player.ShowHitMarker();
+                    player.ShowHitMarker();
                 }
 
                 UnityEngine.Object.Destroy(gameObject, 2f);
