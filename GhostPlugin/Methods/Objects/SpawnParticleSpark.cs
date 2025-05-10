@@ -58,11 +58,11 @@ namespace GhostPlugin.Methods.Objects
                 pObject.MaterialColor = glowColor;
 
                 var rb = pObject.GetComponent<Rigidbody>() ?? pObject.gameObject.AddComponent<Rigidbody>();
-                rb.useGravity = true;
+                rb.useGravity = false;
                 rb.mass = 1f;
                 rb.drag = 0.5f;
                 rb.angularDrag = 0.1f;
-                Vector3 shootDirection = player.GameObject.transform.forward;
+                Vector3 shootDirection = (player.GameObject.transform.forward + player.GameObject.transform.up * 0.7f).normalized;
                 rb.velocity = shootDirection * forwardForce;
 
                 var collider = pObject.GetComponent<Collider>() ?? pObject.gameObject.AddComponent<BoxCollider>();
