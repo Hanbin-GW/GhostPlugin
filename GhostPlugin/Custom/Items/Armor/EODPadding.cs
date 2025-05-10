@@ -37,7 +37,7 @@ namespace GhostPlugin.Custom.Items.Armor
             }
         };
         public override ItemType Type { get; set; } = ItemType.ArmorHeavy;
-        
+
         private void OnHurting(HurtingEventArgs ev)
         {
             if (Check(ev.Player.CurrentArmor))
@@ -50,12 +50,6 @@ namespace GhostPlugin.Custom.Items.Armor
                 }
             }
         }
-        protected override void OnAcquired(Player player, Item item, bool displayMessage)
-        {
-            base.OnAcquired(player, item, true);
-            Timing.CallDelayed(6,()=>player.ShowHint( $"당신은 {Name} 을 획득하셧습니다!\n{Description}",5));
-        }
-
         protected override void SubscribeEvents()
         {
             Exiled.Events.Handlers.Player.Hurting += OnHurting;
