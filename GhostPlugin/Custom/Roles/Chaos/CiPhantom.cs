@@ -99,13 +99,13 @@ namespace GhostPlugin.Custom.Roles.Chaos
         };
         protected override void SubscribeEvents()
         {
-            Exiled.Events.Handlers.Player.TogglingNoClip += OnTogglingNoClip;
+            //Exiled.Events.Handlers.Player.TogglingNoClip += OnTogglingNoClip;
             base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
         {
-            Exiled.Events.Handlers.Player.TogglingNoClip -= OnTogglingNoClip;
+            //Exiled.Events.Handlers.Player.TogglingNoClip -= OnTogglingNoClip;
             base.UnsubscribeEvents();
         }
     }
