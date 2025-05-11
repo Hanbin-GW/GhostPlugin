@@ -243,6 +243,8 @@
         <Compile Include="Custom\Roles\Chaos\JuggernautChaos.cs" />
         <Compile Include="Custom\Roles\Chaos\Ninja.cs" />
         <Compile Include="Custom\Roles\Chaos\SpyAgent.cs" />
+        <Compile Include="Custom\Roles\Chaos\Quartermaster.cs" />
+        <Compile Include="Custom\Roles\Chaos\Strategist.cs" />
         <Compile Include="Custom\Roles\ClassD\D-Alpha.cs" />
         <Compile Include="Custom\Roles\ClassD\Dwarf.cs" />
         <Compile Include="Custom\Roles\Foundation\ContainmentSpecialList.cs" />
