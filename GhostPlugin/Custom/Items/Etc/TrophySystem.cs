@@ -16,8 +16,8 @@ namespace GhostPlugin.Custom.Items.Etc
     {
         public override uint Id { get; set; } = 19;
         public override string Name { get; set; } = "Trophy System";
-        public override string Description { get; set; }
-        public override float Weight { get; set; }
+        public override string Description { get; set; } = "근처에 있는 활성화된 수류탄을 요격합니다!";
+        public override float Weight { get; set; } = 3f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override ItemType Type { get; set; } = ItemType.Lantern;
         public SchematicObject obj = null;
