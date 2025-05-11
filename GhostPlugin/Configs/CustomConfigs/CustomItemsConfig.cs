@@ -166,6 +166,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new AmmoBox()
         };
+
+        public List<TrophySystem> TrophySystems { get; private set; } = new List<TrophySystem>()
+        {
+            new TrophySystem()
+        };
         public List<OverkillVest> OverkillVests { get; private set; } = new List<OverkillVest>()
         {
             new OverkillVest()
