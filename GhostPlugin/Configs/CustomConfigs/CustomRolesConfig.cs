@@ -104,6 +104,16 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Enforcer()
         };
+
+        public List<Strategist> Strategists { get; set; } = new()
+        {
+            new Strategist()
+        };
+
+        public List<Quartermaster> Quartermasters { get; set; } = new()
+        {
+            new Quartermaster()
+        };
         public List<DwarfZombie> DwarfZombies { get; set; } = new()
         {
             new DwarfZombie()

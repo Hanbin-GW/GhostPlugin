@@ -18,6 +18,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
         public int Chance { get; set; } = 80;
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosRifleman;
+        public override bool DisplayCustomItemMessages { get; set; } = false;
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {

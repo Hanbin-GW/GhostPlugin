@@ -16,6 +16,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override string Description { get; set; } = "전투에서 다양한 전략으로 많은 전장을 승리로 이끌고온 혼돈읩 반란 대장입니다!";
         public override string CustomInfo { get; set; } = "Strategist";
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
+        public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosMarauder;
         public int Chance { get; set; } = 90;
         public override bool DisplayCustomItemMessages { get; set; } = false;
 
