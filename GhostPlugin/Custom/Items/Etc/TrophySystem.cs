@@ -15,10 +15,11 @@ namespace GhostPlugin.Custom.Items.Etc
     public class TrophySystem : CustomItem
     {
         public override uint Id { get; set; } = 19;
-        public override string Name { get; set; }
+        public override string Name { get; set; } = "Trophy System";
         public override string Description { get; set; }
         public override float Weight { get; set; }
         public override SpawnProperties SpawnProperties { get; set; }
+        public override ItemType Type { get; set; } = ItemType.Lantern;
         public SchematicObject obj = null;
         private CoroutineHandle grenadeScanCoroutine;
         protected override void SubscribeEvents()
@@ -40,8 +41,8 @@ namespace GhostPlugin.Custom.Items.Etc
                 if (ev.IsThrown)
                 {
                     ev.Item.Destroy();
-                    grenadeScanCoroutine = Timing.RunCoroutine(ScanAndDestroyGrenades(obj));
                     obj = ObjectManager.SpawnObject("TrophySystem", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, Vector3.zero);
+                    grenadeScanCoroutine = Timing.RunCoroutine(ScanAndDestroyGrenades(obj));
                     Timing.CallDelayed(60, () =>
                     {
                         ObjectManager.RemoveObject(obj);
@@ -56,18 +57,31 @@ namespace GhostPlugin.Custom.Items.Etc
             while (true)
             {
                 float radius = 5f;
-                var grenades = UnityEngine.Object.FindObjectsOfType<ThrowableItem>();
 
-                foreach (var grenade in grenades)
+                // 1. ExplosiveGrenade
+                foreach (var grenade in Object.FindObjectsOfType<ExplosionGrenade>())
                 {
-                    var proj = grenade?.Projectile;
-                    if (proj == null) continue;
-                    
-                    if (Vector3.Distance(grenade.Projectile.Position, center.transform.position) <= radius)
+                    if (Vector3.Distance(grenade.transform.position, center.transform.position) <= radius)
                     {
-                        Object.Destroy(proj.gameObject);
-                        // 이펙트: 폭발 방어 메시지 출력
-                        //Map.Broadcast(1, "<color=yellow>💥 트로피 시스템이 수류탄을 파괴했습니다!</color>");
+                        grenade.DestroySelf(); // 안전하게 폭발시켜 제거
+                    }
+                }
+
+                // 2. FlashbangGrenade
+                foreach (var flash in Object.FindObjectsOfType<FlashbangGrenade>())
+                {
+                    if (Vector3.Distance(flash.transform.position, center.transform.position) <= radius)
+                    {
+                        flash.DestroySelf();
+                    }
+                }
+
+                // 3. Scp018Grenade
+                foreach (var ball in Object.FindObjectsOfType<Scp018Projectile>())
+                {
+                    if (Vector3.Distance(ball.transform.position, center.transform.position) <= radius)
+                    {
+                        ball.DestroySelf();
                     }
                 }
 
