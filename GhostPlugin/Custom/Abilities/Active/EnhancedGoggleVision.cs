@@ -10,7 +10,7 @@ namespace GhostPlugin.Custom.Abilities.Active
     {
         public override string Name { get; set; } = "향상된 비전 고글";
         public override string Description { get; set; } = "30초간 적을 벽 넘어서 볼수 있습니다.";
-        public override float Duration { get; set; } = 15;
+        public override float Duration { get; set; } = 30;
         public override float Cooldown { get; set; } = 60;
 
         protected override void AbilityUsed(Player player)

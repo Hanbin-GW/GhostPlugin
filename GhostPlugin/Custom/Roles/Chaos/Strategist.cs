@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override uint Id { get; set; } = 19;
         public override int MaxHealth { get; set; } = 120;
         public override string Name { get; set; } = "Strategist (전략가)";
-        public override string Description { get; set; } = "전투에서 다양한 전략으로 많은 전장을 승리로 이끌고온 혼돈읩 반란 대장입니다!";
+        public override string Description { get; set; } = "전투에서 다양한 전략으로 많은 전장을 승리로 이끌고온 혼돈의 반란 대장입니다!";
         public override string CustomInfo { get; set; } = "Strategist";
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosMarauder;
@@ -24,7 +24,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override List<string> Inventory { get; set; } = new List<string>()
         {
             ItemType.KeycardChaosInsurgency.ToString(),
-            ItemType.GunLogicer.ToString(),
+            50.ToString(),
             ItemType.ArmorCombat.ToString(),
             19.ToString(),
             9.ToString(),
@@ -43,7 +43,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
 
         public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
         {
-            { AmmoType.Nato762 ,100},
+            { AmmoType.Nato762 ,150},
         };
     }
 }
