@@ -147,7 +147,7 @@ namespace GhostPlugin.EventHandlers
         }
         private static void OnScpDied(AnnouncingScpTerminationEventArgs ev)
         {
-            string message = $"<size=35><color=orange>📢</color>{ev.Role.Name} 가 <color=light_green>격리<color>되었습니다. \n{DetermineCauseOfDeath(ev)}</size>";
+            string message = $"<size=35><color=orange>📢</color>{ev.Role.Name} 가 <color=#d0ff4f>격리<color>되었습니다. \n{DetermineCauseOfDeath(ev)}</size>";
             Map.Broadcast(7,message);
             Log.Debug(message);
         }
