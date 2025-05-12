@@ -37,7 +37,7 @@ namespace GhostPlugin.Custom.Roles.Scientist
         {
             if (Check(ev.Player))
             {
-                //Reinforcements.Plugin.Instance.IsSpawnable = true;
+                Reinforcements.Plugin.Instance.IsSpawnable = true;
             }
         }
 
