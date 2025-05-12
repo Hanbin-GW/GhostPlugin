@@ -20,6 +20,7 @@ namespace GhostPlugin.Configs
         public int Speedy096Id { get; set; } = 10013;
         public int MapToggleId { get; set; } = 20000;
         public int MusicToggleId { get; set; } = 20001;
+        public int ResupplyId { get; set; } = 20002;
         public string SsssActiveCamoActivationMessage { get; set; } = "Activated Active Camo";
         public string SsssChargeActivationMessage { get; set; } = "Activated Charge";
         public string SsssDoorPickingActivationMessage { get; set; } = "Activated Door Picking, Interact with the door you want to pick.";
@@ -32,5 +33,6 @@ namespace GhostPlugin.Configs
         public string SsssC4DetonatorNeeded { get; set; } = "기폭 장치(무전기)를 들고 있어야 합니다";
         public string SsssC4TooFarAway { get; set; } = "C4 로부터 너무 떨어져 계십니다, 가까이 가시는거를 고려하시기 바랍니다.";
         public string SsssDetonateC4ActivationMessage { get; set; } = "C4 폭발";
+        public string ResupplyActivatMessage { get; set; } = "수류탄 1개와 섬광탄 1개가 보급되었습니다.";
     }
 }

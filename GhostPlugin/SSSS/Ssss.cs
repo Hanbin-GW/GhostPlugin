@@ -93,7 +93,8 @@ namespace GhostPlugin.SSSS
             {
                 var customItems = new List<IEnumerable<CustomItem>>
                 {
-                    //CustomItem.Get(typeof(AmmoBox)),
+                    CustomItem.Get(typeof(AmmoBox)),
+                    CustomItem.Get(typeof(TrophySystem)),
                     CustomItem.Get(typeof(EodPadding)),
                     CustomItem.Get(typeof(OverkillVest)),
                     CustomItem.Get(typeof(SmokeGrenade)),
@@ -177,6 +178,8 @@ namespace GhostPlugin.SSSS
                     KeyCode.I,true,"I"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.Speedy096Id,"Scp096",
                     KeyCode.Alpha9,true,"9"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ResupplyId,"Active Resupply",
+                    KeyCode.B,true,"B"));
             }
 
             if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)

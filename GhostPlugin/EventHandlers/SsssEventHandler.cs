@@ -148,7 +148,8 @@ namespace GhostPlugin.EventHandlers
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Scp106Id
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ExplosionId
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Speedy096Id
-                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.MapToggleId)
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.MapToggleId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ResupplyId)
             && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
                 {
                     string response = String.Empty;
@@ -302,6 +303,17 @@ namespace GhostPlugin.EventHandlers
                         else
                         {
                             player.ShowHint(response);
+                        }
+                    }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ResupplyId)
+                    {
+                        var resupplyAbility =
+                            abilities.FirstOrDefault(ability => ability.GetType() == typeof(Resupply));
+                        if (resupplyAbility != null && resupplyAbility.CanUseAbility(player, out response))
+                        {
+                            resupplyAbility.SelectAbility(player);
+                            resupplyAbility.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.ResupplyActivatMessage);
                         }
                     }
                 }
