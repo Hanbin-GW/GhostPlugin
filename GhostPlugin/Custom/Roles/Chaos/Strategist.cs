@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
@@ -23,6 +24,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override List<string> Inventory { get; set; } = new List<string>()
         {
             ItemType.KeycardChaosInsurgency.ToString(),
+            ItemType.GunLogicer.ToString(),
             ItemType.ArmorCombat.ToString(),
             19.ToString(),
             9.ToString(),
@@ -37,6 +39,11 @@ namespace GhostPlugin.Custom.Roles.Chaos
                 Name = "향상된 고글 비전",
                 Description = "일시적으로 벽넘어의 적을 볼수 있습니다!"
             },
+        };
+
+        public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
+        {
+            { AmmoType.Nato762 ,100},
         };
     }
 }
