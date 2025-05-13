@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using AdminToys;
 using Exiled.API.Features;
 using Mirror;
@@ -8,6 +9,62 @@ namespace GhostPlugin.Methods.Objects
 {
     public class PlasmaCube
     {
+        public static List<PrimitiveObjectToy> SpawmSparkAmmos(Player player, Vector3 position, int count,
+            float forwardForce, float spawnRange, Color glowColor)
+        {
+            List<PrimitiveObjectToy> bullets = new List<PrimitiveObjectToy>();
+            for (int i = 0; i < count; i++)
+            {
+                PrimitiveObjectToy pObject = null;
+
+                foreach (GameObject value in NetworkClient.prefabs.Values)
+                {
+                    if (value.TryGetComponent<PrimitiveObjectToy>(out var component))
+                    {
+                        pObject = UnityEngine.Object.Instantiate(component);
+                        pObject.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0]));
+                        break;
+                    }
+                }
+
+                if (pObject != null)
+                {
+                    pObject.NetworkPrimitiveType = PrimitiveType.Cube;
+                    pObject.transform.localScale = Vector3.one * 0.05f;
+                    pObject.NetworkScale = Vector3.one * 0.05f;
+                    pObject.NetworkPrimitiveFlags = PrimitiveFlags.Visible | PrimitiveFlags.Collidable;
+
+                    Vector3 randomOffset = new Vector3(
+                        UnityEngine.Random.Range(-spawnRange, spawnRange),
+                        UnityEngine.Random.Range(0.5f, 0.5f),
+                        UnityEngine.Random.Range(-spawnRange, spawnRange)
+                    );
+
+                    Vector3 spawnPosition = position + player.GameObject.transform.forward * 1.5f + randomOffset;
+                    pObject.Position = spawnPosition;
+                    pObject.NetworkPosition = spawnPosition;
+                    pObject.NetworkMaterialColor = glowColor;
+                    pObject.MaterialColor = glowColor;
+
+                    var rb = pObject.GetComponent<Rigidbody>() ?? pObject.gameObject.AddComponent<Rigidbody>();
+                    rb.isKinematic = false;
+                    rb.useGravity = true;
+                    rb.mass = 1f;
+                    rb.drag = 0.5f;
+                    rb.angularDrag = 0.1f;
+                    rb.velocity = player.GameObject.transform.forward * forwardForce;
+
+                    if (pObject.GetComponent<Collider>() == null)
+                        pObject.gameObject.AddComponent<BoxCollider>();
+
+                    UnityEngine.Object.Destroy(pObject.gameObject, 1.5f);
+
+                    bullets.Add(pObject);
+                }
+            }
+            return bullets;
+        }
+        
         public static PrimitiveObjectToy SpawmSparkAmmo(Player player, Vector3 position, int count, float forwardForce, float spawnRange,Color glowColor)
         {
             PrimitiveObjectToy pObject = null;

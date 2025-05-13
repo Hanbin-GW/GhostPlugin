@@ -54,10 +54,11 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         protected override void OnShot(ShotEventArgs ev)
         {
-            if (!Check(ev.Player.CurrentItem))
-                return;
-            ev.CanHurt = false;
-            ev.Target.EnableEffect<Slowness>(intensity: 90, duration: 8f);
+            if (Check(ev.Player.CurrentItem))
+            {
+                ev.CanHurt = false;
+                ev.Target.EnableEffect<Slowness>(intensity: 50, duration: 5f);
+            }
         }
 
         protected override void OnReloading(ReloadingWeaponEventArgs ev)
