@@ -96,8 +96,8 @@ namespace GhostPlugin.EventHandlers
 
         private static void OnRespawningTeam(RespawningTeamEventArgs ev)
         {
-            /*if (Reinforcements.Plugin.Instance == null || Reinforcements.Plugin.Instance.IsSpawnable || Reinforcements.Plugin.Instance.NextIsForced)
-                return;*/
+            if (Reinforcements.Plugin.Instance == null || Reinforcements.Plugin.Instance.IsSpawnable || Reinforcements.Plugin.Instance.NextIsForced)
+                return;
             if (ev.Players.Count == 0)
             {
                 Log.Warn(
