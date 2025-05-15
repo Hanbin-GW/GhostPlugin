@@ -38,7 +38,7 @@ namespace GhostPlugin.Custom.Items.Etc
             if (Check(ev.Item))
             {
                 Plugin.Instance.EnsureMusicDirectoryExists();
-                var path = Path.Combine(Plugin.Instance.AudioDirectory, "Battle_Rage.ogg");
+                var path = Path.Combine(Plugin.Instance.EffectDirectory, "Battle_Rage.ogg");
                 if (!File.Exists(path))
                 {
                     Log.Error($"파일이 존재하지 않습니다: {path}");
