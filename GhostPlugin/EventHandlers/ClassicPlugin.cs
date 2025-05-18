@@ -83,14 +83,14 @@ namespace GhostPlugin.EventHandlers
         
         private static void OnLookingAtScp096(AddingTargetEventArgs ev)
         {
-            ev.Target.Broadcast(5,"<color=#ff0000><size=40>너는 살아남지 못할거야...</size></color>");
+            ev.Target.Broadcast(5,"<color=#ff0000><size=40>You cannot able to survive...</size></color>");
         }
         
         
         private static void OnEnraging(EnragingEventArgs ev)
         {
             Log.Debug(ev.Player.Nickname + " has just been enraged by SCP-096!");
-            ev.Player.Broadcast(5, "<size=35><color=red>아무도 살려보내지마...</color></size>");;
+            ev.Player.Broadcast(5, "<size=35><color=red>Rip and Tear...Until it's done...</color></size>");;
         }
         
         private static void OnVerified(VerifiedEventArgs ev)
@@ -109,7 +109,7 @@ namespace GhostPlugin.EventHandlers
         private static void OnActivateGenerator(GeneratorActivatingEventArgs ev)
         {
             _activatedGenerators++;
-            Map.Broadcast(10, $"<size=30><color=#69f5ff>⚙️</color><color=#00ff00>3개중 {_activatedGenerators}</color>개의 발전기가 <color=green>활성화</color> 되었습니다!</size>",shouldClearPrevious:true);
+            Map.Broadcast(10, $"<size=30><color=#69f5ff>⚙️</color><color=#00ff00>{_activatedGenerators} out of three</color>Generators <color=green>Activated</color></size>",shouldClearPrevious:true);
             if (_activatedGenerators >= 3)
             {
                 _activatedGenerators = 0;
@@ -121,8 +121,8 @@ namespace GhostPlugin.EventHandlers
             if (ev.Player.IsScp)
             {
                 Map.Broadcast(10,$"<color=red><b>{ev.Player.Role.Name}이 중도 탈주하였습니다...</b></color>\n<size=30><color=#d44444>유저 닉네임 : {ev.Player.Nickname}\n유저 ID: {ev.Player.UserId.ToString()}</color></size>");
-                Log.SendRaw($"[NAME] - {ev.Player.Nickname} SCP 이 탈주하였습니다...",ConsoleColor.Red);
-                Log.SendRaw($"[ID] - {ev.Player.UserId} 이 탈주하였습니다...",ConsoleColor.Red);
+                Log.SendRaw($"[NAME] - {ev.Player.Nickname} SCP player Quit the game...",ConsoleColor.Red);
+                Log.SendRaw($"[ID] - {ev.Player.UserId} was quit the game...",ConsoleColor.Red);
             }
 
             else switch (Round.IsStarted)

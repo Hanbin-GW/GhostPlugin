@@ -82,7 +82,7 @@ namespace GhostPlugin.EventHandlers
             }
             else
             {
-                Log.Error("globalPlayer를 생성하지 못했습니다!");
+                Log.Error("Failed to spawn the globalPlayer!");
             }
         }
         

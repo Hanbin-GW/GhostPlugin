@@ -30,9 +30,9 @@ namespace GhostPlugin
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(5, 10, 1);
+        public override Version Version { get; } = new(5, 10, 2);
         public override string Author { get; } = "Hanbin-GW";
-        public override string Name { get; } = "Ghost-Plugin";
+        public override string Name { get; } = "Ghost-Plugin-Eng";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
         //private MyCustomKeyBind _myCustomKeyBind;
         
@@ -224,23 +224,23 @@ namespace GhostPlugin
 
                     if (SsssEventHandler is null)
                     {
-                        Log.Error("SsssEventHandler가 null입니다!");
+                        Log.Error("SsssEventHandler is null!");
                         return;
                     }
 
                     Server.RoundStarted += SsssEventHandler.OnRoundStarted;
                     Exiled.Events.Handlers.Player.Verified += SsssEventHandler.OnVerified;
                     ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
-                    Log.Info("SsssEventHandler 이벤트 정상 등록됨");
+                    Log.Info("SsssEventHandler was sucessfully registrated");
                 }
                 else
                 {
-                    Log.Warn(" SsssConfig가 비활성화됨.");
+                    Log.Warn(" SsssConfig was disabled.");
                 }
             }
             catch (Exception ex)
             {
-                Log.Error($"SsssEventHandler 생성 중 예외 발생: {ex.Message}");
+                Log.Error($"exception occured during creation SsssEventHandler: {ex.Message}");
                 return;
             }
 
@@ -314,12 +314,12 @@ namespace GhostPlugin
             // 폴더가 없으면 생성
             if (!Directory.Exists(path))
             {
-                Log.Warn($"음악 폴더가 존재하지 않습니다. 새로 생성합니다: {path}");
-                Directory.CreateDirectory(path);  // 폴더 생성
+                Log.Warn($"The music folder does not exist, create a new one: {path}");
+                Directory.CreateDirectory(path);
             }
             else
             {
-                Log.Info("음악 폴더가 이미 존재합니다.");
+                Log.Info("The music folder already exists.");
             }
         }
     }

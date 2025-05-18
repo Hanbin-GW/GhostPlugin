@@ -272,7 +272,6 @@
         <Compile Include="EventHandlers\BlackoutMod.cs" />
         <Compile Include="EventHandlers\CasualFPSModeHandler.cs" />
         <Compile Include="EventHandlers\ClassicPlugin.cs" />
-        <Compile Include="EventHandlers\CustomItemHandler.cs" />
         <Compile Include="EventHandlers\CustomRoleHandler.cs" />
         <Compile Include="EventHandlers\MusicEventHandlers.cs" />
         <Compile Include="EventHandlers\Methods.cs" />

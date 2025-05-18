@@ -124,12 +124,12 @@ namespace GhostPlugin.EventHandlers
                 if (musicSetting.SyncIsA)
                 {
                     Plugin.Instance.musicDisabledPlayers[player.Id] = false;
-                    player.ShowHint("<color=green>🎵 음악 듣기 설정됨</color>", 2f);
+                    player.ShowHint("<color=green>🎵 Turn on the music</color>", 2f);
                 }
                 else if (musicSetting.SyncIsB)
                 {
                     Plugin.Instance.musicDisabledPlayers[player.Id] = true;
-                    player.ShowHint("<color=red>🔇 음악 끄기 설정됨</color>", 2f);
+                    player.ShowHint("<color=red>🔇 Turn off the music</color>", 2f);
                 }
                 return;
             }
@@ -175,8 +175,8 @@ namespace GhostPlugin.EventHandlers
                             Plugin.Instance.miniMapEnabled[player.Id] = !Plugin.Instance.miniMapEnabled[player.Id];
                         
                         player.ShowHint(Plugin.Instance.miniMapEnabled[player.Id]
-                            ? "<color=green>미니맵 ON</color>"
-                            : "<color=red>미니맵 OFF</color>", 2f);
+                            ? "<color=green>Minimap ON</color>"
+                            : "<color=red>Minimap OFF</color>", 2f);
                     }
                     
                     else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ChargeId)
@@ -346,7 +346,7 @@ namespace GhostPlugin.EventHandlers
                         else
                         {
                             player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssC4TooFarAway);
-                            player.SendConsoleMessage($"너무 멀리 폭발물로부터 떨어졌습니다. {Mathf.Round(distance - C4.Instance.MaxDistance)} 미터 만큼 가까이 가셔야 합니다!.", "yellow");
+                            player.SendConsoleMessage($"It fell too far from the explosives. you need to go closely {Mathf.Round(distance - C4.Instance.MaxDistance)}M !.", "yellow");
                         }
                     } 
                     player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssDetonateC4ActivationMessage);

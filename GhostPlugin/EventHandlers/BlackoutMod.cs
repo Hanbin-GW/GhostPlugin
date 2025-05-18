@@ -88,7 +88,7 @@ namespace GhostPlugin.EventHandlers
                     {
                         if (Plugin.Instance.Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled)
                         {
-                            player.ShowHint("<color=white>" + new string('\n',10) + "제단의 전력이 파손되어 시설 전체가 정전상태가 되었습니다!\n전력이 복구될때까지 손전을을 사용하고 조심하셔야 됩니다!" + "</color>",10);
+                            player.ShowHint("<color=white>" + new string('\n',10) + "Power at the altar was damaged, leaving the entire facility without power!\nYou have to be careful and use Flashlight until the power is restored!" + "</color>",10);
                         }
                         if (!player.Items.Any(item => item.Type == ItemType.Flashlight) || !player.Items.Any(item => item.Type == ItemType.Lantern))
                         {

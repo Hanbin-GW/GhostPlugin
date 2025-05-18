@@ -26,14 +26,14 @@ namespace GhostPlugin.SSSS
         {
             List<ServerSpecificSettingBase> settings = new List<ServerSpecificSettingBase>();
 
-            settings.Add(new SSGroupHeader("🎵 음악 재생 설정"));
+            settings.Add(new SSGroupHeader("🎵 Music playback settings"));
             settings.Add(new SSTwoButtonsSetting(
                 Plugin.Instance.Config.SsssConfig.MusicToggleId,
-                "로비 및 이벤트 음악 설정",
-                "듣기",  // Option A
-                "끄기",  // Option B
+                "Lobby and Event Music Settings",
+                "Listen",  // Option A
+                "Turn off",  // Option B
                 false,   // 기본값: 듣기
-                "음악 재생 여부를 설정합니다." // 설명
+                "Set whether to play music." // 설명
             ));
 
             return settings.ToArray();
@@ -151,7 +151,7 @@ namespace GhostPlugin.SSSS
             if (Plugin.Instance.Config.CustomRolesConfig.IsEnabled &&
                 Plugin.Instance.Config.CustomRolesAbilitiesConfig.IsEnabled)
             {
-                settings.Add(new SSGroupHeader("특수능력 활성화 키"));
+                settings.Add(new SSGroupHeader("Custom Ability activation key"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ActiveCamoId, "Active Camo",
                     KeyCode.B, true, "B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ChargeId, "Charge", 
@@ -184,16 +184,16 @@ namespace GhostPlugin.SSSS
 
             if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)
             {
-                settings.Add(new SSGroupHeader("커스텀 아이탬 능력키"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, "C4 폭발",
-                    KeyCode.J, true, "무전기를 들고 커스텀 키바인드 키를 눌러 C4 를 폭파시킵니다!"));
+                settings.Add(new SSGroupHeader("CustomItem Ability Key"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, "Detonate C4",
+                    KeyCode.J, true, "Take the walkie-talkie and press the custom keybind key to Detonate C4!"));
             }
 
             if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
             {
                 settings.Add(new SSGroupHeader("Map Toggle Key"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.MapToggleId,"미니맵 ON/OFF"
-                    ,KeyCode.Y,true,"라운드 중 minimap 을 토글합니다."));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.MapToggleId,"Minimap ON/OFF"
+                    ,KeyCode.Y,true,"Toggle the minimap during the round."));
             }
             return settings.ToArray();
         }
