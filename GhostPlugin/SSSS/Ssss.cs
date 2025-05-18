@@ -75,7 +75,7 @@ namespace GhostPlugin.SSSS
                     CustomRole.Get(typeof(Specialist)),
                     CustomRole.Get(typeof(Commander)),
                 };
-				stringBuilder.AppendLine("<size=40>CustomRoles - [특수직업]</size>");
+				stringBuilder.AppendLine("<size=40>CustomRoles - [CustomRole]</size>");
                 foreach (var role in customRoles)
                 {
                     if (role == null || role.CustomAbilities == null) continue;
@@ -129,7 +129,7 @@ namespace GhostPlugin.SSSS
                     CustomItem.Get(typeof(TripleFlashGrenade)),
                     CustomItem.Get(typeof(HackingDevice)),
                 };
-                stringBuilder.AppendLine("<size=40>CustomItem - [특수 아이탬]</size>");
+                stringBuilder.AppendLine("<size=40>CustomItem - [CustomItems]</size>");
                 foreach (var itemCollection in customItems)
                 {
                     if (itemCollection == null) continue;
