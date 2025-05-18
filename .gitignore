@@ -2,3 +2,4 @@
 /GhostPlugin/obj/
 /GhostPlugin/bin/
 /packages/
+.DS_Store
