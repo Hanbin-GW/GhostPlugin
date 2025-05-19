@@ -13,7 +13,7 @@ namespace GhostPlugin.Custom.Items.Etc
     {
         public override uint Id { get; set; } = 38;
         public override string Name { get; set; } = "<color=#0095ff>Spike Jailbird</color>";
-        public override string Description { get; set; } = "매우 과충전한 무제한 근접 철퇴입니다.";
+        public override string Description { get; set; } = "Very overcharged unlimited proximity withdrawal.";
         public override float Weight { get; set; } = 6;
         public override ItemType Type { get; set; } = ItemType.Jailbird;
 

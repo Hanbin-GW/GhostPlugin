@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Items.Etc
     {
         public override uint Id { get; set; } = 43;
         public override string Name { get; set; } = "anti 173";
-        public override string Description { get; set; } = "이 아이탬을 복용후 SCP173 을 처다보면, 173의 순간이동을 방해합니다.\n해당아이탬은 100% 작동하지 않을수 있습니다...";
+        public override string Description { get; set; } = "If you take SCP173 after taking this itam, it interferes with the teleportation of 173.\nThis item MAY NOT WORK 100%...";
         public override float Weight { get; set; } = 0.5f;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
         private readonly HashSet<Player> _protectedPlayers = new();

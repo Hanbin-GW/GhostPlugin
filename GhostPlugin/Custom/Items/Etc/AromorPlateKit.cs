@@ -12,7 +12,7 @@ namespace GhostPlugin.Custom.Items.Etc
     {
         public override uint Id { get; set; } = 28;
         public override string Name { get; set; } = "<color=#32ff24>Armor Plate Kit</color>";
-        public override string Description { get; set; } = "이 아이탬을 사용시,HP 회복및 <color=green>AHP</color> 를 획득합니다..";
+        public override string Description { get; set; } = "When using this item, obtain HP recovery and <color=green>AHP</color>..";
         public override float Weight { get; set; } = 3f;
         public override ItemType Type { get; set; } = ItemType.Medkit;
 

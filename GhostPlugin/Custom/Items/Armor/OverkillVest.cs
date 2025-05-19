@@ -17,7 +17,7 @@ namespace GhostPlugin.Custom.Items.Armor
     {
         public override uint Id { get; set; } = 45;
         public override string Name { get; set; } = "Overkill Vest";
-        public override string Description { get; set; } = "[Alt] 를 눌러 렌덤으로 총기 1개를 획득합니다!";
+        public override string Description { get; set; } = "Press [Alt] to get 1 gun with Rendom!";
         public override float Weight { get; set; } = 3f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override ItemType Type { get; set; } = ItemType.ArmorCombat;

@@ -18,7 +18,7 @@ namespace GhostPlugin.Custom.Items.Etc
     {
         public override uint Id { get; set; } = 18;
         public override string Name { get; set; } = "Ammobox";
-        public override string Description { get; set; } = "[T] 키를 눌르시 군수품 상자를 소환합니다.";
+        public override string Description { get; set; } = "If you press the [T] key, summon the munitions box.";
         public override float Weight { get; set; } = 4f;
         public override ItemType Type { get; set; } = ItemType.Coin;
         public override SpawnProperties SpawnProperties { get; set; }

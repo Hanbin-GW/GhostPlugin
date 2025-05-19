@@ -16,7 +16,7 @@ namespace GhostPlugin.Custom.Items.Etc
     {
         public override uint Id { get; set; } = 39;
         public override string Name { get; set; } = "Revive kit [Test Version]";
-        public override string Description { get; set; } = "시체에 조준하고 사용시 시체를 부활시킬수 있습니다!";
+        public override string Description { get; set; } = "NOT WORKING TESTING...";
         public override ItemType Type { get; set; } = ItemType.Medkit;
         public override float Weight { get; set; } = 4f;
         public override SpawnProperties SpawnProperties { get; set; }

@@ -12,8 +12,8 @@ namespace GhostPlugin.Custom.Items.Armor
     public class AssassinVest : CustomArmor
     {
         public override uint Id { get; set; } = 19;
-        public override string Name { get; set; } = "<color=#a1a1a1>암살자 조끼</color>";
-        public override string Description { get; set; } = "이 아머를 사용할시 SCP-939 가 소리를 감지하지 못합니다.";
+        public override string Name { get; set; } = "<color=#a1a1a1>Assassin Vest</color>";
+        public override string Description { get; set; } = "SCP-939 does not detect sound when using this armor.";
         public override float Weight { get; set; } = 3f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override ItemType Type { get; set; } = ItemType.ArmorCombat;

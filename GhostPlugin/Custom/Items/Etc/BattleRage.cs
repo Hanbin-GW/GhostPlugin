@@ -16,7 +16,7 @@ namespace GhostPlugin.Custom.Items.Etc
     {
         public override uint Id { get; set; } = 14;
         public override string Name { get; set; } = "<color=#ff9500>Battle Rage</color>";
-        public override string Description { get; set; } = "일시적으로 이동속도 30% 증가 와 30초간 스태미나가 무제한이 됩니다.";
+        public override string Description { get; set; } = "Temporary 30% increase in travel speed and unlimited stamina for 30 seconds.";
         public override float Weight { get; set; } = 2f;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
