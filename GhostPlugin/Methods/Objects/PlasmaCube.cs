@@ -64,7 +64,6 @@ namespace GhostPlugin.Methods.Objects
             }
             return bullets;
         }
-        
         public static PrimitiveObjectToy SpawmSparkAmmo(Player player, Vector3 position, int count, float forwardForce, float spawnRange,Color glowColor)
         {
             PrimitiveObjectToy pObject = null;

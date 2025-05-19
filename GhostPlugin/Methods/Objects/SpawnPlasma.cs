@@ -10,7 +10,7 @@ namespace GhostPlugin.Methods.Objects
     public class SpawmPlasma
     {
         private const float BlockSize = 0.05f;
-        private const float Speed = 120f;
+        private const float Speed = 30f;
 
         public void SpawnPlasma(Player player)
         {
