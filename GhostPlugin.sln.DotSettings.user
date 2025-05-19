@@ -34,6 +34,20 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled9_002E6_002E0_002FSCP_0020Secret_0020Laboratory_002FLabAPI_002DBeta_002Fdependencies_002FMono_002EPosix_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled9_002E6_002E0_002FSCP_0020Secret_0020Laboratory_002FLabAPI_002DBeta_002Fdependencies_002FSemanticVersioning_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled9_002E6_002E0_002FSCP_0020Secret_0020Laboratory_002FLabAPI_002DBeta_002Fplugins_002FExiled_002ELoader_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled_002FEXILED_002FPlugins_002FExiled_002ECustomItems_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled_002FEXILED_002FPlugins_002FExiled_002ECustomRoles_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled_002FEXILED_002FPlugins_002FExiled_002EEvents_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled_002FSCP_0020Secret_0020Laboratory_002FLabAPI_002Fdependencies_002Fglobal_002FExiled_002EAPI_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled_002FSCP_0020Secret_0020Laboratory_002FLabAPI_002Fdependencies_002Fglobal_002FMono_002EPosix_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled_002FSCP_0020Secret_0020Laboratory_002FLabAPI_002Fdependencies_002Fglobal_002FSemanticVersioning_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FExiled_002FSCP_0020Secret_0020Laboratory_002FLabAPI_002Fplugins_002Fglobal_002FExiled_002ELoader_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FAssembly_002DCSharp_002Dfirstpass_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FAssembly_002DCSharp_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FCommandSystem_002ECore_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FLabApi_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FMirror_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FNorthwoodLib_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FYamlDotNet_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FRiderProjects_002FC_002DSquad_002FC_002DSquad_002Fobj_002FRelease_002FC_005FSquad_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FRiderProjects_002FEffect_002FEffect_002Fobj_002FRelease_002FEffect_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FRiderProjects_002FParticle_002FParticle_002Fobj_002FRelease_002FParticle_002Edll/@EntryIndexedValue">True</s:Boolean>

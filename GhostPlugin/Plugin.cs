@@ -27,7 +27,7 @@ namespace GhostPlugin
         /// Speakers List
         /// </summary>
         public int CurrentId = 1;
-        public override Version Version { get; } = new(4, 1,7,800);
+        public override Version Version { get; } = new(4, 1,8,800);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
