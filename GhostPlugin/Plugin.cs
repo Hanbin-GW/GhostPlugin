@@ -203,9 +203,9 @@ namespace GhostPlugin
 
             if (Instance.Config.EnableHarmony)
             {
-                Harmony = new Harmony($"Hanbin-GW.GhostPlugin.{DateTime.Now.Ticks}");
+                Harmony = new Harmony($"[GhostPlugin] Hanbin-GW.GhostPlugin.{DateTime.Now.Ticks}");
                 Harmony.PatchAll();
-                Log.Info($"{Harmony.Id} is enabled");
+                Log.Send($"{Harmony.Id} is enabled", LogLevel.Info, ConsoleColor.DarkYellow);
             }
             
             //SSSS
