@@ -30,7 +30,7 @@ namespace GhostPlugin
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(5, 10, 3);
+        public override Version Version { get; } = new(5, 11, 0);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin-Eng";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
@@ -201,13 +201,12 @@ namespace GhostPlugin
             //music event
             if (Config.MusicConfig.OnEnabled) {MusicEventHandlers.RegisterEvents();}
 
-            /*if (Config.EnableHarmony)
+            if (Config.EnableHarmony)
             {
                 Harmony = new Harmony($"Hanbin-GW.GhostPlugin.{DateTime.Now.Ticks}");
                 Harmony.PatchAll();
-                Log.Info($"{Harmony.Id} is enabled");
-                //Harmony.DEBUG = true;
-            }*/
+                Log.Send($"[Ghost-Plugin-Eng] {Harmony.Id} is enabled",LogLevel.Info, ConsoleColor.Green);
+            }
             
             //SSSS
             /*if (Config.SsssConfig.IsEnabled == true)

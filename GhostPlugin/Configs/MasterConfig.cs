@@ -42,6 +42,7 @@ namespace GhostPlugin.Configs
         public string SsssConfigFile { get; set; } = "Ssss.yml";
 
         public string Scp914ConfigFile { get; set; } = "Scp914.yml";
+        public bool EnableHarmony { get; set; } = true;
 
         public void LoadConfigs()
         {
