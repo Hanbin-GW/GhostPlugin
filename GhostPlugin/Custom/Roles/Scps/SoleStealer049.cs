@@ -36,6 +36,7 @@ namespace GhostPlugin.Custom.Roles.Scps
             new Explotion(),
             new SCP106(),
             new Scp457(),
+            new Overkill(),
         };
 
         public List<string> SteamUserIds { get; set; } = new List<string>

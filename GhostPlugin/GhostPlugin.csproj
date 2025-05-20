@@ -178,10 +178,12 @@
         <Compile Include="Custom\Abilities\Active\ActiveCamo.cs" />
         <Compile Include="Custom\Abilities\Active\ChargeAbility.cs" />
         <Compile Include="Custom\Abilities\Active\Detect.cs" />
+        <Compile Include="Custom\Abilities\Active\DoorPicking.cs" />
         <Compile Include="Custom\Abilities\Active\EnhancedGoggleVision.cs" />
         <Compile Include="Custom\Abilities\Active\Explotion.cs" />
         <Compile Include="Custom\Abilities\Active\Focous.cs" />
         <Compile Include="Custom\Abilities\Active\Ghost.cs" />
+        <Compile Include="Custom\Abilities\Active\Overkill.cs" />
         <Compile Include="Custom\Abilities\Active\Resupply.cs" />
         <Compile Include="Custom\Abilities\Active\SCP106.cs" />
         <Compile Include="Custom\Abilities\Active\Scp457.cs" />
