@@ -20,7 +20,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override ItemType Type { get; set; } = ItemType.GunLogicer;
         public override uint Id { get; set; } = 21;
         public override string Name { get; set; } = "<color=#FF0000>Rocket Luncher</color>";
-        public override string Description { get; set; } = "해당 무기는 폭탄을 생성합니다.";
+        public override string Description { get; set; } = "TESTING IN PROGRESS\nDon'T USE IT";
         public override float Weight { get; set; } = 1f;
         public float FuseTime { get; set; } = 1f;
 

@@ -13,7 +13,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 24;
         public override string Name { get; set; } = "<color=#4fdbe8>Paralyze Rife</color>";
-        public override string Description { get; set; } = "점사공격시 스턴효과가 부여되는 15발 에너지 소총입니다";
+        public override string Description { get; set; } = "It's an energy rifle that gives you a stun effect in case of a dotted attack";
         public override float Weight { get; set; } = 3.75f;
         public override ItemType Type { get; set; } = ItemType.ParticleDisruptor;
 

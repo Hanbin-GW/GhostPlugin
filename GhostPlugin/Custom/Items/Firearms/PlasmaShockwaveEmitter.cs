@@ -11,7 +11,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 26;
         public override string Name { get; set; } = "Plasma Shockwave Emitter";
-        public override string Description { get; set; } = "점사시 폭탄을 생성하는 충격파 플라즈마 소총입니다.";
+        public override string Description { get; set; } = "It is a shock wave plasma rifle that produces a bomb in case of dot projection";
         public override float Weight { get; set; } = 6f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override float Damage { get; set; } = 200;

@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 44;
         public override string Name { get; set; } = "<color=red>Basilisk</color>";
-        public override string Description { get; set; } = "대미지가 매우 높은 리볼버 입니다.";
+        public override string Description { get; set; } = "It is a revolver with very high damage.";
         public override float Weight { get; set; } = 4.5f;
         public override ItemType Type { get; set; } = ItemType.GunRevolver;
         public override float Damage { get; set; } = 95;

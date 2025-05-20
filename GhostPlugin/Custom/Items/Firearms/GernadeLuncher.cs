@@ -17,8 +17,8 @@ namespace GhostPlugin.Custom.Items.Firearms
     public class GernadeLuncher : CustomWeapon
     {
         public override uint Id { get; set; } = 5;
-        public override string Name { get; set; } = "M79 (유탄 발사기)";
-        public override string Description { get; set; } = "수류탄을 발사하는 리볼버 입니다!";
+        public override string Name { get; set; } = "M79";
+        public override string Description { get; set; } = "TESTING IN PROGRESS\nDon'T USE IT!";
         public override float Weight { get; set; } = 4f;
         public override ItemType Type { get; set; } = ItemType.GunRevolver;
         public override byte ClipSize { get; set; } = 1;

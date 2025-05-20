@@ -20,7 +20,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 3;
         public override string Name { get; set; } = "<color=#5c7aff>FTAC Recon</color>";
-        public override string Description { get; set; } = "[R] 키를 눌를시 피격당한 적을 추적할수있습니다";
+        public override string Description { get; set; } = "Press the [R] Key, you can track down the target that was shot";
         public override float Weight { get; set; } = 12.5f;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()

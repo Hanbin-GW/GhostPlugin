@@ -10,7 +10,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 41;
         public override string Name { get; set; } = "<color=#ffd900>Laser cannon</color>";
-        public override string Description { get; set; } = "무제한 레일건 입니다.";
+        public override string Description { get; set; } = "This is an unlimited rail gun.";
         public override float Weight { get; set; } = 30f;
         public override ItemType Type { get; set; } = ItemType.MicroHID;
         public override SpawnProperties SpawnProperties { get; set; }

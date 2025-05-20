@@ -19,7 +19,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 31;
         public override string Name { get; set; } = "<color=#00d0ff>PlasmaShotgun</color>";
-        public override string Description { get; set; } = "데미지가 높은 고열의 <color=#00d0ff>플라즈마 벅샷</color>을 사용하는 샷건입니다.";
+        public override string Description { get; set; } = "This is a shotgun that uses a high-temperature <color=#00d0ff>plasma buckshot</color>";
         public override float Weight { get; set; } = 4.5f;
         public override ItemType Type { get; set; } = ItemType.GunShotgun;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()

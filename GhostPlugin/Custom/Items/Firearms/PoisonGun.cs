@@ -13,7 +13,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 8;
         public override string Name { get; set; } = "<color=#80f573>BSP-9</color>";
-        public override string Description { get; set; } = "독성물질이 포함된 기관단총입니다.\n공격시 적한테 독성 효과 부여";
+        public override string Description { get; set; } = "A machine gun containing toxic substances.\nToxic effect on attack target";
         public override float Weight { get; set; } = 4.5f;
         public override SpawnProperties SpawnProperties { get; set; }
         [YamlIgnore]

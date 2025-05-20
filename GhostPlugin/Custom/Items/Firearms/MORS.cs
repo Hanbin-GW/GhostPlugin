@@ -18,7 +18,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Name { get; set; } = "<color=#94f6ff>MORS</color>";
 
         public override string Description { get; set; } =
-            "<b>Bolt action railgun. Best in class handling</b>\nE-11-SR 의 개조형 버전이고 탄약수가 1발인 대신, 기존 앱실론 대미지의 <color=red>7.5 배</color> 입니다.";
+            "<b>Bolt action railgun. Best in class handling</b>\nIt is a modified version of the nE-11-SR and instead of having one ammunition, it is <color=red>7.5 times </color> of the existing Apsilon damage.";
 
         public override float Weight { get; set; } = 7f;
         public override ItemType Type { get; set; } = ItemType.GunE11SR;

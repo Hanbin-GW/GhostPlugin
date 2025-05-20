@@ -13,7 +13,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 50;
         public override string Name { get; set; } = "<color=#ffef94>RAAL MG</color>";
-        public override string Description { get; set; } = ".300 구경을 사용한 피해량과 반동이 약간 높은 기관총입니다.";
+        public override string Description { get; set; } = "It's a machine gun with a slightly higher amount of damage and recoil";
         public override float Weight { get; set; } = 6f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override float Damage { get; set; } = 38.5f;

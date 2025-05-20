@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 25;
         public override string Name { get; set; } = "PlasmaEmitter";
-        public override string Description { get; set; } = "25발 플라즈마 소총입니다.\n뱀의손 전용 아이탬";
+        public override string Description { get; set; } = "25 Ammo plasma rifles.\na snake's hand-only itam";
         public override float Weight { get; set; } = 5.5f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override float Damage { get; set; }

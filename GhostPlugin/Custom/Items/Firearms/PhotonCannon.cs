@@ -12,7 +12,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 27;
         public override string Name { get; set; } = "Photon Cannon";
-        public override string Description { get; set; } = "20발 광자 대포입니다.\n뱀의손 감독자 전용 아이탬";
+        public override string Description { get; set; } = "20 photon cannons.\nItam for Snake's Hand Overseer";
         public override float Weight { get; set; } = 5f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override float Damage { get; set; } = 400;

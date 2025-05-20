@@ -13,7 +13,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 51;
         public override string Name { get; set; } = "Riveter";
-        public override string Description { get; set; } = "AR 이지만 <color=#ebc934>.410게이지 용의 숨결</color> 을 사용하는 연발 샷건입니다.";
+        public override string Description { get; set; } = "It's an AR, but it's a continuous shotgun that uses <color=#ebc934>.410 Gauge Dragon Breath</color>";
         public override float Weight { get; set; } = 7.5f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override byte ClipSize { get; set; } = 15;

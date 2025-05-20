@@ -15,7 +15,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 4;
         public override string Name { get; set; } = "Shockwave Electricity Gun";
-        public override string Description { get; set; } = "특수 탄약을 사용한 프로토타입 기관단총입니다.\nScp049-2 에 매우 치명적입니다.";
+        public override string Description { get; set; } = "A prototype machine gun with special ammunition.\nVery lethal to Scp049-2.";
         public override float Weight { get; set; } = 5;
         public override ItemType Type { get; set; } = ItemType.GunCrossvec;
         [YamlIgnore]

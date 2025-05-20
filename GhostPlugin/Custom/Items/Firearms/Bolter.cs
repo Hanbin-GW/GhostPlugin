@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     { 
         public override uint Id { get; set; } = 32;
         public override string Name { get; set; } = "Bolter";
-        public override string Description { get; set; } = "강력한 자동 볼트액션 소총입니다";
+        public override string Description { get; set; } = "It's a powerful automatic bolt-action rifle";
         public override float Weight { get; set; } = 15;
         public override ItemType Type { get; set; } = ItemType.GunA7;
         public override SpawnProperties SpawnProperties { get; set; }

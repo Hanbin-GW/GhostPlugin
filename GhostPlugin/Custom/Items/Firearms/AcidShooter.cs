@@ -17,7 +17,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 33;
         public override string Name { get; set; } = "Acid Shotter";
-        public override string Description { get; set; } = "매우 강력한 독산이 들어간 12게이지를 가지고 있습니다.";
+        public override string Description { get; set; } = "It has 12 gauges with very strong toxic acid.";
         public override float Weight { get; set; } = 3.5f;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
