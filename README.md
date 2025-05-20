@@ -11,3 +11,9 @@ CustomRole
 CustomItem
 
 CustomAbilities with SSSS (Keybinding)
+
+Blackout Mode
+
+Minimap (Disabled)
+
+
