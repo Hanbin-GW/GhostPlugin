@@ -17,6 +17,7 @@ using UnityEngine;
 using UserSettings.ServerSpecific;
 using Reinforcements.Roles;
 using C_Squad.Roles;
+using Exiled.API.Features;
 
 namespace GhostPlugin.SSSS
 {
@@ -180,6 +181,8 @@ namespace GhostPlugin.SSSS
                     KeyCode.Alpha9,true,"9"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ResupplyId,"Active Resupply",
                     KeyCode.B,true,"B"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.OverkillId, "Overkill Ability",
+                    KeyCode.O,true,"O"));
             }
 
             if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)

@@ -149,7 +149,8 @@ namespace GhostPlugin.EventHandlers
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ExplosionId
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Speedy096Id
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.MapToggleId
-                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ResupplyId)
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ResupplyId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.OverkillId)
             && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
                 {
                     string response = String.Empty;
@@ -207,6 +208,21 @@ namespace GhostPlugin.EventHandlers
                             player.ShowHint(response);
                         }
                     }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DoorPickingId)
+                    {
+                        var doorpickAbility =
+                            abilities.FirstOrDefault(ability => ability.GetType() == typeof(DoorPicking));
+                        if (doorpickAbility != null && doorpickAbility.CanUseAbility(player, out response))
+                        {
+                            doorpickAbility.SelectAbility(player);
+                            doorpickAbility.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.SsssDoorPickingActivationMessage);
+                        }
+                        else
+                        {
+                            player.ShowHint(response);
+                        }
+                    }
                     else if(ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.FocousId)
                     {
                         var focousAbility = abilities.FirstOrDefault(ability => ability.GetType() == typeof(Focous));
@@ -243,6 +259,7 @@ namespace GhostPlugin.EventHandlers
                         {
                             ghostAbility.SelectAbility(player);
                             ghostAbility.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.GhostAvtivationMessage);
                         }
                         else
                         {
@@ -270,7 +287,7 @@ namespace GhostPlugin.EventHandlers
                         {
                             scp106Ability.SelectAbility(player);
                             scp106Ability.UseAbility(player);
-                            player.ShowHint(Plugin.Instance.Config.SsssConfig.Scp457ActivationMessage);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.Scp106ActivationMessage);
                         }
                         else
                         {
@@ -284,7 +301,7 @@ namespace GhostPlugin.EventHandlers
                         {
                             scpexAbility.SelectAbility(player);
                             scpexAbility.UseAbility(player);
-                            player.ShowHint(Plugin.Instance.Config.SsssConfig.Scp457ActivationMessage);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.ExplosionActivationMessage);
                         }
                         else
                         {
@@ -314,6 +331,17 @@ namespace GhostPlugin.EventHandlers
                             resupplyAbility.SelectAbility(player);
                             resupplyAbility.UseAbility(player);
                             player.ShowHint(Plugin.Instance.Config.SsssConfig.ResupplyActivatMessage);
+                        }
+                    }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.OverkillId)
+                    {
+                        var overkillAbility =
+                            abilities.FirstOrDefault(ability => ability.GetType() == typeof(Overkill));
+                        if (overkillAbility != null && overkillAbility.CanUseAbility(player, out response))
+                        {
+                            overkillAbility.SelectAbility(player);
+                            overkillAbility.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.OverkillActivationMessage);
                         }
                     }
                 }
