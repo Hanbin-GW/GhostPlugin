@@ -15,12 +15,14 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
             _attacker = attacker;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        /*private void OnCollisionEnter(Collision collision)
         {
             Player target = Player.Get(collision.collider) ?? Player.Get(collision.collider.GetComponentInParent<Collider>());
 
             if (target != null && target != _attacker)
             {
+                if (target.Role.Team == _attacker.Role.Team)
+                    return;
                 Log.Debug($"Hit Player: {target.Nickname} - Damage: {_damage}");
 
                 target.Hurt(_damage, DamageType.E11Sr, _attacker.Nickname);
@@ -32,6 +34,37 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
             {
                 Destroy(gameObject,4f);
             }
+        }*/
+        private void OnCollisionEnter(Collision collision)
+        {
+            var hitGameObject = collision.collider.gameObject;
+            var hub = ReferenceHub.GetHub(hitGameObject);
+
+            if (hub == null)
+            {
+                Destroy(gameObject, 4f);
+                return;
+            }
+
+            Player target = Player.Get(hub);
+
+            if (target != null && target != _attacker)
+            {
+                if (target.Role.Team == _attacker.Role.Team)
+                    return;
+
+                Log.Debug($"Hit Player: {target.Nickname} - Damage: {_damage}");
+
+                target.Hurt(_damage, DamageType.E11Sr, _attacker.Nickname);
+                _attacker.ShowHitMarker();
+
+                Destroy(gameObject, 7f);
+            }
+            else
+            {
+                Destroy(gameObject, 2f);
+            }
         }
+
     }
 }
