@@ -34,7 +34,11 @@ namespace GhostPlugin.Custom.Items.Firearms
 
             ev.Player.CameraTransform.eulerAngles = currentRotation;*/
             SpawmPlasma spawmPlasma = new SpawmPlasma();
-            spawmPlasma.SpawnPlasma(ev.Player);
+            Color glowColor = new Color(1f, 0.5f, 0f, 0.1f) * 50;
+            var direction = ev.Position - ev.Player.Position;
+            var laserPos = ev.Player.Position + direction * 0.5f;
+            var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
+            SpawnPrimitive.spawnPrimitive(ev.Player, PrimitiveType.Cube, rotation, laserPos, glowColor,25);
             ev.CanHurt = false;
             base.OnShot(ev);
         }

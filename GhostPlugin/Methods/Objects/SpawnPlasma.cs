@@ -1,6 +1,7 @@
 using System;
 using AdminToys;
 using Exiled.API.Features;
+using Exiled.API.Features.Toys;
 using GhostPlugin.Custom.Items.MonoBehavior;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -12,7 +13,27 @@ namespace GhostPlugin.Methods.Objects
         private const float BlockSize = 0.05f;
         private const float Speed = 30f;
 
-        public void SpawnPlasma(Player player)
+        public void spawnPrimitive(Player player, PrimitiveType primitiveType, Quaternion rotation,
+            Vector3 laserPos, Color laserColor, int damage)
+        {
+            Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
+            Primitive pt = Primitive.Create(primitiveType,
+                PrimitiveFlags.Visible | PrimitiveFlags.Collidable, laserPos,
+                rotation.eulerAngles,
+                scale, true, laserColor);
+            var bulletcollision = pt.GameObject.AddComponent<BulletCollision>();
+            bulletcollision.Initialize(damage, player);
+            var rb = pt.GameObject.AddComponent<Rigidbody>();
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            rb.mass = 1f;
+            rb.drag = 0.5f;
+            rb.angularDrag = 0.1f;
+            rb.velocity = player.GameObject.transform.forward * 25;
+
+            if (pt.GameObject.GetComponent<Collider>() == null)
+                pt.GameObject.AddComponent<BoxCollider>();        }
+        /*public void SpawnPlasma(Player player)
         {
             Vector3 startPosition = player.CameraTransform.position;
             Vector3 direction = player.CameraTransform.forward.normalized;
@@ -67,6 +88,6 @@ namespace GhostPlugin.Methods.Objects
                 // ✅ 정확히 1초 후 삭제
                 Object.Destroy(pObject.gameObject, 1f);
             }
-        }
+        }*/
     }
 }
