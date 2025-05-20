@@ -65,7 +65,7 @@ namespace GhostPlugin.Custom.Items.Grenades
                 },
             },
         };
-        public override string Description { get; set; } = "원격으로 (무전기 사용) 원격 폭파 가능 (서버 키바인드 설정 필요)";
+        public override string Description { get; set; } = "Remote blast (using radio) (requires server keybind setting)";
         
         [Description("Should C4 require a specific item to be detonated.")]
         public bool RequireDetonator { get; set; } = true;

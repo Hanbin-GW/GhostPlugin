@@ -20,7 +20,7 @@ namespace GhostPlugin.Custom.Items.Grenades
         public override ItemType Type { get; set; } = ItemType.GrenadeFlash;
         public override uint Id { get; set; } = 20;
         public override string Name { get; set; } = "<color=#6600CC>Obscures Veil-5</color>";
-        public override string Description { get; set; } = "폭발시 15초간 연막을 형성합니다!";
+        public override string Description { get; set; } = "In case of explosion, it forms a smoke screen for 15 seconds!";
         public bool RemoveSmoke { get; set; } = true;
         public override float Weight { get; set; } = 1.15f;
         [CanBeNull]

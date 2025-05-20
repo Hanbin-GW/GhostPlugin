@@ -15,8 +15,8 @@ namespace GhostPlugin.Custom.Items.Grenades
     public class TripleFlashGrenade : CustomGrenade
     {
         public override uint Id { get; set; } = 12;
-        public override string Name { get; set; } = "<color=#6600CC>Cluster Gernade</color>";
-        public override string Description { get; set; } = "3연속으로 폭발 하는 섬광탄 입니다";
+        public override string Name { get; set; } = "<color=#6600CC>Cluster Flash Gernade</color>";
+        public override string Description { get; set; } = "It's a flash that explodes three times in a row";
         public override float Weight { get; set; } = 5f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override bool ExplodeOnCollision { get; set; } = false;

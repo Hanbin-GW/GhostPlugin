@@ -15,7 +15,7 @@ namespace GhostPlugin.Custom.Items.Grenades
     {
         public override uint Id { get; set; } = 10;
         public override string Name { get; set; } = "<color=#6600CC>기절 수류탄</color>";
-        public override string Description { get; set; } = "맞을시 스턴효과가 일어납니다";
+        public override string Description { get; set; } = "If you get it right, you'll get a turn effect";
         public override ItemType Type { get; set; } = ItemType.GrenadeFlash;
         public override float Weight { get; set; } = 3f;
         public override SpawnProperties SpawnProperties { get; set; }

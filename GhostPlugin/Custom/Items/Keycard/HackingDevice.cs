@@ -16,7 +16,7 @@ namespace GhostPlugin.Custom.Items.Keycard
         private readonly Dictionary<Player, CoroutineHandle> altKeyCooldowns = new Dictionary<Player, CoroutineHandle>();
         public override uint Id { get; set; } = 1;
         public override string Name { get; set; } = "<color=#1aff00>Hacking Device</color>";
-        public override string Description { get; set; } = "문이랑 상호작용시 7초간 문을 잠굽니다. (쿨다운 10초)";
+        public override string Description { get; set; } = "Lock the door for 7 seconds when interacting with the door. (10 seconds of cool down)";
         public override float Weight { get; set; } = 1f;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()

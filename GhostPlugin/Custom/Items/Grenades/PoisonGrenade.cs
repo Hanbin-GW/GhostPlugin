@@ -16,7 +16,7 @@ namespace GhostPlugin.Custom.Items.Grenades
     {
         public override uint Id { get; set; } = 40;
         public override string Name { get; set; } = "<color=#95e68c>Poison Grenade</color>";
-        public override string Description { get; set; } = "폭발시 독성물질을 분출하는 폭탄입니다..";
+        public override string Description { get; set; } = "It's a bomb that releases toxic substances in the event of an explosion..";
         public override float Weight { get; set; } = 6f;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()

@@ -11,12 +11,12 @@ namespace GhostPlugin.Custom.Items.Grenades
     {
         public override uint Id { get; set; } = 30;
         public override string Name { get; set; } = "접착 수류탄";
-        public override string Description { get; set; } = "<color=red>알림: 어떠한 물채에 접촉할시 그대로 붙어버립니다</color> ";
+        public override string Description { get; set; } = "<color=red>Reminder: When it comes into contact with a watercolor, it sticks to it as it is</color> ";
         public override float Weight { get; set; } = 3f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override bool ExplodeOnCollision { get; set; } = false;
         public override ItemType Type { get; set; } = ItemType.GrenadeHE;
-        public override float FuseTime { get; set; } = 5f;
+        public override float FuseTime { get; set; } = 3.5f;
 
         protected override void OnThrownProjectile(ThrownProjectileEventArgs ev)
         {
