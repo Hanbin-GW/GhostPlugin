@@ -43,13 +43,18 @@ namespace GhostPlugin.Custom.Items.Firearms
                 ev.CanHurt = false;
                 Color glowColor = new Color(0.0f, 1.0f, 0.0f, 0.1f) * 50f;
 
-                List<PrimitiveObjectToy> bullets = PlasmaCube.SpawmSparkAmmos(ev.Player, ev.Firearm.Base.transform.position, 10, 25f, 0.5f, glowColor);
+                /*List<PrimitiveObjectToy> bullets = PlasmaCube.SpawmSparkAmmos(ev.Player, ev.Firearm.Base.transform.position, 10, 25f, 0.5f, glowColor);
 
                 foreach (var bullet in bullets)
                 {
                     var collision = bullet.gameObject.AddComponent<PoisonBulletCollision>();
                     collision.Initialize(5,ev.Player);
-                }
+                }*/
+                var direction = ev.Position - ev.Player.Position;
+                var laserPos = ev.Player.Position + direction * 0.25f;
+                var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
+                //PlasmaCube.SpawmSparkBuckshot(ev.Player, ev.Firearm.Base.transform.position,13,15f,0.05f,glowColor); 
+                SpawnPrimitive.spawnPrimitives(ev.Player, 10, rotation, laserPos, glowColor,5,25);
             }
             base.OnShot(ev);
         }
