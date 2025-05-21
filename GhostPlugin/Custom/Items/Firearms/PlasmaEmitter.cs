@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 25;
         public override string Name { get; set; } = "PlasmaEmitter";
-        public override string Description { get; set; } = "25 Ammo plasma rifles.\na snake's hand-only itam";
+        public override string Description { get; set; } = "25 Ammo plasma rifles.\na Serpents Hand-only itam";
         public override float Weight { get; set; } = 5.5f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override float Damage { get; set; }
@@ -23,19 +23,15 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         protected override void OnShot(ShotEventArgs ev)
         {
-            /*float recoilX = Random.Range(-20f, 30f);  // 좌우 반동
-            float recoilY = Random.Range(22f, 26f);      // 상하 반동
-
-            Vector3 currentRotation = ev.Player.CameraTransform.eulerAngles;
-
-            // 카메라 상하 각도를 반동 값으로 조정, 클램핑 적용
-            currentRotation.x = Mathf.Clamp(currentRotation.x - recoilY, -90f, 90f);  // 상하 각도 제한
-            currentRotation.y += recoilX;  // 좌우 회전 추가
-
-            ev.Player.CameraTransform.eulerAngles = currentRotation;*/
-            SpawmPlasma spawmPlasma = new SpawmPlasma();
-            spawmPlasma.SpawnPlasma(ev.Player);
-            ev.CanHurt = false;
+            if (Check(ev.Player.CurrentItem))
+            {
+                ev.CanHurt = false;
+                Color glowColor = new Color(1.0f, 0.5f, 0.0f, 0.1f) * 50f;
+                var direction = ev.Position - ev.Player.Position;
+                var laserPos = ev.Player.Position + direction * 0.5f;
+                var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
+                SpawnPrimitive.spawnPrimitive(ev.Player, PrimitiveType.Cube, rotation, laserPos, glowColor, 80);
+            }
             base.OnShot(ev);
         }
     }

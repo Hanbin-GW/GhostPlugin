@@ -285,6 +285,7 @@
         <Compile Include="Methods\Objects\SpawnLaserObject.cs" />
         <Compile Include="Methods\Objects\SpawnParticleSpark.cs" />
         <Compile Include="Methods\Objects\SpawnPlasma.cs" />
+        <Compile Include="Methods\Objects\SpawnPrimitive.cs" />
         <Compile Include="MyCustomKeyBind.cs" />
         <Compile Include="Patches\Scp106Patch.cs" />
         <Compile Include="Patches\Scp939Patch_2.cs" />
