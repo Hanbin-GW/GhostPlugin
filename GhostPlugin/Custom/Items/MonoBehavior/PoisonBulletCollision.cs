@@ -22,6 +22,8 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
 
             if (target != null && target != _attacker)
             {
+                if (target.Role.Team == _attacker.Role.Team)
+                    return;
                 Log.Debug($"Hit Player: {target.Nickname}");
                 
                 target.EnableEffect<Decontaminating>(duration: 8,intensity:1);

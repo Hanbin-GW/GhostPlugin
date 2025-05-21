@@ -22,6 +22,8 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
 
             if (target != null && target != _attacker)
             {
+                if (target.Role.Team == _attacker.Role.Team)
+                    return;
                 Log.Debug($"Hit Player: {target.Nickname} - Damage: {_damage}");
                 target.EnableEffect<Burned>(duration: 5);
                 target.Hurt(_damage, DamageType.E11Sr, _attacker.Nickname);
