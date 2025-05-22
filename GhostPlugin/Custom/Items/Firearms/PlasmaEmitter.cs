@@ -33,7 +33,6 @@ namespace GhostPlugin.Custom.Items.Firearms
             currentRotation.y += recoilX;  // 좌우 회전 추가
 
             ev.Player.CameraTransform.eulerAngles = currentRotation;*/
-            SpawmPlasma spawmPlasma = new SpawmPlasma();
             Color glowColor = new Color(1f, 0.5f, 0f, 0.1f) * 50;
             var direction = ev.Position - ev.Player.Position;
             var laserPos = ev.Player.Position + direction * 0.5f;
