@@ -18,6 +18,7 @@ using UserSettings.ServerSpecific;
 using Reinforcements.Roles;
 using C_Squad.Roles;
 using Exiled.API.Features;
+using GhostPlugin.Custom.Items.Medkit;
 
 namespace GhostPlugin.SSSS
 {
