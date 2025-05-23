@@ -17,7 +17,7 @@ namespace GhostPlugin.Custom.Items.Medkit
         {
             if (Check(ev.Item))
             {
-                ev.Player.EnableEffect<MovementBoost>(20,duration:8f);
+                ev.Player.EnableEffect<MovementBoost>(10,duration:8f);
                 ev.Player.Heal(20);
             }
         }
