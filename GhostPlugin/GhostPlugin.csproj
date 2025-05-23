@@ -197,13 +197,10 @@
         <Compile Include="Custom\Items\Armor\EODPadding.cs" />
         <Compile Include="Custom\Items\Armor\OverkillVest.cs" />
         <Compile Include="Custom\Items\Etc\AmmoBox.cs" />
-        <Compile Include="Custom\Items\Etc\Anti173.cs" />
         <Compile Include="Custom\Items\Etc\AromorPlateKit.cs" />
-        <Compile Include="Custom\Items\Etc\BattleRage.cs" />
         <Compile Include="Custom\Items\Etc\ReviveKit.cs" />
         <Compile Include="Custom\Items\Etc\SCP500A.cs" />
         <Compile Include="Custom\Items\Etc\Spike_Jailbird.cs" />
-        <Compile Include="Custom\Items\Etc\Stim.cs" />
         <Compile Include="Custom\Items\Etc\TrophySystem.cs" />
         <Compile Include="Custom\Items\Firearms\AcidShooter.cs" />
         <Compile Include="Custom\Items\Firearms\Basilisk.cs" />
@@ -232,6 +229,9 @@
         <Compile Include="Custom\Items\Grenades\StunGrenade.cs" />
         <Compile Include="Custom\Items\Grenades\TripleFlashGrenade.cs" />
         <Compile Include="Custom\Items\Keycard\HackingDevice.cs" />
+        <Compile Include="Custom\Items\Medkit\Anti173.cs" />
+        <Compile Include="Custom\Items\Medkit\BattleRage.cs" />
+        <Compile Include="Custom\Items\Medkit\Stim.cs" />
         <Compile Include="Custom\Items\MonoBehavior\BulletCollision.cs" />
         <Compile Include="Custom\Items\MonoBehavior\BulletExplosion.cs" />
         <Compile Include="Custom\Items\MonoBehavior\FireBulletCollision.cs" />
@@ -293,9 +293,6 @@
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Custom\Items\Medkit\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

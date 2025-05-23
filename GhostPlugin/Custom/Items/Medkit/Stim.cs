@@ -3,7 +3,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 
-namespace GhostPlugin.Custom.Items.Etc
+namespace GhostPlugin.Custom.Items.Medkit
 {
     public class Stim : CustomItem
     {
