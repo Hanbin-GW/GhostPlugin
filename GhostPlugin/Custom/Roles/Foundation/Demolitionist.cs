@@ -11,7 +11,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override uint Id { get; set; } = 12;
         public override int MaxHealth { get; set; } = 110;
         public override string Name { get; set; } = "<color=#0096FF>MTF Demolitionist</color>";
-        public override string Description { get; set; } = "MTF 에서 폭발물 에특회된 요원입니다.";
+        public override string Description { get; set; } = "Agent specialized in explosives at MTF.";
         public override string CustomInfo { get; set; } = "Demolitionist";
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfPrivate;
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;

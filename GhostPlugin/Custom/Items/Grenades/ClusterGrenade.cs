@@ -15,7 +15,7 @@ namespace GhostPlugin.Custom.Items.Grenades
     public class ClusterGrenade : CustomGrenade
     {
         public override uint Id { get; set; } = 9;
-        public override string Name { get; set; } = "<color=#ff4d5b>집속탄</color>";
+        public override string Name { get; set; } = "<color=#ff4d5b>Cluster Grenade</color>";
         public override string Description { get; set; } = "It's a grenade that explodes in series\nZone Annihilation";
         public override float Weight { get; set; } = 5f;
         public override SpawnProperties SpawnProperties { get; set; }

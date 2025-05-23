@@ -23,7 +23,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override uint Id { get; set; } = 11;
         public override int MaxHealth { get; set; } = 80000;
         public override string Name { get; set; } = "SCP-682";
-        public override string Description { get; set; } = "당신은 최강의 SCP 입니다..!\n 다른 SCP 들과 협력해 재단을 몰락하십시오!";
+        public override string Description { get; set; } = "You are the best SCP Work with other SCPs to bring down the foundation!";
         public override string CustomInfo { get; set; } = "SCP-682";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp939;
         private readonly float _altKeyCooldownDuration = 90f;

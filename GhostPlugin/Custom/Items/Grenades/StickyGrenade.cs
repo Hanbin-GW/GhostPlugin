@@ -10,7 +10,7 @@ namespace GhostPlugin.Custom.Items.Grenades
     public class StickyGrenade : CustomGrenade
     {
         public override uint Id { get; set; } = 30;
-        public override string Name { get; set; } = "접착 수류탄";
+        public override string Name { get; set; } = "Sticky Grenade";
         public override string Description { get; set; } = "<color=red>Reminder: When it comes into contact with a watercolor, it sticks to it as it is</color> ";
         public override float Weight { get; set; } = 3f;
         public override SpawnProperties SpawnProperties { get; set; }

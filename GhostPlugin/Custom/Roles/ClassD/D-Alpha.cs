@@ -18,7 +18,7 @@ namespace GhostPlugin.Custom.Roles.ClassD
         public override uint Id { get; set; } = 3;
         public override int MaxHealth { get; set; } = 100;
         public override string Name { get; set; } = "<color=#ff3636>실험체 알파</color>";
-        public override string Description { get; set; } = "제단의 인체실험을 당한 당신은 어떤 <color=#ebd234>특수한 능력</color>이 있습니다..!";
+        public override string Description { get; set; } = "You have some <color=#ebd234>special ability</color> that has been tested on the altar's human body..!";
         public override string CustomInfo { get; set; } = "Test Subject";
         public override RoleTypeId Role { get; set; } = RoleTypeId.ClassD;
         public StartTeam StartTeam { get; set; } = StartTeam.ClassD;

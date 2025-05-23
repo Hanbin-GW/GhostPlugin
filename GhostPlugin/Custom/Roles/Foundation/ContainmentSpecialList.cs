@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override uint Id { get; set; } = 12;
         public override int MaxHealth { get; set; } = 120;
         public override string Name { get; set; } = "<color=#0096FF>Containment SpecialList</color>";
-        public override string Description { get; set; } = "SCP 격리 전문 요원입니다.";
+        public override string Description { get; set; } = "A specialist in SCP quarantine.";
         public override string CustomInfo { get; set; } = "Containment SpecialList";
         public override bool DisplayCustomItemMessages { get; set; } = false;
 

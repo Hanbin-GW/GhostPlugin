@@ -12,7 +12,7 @@ namespace GhostPlugin.Custom.Roles.ClassD
         public override uint Id { get; set; } = 16;
         public override int MaxHealth { get; set; } = 50;
         public override string Name { get; set; } = "Dwarf";
-        public override string Description { get; set; } = "매우 작은 외형의 D계급 인원입니다.";
+        public override string Description { get; set; } = "It's a very small-looking group of D-class personal.";
         public override string CustomInfo { get; set; } = "Dwarf";
         public override RoleTypeId Role { get; set; } = RoleTypeId.ClassD;
         public StartTeam StartTeam { get; set; } = StartTeam.ClassD;

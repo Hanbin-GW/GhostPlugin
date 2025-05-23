@@ -13,7 +13,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override uint Id { get; set; } = 5;
         public override int MaxHealth { get; set; } = 100;
         public override string Name { get; set; } = "<color=#00ff44>FedoraAgent</color>";
-        public override string Description { get; set; } = "염산무기를 가지고 있습니다!";
+        public override string Description { get; set; } = "You have a hydrochloric poisonous acid weapon!";
         public override string CustomInfo { get; set; } = "FedoraAgent";
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosRepressor;
         public override bool DisplayCustomItemMessages { get; set; } = false;

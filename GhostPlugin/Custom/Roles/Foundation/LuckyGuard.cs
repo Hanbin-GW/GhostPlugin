@@ -34,7 +34,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         // Token: 0x170000A5 RID: 165
         // (get) Token: 0x060001FB RID: 507 RVA: 0x0000B656 File Offset: 0x00009856
         // (set) Token: 0x060001FC RID: 508 RVA: 0x0000B65E File Offset: 0x0000985E
-        public override string Description { get; set; } = "행운이 당신을 도와줍니다..!";
+        public override string Description { get; set; } = "Luck will help you...!";
 
         // Token: 0x170000A6 RID: 166
         // (get) Token: 0x060001FD RID: 509 RVA: 0x0000B667 File Offset: 0x00009867

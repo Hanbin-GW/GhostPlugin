@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override uint Id { get; set; } = 42;
         public override int MaxHealth { get; set; } = 500;
         public override string Name { get; set; } = "<color=#FF0000>Ballistic SCP-049-2</color>";
-        public override string Description { get; set; } = "죽을시 자폭하는 좀비입니다.";
+        public override string Description { get; set; } = "It's a zombie who self-destructs himself when he dies.";
         public override string CustomInfo { get; set; } = "Ballistic SCP-049-2";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
         public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;

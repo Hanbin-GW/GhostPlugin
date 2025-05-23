@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
@@ -14,7 +16,7 @@ namespace GhostPlugin.Custom.Roles.Scientist
         public override uint Id { get; set; } = 1;
         public override int MaxHealth { get; set; } = 100;
         public override string Name { get; set; } = "<color=#ffd900>Senior Scientist</color>";
-        public override string Description { get; set; } = "SCP 제단의 총연구 책임자이며 대부분의 제단의 특수무기를 제작한사람입니다!";
+        public override string Description { get; set; } = "General research director of SCP Altar and the man who built most of the Altar's special weapons!";
         public override string CustomInfo { get; set; } = "Chief Scientist";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scientist;
         public StartTeam StartTeam { get; set; } = StartTeam.Scientist;
@@ -35,5 +37,15 @@ namespace GhostPlugin.Custom.Roles.Scientist
             ItemType.SCP268.ToString(),
             ItemType.SCP207.ToString(),
         };
+
+        protected override void SubscribeEvents()
+        {
+            base.SubscribeEvents();
+        }
+
+        protected override void UnsubscribeEvents()
+        {
+            base.UnsubscribeEvents();
+        }
     }
 }

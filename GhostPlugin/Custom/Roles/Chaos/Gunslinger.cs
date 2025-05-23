@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
+using GhostPlugin.Custom.Abilities.Active;
 
 namespace GhostPlugin.Custom.Roles.Chaos
 {
@@ -15,6 +16,11 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
         public int Chance { get; set; } = 90;
+
+        public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>()
+        {
+            new Overkill(),
+        };
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {

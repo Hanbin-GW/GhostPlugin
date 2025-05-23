@@ -19,7 +19,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override uint Id { get; set; } = 8;
         public override int MaxHealth { get; set; } = 1000;
         public override string Name { get; set; } = "<color=#ff3636>SCP 106 Tanker</color>";
-        public override string Description { get; set; } = "구버전 106 입니다.\n스토킹이 불가능한 대신, 데미지 75% 저항이 있습니다!\n`.g` 명령어를 입력하여 일시적으로 무적이 될수 있습니다! ";
+        public override string Description { get; set; } = "Old version 106.\nInstead of stalking impossible, there is damage 75% resistance! ";
         public override string CustomInfo { get; set; } = "SCP 106 Tanker";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp106;
         public StartTeam StartTeam { get; set; } = StartTeam.Scp;

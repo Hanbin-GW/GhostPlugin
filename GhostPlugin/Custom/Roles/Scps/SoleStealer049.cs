@@ -21,7 +21,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override uint Id { get; set; } = 10;
         public override int MaxHealth { get; set; } = 2000;
         public override string Name { get; set; } = "<color=#aa2bff>Scp049 The Soul Stealer</color>";
-        public override string Description { get; set; } = "SCP049 의 각성버전입니다.\n다양한 명령어가 있으며, 다양한 SCP 능력을 이용하여 시설을 파괴하십시요.";
+        public override string Description { get; set; } = "This is the wake-up version of SCP049.\nThere are various abilities, and use various SCP abilities to destroy facilities.";
         public override string CustomInfo { get; set; } = "The Soul Stealer";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp049;
         public StartTeam StartTeam { get; set; } = StartTeam.Scp;

@@ -13,8 +13,8 @@ namespace GhostPlugin.Custom.Roles.Chaos
     {
         public override uint Id { get; set; } = 19;
         public override int MaxHealth { get; set; } = 120;
-        public override string Name { get; set; } = "Strategist (전략가)";
-        public override string Description { get; set; } = "전투에서 다양한 전략으로 많은 전장을 승리로 이끌고온 혼돈의 반란 대장입니다!";
+        public override string Name { get; set; } = "Strategist";
+        public override string Description { get; set; } = "He's the leader of a chaotic rebellion that has led many battlefields to victory with various strategies in combat!";
         public override string CustomInfo { get; set; } = "Strategist";
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosMarauder;
@@ -36,8 +36,8 @@ namespace GhostPlugin.Custom.Roles.Chaos
         {
             new EnhancedGoggleVision()
             {
-                Name = "향상된 고글 비전",
-                Description = "일시적으로 벽넘어의 적을 볼수 있습니다!"
+                Name = "Enhanced Goggle Vision",
+                Description = "You can temporarily see the enemy over the wall!"
             },
         };
 

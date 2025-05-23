@@ -13,7 +13,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override uint Id { get; set; } = 13;
         public override int MaxHealth { get; set; } = 2400;
         public override string Name { get; set; } = "049 Apocalipse";
-        public override string Description { get; set; } = "평행세계 에서 온 세상을 멸망시킨 049 입니다.\n모든 공격이 즉사이며 적을 죽이고 나서 3초뒤에 좀비로 부활시킵니다.";
+        public override string Description { get; set; } = "It's 049, which destroyed the whole world from the parallel world.\\nEvery attack is instantaneous, kills the enemy, and then resurrects him as a zombie three seconds later.";
         public override string CustomInfo { get; set; } = "SCP 049";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp049;
 

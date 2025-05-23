@@ -19,7 +19,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override string Name { get; set; } = "<color=green>Sleeper Agent</color>";
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public override string Description { get; set; } =
-            "제단에 D계급으로 침투한 혼돈의 반란 스파이 요원입니다.\n당신의 정체를 숨기시고, 제단은 몰락시키십시요!\n키카드를 떨어트려 외형을 변할수 있습니다!";
+            "Chaotic Rebellion spy who infiltrated the altar as a Class D.\nHide your identity, and bring down the altar!\nYou can change the appearance by dropping the key card!";
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {
@@ -59,7 +59,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
             {
                 if (Targetplayer.Role == RoleTypeId.FacilityGuard)
                 {
-                    Targetplayer.Broadcast(5,"<size=30>저위험군에 <color=red>카오스 정보요원</color>이 있다 뒤를 조심하도록!</size>");
+                    Targetplayer.Broadcast(5,"<size=30><color=red>Chaos Intelligence Agent</color> in the LCZ. Watch your back!</size>");
                 }
             }
             base.RoleAdded(player);
@@ -95,14 +95,14 @@ namespace GhostPlugin.Custom.Roles.Chaos
             if (Check(ev.Player))
             {
                 ev.Target.EnableEffect<Slowness>(duration: 1.5f, intensity: 80);
-                Timing.CallDelayed(1.5f, () =>ev.Target.Kill("한순간의 여러 타박상과 칼에 찔려서 과다출혈로 사망하셧습니다"));
-                ev.Target.Broadcast(5, "<color=red>당신은 반란요원한테 처형당했습니다.</color>");
+                Timing.CallDelayed(1.5f, () =>ev.Target.Kill("He died of excessive bleeding from multiple bruises and stab wounds in an instant"));
+                ev.Target.Broadcast(5, "<color=red>You were executed by Sleeper Agent.</color>");
                 ev.Player.ChangeAppearance(ev.Target.Role,true);
             }
 
             if (Check(ev.Target))
             {
-                ev.Target.ShowHint("<color=red><b>너한테는 투항이라는 선택지는 없다...</b></color>",10);
+                ev.Target.ShowHint("<color=red><b>You don't have a choice of surrender...</b></color>",10);
                 ev.Target.Vaporize();
             }
         }

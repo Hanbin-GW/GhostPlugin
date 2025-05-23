@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override uint Id { get; set; } = 7;
         public override int MaxHealth { get; set; } = 110;
         public override string Name { get; set; } = "<color=#58b09d>Ninja</color>";
-        public override string Description { get; set; } = "조용히 움직이는 닌자입니다. 연막탄과 특수 리볼버가 제공되었습니다.";
+        public override string Description { get; set; } = "It's a ninja that moves quietly. Smoke bombs and special revolvers are provided.";
         public override string CustomInfo { get; set; } = "Ninja";
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosRepressor;
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;

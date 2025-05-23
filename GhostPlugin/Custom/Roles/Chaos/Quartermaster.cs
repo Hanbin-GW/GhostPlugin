@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override uint Id { get; set; } = 20;
         public override int MaxHealth { get; set; } = 100;
         public override string Name { get; set; } = "Quartermaster (보급관)";
-        public override string Description { get; set; } = "혼돈의반란 보급병입니다!\n항상뒤에서 대원들의 탄약을 보충해줍니다!";
+        public override string Description { get; set; } = "Rebellion of chaos supply!\n Always replenish the ammunition of the crew from behind!";
         public override string CustomInfo { get; set; } = "Quartermaster";
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
         public int Chance { get; set; } = 80;
@@ -36,8 +36,8 @@ namespace GhostPlugin.Custom.Roles.Chaos
         {
             new Resupply()
             {
-                Name = "보충",
-                Description = "수류탄과 섬광탄을 재보충해줍니다!",
+                Name = "Resupply",
+                Description = "Resupply the Grenades!",
             },
         };
         public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
