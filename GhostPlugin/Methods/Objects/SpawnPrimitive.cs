@@ -1,3 +1,4 @@
+using System;
 using AdminToys;
 using Exiled.API.Features;
 using Exiled.API.Features.Toys;
@@ -53,7 +54,7 @@ namespace GhostPlugin.Methods.Objects
             }
         }
         
-        public static void spawnPrimitivesNoGravity(Player player,int count,Quaternion rotation, Vector3 laserPos, Color laserColor,int damage, int velocity)
+        public static void spawnPrimitivesNoGravity(Player player,int count,Quaternion rotation, Vector3 laserPos, Color laserColor,int damage, int velocity, Type componentType = null)
         {
             Vector3 scale = new Vector3(0.05f, 0.05f, 0.05f);
             for (int i = 0; i < count; i++)
@@ -62,8 +63,22 @@ namespace GhostPlugin.Methods.Objects
                     PrimitiveFlags.Visible | PrimitiveFlags.Collidable, laserPos,
                     rotation.eulerAngles,
                     scale, true, laserColor);
-                var bulletcollision = pt.GameObject.AddComponent<FireBulletCollision>();
-                bulletcollision.Initialize(damage, player);
+                /*var bulletcollision = pt.GameObject.AddComponent<FireBulletCollision>();
+                bulletcollision.Initialize(damage, player);*/
+                
+                var comp = pt.GameObject.AddComponent(componentType);
+                if (componentType != null)
+                {
+                    if (componentType == typeof(FireBulletCollision))
+                        ((FireBulletCollision)comp).Initialize(damage, player);
+                    else if (componentType == typeof(PoisonBulletCollision))
+                        ((PoisonBulletCollision)comp).Initialize(damage, player);
+                }
+                else
+                {
+                    var bulletComp = pt.GameObject.AddComponent<BulletCollision>();
+                    bulletComp.Initialize(damage, player);
+                }
                 var rb = pt.GameObject.AddComponent<Rigidbody>();
                 rb.isKinematic = false;
                 rb.useGravity = true;
