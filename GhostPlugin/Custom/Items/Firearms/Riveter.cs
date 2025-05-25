@@ -27,12 +27,13 @@ namespace GhostPlugin.Custom.Items.Firearms
             {
                 ev.CanHurt = false;
                 Color glowColor = new Color(1.0f, 0.0f, 0.0f, 0.1f) * 50f;
-                var direction = ev.Position - ev.Player.Position;
-                var pos = ev.Firearm.Base.transform.position + ev.Player.GameObject.transform.forward * 1.5f;
+                //var direction = ev.Position - ev.Player.Position;
+                var direction = ev.Player.CameraTransform.forward.normalized;
+                var laserPos = ev.Player.CameraTransform.position + direction * 0.5f;
                 //var laserPos = ev.Player.Position + direction * 0.25f;
                 var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
                 //PlasmaCube.SpawmSparkBuckshot(ev.Player, ev.Firearm.Base.transform.position,13,15f,0.05f,glowColor); 
-                SpawnPrimitive.spawnPrimitives(ev.Player, 10, rotation, pos, glowColor,5,20);
+                SpawnPrimitive.spawnPrimitives(ev.Player, 10, rotation, laserPos, glowColor,5,20);
             }
             base.OnShot(ev);
         }
