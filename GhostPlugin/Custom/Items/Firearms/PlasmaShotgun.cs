@@ -55,8 +55,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             {
                 ev.CanHurt = false;
                 Color glowColor = new Color(0f, 1f, 1f, 0.1f) * 50;
-                var direction = ev.Position - ev.Player.Position;
-                var laserPos = ev.Player.Position + direction * 0.5f;
+                var direction = ev.Player.CameraTransform.forward.normalized;
+                var laserPos = ev.Player.CameraTransform.position + direction * 0.5f;
                 var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
                 SpawnPrimitive.spawnPrimitive(ev.Player, PrimitiveType.Cube, rotation, laserPos, glowColor,25);
             }
