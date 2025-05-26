@@ -21,7 +21,7 @@ namespace GhostPlugin.Methods.Administration
                 player.Broadcast(duration, formattedMessage);
             }
             
-            return $"메시지가 모든 유저한테 전송되었습니다: {formattedMessage}";
+            return $"the message was sent by whold user: {formattedMessage}";
         }
     }
 }
