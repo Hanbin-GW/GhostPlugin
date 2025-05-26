@@ -18,7 +18,7 @@ namespace GhostPlugin.Methods.Music
             
             globalPlayer.AddClip(filepath, volume: Plugin.Instance.Config.MusicConfig.Volume, loop: Plugin.Instance.Config.MusicConfig.Loop, destroyOnEnd: false);
             Log.Send("main song playing",LogLevel.Info,ConsoleColor.DarkRed);
-            Log.Info($"스피커에서 음악 재생 중: {filepath}, 위치: {pos}");
+            Log.Info($"music playing in speaker: {filepath}, position: {pos}");
         }
         
         public void StopMusicSpeaker(int id)
