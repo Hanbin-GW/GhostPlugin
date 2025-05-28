@@ -51,7 +51,12 @@ namespace GhostPlugin.Custom.Items.Grenades
                 try
                 {
                     Log.Debug($"Explosion {i} at {position}");
-                    ((ExplosiveGrenade)Item.Create(ItemType.GrenadeHE)).SpawnActive(position, owner:player);
+                    var grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
+                    
+                    grenade.FuseTime = 0.4f; // 거의 즉시 터지도록 설정
+                    grenade.SpawnActive(position, owner: player);
+                    
+                    //((ExplosiveGrenade)Item.Create(ItemType.GrenadeHE)).SpawnActive(position, owner:player);
                 }
                 catch (Exception ex)
                 {
