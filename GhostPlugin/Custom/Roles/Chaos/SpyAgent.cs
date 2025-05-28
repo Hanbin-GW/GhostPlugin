@@ -19,12 +19,13 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override string Name { get; set; } = "<color=green>Sleeper Agent</color>";
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public override string Description { get; set; } =
-            "제단에 D계급으로 침투한 혼돈의 반란 스파이 요원입니다.\n당신의 정체를 숨기시고, 제단은 몰락시키십시요!\n키카드를 떨어트려 외형을 변할수 있습니다!";
+            "제단에 D계급으로 침투한 혼돈의 반란 스파이 요원입니다.\n당신의 정체를 숨기시고, 제단은 몰락시키십시요!\n키카드를 떨어트려 외형을 변할수 있습니다!\n시채 운반을 하여 살인을 음폐하십시요!";
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {
             ItemType.KeycardScientist.ToString(),
             ItemType.KeycardJanitor.ToString(),
+            ItemType.DebugRagdollMover.ToString()
         }; 
         public override string CustomInfo
         {
@@ -96,7 +97,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
             {
                 ev.Target.EnableEffect<Slowness>(duration: 1.5f, intensity: 80);
                 Timing.CallDelayed(1.5f, () =>ev.Target.Kill("한순간의 여러 타박상과 칼에 찔려서 과다출혈로 사망하셧습니다"));
-                ev.Target.Broadcast(5, "<color=red>당신은 반란요원한테 처형당했습니다.</color>");
+                ev.Target.Broadcast(5, "<color=red><size=32>당신은 반란요원한테 사살당했습니다.</size></color>");
                 ev.Player.ChangeAppearance(ev.Target.Role,true);
             }
 
