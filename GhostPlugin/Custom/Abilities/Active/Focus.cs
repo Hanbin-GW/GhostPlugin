@@ -6,7 +6,7 @@ using Exiled.CustomRoles.API.Features;
 namespace GhostPlugin.Custom.Abilities.Active
 {
     [CustomAbility]
-    public class Focous : ActiveAbility
+    public class Focus : ActiveAbility
     {
         public override string Name { get; set; } = "Focous";
         public override string Description { get; set; } = "Get a SCP1853 Effect for 20 secounds.";

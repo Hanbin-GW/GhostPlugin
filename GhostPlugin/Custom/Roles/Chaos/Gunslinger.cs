@@ -28,7 +28,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
                 Name = "오버킬",
                 Description = "능력 활성화시, 랜덤으로 총기를 획득합니다! (쿨다운 45초)",
             },
-            new Focous()
+            new Focus()
             {
                 Name = "집중",
                 Description = "사용시 극단의 SCP1853 이 적용됩니다!",
