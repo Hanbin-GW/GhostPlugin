@@ -27,7 +27,6 @@ namespace GhostPlugin.EventHandlers
             MapEvents.GeneratorActivating += OnActivateGenerator;
             MapEvents.AnnouncingDecontamination += OnAnnouncingDecontemination;
             MapEvents.Decontaminating += OnDecontaminating;
-            MapEvents.GeneratorActivating += OnActivateGenerator;
             Exiled.Events.Handlers.Warhead.Starting += OnWarheadStarting;
             Exiled.Events.Handlers.Warhead.Stopping += OnWarheadStopped;
             MapEvents.AnnouncingScpTermination += OnScpDied;
@@ -47,7 +46,6 @@ namespace GhostPlugin.EventHandlers
             MapEvents.GeneratorActivating -= OnActivateGenerator;
             MapEvents.AnnouncingDecontamination -= OnAnnouncingDecontemination;
             MapEvents.Decontaminating -= OnDecontaminating;
-            MapEvents.GeneratorActivating -= OnActivateGenerator;
             Exiled.Events.Handlers.Warhead.Starting -= OnWarheadStarting;
             Exiled.Events.Handlers.Warhead.Stopping -= OnWarheadStopped;
             MapEvents.AnnouncingScpTermination -= OnScpDied;
