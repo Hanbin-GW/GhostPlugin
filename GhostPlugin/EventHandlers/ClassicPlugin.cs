@@ -24,7 +24,6 @@ namespace GhostPlugin.EventHandlers
             Exiled.Events.Handlers.Scp096.AddingTarget += OnLookingAtScp096;
             Exiled.Events.Handlers.Scp096.Enraging += OnEnraging;
             Exiled.Events.Handlers.Server.EndingRound += OnRoundEnded;
-            MapEvents.GeneratorActivating += OnActivateGenerator;
             MapEvents.AnnouncingDecontamination += OnAnnouncingDecontemination;
             MapEvents.Decontaminating += OnDecontaminating;
             MapEvents.GeneratorActivating += OnActivateGenerator;
@@ -44,7 +43,6 @@ namespace GhostPlugin.EventHandlers
             Exiled.Events.Handlers.Scp096.AddingTarget -= OnLookingAtScp096;
             Exiled.Events.Handlers.Scp096.Enraging -= OnEnraging;
             Exiled.Events.Handlers.Server.EndingRound -= OnRoundEnded;
-            MapEvents.GeneratorActivating -= OnActivateGenerator;
             MapEvents.AnnouncingDecontamination -= OnAnnouncingDecontemination;
             MapEvents.Decontaminating -= OnDecontaminating;
             MapEvents.GeneratorActivating -= OnActivateGenerator;
