@@ -17,7 +17,7 @@ namespace GhostPlugin.Custom.Items.Grenades
         public override uint Id { get; set; } = 9;
         public override string Name { get; set; } = "<color=#ff4d5b>집속탄</color>";
         public override string Description { get; set; } = "연쇄폭발하는 수류탄 입니다";
-        public override float Weight { get; set; } = 5f;
+        public override float Weight { get; set; } = 8f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override bool ExplodeOnCollision { get; set; } = false;
         public override float FuseTime { get; set; } = 4f;
@@ -46,14 +46,14 @@ namespace GhostPlugin.Custom.Items.Grenades
 
         private IEnumerator<float> MyCoroutine(Vector3 position, Player player)
         {
-            for (int i = 1; i <= 5; i++)
+            for (int i = 1; i < 5; i++)
             {
                 try
                 {
                     Log.Debug($"Explosion {i} at {position}");
                     var grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
                     
-                    grenade.FuseTime = 0.4f; // 거의 즉시 터지도록 설정
+                    grenade.FuseTime = 0.3f; // 거의 즉시 터지도록 설정
                     grenade.SpawnActive(position, owner: player);
                     
                     //((ExplosiveGrenade)Item.Create(ItemType.GrenadeHE)).SpawnActive(position, owner:player);
@@ -62,7 +62,7 @@ namespace GhostPlugin.Custom.Items.Grenades
                 {
                     Log.Error($"Failed to create explosion: {ex}");
                 }
-                yield return Timing.WaitForSeconds(1);
+                yield return Timing.WaitForSeconds(0.5f);
             }
         }
     }
