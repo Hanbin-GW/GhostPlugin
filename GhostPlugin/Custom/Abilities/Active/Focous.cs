@@ -8,7 +8,7 @@ namespace GhostPlugin.Custom.Abilities.Active
     [CustomAbility]
     public class Focous : ActiveAbility
     {
-        public override string Name { get; set; } = "Focous";
+        public override string Name { get; set; } = "Focus";
         public override string Description { get; set; } = "Get a SCP1853 Effect for 20 secounds.";
         public override float Duration { get; set; } = 20;
         public override float Cooldown { get; set; } = 100;
