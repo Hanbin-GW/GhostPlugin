@@ -25,7 +25,6 @@ namespace GhostPlugin.Custom.Items.Grenades
 
         private void OnExplodingGrenade(ExplodingGrenadeEventArgs ev)
         {
-            // 폭발이 일어날 위치를 기준으로 추가 폭발 생성
             Vector3 explosionPosition = ev.Projectile.Position;
             if (Check(ev.Projectile))
             {
@@ -51,7 +50,10 @@ namespace GhostPlugin.Custom.Items.Grenades
                 try
                 {
                     Log.Debug($"Explosion {i} at {position}");
-                    ((ExplosiveGrenade)Item.Create(ItemType.GrenadeHE)).SpawnActive(position, owner:player);
+                    var grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
+                    
+                    grenade.FuseTime = 0.3f;
+                    grenade.SpawnActive(position, owner: player);
                 }
                 catch (Exception ex)
                 {
