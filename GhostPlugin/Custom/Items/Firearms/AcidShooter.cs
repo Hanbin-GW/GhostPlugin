@@ -54,7 +54,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                 var laserPos = ev.Player.Position + direction * 0.25f;
                 var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
                 //PlasmaCube.SpawmSparkBuckshot(ev.Player, ev.Firearm.Base.transform.position,13,15f,0.05f,glowColor); 
-                SpawnPrimitive.spawnPrimitivesNoGravity(ev.Player, 10, rotation, laserPos, glowColor,5,25, typeof(PoisonBulletCollision));
+                SpawnPrimitive.spawnPrimitivesNoGravity(ev.Player, 10, rotation, laserPos, glowColor,2,25, typeof(PoisonBulletCollision));
             }
             base.OnShot(ev);
         }
