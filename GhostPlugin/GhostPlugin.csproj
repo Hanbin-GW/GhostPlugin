@@ -161,6 +161,7 @@
         <Compile Include="Commands\RoleInfo.cs" />
         <Compile Include="Commands\SendBroadcast.cs" />
         <Compile Include="Commands\SetAllItemGravity.cs" />
+        <Compile Include="Commands\SpawnText.cs" />
         <Compile Include="Configs\Config.cs.old" />
         <Compile Include="Configs\CustomConfigs\CustomItemsConfig.cs" />
         <Compile Include="Configs\CustomConfigs\CustomRolesAbilitiesConfig.cs" />
@@ -283,6 +284,7 @@
         <Compile Include="Methods\Objects\SpawnDoorType.cs" />
         <Compile Include="Methods\Objects\SpawnParticleSpark.cs" />
         <Compile Include="Methods\Objects\SpawnPrimitive.cs" />
+        <Compile Include="Methods\TextToy\SpawnTextToy.cs" />
         <Compile Include="MyCustomKeyBind.cs" />
         <Compile Include="Patches\Scp106Patch.cs" />
         <Compile Include="Patches\Scp939Patch_2.cs" />
