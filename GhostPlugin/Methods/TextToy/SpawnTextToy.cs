@@ -14,7 +14,7 @@ namespace GhostPlugin.Methods.TextToy
                 if (value.TryGetComponent<AdminToys.TextToy>(out var component))
                 {
                     textToy = UnityEngine.Object.Instantiate(component);
-                    textToy.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0]));
+                    //textToy.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0]));
                     break;
                 }
             }
@@ -25,6 +25,9 @@ namespace GhostPlugin.Methods.TextToy
                 textToy.Network_textFormat = format;
                 textToy.Position = position;
                 textToy.NetworkPosition = position;
+                textToy.enabled = true;
+                NetworkServer.Spawn(textToy.gameObject);
+                textToy.OnSpawned(player.ReferenceHub, new ArraySegment<string>(Array.Empty<string>()));
             }
         }
     }
