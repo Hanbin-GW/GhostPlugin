@@ -31,7 +31,7 @@ namespace GhostPlugin.Configs
         [YamlIgnore] 
         public Scp914Config Scp914Config { get; set; } = null!;
 
-        public bool EnableHarmony { get; set; } = true;
+        public bool EnableHarmony { get; set; } = false;
         public string ConfigFolder { get; set; } =
             Path.Combine(Paths.Configs, "GhostServerPluginPackage");
         public string CustomItemConfigFile { get; set; } = "CustomItems.yml";

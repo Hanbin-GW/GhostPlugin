@@ -11,7 +11,7 @@ using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
 using GhostPlugin.Configs;
 using GhostPlugin.EventHandlers;
-using HarmonyLib;
+//using HarmonyLib;
 using ProjectMER.Features.Objects;
 using UserSettings.ServerSpecific;
 using Server = Exiled.Events.Handlers.Server;
@@ -23,7 +23,7 @@ namespace GhostPlugin
         public static Plugin Instance;
         public List<Player> StopRagdollList { get; } = new ();
         public Dictionary<StartTeam, List<ICustomRole>> Roles { get; } = new();
-        private Harmony Harmony { get; set; }
+        //private Harmony Harmony { get; set; }
         /// <summary>
         /// Speakers List
         /// </summary>
@@ -201,12 +201,12 @@ namespace GhostPlugin
             //music event
             if (Config.MusicConfig.OnEnabled) {MusicEventHandlers.RegisterEvents();}
 
-            if (Instance.Config.EnableHarmony)
+            /*if (Instance.Config.EnableHarmony)
             {
                 Harmony = new Harmony($"[GhostPlugin] Hanbin-GW.GhostPlugin.{DateTime.Now.Ticks}");
                 Harmony.PatchAll();
                 Log.Send($"{Harmony.Id} is enabled", LogLevel.Info, ConsoleColor.DarkYellow);
-            }
+            }*/
             
             //SSSS
             /*if (Config.SsssConfig.IsEnabled == true)
@@ -283,7 +283,7 @@ namespace GhostPlugin
                 CustomRoleHandler.UnregisterEvents();
             }
             //Harmony
-            Harmony.UnpatchAll();
+            //Harmony.UnpatchAll();
             
             //Legacy SSSS
             /*if (Config.ServerEventsMasterConfig.SsssConfig.IsEnabled)
