@@ -1,7 +1,10 @@
 using CustomPlayerEffects;
 using Exiled.API.Enums;
 using Exiled.API.Features;
+using PlayerStatsSystem;
 using UnityEngine;
+using PlayerStatsSystem;
+
 
 namespace GhostPlugin.Custom.Items.MonoBehavior
 {
@@ -26,7 +29,8 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                     return;
                 Log.Debug($"Hit Player: {target.Nickname} - Damage: {_damage}");
                 target.EnableEffect<Burned>(duration: 5);
-                target.Hurt(_damage, DamageType.E11Sr, _attacker.Nickname);
+                //target.Hurt(_damage, DamageType.E11Sr, _attacker.Nickname);
+                target.Hurt(new CustomReasonDamageHandler( "불탄 총알", _damage));
                 _attacker.ShowHitMarker();
                 Destroy(gameObject, 3f);
             }
