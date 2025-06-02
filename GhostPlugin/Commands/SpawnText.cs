@@ -16,7 +16,7 @@ namespace GhostPlugin.Commands
                 response = "플레이어를 찾을 수 없습니다.";
                 return false;
             }
-            SpawnTextToy.SpawnText(player, player.Position, "test");
+            SpawnTextToy.SpawnText(player, player.Position, "Content Restored", 60);
             response = "Spawned";
             return true;
         }

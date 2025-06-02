@@ -7,6 +7,8 @@ using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp096;
 using Exiled.Events.EventArgs.Server;
 using Exiled.Events.EventArgs.Warhead;
+using GhostPlugin.Methods.Objects;
+using GhostPlugin.Methods.TextToy;
 using MEC;
 using PlayerRoles;
 using ServerEvents = Exiled.Events.Handlers.Server;
@@ -36,6 +38,7 @@ namespace GhostPlugin.EventHandlers
             ServerEvents.RestartingRound += OnRestartingRound;
             ServerEvents.RoundEnded += OnRoundEnded;
             PlayerEvents.Left += OnPlayerLeft;
+            PlayerEvents.Died += OnDied;
         }
 
         public static void UnregisterEvents()
@@ -55,6 +58,7 @@ namespace GhostPlugin.EventHandlers
             ServerEvents.RestartingRound -= OnRestartingRound;
             ServerEvents.RoundEnded -= OnRoundEnded;
             PlayerEvents.Left -= OnPlayerLeft;
+            PlayerEvents.Died -= OnDied;
         }
 
         private static void OnRoundEnded(RoundEndedEventArgs ev)
@@ -141,6 +145,23 @@ namespace GhostPlugin.EventHandlers
                         Log.SendRaw($"[ID] - {ev.Player.UserId} 이 탈주하였습니다...",ConsoleColor.DarkRed);
                     }
                     break;
+            }
+        }
+
+        private static void OnDied(DiedEventArgs ev)
+        {
+            if (ev.Player == null)
+                return;
+            if (ev.Attacker.Group == null ||
+                !Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Group
+                    .BadgeText))
+                return;
+            else if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Group
+                        .BadgeText))
+            {
+                ev.Player.Vaporize();
+                SpawnPrimitiveToy.Spawn(ev.Player, 15);
+                SpawnTextToy.SpawnText(ev.Player, ev.Player.Position,"Content Deleted",15f);
             }
         }
         private static void OnScpDied(AnnouncingScpTerminationEventArgs ev)

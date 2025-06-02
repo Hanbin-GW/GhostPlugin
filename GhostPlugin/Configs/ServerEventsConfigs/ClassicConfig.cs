@@ -66,5 +66,11 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
         public string AnnouncmentMessage { get; set; } =
             "<size=38><b><color=#6900ff>📣공</color><color=#7919ff>지</color><color=#852eff>사</color><color=#8f40ff>항📣</color></b></size>\n<size=34>오늘의 공시사항은 없습니다!\n즐거운 하루 되십시오!</size>";
 
+        public List<string> DonatorList { get; set; } = new List<string>()
+        {
+            "서버 관리자",
+            "서버 운영자",
+            "[Level4] - 후원자"
+        };
     }
 }

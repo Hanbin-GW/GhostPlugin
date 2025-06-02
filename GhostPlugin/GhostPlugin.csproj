@@ -284,6 +284,7 @@
         <Compile Include="Methods\Objects\SpawnDoorType.cs" />
         <Compile Include="Methods\Objects\SpawnParticleSpark.cs" />
         <Compile Include="Methods\Objects\SpawnPrimitive.cs" />
+        <Compile Include="Methods\Objects\SpawnPrimitiveToy.cs" />
         <Compile Include="Methods\TextToy\SpawnTextToy.cs" />
         <Compile Include="MyCustomKeyBind.cs" />
         <Compile Include="Patches\Scp106Patch.cs" />

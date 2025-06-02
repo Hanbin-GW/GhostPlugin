@@ -1,19 +1,22 @@
 using System;
 using Exiled.API.Features;
+using MEC;
 using Mirror;
 using UnityEngine;
+using Object = UnityEngine.Object;
+
 namespace GhostPlugin.Methods.TextToy
 {
     public class SpawnTextToy
     {
-        public static void SpawnText(Player player, Vector3 position, string format)
+        public static void SpawnText(Player player, Vector3 position, string format, float duration)
         {
             AdminToys.TextToy textToy = null;
             foreach (GameObject value in NetworkClient.prefabs.Values)
             {
                 if (value.TryGetComponent<AdminToys.TextToy>(out var component))
                 {
-                    textToy = UnityEngine.Object.Instantiate(component);
+                    textToy = Object.Instantiate(component);
                     //textToy.OnSpawned(player.ReferenceHub, new ArraySegment<string>(new string[0]));
                     break;
                 }
@@ -28,6 +31,7 @@ namespace GhostPlugin.Methods.TextToy
                 textToy.enabled = true;
                 NetworkServer.Spawn(textToy.gameObject);
                 textToy.OnSpawned(player.ReferenceHub, new ArraySegment<string>(Array.Empty<string>()));
+                Object.Destroy(textToy.gameObject, duration);
             }
         }
     }
