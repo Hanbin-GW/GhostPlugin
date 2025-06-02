@@ -17,8 +17,8 @@ namespace GhostPlugin.Custom.Roles.Scientist
         public override uint Id { get; set; } = 7;
         public override int MaxHealth { get; set; } = 100;
         public override string Name { get; set; } = "<color=#ffc2b0>O5 관리자</color>";
-        public override string Description { get; set; } = "당신은 O5 관리자입니다!";
-        //public override string Description { get; set; } = "당신은 O5 관리자입니다!\n시설을 탈출하여 강화부대(Reinforcements MTF)한테 구조 신호를 요청하십시요!!!!";
+        //public override string Description { get; set; } = "당신은 O5 관리자입니다!";
+        public override string Description { get; set; } = "당신은 O5 관리자입니다!\n시설을 탈출하여 강화부대(Reinforcements MTF)한테 구조 신호를 요청하십시요!!!!";
         public override string CustomInfo { get; set; } = "O5 Administrator";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scientist;
         public StartTeam StartTeam { get; set; } = StartTeam.Scientist;
