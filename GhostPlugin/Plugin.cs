@@ -121,6 +121,7 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.OverkillVests.Register();
                 Config.CustomItemsConfig.MachineGuns.Register();
                 Config.CustomItemsConfig.Riveters.Register();
+                Config.CustomItemsConfig.LaserGuns.Register();
             }
             
             //CustomRole Config
