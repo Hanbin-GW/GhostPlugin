@@ -1,36 +1,63 @@
-GhostPlugin contains most of the plugins I have made into one big plugin in SCP SL.
-This is not a free plugin and it is Classfied Plugin in GhostServer
+GhostPlugin은 내가 제작한 대부분의 플러그인을 하나로 합친 SCP SL용 통합 플러그인입니다.
+이 플러그인은 무료가 아니며, GhostServer에서 **기밀(Classified) 플러그인**으로 분류됩니다.
 
 > [!IMPORTANT]
-> In releases, there is 2 versions available, `GhostPlugin-Eng.dll` and `GhostPlugin.dll`. If you are korean ServerOwner you should use a `GhostPlugin.dll` and if you are english user I strongly recommend to use `GhostPlugin-Eng.dll`
+> 릴리즈에는 두 가지 버전이 있습니다: `GhostPlugin-Eng.dll`과 `GhostPlugin.dll`.
+> **한국 서버 소유자**라면 `GhostPlugin.dll`을 사용해야 하며,
+> **영문 유저**라면 `GhostPlugin-Eng.dll`을 사용하는 것을 강력히 추천합니다.
 
 ---
 
-# Plugin List:
+# 포함된 플러그인 목록:
 
-CustomRole
+* CustomRole (커스텀 역할)
+* CustomItem (커스텀 아이템)
+* 서버 전용 설정 시스템
+* GhostPlugin의 커스텀 역할 능력
+* 블랙아웃 모드
+* 미니맵 (비활성화됨)
 
-CustomItem
+# GhostPlugin의 커스텀 역할
 
-Server Specific Setting System
+|      역할 이름     |  ID |                 능력                 |       스폰 방식       |                             설명                             |
+| :------------: | :-: | :--------------------------------: | :---------------: | :--------------------------------------------------------: |
+|     수석 과학자     |  1  |                 없음                 |     라운드 시작 즉시     |           SCP 제단의 총책임 연구원! 보유한 SCP 아이템을 이용해 탈출하라!          |
+|       팬텀       |  2  |           집중, 유령, 처치 시 회복          |   40% 확률로 카오스 스폰  |            카오스 반란군의 유령 저격팀. 수많은 MTF를 제거한 공포의 상징.           |
+|       피험자      |  3  |                능동 위장               |     라운드 시작 즉시     |               제단의 인체 실험으로 특별한 능력을 얻은 실험체...!               |
+|     엘리트 요원     |  4  |               처치 시 회복              |  80% 확률로 NTF로 리스폰 |                       MTF 소속의 엘리트 요원                       |
+|     페도라 요원     |  5  |                 없음                 |   60% 확률로 카오스 스폰  |                       산성 무기를 가진 특수 요원                      |
+|     죄수복 남자     |  6  |                 없음                 |  100% 확률로 NTF 스폰  |                  죄수복 담당관인 Agent Vetterang                  |
+|     O5 관리자     |  7  |                 없음                 |  10% 확률로 라운드 시작 시 |            O5 관리자! 시설에서 탈출하고 MTF에게 구조 신호를 보내세요!            |
+|   SCP 106 탱커   |  8  |                 없음                 |  50% 확률로 라운드 시작 시 |            구형 SCP-106. 추적 능력은 없지만 75% 피해 감소가 있음            |
+|     생화학 경비     |  9  |                 없음                 |     라운드 시작 즉시     |                         생화학 무장 경비원                         |
+| SCP 049 영혼 약탈자 |  10 | Speedy096, 폭발, SCP106, Scp457, 오버킬 |     기부자 전용 역할     |               각종 SCP 능력을 사용하는 SCP 049의 각성 버전               |
+|       거절됨      |  11 |                 거절됨                |        거절됨        |                                                            |
+|   MTF 폭파 전문가   |  12 |                 없음                 |   40% 확률로 MTF 스폰  |                       폭발물을 다루는 MTF 요원                      |
+|       거절됨      |  13 |                 거절됨                |        거절됨        |                                                            |
+|     행운의 경비     |  14 |                 없음                 |     라운드 시작 즉시     |                     행운이 당신을 도울 것입니다..!                     |
+|       총잡이      |  15 |                 오버킬                |    무기를 잘 다루는 요원   |                                                            |
+|       난쟁이      |  16 |                 없음                 |  D계급 인원의 아주 작은 버전 |                                                            |
+|     슬리퍼 요원     |  17 |              라운드 시작 즉시             |    적을 처치해 무장 해제   | D계급으로 위장한 카오스 스파이. 신분을 숨기고 제단을 무너뜨리세요! (키카드를 버리면 외형 변경 가능) |
+|       집행자      |  18 |               처치 시 강화              |   30% 확률로 MTF 스폰  |                  강력한 근접 공격과 방어력을 지닌 전투 전문가                 |
+|       전략가      |  19 |               향상된 시야               |   90% 확률로 카오스 스폰  |                다양한 전략으로 전장을 지배한 카오스 반란군의 지휘관               |
+|      병참장교      |  20 |                 없음                 |   80% 확률로 카오스 스폰  |                   탄약을 지속적으로 보급하는 후방 지원 병력                  |
+|    EOD 좀비 병사   |  21 |                폭탄 저항               |    SCP049 부활 전용   |                      폭발에 저항력을 가진 좀비 병사                     |
+|     중무장 카오스    |  22 |                 없음                 |   35% 확률로 카오스 스폰  |                       매우 중무장한 카오스 반란군                      |
+|  탄도 SCP-049-2  |  42 |                 자폭                 | 80% 확률로 SCP049 부활 |                        사망 시 자폭하는 좀비                        |
+|  난쟁이 SCP-049-2 |  43 |                 없음                 | 75% 확률로 SCP049 부활 |                         아주 작은 좀비 버전                        |
 
-GhostPlugin's  CustomRoles Abilities
+### 증원군
 
-Blackout Mode
+|   역할 이름  |  ID |
+| :------: | :-: |
+| 대형 요원 증원 |  57 |
+|   증원 요원  |  58 |
+|  증원 지휘관  |  59 |
+|   C-요원   |  61 |
+|  C-특수요원  |  62 |
+|   C-지휘관  |  63 |
+| 뱀의 손 감시관 |  71 |
+| 뱀의 손 수호자 |  72 |
+|  뱀의 손 병사 |  73 |
 
-Minimap (Disabled)
-
-# GhostPlugin's CustomRole
-
-|    RoleName    | id |               Abilities                |            Spawn Type             |                                                    Description                                                    |
-|:--------------:|:--:|:--------------------------------------:|:---------------------------------:|:-----------------------------------------------------------------------------------------------------------------:|
-|Senior Scientist| 1  |                  None                  |  Immediately when a round begins  |                    General Research Director of SCP Altar! Escape using the SCP Item you have!                    |
-|Phantom|2|        Focus, Ghost, HealOnKill        |     40% chance to Chaos Spawn     | Ghost Sniper Team of Chaos Rebellion. Elite agent who shot and killed many MTFs, symbol of the fear of the altar. |
-|Test Subject|3|               ActiveCamo               | Immediately when a round begins	  |                  You have some special ability that has been tested on the altar's human body..!                  |
-|Elite Agent|4|               HealOnKill               |        Respawn in NTF 80%         |                                            an elite member of the MTF                                             |
-|FedoraAgent|5|                  None                  |   60% chance of Spawning Chaos    |                                              You have a Acid Weapon                                               |
-|Jailbird Man|6|                  None                  |    100% chance to Spawning NTF    |                           You are an Agent Vetterang who takes care of J.B.D. very well                           |
-|O5Administrator|7|                  None                  |     10% on when a round begin     |          You are an O5 administrator!Escape the facility and ask Reinforcements MTF for a rescue signal!          |
-|SCP 106 Tanker|8|                  None                  |   50% Chance When a round begin   |                 Old version 106, you cannot use stalk ability but you have 75% damage reduction!                  |
-|Biochemist Guard|9|                  None                  |  Immediately when a round begins  |A security guard armed with biochemical weapons                                  |
-|Scp049 The Soul Stealer|10| Speedy096, Explotion, SCP106, Scp457, Overkill| Only Donator Can Access This role |This is the awakening version of SCP049. It has a variety of capabilities, and use a variety of SCP capabilities to destroy facilities|
+---
