@@ -38,7 +38,7 @@ namespace GhostPlugin.EventHandlers
             ServerEvents.RestartingRound += OnRestartingRound;
             ServerEvents.RoundEnded += OnRoundEnded;
             PlayerEvents.Left += OnPlayerLeft;
-            PlayerEvents.Died += OnDied;
+            PlayerEvents.Dying += OnDying;
         }
 
         public static void UnregisterEvents()
@@ -58,7 +58,7 @@ namespace GhostPlugin.EventHandlers
             ServerEvents.RestartingRound -= OnRestartingRound;
             ServerEvents.RoundEnded -= OnRoundEnded;
             PlayerEvents.Left -= OnPlayerLeft;
-            PlayerEvents.Died -= OnDied;
+            PlayerEvents.Dying -= OnDying;
         }
 
         private static void OnRoundEnded(RoundEndedEventArgs ev)
@@ -148,20 +148,20 @@ namespace GhostPlugin.EventHandlers
             }
         }
 
-        private static void OnDied(DiedEventArgs ev)
+        private static void OnDying(DyingEventArgs ev)
         {
             if (ev.Player == null)
                 return;
-            if (ev.Attacker.Group == null ||
-                !Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Group
-                    .BadgeText))
-                return;
-            else if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Group
+            if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Group
                         .BadgeText))
             {
-                ev.Player.Vaporize();
                 SpawnPrimitiveToy.Spawn(ev.Player, 15);
                 SpawnTextToy.SpawnText(ev.Player, ev.Player.Position,"Content Deleted",15f);
+                ev.Player.Vaporize();
+            }
+            else
+            {
+                return;
             }
         }
         private static void OnScpDied(AnnouncingScpTerminationEventArgs ev)
