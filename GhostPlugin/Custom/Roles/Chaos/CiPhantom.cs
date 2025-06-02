@@ -20,7 +20,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override uint Id { get; set; } = 2;
         public override int MaxHealth { get; set; } = 110;
         public override string Name { get; set; } = "<color=#53db78>Phantom</color>";
-        public override string Description { get; set; } = "카오스의 유령 저격팀입니다.";
+        public override string Description { get; set; } = "혼돈의 반란의 유령 저격팀입니다.\n 많은 MTF를 저격으로 사살한 엘리트 요원으로 제단의 공포의 상징 입니다.";
         public override string CustomInfo { get; set; } = "Phantom";
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosRifleman;
         public override bool DisplayCustomItemMessages { get; set; } = false;
