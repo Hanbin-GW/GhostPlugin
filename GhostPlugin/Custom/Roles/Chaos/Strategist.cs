@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override uint Id { get; set; } = 19;
         public override int MaxHealth { get; set; } = 120;
         public override string Name { get; set; } = "Strategist";
-        public override string Description { get; set; } = "He's the leader of a chaotic rebellion that has led many battlefields to victory with various strategies in combat!";
+        public override string Description { get; set; } = "The leader of a chaotic rebellion that has led many battlefields to victory with various strategies in combat!";
         public override string CustomInfo { get; set; } = "Strategist";
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosMarauder;

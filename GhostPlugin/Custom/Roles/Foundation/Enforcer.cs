@@ -25,7 +25,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
             Limit = 1,
         };
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
-        public int Chance { get; set; } = 70;
+        public int Chance { get; set; } = 30;
 
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>()
         {
