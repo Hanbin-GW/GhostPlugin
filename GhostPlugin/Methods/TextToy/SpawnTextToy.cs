@@ -1,6 +1,5 @@
 using System;
 using Exiled.API.Features;
-using MEC;
 using Mirror;
 using UnityEngine;
 using Object = UnityEngine.Object;
