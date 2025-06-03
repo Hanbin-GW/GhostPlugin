@@ -185,5 +185,15 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Riveter()
         };
+
+        public List<LaserGun> LaserGuns { get; private set; } = new List<LaserGun>()
+        {
+            new LaserGun()
+        };
+
+        public List<Ballista> Ballistae { get; private set; } = new List<Ballista>()
+        {
+            new Ballista()
+        };
     }
 }
