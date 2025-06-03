@@ -1,4 +1,5 @@
 using AdminToys;
+using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
@@ -34,6 +35,18 @@ namespace GhostPlugin.Custom.Items.Firearms
 
             ev.Player.CameraTransform.eulerAngles = currentRotation;*/
             Color glowColor = new Color(1f, 0.5f, 0f, 0.1f) * 50;
+            switch (ev.Player.LeadingTeam)
+            {
+                case (LeadingTeam.FacilityForces):
+                    glowColor = new Color(0f, 1f, 1f, 0.1f) * 50;
+                    break;
+                case (LeadingTeam.ChaosInsurgency):
+                    glowColor = new Color(1f, 0.5f, 0f, 0.1f) * 50;
+                    break;
+                case LeadingTeam.Anomalies:
+                    glowColor = new Color(1f, 0f, 0f, 0.1f) * 50;
+                    break;
+            }
             var direction = ev.Position - ev.Player.Position;
             var laserPos = ev.Player.Position + direction * 0.5f;
             var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);

@@ -9,18 +9,18 @@ using Exiled.Events.EventArgs.Player;
 using MEC;
 using UnityEngine;
 using Player = Exiled.Events.Handlers.Player;
-using Random = System.Random;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
-    [CustomItem(ItemType.GunE11SR)]
-    public class LaserGun : CustomWeapon
+    [CustomItem(ItemType.ParticleDisruptor)]
+    public class Ballista : CustomWeapon
     {
-        public override ItemType Type { get; set; } = ItemType.GunE11SR;
-        public override uint Id { get; set; } = 52;
-        public override string Name { get; set; } = "라스건";
-        public override string Description { get; set; } = "레이저를 발사합니다!";
-        public override float Weight { get; set; } = 2;
+        public override byte ClipSize { get; set; } = 10;
+        public override ItemType Type { get; set; } = ItemType.ParticleDisruptor;
+        public override uint Id { get; set; } = 53;
+        public override string Name { get; set; } = "Ballista";
+        public override string Description { get; set; } = "벽을 괜통하는 레이저 캐논입니다!";
+        public override float Weight { get; set; } = 10;
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
             Limit = 1,
@@ -29,12 +29,12 @@ namespace GhostPlugin.Custom.Items.Firearms
                 new()
                 {
                     Chance = 20,
-                    Location = SpawnLocationType.Inside106Secondary,
+                    Location = SpawnLocationType.InsideHidChamber,
                 },
                 new ()
                 {
                     Chance = 20,
-                    Location = SpawnLocationType.InsideHidChamber,
+                    Location = SpawnLocationType.Inside079Armory,
                 },
             },
         };
@@ -89,15 +89,16 @@ namespace GhostPlugin.Custom.Items.Firearms
 
             ev.CanHurt = false;
 
-            var color = GetRandomLaserColor();
-            var laserColor = new Color(color.Red, color.Green, color.Blue, 0.1f) * 50;
-            var direction = ev.Position - ev.Player.Position;
-            var r_direction = ev.Player.CameraTransform.forward;
-            var distance = direction.magnitude;
+            var laserColor = new Color(0f, 1f, 1f, 0.1f) * 50;
+            var origin = ev.Player.CameraTransform.position + ev.Player.CameraTransform.forward * 0.3f;
+            var direction = ev.Player.CameraTransform.forward;
+            float distance = 200f;
+
+            // 시각 효과 (무조건 직진으로 200 거리)
+            var laserPos = origin + direction * (distance * 0.5f);
+            var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90f, 0f, 0f);
+            
             var scale = new Vector3(LaserScale.x, distance * 0.5f, LaserScale.z);
-            var laserPos = ev.Player.Position + direction * 0.5f;
-            var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
-            var origin = ev.Player.CameraTransform.position;
 
             var laser = Primitive.Create(
                 PrimitiveType.Cylinder,
@@ -108,36 +109,22 @@ namespace GhostPlugin.Custom.Items.Firearms
                 true,
                 laserColor
             );
-            var hits = Physics.RaycastAll(origin, r_direction, 200f);
-            if (hits.Length > 0)
-            {
-                // 거리순 정렬
-                System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
-    
-                var firstHit = hits[0];
-                var hub = firstHit.collider.GetComponentInParent<ReferenceHub>();
-                var targetPlayer = Exiled.API.Features.Player.Get(hub);
 
+            // 대미지: 레이저에 맞은 사람 탐지
+            var hits = Physics.RaycastAll(origin, direction, distance);
+            foreach (var hit in hits)
+            {
+                var hub = hit.collider.GetComponentInParent<ReferenceHub>();
+                var targetPlayer = Exiled.API.Features.Player.Get(hub);
                 if (targetPlayer != null && targetPlayer != ev.Player)
                 {
                     ev.Player.ShowHitMarker();
-                    targetPlayer.Hurt(50, DamageType.Custom, "Laser Gun");
+                    targetPlayer.Hurt(200f, DamageType.Custom, "Laser Gun");
+                    //break;
                 }
             }
 
             Timing.CallDelayed(LaserVisibleTime, laser.Destroy);
-        }
-
-        private (float Red, float Green, float Blue) GetRandomLaserColor()
-        {
-            int randomColorR = new Random().Next(LaserColorRed.Count);
-            int randomColorG = new Random().Next(LaserColorGreen.Count);
-            int randomColorB = new Random().Next(LaserColorBlue.Count);
-            return (
-                LaserColorRed[randomColorR],
-                LaserColorGreen[randomColorG],
-                LaserColorBlue[randomColorB]
-            );
         }
     }
 }
