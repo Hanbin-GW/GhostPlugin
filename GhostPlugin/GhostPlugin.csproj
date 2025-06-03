@@ -208,11 +208,13 @@
         <Compile Include="Custom\Items\Etc\Stim.cs" />
         <Compile Include="Custom\Items\Etc\TrophySystem.cs" />
         <Compile Include="Custom\Items\Firearms\AcidShooter.cs" />
+        <Compile Include="Custom\Items\Firearms\Ballista.cs" />
         <Compile Include="Custom\Items\Firearms\Basilisk.cs" />
         <Compile Include="Custom\Items\Firearms\Bolter.cs" />
         <Compile Include="Custom\Items\Firearms\ExplosiveRoundRevolver.cs" />
         <Compile Include="Custom\Items\Firearms\GernadeLuncher.cs" />
         <Compile Include="Custom\Items\Firearms\LaserCannon.cs" />
+        <Compile Include="Custom\Items\Firearms\LaserGun.cs" />
         <Compile Include="Custom\Items\Firearms\MachineGun.cs" />
         <Compile Include="Custom\Items\Firearms\MORS.cs" />
         <Compile Include="Custom\Items\Firearms\ParalyzeRife.cs" />
