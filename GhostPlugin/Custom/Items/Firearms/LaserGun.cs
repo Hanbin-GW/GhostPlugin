@@ -133,11 +133,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             int randomColorR = new Random().Next(LaserColorRed.Count);
             int randomColorG = new Random().Next(LaserColorGreen.Count);
             int randomColorB = new Random().Next(LaserColorBlue.Count);
-            return (
-                LaserColorRed[randomColorR],
-                LaserColorGreen[randomColorG],
-                LaserColorBlue[randomColorB]
-            );
+            return (randomColorR, randomColorG, randomColorB);
         }
     }
 }
