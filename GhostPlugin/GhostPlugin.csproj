@@ -237,6 +237,7 @@
         <Compile Include="Custom\Items\MonoBehavior\BulletCollision.cs" />
         <Compile Include="Custom\Items\MonoBehavior\BulletExplosion.cs" />
         <Compile Include="Custom\Items\MonoBehavior\FireBulletCollision.cs" />
+        <Compile Include="Custom\Items\MonoBehavior\LaserShooter.cs" />
         <Compile Include="Custom\Items\MonoBehavior\PoisonBulletCollision.cs" />
         <Compile Include="Custom\Items\MonoBehavior\StickyGrenadeBehavior.cs" />
         <Compile Include="Custom\Roles\Chaos\CiPhantom.cs" />

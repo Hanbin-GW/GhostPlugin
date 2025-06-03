@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using AdminToys;
+using CommandSystem;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
@@ -72,7 +73,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
 
         public float LaserVisibleTime { get; set; } = 0.5f;
-        public Vector3 LaserScale { get; set; } = new Vector3(0.2f, 0.2f, 0.2f);
+        public Vector3 LaserScale { get; set; } = new Vector3(0.05f, 0.05f, 0.05f);
         
         protected override void SubscribeEvents()
         {
@@ -85,34 +86,62 @@ namespace GhostPlugin.Custom.Items.Firearms
             Player.Shot -= OnShot;
             base.UnsubscribeEvents();
         }
-        private void OnShot(ShotEventArgs ev)
+
+        protected override void OnShot(ShotEventArgs ev)
         {
-            if (Check(ev.Player.CurrentItem))
+            if (!Check(ev.Player.CurrentItem)) return;
+
+            ev.CanHurt = false;
+
+            var color = GetRandomLaserColor();
+            var laserColor = new Color(color.Red, color.Green, color.Blue, 0.1f) * 50;
+            var direction = ev.Position - ev.Player.Position;
+            var r_direction = ev.Player.CameraTransform.forward;
+            var distance = direction.magnitude;
+            var scale = new Vector3(LaserScale.x, distance * 0.5f, LaserScale.z);
+            var laserPos = ev.Player.Position + direction * 0.5f;
+            var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
+            var origin = ev.Player.CameraTransform.position;
+
+            var laser = Primitive.Create(
+                PrimitiveType.Cylinder,
+                PrimitiveFlags.Visible,
+                laserPos,
+                rotation.eulerAngles,
+                scale,
+                true,
+                laserColor
+            );
+            var hits = Physics.RaycastAll(origin, r_direction, 200f);
+            if (hits.Length > 0)
             {
-                ev.CanHurt = false;
-                var color = GetRandomLaserColor();
-                var laserColor = new Color(color.Red, color.Green, color.Blue,0.1f) * 50;
-                var direction = ev.Position - ev.Player.Position;
-                var distance = direction.magnitude;
-                var scale = new Vector3(LaserScale.x, distance * 0.5f, LaserScale.z);
-                var laserPos = ev.Player.Position + direction * 0.5f;
-                var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
-                Log.Debug(
-                    $"VVUP Custom Items: Laser Gun, Laser Info: Position: {laserPos}, Rotation: {rotation.eulerAngles}, Color: {laserColor}");
-                var laser = Primitive.Create(PrimitiveType.Cylinder, PrimitiveFlags.Visible, laserPos,
-                    rotation.eulerAngles,
-                    scale, true, laserColor);
-                var attack = laser.GameObject.AddComponent<BulletCollision>();
-                attack.Initialize(50, ev.Player);
-                Timing.CallDelayed(LaserVisibleTime, laser.Destroy);
+                // 거리순 정렬
+                System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+    
+                var firstHit = hits[0];
+                var hub = firstHit.collider.GetComponentInParent<ReferenceHub>();
+                var targetPlayer = Exiled.API.Features.Player.Get(hub);
+
+                if (targetPlayer != null && targetPlayer != ev.Player)
+                {
+                    ev.Player.ShowHitMarker();
+                    targetPlayer.Hurt(50, DamageType.Custom, "Laser Gun");
+                }
             }
+
+            Timing.CallDelayed(LaserVisibleTime, laser.Destroy);
         }
+
         private (float Red, float Green, float Blue) GetRandomLaserColor()
         {
             int randomColorR = new Random().Next(LaserColorRed.Count);
             int randomColorG = new Random().Next(LaserColorGreen.Count);
             int randomColorB = new Random().Next(LaserColorBlue.Count);
-            return (randomColorR, randomColorG, randomColorB);
+            return (
+                LaserColorRed[randomColorR],
+                LaserColorGreen[randomColorG],
+                LaserColorBlue[randomColorB]
+            );
         }
     }
 }

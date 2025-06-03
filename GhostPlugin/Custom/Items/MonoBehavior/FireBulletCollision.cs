@@ -1,9 +1,7 @@
 using CustomPlayerEffects;
-using Exiled.API.Enums;
 using Exiled.API.Features;
 using PlayerStatsSystem;
 using UnityEngine;
-using PlayerStatsSystem;
 
 
 namespace GhostPlugin.Custom.Items.MonoBehavior
