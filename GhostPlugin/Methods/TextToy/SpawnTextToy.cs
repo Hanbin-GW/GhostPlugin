@@ -28,8 +28,8 @@ namespace GhostPlugin.Methods.TextToy
                 textToy.Position = position;
                 textToy.NetworkPosition = position;
                 textToy.enabled = true;
-                textToy.DisplaySize = new Vector2(100, 50);
-                textToy.Network_displaySize = new Vector2(100, 50);
+                //textToy.DisplaySize = new Vector2(100, 50);
+                //textToy.Network_displaySize = new Vector2(100, 50);
                 NetworkServer.Spawn(textToy.gameObject);
                 textToy.OnSpawned(player.ReferenceHub, new ArraySegment<string>(Array.Empty<string>()));
                 Object.Destroy(textToy.gameObject, duration);

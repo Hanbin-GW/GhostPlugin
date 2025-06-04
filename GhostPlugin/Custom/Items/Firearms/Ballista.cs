@@ -5,18 +5,20 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.API.Features.Toys;
 using Exiled.CustomItems.API.Features;
+using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
+using InventorySystem.Items.Firearms.Attachments;
 using MEC;
 using UnityEngine;
 using Player = Exiled.Events.Handlers.Player;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
-    [CustomItem(ItemType.ParticleDisruptor)]
+    [CustomItem(ItemType.GunE11SR)]
     public class Ballista : CustomWeapon
     {
-        public override byte ClipSize { get; set; } = 10;
-        public override ItemType Type { get; set; } = ItemType.ParticleDisruptor;
+        public override byte ClipSize { get; set; } = 1;
+        public override ItemType Type { get; set; } = ItemType.GunE11SR;
         public override uint Id { get; set; } = 53;
         public override string Name { get; set; } = "Ballista";
         public override string Description { get; set; } = "벽을 관통하는 레이저 캐논입니다!";
@@ -38,7 +40,16 @@ namespace GhostPlugin.Custom.Items.Firearms
                 },
             },
         };
-        public override float Damage { get; set; }
+
+        public override AttachmentName[] Attachments { get; set; } = new AttachmentName[]
+        {
+            AttachmentName.Laser,
+            AttachmentName.LowcapMagAP,
+            AttachmentName.CarbineBody,
+            AttachmentName.NightVisionSight,
+            AttachmentName.LightweightStock,
+        };
+        public override float Damage { get; set; } = 0;
         public List<float> LaserColorRed { get; set; } = new List<float>()
         {
             0.86f, 
@@ -70,15 +81,23 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         public float LaserVisibleTime { get; set; } = 0.5f;
         public Vector3 LaserScale { get; set; } = new Vector3(0.05f, 0.05f, 0.05f);
-        
+        private void OnChangingAttachments(ChangingAttachmentsEventArgs ev)
+        {
+            if (!Check(ev.Player.CurrentItem))
+                return;
+            ev.IsAllowed = false;
+            ev.Player.ShowHint("이 아이탬은 부착물 변경이 금지되어있습니다!", 3);
+        }
         protected override void SubscribeEvents()
         {
+            Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
             Player.Shot += OnShot;
             base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
         {
+            Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
             Player.Shot -= OnShot;
             base.UnsubscribeEvents();
         }
