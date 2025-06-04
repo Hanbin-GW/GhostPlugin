@@ -121,7 +121,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                 if (targetPlayer != null && targetPlayer != ev.Player)
                 {
                     ev.Player.ShowHitMarker();
-                    targetPlayer.Hurt(50, DamageType.Custom, "Laser Gun");
+                    targetPlayer.Hurt(25, DamageType.Custom, "Laser Gun");
                 }
             }
 
