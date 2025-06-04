@@ -77,5 +77,11 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
         [Description("Write today's announcement")]
         public string AnnouncmentMessage { get; set; } =
             "<size=38><b><color=#6900ff>📣An</color><color=#7919ff>no</color><color=#852eff>un</color><color=#8f40ff>cements📣</color></b></size>\n<size=34>There are no announcements today! \nHave a wonderful day!</size>";
+        public List<string> DonatorList { get; set; } = new List<string>()
+        {
+            "서버 관리자",
+            "서버 운영자",
+            "[Level4] - 후원자"
+        };
     }
 }

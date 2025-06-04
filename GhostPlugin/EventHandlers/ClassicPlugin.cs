@@ -7,6 +7,8 @@ using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp096;
 using Exiled.Events.EventArgs.Server;
 using Exiled.Events.EventArgs.Warhead;
+using GhostPlugin.Methods.Objects;
+using GhostPlugin.Methods.TextToy;
 using MEC;
 using PlayerRoles;
 using ServerEvents = Exiled.Events.Handlers.Server;
@@ -36,6 +38,7 @@ namespace GhostPlugin.EventHandlers
             ServerEvents.RestartingRound += OnRestartingRound;
             ServerEvents.RoundEnded += OnRoundEnded;
             PlayerEvents.Left += OnPlayerLeft;
+            PlayerEvents.Dying += OnDying;
         }
 
         public static void UnregisterEvents()
@@ -55,6 +58,7 @@ namespace GhostPlugin.EventHandlers
             ServerEvents.RestartingRound -= OnRestartingRound;
             ServerEvents.RoundEnded -= OnRoundEnded;
             PlayerEvents.Left -= OnPlayerLeft;
+            PlayerEvents.Dying -= OnDying;
         }
 
         private static void OnRoundEnded(RoundEndedEventArgs ev)
@@ -143,6 +147,24 @@ namespace GhostPlugin.EventHandlers
                     break;
             }
         }
+        
+        private static void OnDying(DyingEventArgs ev)
+        {
+            if (ev.Player == null)
+                return;
+            if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Group
+                   .BadgeText))
+            {
+                SpawnPrimitiveToy.Spawn(ev.Player, 15);
+                SpawnTextToy.SpawnText(ev.Player, ev.Player.Position,"<size=30>Content Deleted</size>",15f);
+                ev.Player.Vaporize();
+            }
+            else
+            {
+                return;
+            }
+        }
+        
         private static void OnScpDied(AnnouncingScpTerminationEventArgs ev)
         {
             string message = $"<size=35><color=orange>📢</color>{ev.Role.Name} was <color=#d0ff4f>contain<color> Succesfully. \n{DetermineCauseOfDeath(ev)}</size>";
