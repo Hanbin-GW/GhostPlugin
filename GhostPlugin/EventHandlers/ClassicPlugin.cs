@@ -118,7 +118,7 @@ namespace GhostPlugin.EventHandlers
         {
             if (ev.Player.IsScp)
             {
-                Map.Broadcast(10,$"<color=red><b>{ev.Player.Role.Name}이 중도 탈주하였습니다...</b></color>\n<size=30><color=#d44444>유저 닉네임 : {ev.Player.Nickname}\n유저 ID: {ev.Player.UserId.ToString()}</color></size>");
+                Map.Broadcast(10,$"<color=red><b>{ev.Player.Role.Name}Quit the game...</b></color>\n<size=30><color=#d44444>User name : {ev.Player.Nickname}\n User ID: {ev.Player.UserId.ToString()}</color></size>");
                 Log.SendRaw($"[NAME] - {ev.Player.Nickname} SCP player Quit the game...",ConsoleColor.Red);
                 Log.SendRaw($"[ID] - {ev.Player.UserId} was quit the game...",ConsoleColor.Red);
             }
@@ -145,7 +145,7 @@ namespace GhostPlugin.EventHandlers
         }
         private static void OnScpDied(AnnouncingScpTerminationEventArgs ev)
         {
-            string message = $"<size=35><color=orange>📢</color>{ev.Role.Name} 가 <color=#d0ff4f>격리<color>되었습니다. \n{DetermineCauseOfDeath(ev)}</size>";
+            string message = $"<size=35><color=orange>📢</color>{ev.Role.Name} was <color=#d0ff4f>contain<color> Succesfully. \n{DetermineCauseOfDeath(ev)}</size>";
             Map.Broadcast(7,message);
             Log.Debug(message);
         }
@@ -153,16 +153,16 @@ namespace GhostPlugin.EventHandlers
         {
             if (ev.DamageHandler.Type == DamageType.Explosion)
             {
-                return "<color=#ff8336>사유: 💥폭발💥</color>";
+                return "<color=#ff8336>Reason: 💥Explosion💥</color>";
             }
 
             if (ev.DamageHandler.Type == DamageType.Tesla)
             {
-                return "<color=#42e9ff>사유: 보안 시스탬 </color>";
+                return "<color=#42e9ff>Reason: Security System </color>";
             }
             if (ev.DamageHandler.Type == DamageType.Decontamination)
             {
-                return "<color=#687548>사유: ☢ 유기물 제거 프로토콜 ☢ </color>";
+                return "<color=#687548>Reason: ☢ organic removal protocol ☢ </color>";
             }
             if (ev.Attacker != null && ev.Attacker.UnitName != null)
             {
