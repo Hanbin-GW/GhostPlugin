@@ -61,6 +61,16 @@ namespace GhostPlugin.Custom.Items.Firearms
             }
         }
 
+        protected override void OnHurting(HurtingEventArgs ev)
+        {
+            if (Check(ev.Player.CurrentItem))
+            {
+                ev.Amount = 0;
+                ev.DamageHandler.Damage = 0;
+            }
+            base.OnHurting(ev);
+        }
+
         protected override void OnReloading(ReloadingWeaponEventArgs ev)
         {
             if (ev.Firearm.MagazineAmmo < 10)
