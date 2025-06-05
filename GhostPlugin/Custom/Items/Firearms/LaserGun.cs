@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using AdminToys;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.DamageHandlers;
 using Exiled.API.Features.Spawn;
 using Exiled.API.Features.Toys;
 using Exiled.CustomItems.API.Features;
@@ -141,7 +142,12 @@ namespace GhostPlugin.Custom.Items.Firearms
                 if (targetPlayer != null && targetPlayer != ev.Player)
                 {
                     ev.Player.ShowHitMarker();
-                    targetPlayer.Hurt(25, DamageType.Custom, "Laser Gun");
+                    targetPlayer.Hurt(
+                        attacker: ev.Player,
+                        amount: 25f,
+                        damageType: DamageType.E11Sr,
+                        cassieAnnouncement: new DamageHandlerBase.CassieAnnouncement("Laser Gun")
+                    );
                 }
             }
 

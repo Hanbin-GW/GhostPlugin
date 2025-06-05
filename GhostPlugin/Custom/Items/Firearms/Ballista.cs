@@ -8,6 +8,7 @@ using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
 using InventorySystem.Items.Firearms.Attachments;
+using Exiled.API.Features.DamageHandlers;
 using MEC;
 using UnityEngine;
 using Player = Exiled.Events.Handlers.Player;
@@ -138,7 +139,12 @@ namespace GhostPlugin.Custom.Items.Firearms
                 if (targetPlayer != null && targetPlayer != ev.Player)
                 {
                     ev.Player.ShowHitMarker();
-                    targetPlayer.Hurt(100f, DamageType.Custom, "Laser Gun");
+                    targetPlayer.Hurt(
+                        attacker: ev.Player,
+                        amount: 25f,
+                        damageType: DamageType.E11Sr,
+                        cassieAnnouncement: new DamageHandlerBase.CassieAnnouncement("Laser Gun")
+                    );
                     //break;
                 }
             }
