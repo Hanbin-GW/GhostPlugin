@@ -152,6 +152,9 @@ namespace GhostPlugin.EventHandlers
         {
             if (ev.Player == null)
                 return;
+            var attacker = ev.Attacker;
+            if (attacker == null || attacker.Group == null || string.IsNullOrEmpty(attacker.Group.BadgeText))
+                return;
             if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Group
                         .BadgeText))
             {

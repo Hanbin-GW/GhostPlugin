@@ -138,15 +138,16 @@ namespace GhostPlugin.Custom.Items.Firearms
                 var firstHit = hits[0];
                 var hub = firstHit.collider.GetComponentInParent<ReferenceHub>();
                 var targetPlayer = Exiled.API.Features.Player.Get(hub);
-
                 if (targetPlayer != null && targetPlayer != ev.Player)
                 {
+                    if (!targetPlayer.IsAlive)
+                        return;
                     ev.Player.ShowHitMarker();
                     targetPlayer.Hurt(
                         attacker: ev.Player,
                         amount: 25f,
                         damageType: DamageType.E11Sr,
-                        cassieAnnouncement: new DamageHandlerBase.CassieAnnouncement("Laser Gun")
+                        deathText:"레이저 관통"
                     );
                 }
             }

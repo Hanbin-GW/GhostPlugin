@@ -1,4 +1,5 @@
 using CustomPlayerEffects;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using PlayerStatsSystem;
 using UnityEngine;
