@@ -7,6 +7,7 @@ using Exiled.API.Features.Toys;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using MEC;
+using PlayerStatsSystem;
 using UnityEngine;
 using Player = Exiled.Events.Handlers.Player;
 using Random = System.Random;
@@ -21,6 +22,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Name { get; set; } = "Lasgun";
         public override string Description { get; set; } = "If fires the laser!";
         public override float Weight { get; set; } = 2;
+
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
             Limit = 1,
@@ -31,22 +33,25 @@ namespace GhostPlugin.Custom.Items.Firearms
                     Chance = 20,
                     Location = SpawnLocationType.Inside106Secondary,
                 },
-                new ()
+                new()
                 {
                     Chance = 20,
                     Location = SpawnLocationType.InsideHidChamber,
                 },
             },
         };
+
         public override float Damage { get; set; }
+
         public List<float> LaserColorRed { get; set; } = new List<float>()
         {
-            0.86f, 
-            1, 
+            0.86f,
+            1,
             0,
             0.55f,
             0.97f,
         };
+
         public List<float> LaserColorGreen { get; set; } = new List<float>()
         {
             0.08f,
@@ -58,6 +63,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             0,
             0.97f,
         };
+
         public List<float> LaserColorBlue { get; set; } = new List<float>()
         {
             0.24f,
@@ -70,7 +76,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         public float LaserVisibleTime { get; set; } = 0.5f;
         public Vector3 LaserScale { get; set; } = new Vector3(0.05f, 0.05f, 0.05f);
-        
+
         protected override void SubscribeEvents()
         {
             Player.Shot += OnShot;
@@ -113,27 +119,26 @@ namespace GhostPlugin.Custom.Items.Firearms
             {
                 // 거리순 정렬
                 System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
-    
+
                 var firstHit = hits[0];
                 var hub = firstHit.collider.GetComponentInParent<ReferenceHub>();
                 var targetPlayer = Exiled.API.Features.Player.Get(hub);
-
                 if (targetPlayer != null && targetPlayer != ev.Player)
                 {
+                    if (!targetPlayer.IsAlive)
+                        return;
                     ev.Player.ShowHitMarker();
-                    targetPlayer.Hurt(25, DamageType.Custom, "Laser Gun");
+                    /*targetPlayer.Hurt(
+                        attacker: ev.Player,
+                        amount: 25f,
+                        damageType: DamageType.E11Sr,
+                        deathText:"레이저 관통"
+                    );*/
+                    targetPlayer.Hurt(new CustomReasonDamageHandler("레이저 관통", 25f));
                 }
             }
 
             Timing.CallDelayed(LaserVisibleTime, laser.Destroy);
-        }
-
-        private (float Red, float Green, float Blue) GetRandomLaserColor()
-        {
-            int randomColorR = new Random().Next(LaserColorRed.Count);
-            int randomColorG = new Random().Next(LaserColorGreen.Count);
-            int randomColorB = new Random().Next(LaserColorBlue.Count);
-            return (randomColorR, randomColorG, randomColorB);
         }
     }
 }
