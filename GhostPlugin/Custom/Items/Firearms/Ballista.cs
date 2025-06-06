@@ -155,7 +155,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                 damagedPlayers.Add(target); // 중복 방지
                 ev.Player.ShowHitMarker(1.5f);
 
-                target.Hurt(new CustomReasonDamageHandler( "불탄 총알", 100));
+                target.Hurt(new CustomReasonDamageHandler( "레이저 관통", 100));
 
             }
 

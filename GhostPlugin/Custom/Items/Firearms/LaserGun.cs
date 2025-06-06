@@ -10,6 +10,7 @@ using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
 using InventorySystem.Items.Firearms.Attachments;
 using MEC;
+using PlayerStatsSystem;
 using UnityEngine;
 using Player = Exiled.Events.Handlers.Player;
 using Random = System.Random;
@@ -143,12 +144,13 @@ namespace GhostPlugin.Custom.Items.Firearms
                     if (!targetPlayer.IsAlive)
                         return;
                     ev.Player.ShowHitMarker();
-                    targetPlayer.Hurt(
+                    /*targetPlayer.Hurt(
                         attacker: ev.Player,
                         amount: 25f,
                         damageType: DamageType.E11Sr,
                         deathText:"레이저 관통"
-                    );
+                    );*/
+                    targetPlayer.Hurt(new CustomReasonDamageHandler( "레이저 관통", 25f));
                 }
             }
 
