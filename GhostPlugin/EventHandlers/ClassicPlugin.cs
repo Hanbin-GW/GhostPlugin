@@ -152,11 +152,14 @@ namespace GhostPlugin.EventHandlers
         {
             if (ev.Player == null)
                 return;
+            var attacker = ev.Attacker;
+            if (attacker == null || attacker.Group == null || string.IsNullOrEmpty(attacker.Group.BadgeText))
+                return;
             if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Group
                    .BadgeText))
             {
                 SpawnPrimitiveToy.Spawn(ev.Player, 15);
-                SpawnTextToy.SpawnText(ev.Player, ev.Player.Position,"<size=30>Content Deleted</size>",15f);
+                SpawnTextToy.SpawnText(ev.Player, ev.Player.Position,"<size=10>Content Deleted</size>",15f);
                 ev.Player.Vaporize();
             }
             else
