@@ -10,7 +10,7 @@ namespace GhostPlugin.Methods.Objects
     {
         private const float SpawnRange = 2.0f;
 
-        public static void Spawn(Player player,int count)
+        public static void Spawn(Player player,int count,Color color)
         {
             for (int i = 0; i < count; i++)
             {
@@ -42,7 +42,7 @@ namespace GhostPlugin.Methods.Objects
                     //pObject.Position = player.Position + player.GameObject.transform.forward + randomOffset;
                     pObject.Position = player.Position;
 
-                    Color glowColor = new Color(1f, 0.0f, 0.0f, 0.1f) * 50f;
+                    Color glowColor = color;
                     pObject.NetworkMaterialColor = glowColor;
                     pObject.MaterialColor = glowColor;
 

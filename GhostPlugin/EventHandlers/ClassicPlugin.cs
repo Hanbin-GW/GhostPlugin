@@ -11,6 +11,7 @@ using GhostPlugin.Methods.Objects;
 using GhostPlugin.Methods.TextToy;
 using MEC;
 using PlayerRoles;
+using UnityEngine;
 using ServerEvents = Exiled.Events.Handlers.Server;
 using PlayerEvents = Exiled.Events.Handlers.Player;
 using MapEvents = Exiled.Events.Handlers.Map;
@@ -158,8 +159,29 @@ namespace GhostPlugin.EventHandlers
             if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Group
                         .BadgeText))
             {
-                SpawnPrimitiveToy.Spawn(ev.Player, 15);
-                SpawnTextToy.SpawnText(ev.Player, ev.Player.Position,"<size=10>Content Deleted</size>",15f);
+                switch (ev.Player.LeadingTeam)
+                {
+                    case LeadingTeam.Anomalies:
+                    Color Color_red = new Color(1f, 0.0f, 0.0f, 0.1f) * 50f;
+                    SpawnPrimitiveToy.Spawn(ev.Player, 15,Color_red);
+                    SpawnTextToy.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
+                        break;
+                    case LeadingTeam.FacilityForces:
+                        Color Color_blue = new Color(0f, 0f, 1f, 0.1f) * 50f;
+                        SpawnPrimitiveToy.Spawn(ev.Player, 15,Color_blue);
+                        SpawnTextToy.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
+                        break;
+                    case LeadingTeam.ChaosInsurgency:
+                        Color Color_green = new Color(0f,1f,0f,0.1f) * 50f;
+                        SpawnPrimitiveToy.Spawn(ev.Player, 15,Color_green);
+                        SpawnTextToy.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
+                        break;
+                    case LeadingTeam.Draw:
+                        Color elseColor = new Color(1f, 1f, 1f, 0.1f) * 50;
+                        SpawnPrimitiveToy.Spawn(ev.Player, 15,elseColor);
+                        SpawnTextToy.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
+                        break;
+                }
                 ev.Player.Vaporize();
             }
             else
@@ -169,7 +191,7 @@ namespace GhostPlugin.EventHandlers
         }
         private static void OnScpDied(AnnouncingScpTerminationEventArgs ev)
         {
-            string message = $"<size=35><color=orange>📢</color>{ev.Role.Name} 가 <color=#d0ff4f>격리<color>되었습니다. \n{DetermineCauseOfDeath(ev)}</size>";
+            string message = $"<size=35><color=orange>📢</color>{ev.Role.Name} 가 <color=#d0ff4f>격리</color>되었습니다. \n{DetermineCauseOfDeath(ev)}</size>";
             Map.Broadcast(7,message);
             Log.Debug(message);
         }
