@@ -28,7 +28,7 @@ namespace GhostPlugin.Custom.Items.Etc
                 const float MaxReviveDistance = 20f;
                 
                 // Raycast로 시체 대상 확인
-                if (Physics.Raycast(ev.Player.CameraTransform.position, ev.Player.CameraTransform.forward,
+                if (Physics.Raycast(ev.Player.Position, ev.Player.CameraTransform.forward,
                         out RaycastHit hit, MaxReviveDistance))
                 {
                     Log.Info($"Raycast hit: {hit.collider.gameObject.name} at position {hit.point}");
@@ -77,7 +77,7 @@ namespace GhostPlugin.Custom.Items.Etc
         {
             if (player.IsDead)
             {
-                player.Role.Set(player.Role.Type, RoleSpawnFlags.AssignInventory);
+                player.Role.Set(player.PreviousRole, RoleSpawnFlags.AssignInventory);
                 player.Health = 25;
                 Log.Info($"{player.Nickname} has been revived!");
             }

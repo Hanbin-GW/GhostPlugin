@@ -119,7 +119,6 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new DwarfZombie()
         };
-
         public List<ExplosiveZombie> ExplosiveZombies { get; set; } = new()
         {
             new ExplosiveZombie()
