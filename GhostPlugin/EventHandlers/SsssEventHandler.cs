@@ -345,9 +345,10 @@ namespace GhostPlugin.EventHandlers
                             player.ShowHint(Plugin.Instance.Config.SsssConfig.OverkillActivationMessage);
                         }
                     }
-                    else if (ssKeybindSetting.SettingId == GhostPlugin.Plugin.Instance.Config.SsssConfig.ShockwaveId)
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ShockwaveId)
                     {
-                        var shockwaveAbility = abilities.FirstOrDefault(ability => ability.GetType() == typeof(Shockwave));
+                        var shockwaveAbility = 
+                            abilities.FirstOrDefault(ability => ability.GetType() == typeof(Shockwave));
                         if (shockwaveAbility != null && shockwaveAbility.CanUseAbility(player, out response))
                         {
                             shockwaveAbility.SelectAbility(player);

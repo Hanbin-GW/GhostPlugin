@@ -155,51 +155,51 @@ namespace GhostPlugin.SSSS
             {
                 settings.Add(new SSGroupHeader("특수능력 활성화 키"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ActiveCamoId, "Active Camo",
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ChargeId, "Charge", 
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetectId, "Detect", 
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DoorPickingId, "Door Picking",
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.HealingMistId, "Healing Mist",
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.RemoveDisguiseId, "Remove Disguise",
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.FocousId, "Focous",
-                    KeyCode.B,true,"B"));
+                    KeyCode.B,true,false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.EnhanseVisionId, "Enhance Vision",
-                    KeyCode.B,true,"B"));
+                    KeyCode.B,true,false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.GhostId,"Ghost",
-                    KeyCode.B,true,"B"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ShockwaveId,"Shockwave (충격파)",
-                    KeyCode.B,true,"B"));
+                    KeyCode.B,true,false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.Scp457Id, "Scp457"
-                    ,KeyCode.J,true,"J"));
+                    ,KeyCode.J,true,false,"J"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.Scp106Id,"Scp106",
-                    KeyCode.X,true,"X"));
+                    KeyCode.X,true,false,"X"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ExplosionId,"Explosion",
-                    KeyCode.I,true,"I"));
+                    KeyCode.I,true,false,"I"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.Speedy096Id,"Scp096",
-                    KeyCode.Alpha9,true,"9"));
+                    KeyCode.Alpha9,true,false,"9"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ResupplyId,"Active Resupply",
-                    KeyCode.B,true,"B"));
+                    KeyCode.B,true,false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.OverkillId, "Overkill Ability",
-                    KeyCode.O,true,"O"));
+                    KeyCode.O,true,false,"O"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ShockwaveId,"Shockwave (충격파)",
+                    KeyCode.B,true,false,"B"));
             }
 
             if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)
             {
                 settings.Add(new SSGroupHeader("커스텀 아이탬 능력키"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, "C4 폭발",
-                    KeyCode.J, true, "무전기를 들고 커스텀 키바인드 키를 눌러 C4 를 폭파시킵니다!"));
+                    KeyCode.J, true, false,"무전기를 들고 커스텀 키바인드 키를 눌러 C4 를 폭파시킵니다!"));
             }
 
             if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
             {
                 settings.Add(new SSGroupHeader("Map Toggle Key"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.MapToggleId,"미니맵 ON/OFF"
-                    ,KeyCode.Y,true,"라운드 중 minimap 을 토글합니다."));
+                    ,KeyCode.Y,true,false,"라운드 중 minimap 을 토글합니다."));
             }
             return settings.ToArray();
         }
