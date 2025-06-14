@@ -188,6 +188,7 @@
         <Compile Include="Custom\Abilities\Active\Resupply.cs" />
         <Compile Include="Custom\Abilities\Active\SCP106.cs" />
         <Compile Include="Custom\Abilities\Active\Scp457.cs" />
+        <Compile Include="Custom\Abilities\Active\Shockwave.cs" />
         <Compile Include="Custom\Abilities\Active\Speedy096.cs" />
         <Compile Include="Custom\Abilities\Passive\BoostOnKill.cs" />
         <Compile Include="Custom\Abilities\Passive\FriendlyFireRemover.cs" />
@@ -267,6 +268,7 @@
         <Compile Include="Custom\Roles\Scps\Scp049AP.cs" />
         <Compile Include="Custom\Roles\Scps\SCP682.cs" />
         <Compile Include="Custom\Roles\Scps\EODSoldierZombie.cs" />
+        <Compile Include="Custom\Roles\Scps\ShockwaveZombie.cs" />
         <Compile Include="Custom\Roles\Scps\SoleStealer049.cs" />
         <Compile Include="Custom\Roles\Scps\Tanker106.cs" />
         <Compile Include="EventHandlers\BlackoutMod.cs" />

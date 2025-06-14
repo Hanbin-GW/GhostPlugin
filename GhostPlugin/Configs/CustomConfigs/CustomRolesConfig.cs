@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using GhostPlugin.Custom.Abilities.Active;
 using GhostPlugin.Custom.Roles.Chaos;
 using GhostPlugin.Custom.Roles.ClassD;
 using GhostPlugin.Custom.Roles.Foundation;
@@ -127,6 +128,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         public List<EodSoldierZombie> EodSoldierZombies { get; set; } = new()
         {
             new EodSoldierZombie()
+        };
+
+        public List<ShockWaveZombie> ShockWaveZombies { get; set; } = new()
+        {
+            new ShockWaveZombie()
         };
     }
 }
