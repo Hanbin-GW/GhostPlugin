@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Roles.Scps
     public class ShockWaveZombie : CustomRole, ICustomRole
     {
         public override uint Id { get; set; } = 44;
-        public override int MaxHealth { get; set; } = 700;
+        public override int MaxHealth { get; set; } = 650;
         public override string Name { get; set; } = "쇼크왜이브 좀비";
         public override string Description { get; set; } = "능력을 사용하여 충격파를 생성하십시요!";
         public override string CustomInfo { get; set; } = "Shockwave Zombie";
