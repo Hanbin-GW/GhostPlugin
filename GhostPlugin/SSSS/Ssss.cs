@@ -17,7 +17,6 @@ using UnityEngine;
 using UserSettings.ServerSpecific;
 using Reinforcements.Roles;
 using C_Squad.Roles;
-using Exiled.API.Features;
 using GhostPlugin.Custom.Items.Medkit;
 
 namespace GhostPlugin.SSSS
@@ -76,6 +75,7 @@ namespace GhostPlugin.SSSS
                     CustomRole.Get(typeof(Agent)),
                     CustomRole.Get(typeof(Specialist)),
                     CustomRole.Get(typeof(Commander)),
+                    CustomRole.Get(typeof(ShockWaveZombie)),
                 };
 				stringBuilder.AppendLine("<size=40>CustomRoles - [특수직업]</size>");
                 foreach (var role in customRoles)
@@ -171,6 +171,8 @@ namespace GhostPlugin.SSSS
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.EnhanseVisionId, "Enhance Vision",
                     KeyCode.B,true,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.GhostId,"Ghost",
+                    KeyCode.B,true,"B"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ShockwaveId,"Shockwave (충격파)",
                     KeyCode.B,true,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.Scp457Id, "Scp457"
                     ,KeyCode.J,true,"J"));

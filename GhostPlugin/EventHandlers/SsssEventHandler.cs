@@ -150,7 +150,8 @@ namespace GhostPlugin.EventHandlers
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.Speedy096Id
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.MapToggleId
                      || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ResupplyId
-                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.OverkillId)
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.OverkillId
+                     || ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ShockwaveId)
             && ActiveAbility.AllActiveAbilities.TryGetValue(player, out var abilities))
                 {
                     string response = String.Empty;
@@ -342,6 +343,16 @@ namespace GhostPlugin.EventHandlers
                             overkillAbility.SelectAbility(player);
                             overkillAbility.UseAbility(player);
                             player.ShowHint(Plugin.Instance.Config.SsssConfig.OverkillActivationMessage);
+                        }
+                    }
+                    else if (ssKeybindSetting.SettingId == GhostPlugin.Plugin.Instance.Config.SsssConfig.ShockwaveId)
+                    {
+                        var shockwaveAbility = abilities.FirstOrDefault(ability => ability.GetType() == typeof(Shockwave));
+                        if (shockwaveAbility != null && shockwaveAbility.CanUseAbility(player, out response))
+                        {
+                            shockwaveAbility.SelectAbility(player);
+                            shockwaveAbility.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.ShockwaveActivateMessage);
                         }
                     }
                 }

@@ -18,6 +18,7 @@ namespace GhostPlugin.Configs
         public int Scp106Id { get; set; } = 10011;
         public int ExplosionId { get; set; } = 10012;
         public int Speedy096Id { get; set; } = 10013;
+        public int ShockwaveId { get; set; } = 10014;
         public int MapToggleId { get; set; } = 20000;
         public int MusicToggleId { get; set; } = 20001;
         public int ResupplyId { get; set; } = 20002;
@@ -39,5 +40,6 @@ namespace GhostPlugin.Configs
         public string SsssC4TooFarAway { get; set; } = "C4 로부터 너무 떨어져 계십니다, 가까이 가시는거를 고려하시기 바랍니다.";
         public string SsssDetonateC4ActivationMessage { get; set; } = "C4 폭발";
         public string ResupplyActivatMessage { get; set; } = "수류탄 1개와 섬광탄 1개가 보급되었습니다.";
+        public string ShockwaveActivateMessage { get; set; } = "충격파로 근처 모든 인원이 마비되었습니다!";
     }
 }
