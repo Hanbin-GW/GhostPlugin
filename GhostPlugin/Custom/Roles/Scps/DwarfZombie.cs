@@ -1,6 +1,7 @@
 using CustomPlayerEffects;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using GhostPlugin.API;
@@ -11,14 +12,19 @@ namespace GhostPlugin.Custom.Roles.Scps
     [CustomRole(RoleTypeId.Scp0492)]
     public class DwarfZombie : CustomRole, ICustomRole
     {
-        public int Chance { get; set; } = 75;
+        public int Chance { get; set; } = 100;
         public override uint Id { get; set; } = 43;
         public override int MaxHealth { get; set; } = 200;
         public override string Name { get; set; } = "<color=#FF0000>Dwarf SCP-049-2</color>";
         public override string Description { get; set; } = "A smaller zombie";
         public override string CustomInfo { get; set; } = "Dwarf SCP-049-2";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
-        public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
+        public StartTeam StartTeam { get; set; } =  StartTeam.Revived;
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+        };
 
         protected override void RoleAdded(Player player)
         {
