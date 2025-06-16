@@ -5,6 +5,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using GhostPlugin.API;
+using MEC;
 using UnityEngine;
 
 namespace GhostPlugin.Custom.Roles.Scps
@@ -28,8 +29,8 @@ namespace GhostPlugin.Custom.Roles.Scps
 
         protected override void RoleAdded(Player player)
         {
-            player.Scale = new Vector3(0.5f, 0.5f, 0.5f);
-            player.EnableEffect<MovementBoost>(intensity: 10);
+            Timing.CallDelayed(0.5f,()=>player.Scale = new Vector3(0.5f, 0.5f, 0.5f));
+            player.EnableEffect<MovementBoost>(intensity: 20);
             base.RoleAdded(player);
         }
 
