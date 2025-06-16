@@ -133,5 +133,10 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new ShockWaveZombie()
         };
+
+        public List<ReinforceZombie> ReinforceZombies { get; set; } = new()
+        {
+            new ReinforceZombie()
+        };
     }
 }
