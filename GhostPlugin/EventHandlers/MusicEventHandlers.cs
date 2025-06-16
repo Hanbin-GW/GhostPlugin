@@ -109,7 +109,7 @@ namespace GhostPlugin.EventHandlers
                 string filePath = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.RespawnMtfBgm);
                 if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsSafeMode)
                 {
-                    Log.Send("The SafeMode Is Enabled! Not using Methods!", LogLevel.Info, ConsoleColor.Green);
+                    Log.Send("The SafeMode Is Enabled! Not using CustomRoleMethods!", LogLevel.Info, ConsoleColor.Green);
                     AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("GlobalAudioPlayer",onIntialCreation: (p) =>
                     {
                         p.AddSpeaker("Main", isSpatial: false, volume: Plugin.Instance.Config.MusicConfig.Volume ,maxDistance: 5000f);

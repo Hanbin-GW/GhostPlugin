@@ -9,13 +9,13 @@ namespace GhostPlugin.EventHandlers
     using Exiled.CustomRoles.API.Features;
     using Exiled.Loader;
 
-    public class Methods
+    public class CustomRoleMethods
     {
-        private readonly Plugin _plugin;
+        private readonly Plugin Plugin;
 
-        public Methods(Plugin plugin)
+        public CustomRoleMethods(Plugin plugin)
         {
-            this._plugin = plugin;
+            this.Plugin = plugin;
         }
 
         public static CustomRole GetCustomRole(ref List<ICustomRole>.Enumerator enumerator, bool checkEscape = false, bool checkRevive = false)
@@ -23,10 +23,9 @@ namespace GhostPlugin.EventHandlers
             try
             {
                 Log.Debug("Getting role from enumerator..");
-
                 while (enumerator.MoveNext())
                 {
-                    //Log.Debug(enumerator.Current?.StartTeam);
+                    Log.Debug(enumerator.Current?.StartTeam);
                     if (enumerator.Current is not null)
                     {
                         int r = Loader.Random.Next(100);
@@ -45,9 +44,7 @@ namespace GhostPlugin.EventHandlers
                         return (CustomRole)enumerator.Current;
                     }
                 }
-
                 Log.Debug("Cannot move next");
-
                 return null;
             }
             catch (Exception)

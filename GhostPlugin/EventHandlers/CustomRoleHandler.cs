@@ -72,16 +72,16 @@ namespace GhostPlugin.EventHandlers
                 switch (player.Role.Type)
                 {
                     case RoleTypeId.FacilityGuard:
-                        role = Methods.GetCustomRole(ref guardRoles);
+                        role = CustomRoleMethods.GetCustomRole(ref guardRoles);
                         break;
                     case RoleTypeId.Scientist:
-                        role = Methods.GetCustomRole(ref scientistRoles);
+                        role = CustomRoleMethods.GetCustomRole(ref scientistRoles);
                         break;
                     case RoleTypeId.ClassD:
-                        role = Methods.GetCustomRole(ref dClassRoles);
+                        role = CustomRoleMethods.GetCustomRole(ref dClassRoles);
                         break;
                     case { } when player.Role.Side == Side.Scp:
-                        role = Methods.GetCustomRole(ref scpRoles);
+                        role = CustomRoleMethods.GetCustomRole(ref scpRoles);
                         break;
                 }
 
@@ -126,7 +126,7 @@ namespace GhostPlugin.EventHandlers
                 if (API.ExemptPlayers.TryGetValue(player, out ExemptionType type) && type.HasFlag(ExemptionType.Respawn))
                     continue;
 
-                CustomRole role = Methods.GetCustomRole(ref roles);
+                CustomRole role = CustomRoleMethods.GetCustomRole(ref roles);
 
                 role?.AddRole(player);
             }
@@ -141,19 +141,37 @@ namespace GhostPlugin.EventHandlers
 
         public static void FinishingRecall(FinishingRecallEventArgs ev)
         {
-            Log.Debug($"{nameof(FinishingRecall)}: Selecting random zombie role.");
+            if (!Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
+                return;
+            Log.Debug($"Custom Roles: {nameof(FinishingRecall)}: Selecting random zombie role.");
             if (Plugin.Instance.Roles.ContainsKey(StartTeam.Scp) && ev.Target is not null)
             {
                 if (API.ExemptPlayers.TryGetValue(ev.Target, out ExemptionType type) && type.HasFlag(ExemptionType.Revive))
                     return;
 
-                Log.Debug($"{nameof(FinishingRecall)}: List count {Plugin.Instance.Roles[StartTeam.Scp].Count}");
+                Log.Debug($"Custom Roles: {nameof(FinishingRecall)}: List count {Plugin.Instance.Roles[StartTeam.Scp].Count}");
                 List<ICustomRole>.Enumerator roles = Plugin.Instance.Roles[StartTeam.Scp].GetEnumerator();
-                CustomRole role = Methods.GetCustomRole(ref roles, false, true);
+                CustomRole? role = CustomRoleMethods.GetCustomRole(ref roles, false, true);
+
+                Log.Debug($"Custom Roles: Got custom role {role?.Name}");
+
 
                 Log.Debug($"Got custom role {role?.Name}");
-                if (ev.Target.GetCustomRoles().Count == 0)
-                    role?.AddRole(ev.Target);
+                if (role != null)
+                {
+                    int activeRoleCount = role.TrackedPlayers.Count;
+                    Log.Debug($"Custom Roles: Active count for role {role.Name} is {activeRoleCount}");
+
+                    if (activeRoleCount < role.SpawnProperties.Limit)
+                    {
+                        if (ev.Target.GetCustomRoles().Count == 0)
+                            role.AddRole(ev.Target);
+                    }
+                    else
+                    {
+                        Log.Debug($"Custom Roles: Role {role.Name} has reached its spawn limit. Not Spawning");
+                    }
+                }
                 roles.Dispose();
             }
         }

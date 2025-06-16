@@ -284,7 +284,7 @@
         <Compile Include="EventHandlers\CustomItemHandler.cs" />
         <Compile Include="EventHandlers\CustomRoleHandler.cs" />
         <Compile Include="EventHandlers\MusicEventHandlers.cs" />
-        <Compile Include="EventHandlers\Methods.cs" />
+        <Compile Include="EventHandlers\CustomRoleMethods.cs" />
         <Compile Include="EventHandlers\NoobSupport.cs" />
         <Compile Include="EventHandlers\Scp914Handler.cs" />
         <Compile Include="EventHandlers\SsssEventHandler.cs" />
