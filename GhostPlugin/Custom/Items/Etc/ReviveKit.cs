@@ -93,14 +93,14 @@ namespace GhostPlugin.Custom.Items.Etc
         // 플레이어 부활 처리
         private void RevivePlayer(Player player)
         {
-            if (player.IsDead)
+            if (player.IsDead || player.PreviousRole.IsHuman())
             {
                 RoleTypeId reviveRole = RoleTypeId.ClassD;
                 if (deathRoles.TryGetValue(player, out RoleTypeId savedRole))
                     reviveRole = savedRole;
 
                 player.Role.Set(reviveRole, RoleSpawnFlags.AssignInventory);
-                player.Health = 25;
+                player.Health = 10;
 
                 Log.Info($"[ReviveKit] {player.Nickname} has been revived as {reviveRole}!");
             }
