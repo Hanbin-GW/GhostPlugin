@@ -11,29 +11,36 @@ using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Etc
 {
-
     [CustomItem(ItemType.Medkit)]
     public class ReviveKit : CustomItem
     {
         public override uint Id { get; set; } = 39;
         public override string Name { get; set; } = "Revive kit [Test Version]";
-        public override string Description { get; set; } = "시체에 조준하고 사용시 시체를 부활시킬수 있습니다!";
+        public override string Description { get; set; } = "시체에 조준하고 사용시 시체를 부활시킬 수 있습니다!";
         public override ItemType Type { get; set; } = ItemType.Medkit;
         public override float Weight { get; set; } = 4f;
         public override SpawnProperties SpawnProperties { get; set; }
-        private readonly Dictionary<Player, Vector3> deathPositions = new();
 
+        // 죽은 위치와 역할 기록용
+        private readonly Dictionary<Player, Vector3> deathPositions = new();
+        private readonly Dictionary<Player, RoleTypeId> deathRoles = new();
+
+        // 사망 시 정보 저장
         private void OnDied(DiedEventArgs ev)
         {
+            Log.Info($"[ReviveKit] {ev.Player.Nickname} died at {ev.Player.Position}");
             deathPositions[ev.Player] = ev.Player.Position;
+            deathRoles[ev.Player] = ev.Player.Role.Type;
         }
 
+        // 아이템 사용 시 부활 처리
         private void OnUsedItem(UsedItemEventArgs ev)
         {
             if (!Check(ev.Item)) return;
 
             const float MaxReviveDistance = 20f;
 
+            // Raycast로 시체 조준 감지
             if (Physics.Raycast(ev.Player.CameraTransform.position, ev.Player.CameraTransform.forward, out RaycastHit hit, MaxReviveDistance))
             {
                 var hub = hit.collider.GetComponentInParent<ReferenceHub>();
@@ -49,18 +56,25 @@ namespace GhostPlugin.Custom.Items.Etc
                 }
             }
 
-            Player closestPlayer = null;
+            // Raycast 실패 시 주변 시체 탐색
             float closestDistance = float.MaxValue;
+            Player closestPlayer = null;
+
+            Log.Info($"[ReviveKit] 사용자가 {ev.Player.Nickname} - 위치: {ev.Player.Position}");
 
             foreach (var p in Player.List)
             {
+                Log.Info($"[ReviveKit] 후보자: {p.Nickname}, 죽음 여부: {p.IsDead}, 저장됨: {deathPositions.ContainsKey(p)}");
+
                 if (!p.IsDead || !deathPositions.ContainsKey(p)) continue;
 
                 float distance = Vector3.Distance(ev.Player.Position, deathPositions[p]);
+                Log.Info($"[ReviveKit] {p.Nickname} 거리: {distance:F2}");
+
                 if (distance < closestDistance && distance <= MaxReviveDistance)
                 {
-                    closestPlayer = p;
                     closestDistance = distance;
+                    closestPlayer = p;
                 }
             }
 
@@ -75,21 +89,27 @@ namespace GhostPlugin.Custom.Items.Etc
             }
         }
 
-
+        // 플레이어 부활 처리
         private void RevivePlayer(Player player)
         {
             if (player.IsDead)
             {
-                player.Role.Set(player.PreviousRole, RoleSpawnFlags.AssignInventory);
+                RoleTypeId reviveRole = RoleTypeId.ClassD;
+                if (deathRoles.TryGetValue(player, out RoleTypeId savedRole))
+                    reviveRole = savedRole;
+
+                player.Role.Set(reviveRole, RoleSpawnFlags.AssignInventory);
                 player.Health = 25;
-                Log.Info($"{player.Nickname} has been revived!");
+
+                Log.Info($"[ReviveKit] {player.Nickname} has been revived as {reviveRole}!");
             }
             else
             {
-                Log.Warn($"{player.Nickname} is not dead, cannot revive.");
+                Log.Warn($"[ReviveKit] {player.Nickname} is not dead, cannot revive.");
             }
         }
 
+        // 이벤트 등록
         protected override void SubscribeEvents()
         {
             Exiled.Events.Handlers.Player.Died += OnDied;
@@ -97,6 +117,7 @@ namespace GhostPlugin.Custom.Items.Etc
             base.SubscribeEvents();
         }
 
+        // 이벤트 해제
         protected override void UnsubscribeEvents()
         {
             Exiled.Events.Handlers.Player.Died -= OnDied;
