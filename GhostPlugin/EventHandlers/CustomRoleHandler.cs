@@ -10,13 +10,10 @@ namespace GhostPlugin.EventHandlers
     using Exiled.Events.EventArgs.Server;
     using PlayerRoles;
     using Exiled.CustomRoles.API.Features;
-    using PlayerEvents = Exiled.Events.Handlers.Player;
-    using Scp049Events = Exiled.Events.Handlers.Scp049;
-    using ServerEvents = Exiled.Events.Handlers.Server;
 
     public class CustomRoleHandler
     {
-        public static void RegisterEvents()
+        /*public static void RegisterEvents()
         {
             ServerEvents.RespawningTeam += OnRespawningTeam;
             ServerEvents.ReloadedConfigs += OnReloadedConfigs;
@@ -32,9 +29,11 @@ namespace GhostPlugin.EventHandlers
             Scp049Events.FinishingRecall -= FinishingRecall;
             PlayerEvents.SpawningRagdoll -= OnSpawningRagdoll;
             ServerEvents.RoundStarted -= OnRoundStarted;
-        }
+        }*/
+        private readonly Plugin Plugin;
+        public CustomRoleHandler(Plugin plugin) => Plugin = plugin;
 
-        private static void OnRoundStarted()
+        public void OnRoundStarted()
         {
             List<ICustomRole>.Enumerator dClassRoles = new();
             List<ICustomRole>.Enumerator scientistRoles = new();
@@ -94,7 +93,7 @@ namespace GhostPlugin.EventHandlers
             scpRoles.Dispose();
         }
 
-        private static void OnRespawningTeam(RespawningTeamEventArgs ev)
+        public void OnRespawningTeam(RespawningTeamEventArgs ev)
         {
             if (Reinforcements.Plugin.Instance == null || Reinforcements.Plugin.Instance.IsSpawnable || Reinforcements.Plugin.Instance.NextIsForced)
                 return;
@@ -111,11 +110,11 @@ namespace GhostPlugin.EventHandlers
             List<ICustomRole>.Enumerator roles = new();
             switch (ev.NextKnownTeam)
             {
-                case Faction.FoundationEnemy:
+                case (Faction)SpawnableFaction.ChaosWave or (Faction)SpawnableFaction.ChaosMiniWave:
                     if (Plugin.Instance.Roles.TryGetValue(StartTeam.Chaos, out List<ICustomRole> role))
                         roles = role.GetEnumerator();
                     break;
-                case Faction.FoundationStaff:
+                case (Faction)SpawnableFaction.NtfWave or (Faction)SpawnableFaction.NtfMiniWave:
                     if (Plugin.Instance.Roles.TryGetValue(StartTeam.Ntf, out List<ICustomRole> pluginRole))
                         roles = pluginRole.GetEnumerator();
                     break;
@@ -123,9 +122,8 @@ namespace GhostPlugin.EventHandlers
 
             foreach (Player player in ev.Players)
             {
-                if (API.ExemptPlayers.TryGetValue(player, out ExemptionType type) && type.HasFlag(ExemptionType.Respawn))
-                    continue;
-
+                /*if (API.ExemptPlayers.TryGetValue(player, out ExemptionType type) && type.HasFlag(ExemptionType.Respawn))
+                    continue;*/
                 CustomRole role = CustomRoleMethods.GetCustomRole(ref roles);
 
                 role?.AddRole(player);
@@ -134,33 +132,28 @@ namespace GhostPlugin.EventHandlers
             roles.Dispose();
         }
 
-        private static void OnReloadedConfigs()
+        public void OnReloadedConfigs()
         {
             Plugin.Instance.Config.LoadConfigs();
         }
 
-        public static void FinishingRecall(FinishingRecallEventArgs ev)
+        public void FinishingRecall(FinishingRecallEventArgs ev)
         {
             if (!Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
                 return;
-            Log.Debug($"Custom Roles: {nameof(FinishingRecall)}: Selecting random zombie role.");
-            if (Plugin.Instance.Roles.ContainsKey(StartTeam.Scp) && ev.Target is not null)
+            Log.Debug($"VVUP Custom Roles: {nameof(FinishingRecall)}: Selecting random zombie role.");
+            if (Plugin.Roles.ContainsKey(StartTeam.Scp) && ev.Target is not null)
             {
-                if (API.ExemptPlayers.TryGetValue(ev.Target, out ExemptionType type) && type.HasFlag(ExemptionType.Revive))
-                    return;
+                Log.Debug($"VVUP Custom Roles: {nameof(FinishingRecall)}: List count {Plugin.Roles[StartTeam.Scp].Count}");
+                List<ICustomRole>.Enumerator roles = Plugin.Roles[StartTeam.Scp].GetEnumerator();
+                CustomRole role = CustomRoleMethods.GetCustomRole(ref roles, false, true);
 
-                Log.Debug($"Custom Roles: {nameof(FinishingRecall)}: List count {Plugin.Instance.Roles[StartTeam.Scp].Count}");
-                List<ICustomRole>.Enumerator roles = Plugin.Instance.Roles[StartTeam.Scp].GetEnumerator();
-                CustomRole? role = CustomRoleMethods.GetCustomRole(ref roles, false, true);
+                Log.Debug($"VVUP Custom Roles: Got custom role {role?.Name}");
 
-                Log.Debug($"Custom Roles: Got custom role {role?.Name}");
-
-
-                Log.Debug($"Got custom role {role?.Name}");
                 if (role != null)
                 {
                     int activeRoleCount = role.TrackedPlayers.Count;
-                    Log.Debug($"Custom Roles: Active count for role {role.Name} is {activeRoleCount}");
+                    Log.Debug($"VVUP Custom Roles: Active count for role {role.Name} is {activeRoleCount}");
 
                     if (activeRoleCount < role.SpawnProperties.Limit)
                     {
@@ -169,14 +162,13 @@ namespace GhostPlugin.EventHandlers
                     }
                     else
                     {
-                        Log.Debug($"Custom Roles: Role {role.Name} has reached its spawn limit. Not Spawning");
+                        Log.Debug($"VVUP Custom Roles: Role {role.Name} has reached its spawn limit. Not Spawning");
                     }
                 }
                 roles.Dispose();
             }
         }
-
-        private static void OnSpawningRagdoll(SpawningRagdollEventArgs ev)
+        public void OnSpawningRagdoll(SpawningRagdollEventArgs ev)
         {
             if (!Plugin.Instance.StopRagdollList.Contains(ev.Player))
                 return;
