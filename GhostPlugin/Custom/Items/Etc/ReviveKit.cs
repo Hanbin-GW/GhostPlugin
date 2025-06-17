@@ -61,16 +61,16 @@ namespace GhostPlugin.Custom.Items.Etc
             float closestDistance = float.MaxValue;
             Player closestPlayer = null;
 
-            Log.Info($"[ReviveKit] 사용자가 {ev.Player.Nickname} - 위치: {ev.Player.Position}");
+            Log.Debug($"[ReviveKit] 사용자가 {ev.Player.Nickname} - 위치: {ev.Player.Position}");
 
             foreach (var p in Player.List)
             {
-                Log.Info($"[ReviveKit] 후보자: {p.Nickname}, 죽음 여부: {p.IsDead}, 저장됨: {deathPositions.ContainsKey(p)}");
+                Log.Debug($"[ReviveKit] 후보자: {p.Nickname}, 죽음 여부: {p.IsDead}, 저장됨: {deathPositions.ContainsKey(p)}");
 
                 if (!p.IsDead || !deathPositions.ContainsKey(p)) continue;
 
                 float distance = Vector3.Distance(ev.Player.Position, deathPositions[p]);
-                Log.Info($"[ReviveKit] {p.Nickname} 거리: {distance:F2}");
+                Log.Debug($"[ReviveKit] {p.Nickname} 거리: {distance:F2}");
 
                 if (distance < closestDistance && distance <= MaxReviveDistance)
                 {
@@ -82,7 +82,9 @@ namespace GhostPlugin.Custom.Items.Etc
             if (closestPlayer != null)
             {
                 RevivePlayer(closestPlayer);
-                ev.Player.ShowHint($"You have revived {closestPlayer.Nickname} within range ({closestDistance:F1}m)", 5);
+                ev.Player.ShowHint($"당신은 ({closestDistance:F1}m) 에 있는 {closestPlayer.Nickname} 를 부활시켰습니다", 5);
+                closestPlayer.ShowHint($"당신은 {ev.Player} 님에 의해 부활되었습니다!");
+                //ev.Player.ShowHint($"You have revived {closestPlayer.Nickname} within range ({closestDistance:F1}m)", 5);
             }
             else
             {
