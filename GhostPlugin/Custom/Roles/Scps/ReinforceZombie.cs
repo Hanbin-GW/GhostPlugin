@@ -2,6 +2,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 using GhostPlugin.API;
+using PlayerRoles;
 
 namespace GhostPlugin.Custom.Roles.Scps
 {
@@ -12,7 +13,8 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override string Name { get; set; } = "강화 좀비";
         public override string Description { get; set; } = "HP 랑 공격력이 높은 좀비입니다.";
         public override string CustomInfo { get; set; } = "Reinforce Zombie";
-        public StartTeam StartTeam { get; set; } = StartTeam.Revived;
+        public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
+        public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
         public int Chance { get; set; } = 60;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()

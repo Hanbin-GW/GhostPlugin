@@ -20,7 +20,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override string Description { get; set; } = "A smaller zombie";
         public override string CustomInfo { get; set; } = "Dwarf SCP-049-2";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
-        public StartTeam StartTeam { get; set; } =  StartTeam.Revived;
+        public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {

@@ -19,7 +19,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override string Description { get; set; } = "능력을 사용하여 충격파를 생성하십시요!";
         public override string CustomInfo { get; set; } = "Shockwave Zombie";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
-        public StartTeam StartTeam { get; set; } = StartTeam.Revived;
+        public StartTeam StartTeam { get; set; } =StartTeam.Scp | StartTeam.Revived;
         public int Chance { get; set; } = 90;
 
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>()

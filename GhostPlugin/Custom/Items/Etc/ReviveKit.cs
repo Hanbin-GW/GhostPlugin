@@ -26,11 +26,12 @@ namespace GhostPlugin.Custom.Items.Etc
         private readonly Dictionary<Player, RoleTypeId> deathRoles = new();
 
         // 사망 시 정보 저장
-        private void OnDied(DiedEventArgs ev)
+        private void OnDying(DyingEventArgs ev)
         {
             Log.Info($"[ReviveKit] {ev.Player.Nickname} died at {ev.Player.Position}");
             deathPositions[ev.Player] = ev.Player.Position;
-            deathRoles[ev.Player] = ev.Player.Role.Type;
+            //deathRoles[ev.Player] = ev.Player.Role.Type;
+            deathRoles[ev.Player] = ev.Player.PreviousRole;
         }
 
         // 아이템 사용 시 부활 처리
@@ -112,7 +113,7 @@ namespace GhostPlugin.Custom.Items.Etc
         // 이벤트 등록
         protected override void SubscribeEvents()
         {
-            Exiled.Events.Handlers.Player.Died += OnDied;
+            Exiled.Events.Handlers.Player.Dying += OnDying;
             Exiled.Events.Handlers.Player.UsedItem += OnUsedItem;
             base.SubscribeEvents();
         }
@@ -120,7 +121,7 @@ namespace GhostPlugin.Custom.Items.Etc
         // 이벤트 해제
         protected override void UnsubscribeEvents()
         {
-            Exiled.Events.Handlers.Player.Died -= OnDied;
+            Exiled.Events.Handlers.Player.Dying -= OnDying;
             Exiled.Events.Handlers.Player.UsedItem -= OnUsedItem;
             base.UnsubscribeEvents();
         }
