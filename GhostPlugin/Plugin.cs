@@ -11,10 +11,11 @@ using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
 using GhostPlugin.Configs;
 using GhostPlugin.EventHandlers;
-using HarmonyLib;
+//using HarmonyLib;
 using ProjectMER.Features.Objects;
 using UserSettings.ServerSpecific;
 using Server = Exiled.Events.Handlers.Server;
+using Scp049Events = Exiled.Events.Handlers.Scp049;
 
 namespace GhostPlugin
 {
@@ -23,7 +24,7 @@ namespace GhostPlugin
         public static Plugin Instance;
         public List<Player> StopRagdollList { get; } = new ();
         public Dictionary<StartTeam, List<ICustomRole>> Roles { get; } = new();
-        private Harmony Harmony { get; set; }
+        //private Harmony Harmony { get; set; }
         /// <summary>
         /// Speakers List
         /// </summary>
@@ -50,7 +51,10 @@ namespace GhostPlugin
         /// Casual FPS Mode
         /// </summary>
         public CasualFPSModeHandler CasualFPSModeHandler;
-        
+        /// <summary>
+        /// CustomRoleHandler
+        /// </summary>
+        public CustomRoleHandler CustomRoleHandler;
         //Audio Dir
         public readonly string AudioDirectory;
         public readonly string EffectDirectory;
@@ -191,24 +195,26 @@ namespace GhostPlugin
                         Log.Debug($"CustomRolesConfig {team} now has {Instance.Roles[team].Count} elements.");
                     }
                 }
+                Server.RoundStarted += CustomRoleHandler.OnRoundStarted;
+                Server.RespawningTeam += CustomRoleHandler.OnRespawningTeam;
+                Scp049Events.FinishingRecall += CustomRoleHandler.FinishingRecall;
             }
             //CustomAbility Config
             if (Instance.Config.CustomRolesAbilitiesConfig.IsEnabled)
                 CustomAbility.RegisterAbilities();
             
             if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled) { ClassicPlugin.RegisterEvents(); }
-            if (Config.CustomRolesConfig.IsEnabled) {CustomRoleHandler.RegisterEvents();}
             if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.RegisterEvents();}
             if (Config.Scp914Config.IsEnabled) {Scp914Handler.RegisterEvents();}
             //music event
             if (Config.MusicConfig.OnEnabled) {MusicEventHandlers.RegisterEvents();}
 
-            if (Config.EnableHarmony)
+            /*if (Config.EnableHarmony)
             {
                 Harmony = new Harmony($"Hanbin-GW.GhostPlugin.{DateTime.Now.Ticks}");
                 Harmony.PatchAll();
                 Log.Send($"[Ghost-Plugin-Eng] {Harmony.Id} is enabled",LogLevel.Info, ConsoleColor.Green);
-            }
+            }*/
             
             //SSSS
             /*if (Config.SsssConfig.IsEnabled == true)
@@ -282,10 +288,14 @@ namespace GhostPlugin
             if (Config.CustomRolesConfig.IsEnabled)
             {
                 CustomRole.UnregisterRoles();
-                CustomRoleHandler.UnregisterEvents();
+                Server.RoundStarted -= CustomRoleHandler.OnRoundStarted;
+                Server.RespawningTeam -= CustomRoleHandler.OnRespawningTeam;
+                Scp049Events.FinishingRecall -= CustomRoleHandler.FinishingRecall;
+                CustomRoleHandler = null;
             }
+
             //Harmony
-            Harmony.UnpatchAll();
+            //Harmony.UnpatchAll();
             
             //Legacy SSSS
             /*if (Config.ServerEventsMasterConfig.SsssConfig.IsEnabled)

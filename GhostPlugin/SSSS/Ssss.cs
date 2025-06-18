@@ -151,49 +151,54 @@ namespace GhostPlugin.SSSS
             if (Plugin.Instance.Config.CustomRolesConfig.IsEnabled &&
                 Plugin.Instance.Config.CustomRolesAbilitiesConfig.IsEnabled)
             {
-                settings.Add(new SSGroupHeader("Custom Ability activation key"));
+                settings.Add(new SSGroupHeader("특수능력 활성화 키"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ActiveCamoId, "Active Camo",
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ChargeId, "Charge", 
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetectId, "Detect", 
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DoorPickingId, "Door Picking",
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.HealingMistId, "Healing Mist",
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.RemoveDisguiseId, "Remove Disguise",
-                    KeyCode.B, true, "B"));
+                    KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.FocousId, "Focous",
-                    KeyCode.B,true,"B"));
+                    KeyCode.B,true,false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.EnhanseVisionId, "Enhance Vision",
-                    KeyCode.B,true,"B"));
+                    KeyCode.B,true,false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.GhostId,"Ghost",
-                    KeyCode.B,true,"B"));
+                    KeyCode.B,true,false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.Scp457Id, "Scp457"
-                    ,KeyCode.J,true,"J"));
+                    ,KeyCode.J,true,false,"J"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.Scp106Id,"Scp106",
-                    KeyCode.X,true,"X"));
+                    KeyCode.X,true,false,"X"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ExplosionId,"Explosion",
-                    KeyCode.I,true,"I"));
+                    KeyCode.I,true,false,"I"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.Speedy096Id,"Scp096",
-                    KeyCode.Alpha9,true,"9"));
+                    KeyCode.Alpha9,true,false,"9"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ResupplyId,"Active Resupply",
-                    KeyCode.B,true,"B"));
+                    KeyCode.B,true,false,"B"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.OverkillId, "Overkill Ability",
+                    KeyCode.O,true,false,"O"));
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ShockwaveId,"Shockwave (충격파)",
+                    KeyCode.B,true,false,"B"));
             }
+
 
             if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)
             {
                 settings.Add(new SSGroupHeader("CustomItem Ability Key"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.DetonateC4Id, "Detonate C4",
-                    KeyCode.J, true, "Take the walkie-talkie and press the custom keybind key to Detonate C4!"));
+                    KeyCode.J, true, false,"Take the walkie-talkie and press the custom keybind key to Detonate C4!"));
             }
 
             if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
             {
                 settings.Add(new SSGroupHeader("Map Toggle Key"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.MapToggleId,"Minimap ON/OFF"
-                    ,KeyCode.Y,true,"Toggle the minimap during the round."));
+                    ,KeyCode.Y,true,false,"Toggle the minimap during the round."));
             }
             return settings.ToArray();
         }

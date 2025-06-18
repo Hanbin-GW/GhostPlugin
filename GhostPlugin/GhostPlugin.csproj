@@ -37,8 +37,8 @@
         <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
           <HintPath>..\packages\Lib.Harmony.2.2.2\lib\net48\0Harmony.dll</HintPath>
         </Reference>
-        <Reference Include="Assembly-CSharp">
-          <HintPath>..\..\..\Documents\1403\Assembly-CSharp.dll</HintPath>
+        <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp-firstpass">
           <HintPath>..\..\..\Documents\14.0 dll\Assembly-CSharp-firstpass.dll</HintPath>
@@ -46,26 +46,32 @@
         <Reference Include="AudioPlayerApi">
           <HintPath>..\..\..\Documents\AudioPlayerAPI\AudioPlayerApi.dll</HintPath>
         </Reference>
-        <Reference Include="CommandSystem.Core">
-          <HintPath>..\..\..\Documents\LabAPI\CommandSystem.Core.dll</HintPath>
+        <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\CommandSystem.Core.dll</HintPath>
         </Reference>
         <Reference Include="C_Squad">
           <HintPath>..\..\C-Squad\C-Squad\obj\Release\C_Squad.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.API">
-          <HintPath>..\..\..\Documents\Exiled\SCP Secret Laboratory\LabAPI\dependencies\global\Exiled.API.dll</HintPath>
+        <Reference Include="Exiled.API, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.API.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.CustomItems">
-          <HintPath>..\..\..\Documents\Exiled\EXILED\Plugins\Exiled.CustomItems.dll</HintPath>
+        <Reference Include="Exiled.CreditTags, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.CreditTags.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.CustomRoles">
-          <HintPath>..\..\..\Documents\Exiled\EXILED\Plugins\Exiled.CustomRoles.dll</HintPath>
+        <Reference Include="Exiled.CustomItems, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.CustomItems.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.Events">
-          <HintPath>..\..\..\Documents\Exiled\EXILED\Plugins\Exiled.Events.dll</HintPath>
+        <Reference Include="Exiled.CustomRoles, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.CustomRoles.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.Loader">
-          <HintPath>..\..\..\Documents\Exiled\SCP Secret Laboratory\LabAPI\plugins\global\Exiled.Loader.dll</HintPath>
+        <Reference Include="Exiled.Events, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.Events.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.Loader, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.Loader.dll</HintPath>
+        </Reference>
+        <Reference Include="Exiled.Permissions, Version=9.6.1.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\Exiled.Permissions.dll</HintPath>
         </Reference>
         <Reference Include="HintServiceMeow">
           <HintPath>..\..\..\Documents\14.0 dll\HintServiceMeow-Exiled.dll</HintPath>
@@ -73,8 +79,8 @@
         <Reference Include="IndexRange, Version=1.0.3.0, Culture=neutral, PublicKeyToken=35e6a3c4212514c6, processorArchitecture=MSIL">
           <HintPath>..\packages\IndexRange.1.0.3\lib\net47\IndexRange.dll</HintPath>
         </Reference>
-        <Reference Include="LabApi">
-          <HintPath>..\..\..\Documents\LabAPI\LabApi.dll</HintPath>
+        <Reference Include="LabApi, Version=1.1.0.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\LabApi.dll</HintPath>
         </Reference>
         <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
           <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
@@ -89,8 +95,8 @@
           <HintPath>..\..\..\Documents\Exiled9.6.0\SCP Secret Laboratory\LabAPI-Beta\dependencies\Mono.Posix.dll</HintPath>
         </Reference>
         <Reference Include="mscorlib" />
-        <Reference Include="NorthwoodLib">
-          <HintPath>..\..\..\Documents\LabAPI\NorthwoodLib.dll</HintPath>
+        <Reference Include="NorthwoodLib, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\NorthwoodLib.dll</HintPath>
         </Reference>
         <Reference Include="NVorbis">
           <HintPath>..\..\..\Documents\AudioPlayerAPI\NVorbis.dll</HintPath>
@@ -144,8 +150,8 @@
         <Reference Include="UnityEngine.PhysicsModule">
           <HintPath>..\..\..\Documents\14.0 dll\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
-        <Reference Include="YamlDotNet">
-          <HintPath>..\..\..\Documents\LabAPI\YamlDotNet.dll</HintPath>
+        <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+          <HintPath>..\packages\ExMod.Exiled.9.6.1\lib\net48\YamlDotNet.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
@@ -274,7 +280,7 @@
         <Compile Include="EventHandlers\ClassicPlugin.cs" />
         <Compile Include="EventHandlers\CustomRoleHandler.cs" />
         <Compile Include="EventHandlers\MusicEventHandlers.cs" />
-        <Compile Include="EventHandlers\Methods.cs" />
+        <Compile Include="EventHandlers\CustomRoleMethods.cs" />
         <Compile Include="EventHandlers\NoobSupport.cs" />
         <Compile Include="EventHandlers\Scp914Handler.cs" />
         <Compile Include="EventHandlers\SsssEventHandler.cs" />
