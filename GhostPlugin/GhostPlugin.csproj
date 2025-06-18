@@ -195,6 +195,7 @@
         <Compile Include="Custom\Abilities\Active\Resupply.cs" />
         <Compile Include="Custom\Abilities\Active\SCP106.cs" />
         <Compile Include="Custom\Abilities\Active\Scp457.cs" />
+        <Compile Include="Custom\Abilities\Active\Shockwave.cs" />
         <Compile Include="Custom\Abilities\Active\Speedy096.cs" />
         <Compile Include="Custom\Abilities\Passive\BoostOnKill.cs" />
         <Compile Include="Custom\Abilities\Passive\FriendlyFireRemover.cs" />
