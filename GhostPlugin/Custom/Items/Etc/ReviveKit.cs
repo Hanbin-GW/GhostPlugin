@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.API.Features;
-using Exiled.Events.EventArgs;
-using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.Events.EventArgs.Player;
 using PlayerRoles;
@@ -28,10 +26,10 @@ namespace GhostPlugin.Custom.Items.Etc
         // 사망 시 정보 저장
         private void OnDying(DyingEventArgs ev)
         {
-            Log.Info($"[ReviveKit] {ev.Player.Nickname} died at {ev.Player.Position}");
+            Log.Debug($"[ReviveKit] {ev.Player.Nickname} died at {ev.Player.Position}");
             deathPositions[ev.Player] = ev.Player.Position;
-            //deathRoles[ev.Player] = ev.Player.Role.Type;
-            deathRoles[ev.Player] = ev.Player.PreviousRole;
+            deathRoles[ev.Player] = ev.Player.Role.Type;
+            //deathRoles[ev.Player] = ev.Player.PreviousRole;
         }
 
         // 아이템 사용 시 부활 처리

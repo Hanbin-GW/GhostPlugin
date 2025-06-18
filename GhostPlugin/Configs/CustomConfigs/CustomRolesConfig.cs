@@ -115,6 +115,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Quartermaster()
         };
+
+        public List<Medic> Medics { get; set; } = new()
+        {
+            new Medic()
+        };
         public List<DwarfZombie> DwarfZombies { get; set; } = new()
         {
             new DwarfZombie()
