@@ -156,6 +156,7 @@ namespace GhostPlugin
                 Config.CustomRolesConfig.DwarfZombies.Register();
                 Config.CustomRolesConfig.ExplosiveZombies.Register();
                 Config.CustomRolesConfig.EodSoldierZombies.Register();
+                Config.CustomRolesConfig.ReinforceZombies.Register();
                 foreach (CustomRole role in CustomRole.Registered)
                 {
                     Instance.Config.LoadConfigs();

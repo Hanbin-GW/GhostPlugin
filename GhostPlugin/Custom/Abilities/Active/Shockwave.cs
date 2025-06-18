@@ -7,8 +7,8 @@ namespace GhostPlugin.Custom.Abilities.Active
 {
     public class Shockwave : ActiveAbility
     {
-        public override string Name { get; set; } = "충격파";
-        public override string Description { get; set; } = "능력을 사용하여 충격파로 적들을 일시적으로 마비시킵니다!";
+        public override string Name { get; set; } = "Shockwave";
+        public override string Description { get; set; } = "Use the ability and stun the enemy!";
         public override float Duration { get; set; } = 1f;
         public override float Cooldown { get; set; } = 35f;
 

@@ -271,6 +271,7 @@
         <Compile Include="Custom\Roles\Scientist\O5Administrator.cs" />
         <Compile Include="Custom\Roles\Scps\DwarfZombie.cs" />
         <Compile Include="Custom\Roles\Scps\ExplosiveZombie.cs" />
+        <Compile Include="Custom\Roles\Scps\ReinforceZombie.cs" />
         <Compile Include="Custom\Roles\Scps\Scp049AP.cs" />
         <Compile Include="Custom\Roles\Scps\SCP682.cs" />
         <Compile Include="Custom\Roles\Scps\EODSoldierZombie.cs" />

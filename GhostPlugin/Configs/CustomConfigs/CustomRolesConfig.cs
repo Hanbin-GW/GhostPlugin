@@ -128,5 +128,10 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new EodSoldierZombie()
         };
+
+        public List<ReinforceZombie> ReinforceZombies { get; set; } = new()
+        {
+            new ReinforceZombie()
+        };
     }
 }

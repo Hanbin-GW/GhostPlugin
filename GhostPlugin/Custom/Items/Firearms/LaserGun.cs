@@ -2,10 +2,13 @@ using System.Collections.Generic;
 using AdminToys;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.DamageHandlers;
 using Exiled.API.Features.Spawn;
 using Exiled.API.Features.Toys;
 using Exiled.CustomItems.API.Features;
+using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
+using InventorySystem.Items.Firearms.Attachments;
 using MEC;
 using PlayerStatsSystem;
 using UnityEngine;
@@ -20,8 +23,10 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override ItemType Type { get; set; } = ItemType.GunE11SR;
         public override uint Id { get; set; } = 52;
         public override string Name { get; set; } = "Lasgun";
-        public override string Description { get; set; } = "If fires the laser!";
+        public override string Description { get; set; } = "It fires Laser!";
         public override float Weight { get; set; } = 2;
+        public override byte ClipSize { get; set; } = 30;
+
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
             Limit = 1,
@@ -40,6 +45,14 @@ namespace GhostPlugin.Custom.Items.Firearms
             },
         };
         public override float Damage { get; set; }
+
+        public override AttachmentName[] Attachments { get; set; } = new AttachmentName[]
+        {
+            AttachmentName.LowcapMagJHP,
+            AttachmentName.MuzzleBooster,
+            AttachmentName.Foregrip,
+        };
+
         public List<float> LaserColorRed { get; set; } = new List<float>()
         {
             0.86f, 
@@ -71,15 +84,23 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         public float LaserVisibleTime { get; set; } = 0.5f;
         public Vector3 LaserScale { get; set; } = new Vector3(0.05f, 0.05f, 0.05f);
-        
+        private void OnChangingAttachments(ChangingAttachmentsEventArgs ev)
+        {
+            if (!Check(ev.Player.CurrentItem))
+                return;
+            ev.IsAllowed = false;
+            ev.Player.ShowHint("cannot able to change attachment", 3);
+        }
         protected override void SubscribeEvents()
         {
+            Exiled.Events.Handlers.Item.ChangingAttachments += OnChangingAttachments;
             Player.Shot += OnShot;
             base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
         {
+            Exiled.Events.Handlers.Item.ChangingAttachments -= OnChangingAttachments;
             Player.Shot -= OnShot;
             base.UnsubscribeEvents();
         }
@@ -123,13 +144,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                     if (!targetPlayer.IsAlive)
                         return;
                     ev.Player.ShowHitMarker();
-                    /*targetPlayer.Hurt(
-                        attacker: ev.Player,
-                        amount: 25f,
-                        damageType: DamageType.E11Sr,
-                        deathText:"레이저 관통"
-                    );*/
-                    targetPlayer.Hurt(new CustomReasonDamageHandler( "레이저 관통", 25f));
+                    targetPlayer.Hurt(new CustomReasonDamageHandler( "Laser penetration", 25f));
                 }
             }
 
