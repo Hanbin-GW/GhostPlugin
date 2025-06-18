@@ -9,11 +9,11 @@ namespace GhostPlugin.EventHandlers
     using Exiled.CustomRoles.API.Features;
     using Exiled.Loader;
 
-    public class Methods
+    public class CustomRoleMethods
     {
         private readonly Plugin _plugin;
 
-        public Methods(Plugin plugin)
+        public CustomRoleMethods(Plugin plugin)
         {
             this._plugin = plugin;
         }
