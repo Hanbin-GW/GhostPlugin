@@ -316,6 +316,28 @@ namespace GhostPlugin.EventHandlers
                             player.ShowHint(Plugin.Instance.Config.SsssConfig.ResupplyActivatMessage);
                         }
                     }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.OverkillId)
+                    {
+                        var overkillAbility =
+                            abilities.FirstOrDefault(ability => ability.GetType() == typeof(Overkill));
+                        if (overkillAbility != null && overkillAbility.CanUseAbility(player, out response))
+                        {
+                            overkillAbility.SelectAbility(player);
+                            overkillAbility.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.OverkillActivationMessage);
+                        }
+                    }
+                    else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.ShockwaveId)
+                    {
+                        var shockwaveAbility = 
+                            abilities.FirstOrDefault(ability => ability.GetType() == typeof(Shockwave));
+                        if (shockwaveAbility != null && shockwaveAbility.CanUseAbility(player, out response))
+                        {
+                            shockwaveAbility.SelectAbility(player);
+                            shockwaveAbility.UseAbility(player);
+                            player.ShowHint(Plugin.Instance.Config.SsssConfig.ShockwaveActivateMessage);
+                        }
+                    }
                 }
                 else if (ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.DetonateC4Id)
                 {

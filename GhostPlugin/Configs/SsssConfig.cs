@@ -29,13 +29,16 @@ namespace GhostPlugin.Configs
         public string SsssDoorPickingActivationMessage { get; set; } = "Activated Door Picking, Interact with the door you want to pick.";
         public string SsssHealingMistActivationMessage { get; set; } = "Activated Healing Mist";
         public string SsssRemoveDisguiseActivationMessage { get; set; } = "Removing Disguise";
-        public string FocousActivationMessage { get; set; } = "극단의 SCP-1853 이 적용되었습니다!";
-        public string EnhanseVisionActivationMessage { get; set; } = "일시적으로 모든 적을 볼수 있습니다.";
-        public string Scp457ActivationMessage { get; set; } = "5m 내의 적들을 다 불태웁니다!";
-        public string SsssC4NoC4Deployed { get; set; } = "C4 를 설치 안하셧어요!";
-        public string SsssC4DetonatorNeeded { get; set; } = "기폭 장치(무전기)를 들고 있어야 합니다";
-        public string SsssC4TooFarAway { get; set; } = "C4 로부터 너무 떨어져 계십니다, 가까이 가시는거를 고려하시기 바랍니다.";
+        public string FocousActivationMessage { get; set; } = "Extrem SCP-1853 effect!";
+        public string EnhanseVisionActivationMessage { get; set; } = "You can see all the enemies temporarily.";
+        public string Scp457ActivationMessage { get; set; } = "burning down all the enemies within 5m!";
+        public string SsssC4NoC4Deployed { get; set; } = "You didn't installed C4!";
+        public string SsssC4DetonatorNeeded { get; set; } = "You need to hold the detonator (radio)";
+        public string SsssC4TooFarAway { get; set; } = "You are too far from C4, Recommend to go little closely.";
         public string SsssDetonateC4ActivationMessage { get; set; } = "C4 폭발";
-        public string ResupplyActivatMessage { get; set; } = "수류탄 1개와 섬광탄 1개가 보급되었습니다.";
+        public string ResupplyActivatMessage { get; set; } = "Grenades distributed.";
+        public string ShockwaveActivateMessage { get; set; } = "충격파로 근처 모든 인원이 마비되었습니다!";
+        public string OverkillActivationMessage { get; set; } = "오버킬 능력이 작동되었습니다!";
+
     }
 }

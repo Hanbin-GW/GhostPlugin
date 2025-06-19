@@ -182,7 +182,7 @@ namespace GhostPlugin.SSSS
                     KeyCode.B,true,false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.OverkillId, "Overkill Ability",
                     KeyCode.O,true,false,"O"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ShockwaveId,"Shockwave (충격파)",
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ShockwaveId,"Shockwave",
                     KeyCode.B,true,false,"B"));
             }
 

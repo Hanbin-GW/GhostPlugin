@@ -19,11 +19,9 @@ namespace GhostPlugin.Custom.Items.Etc
         public override float Weight { get; set; } = 4f;
         public override SpawnProperties SpawnProperties { get; set; }
 
-        // 죽은 위치와 역할 기록용
         private readonly Dictionary<Player, Vector3> deathPositions = new();
         private readonly Dictionary<Player, RoleTypeId> deathRoles = new();
 
-        // 사망 시 정보 저장
         private void OnDying(DyingEventArgs ev)
         {
             Log.Debug($"[ReviveKit] {ev.Player.Nickname} died at {ev.Player.Position}");
@@ -81,7 +79,7 @@ namespace GhostPlugin.Custom.Items.Etc
             {
                 RevivePlayer(closestPlayer);
                 ev.Player.ShowHint($"You have revived {closestPlayer.Nickname} within range ({closestDistance:F1}m)", 5);
-                closestPlayer.ShowHint($"당신은 {ev.Player} 님에 의해 부활되었습니다!");
+                closestPlayer.ShowHint($"You're Rivived by {ev.Player}!");
             }
             else
             {
