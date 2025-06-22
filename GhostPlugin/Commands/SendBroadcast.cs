@@ -40,7 +40,7 @@ namespace GhostPlugin.Commands
 
             if (Plugin.Instance.Config.Debug)
             {
-                SendBroadcastGhost.BroadcastGhost.BroadcastToAll(message_Argumanet, message_Color,
+                SendBroadcastGhost.BroadcastToAll(message_Argumanet, message_Color,
                     message_Size, ushort.Parse(duration));
             }
 

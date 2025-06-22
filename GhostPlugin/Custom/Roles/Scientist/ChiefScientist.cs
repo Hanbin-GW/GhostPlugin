@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
-using Exiled.Events.EventArgs.Player;
 using GhostPlugin.API;
 using PlayerRoles;
 

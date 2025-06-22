@@ -130,6 +130,9 @@ namespace GhostPlugin.SSSS
                     CustomItem.Get(typeof(StunGrenade)),
                     CustomItem.Get(typeof(TripleFlashGrenade)),
                     CustomItem.Get(typeof(HackingDevice)),
+                    CustomItem.Get(typeof(LaserCannon)),
+                    CustomItem.Get(typeof(Ballista)),
+                    CustomItem.Get(typeof(ReviveKit))
                 };
                 stringBuilder.AppendLine("<size=40>CustomItem - [특수 아이탬]</size>");
                 foreach (var itemCollection in customItems)

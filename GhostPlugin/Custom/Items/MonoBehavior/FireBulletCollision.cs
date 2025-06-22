@@ -31,11 +31,11 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 //target.Hurt(_damage, DamageType.E11Sr, _attacker.Nickname);
                 target.Hurt(new CustomReasonDamageHandler( "불탄 총알", _damage));
                 _attacker.ShowHitMarker();
-                Destroy(gameObject, 3f);
+                Destroy(gameObject);
             }
             else
             {
-                Destroy(gameObject,2f);
+                Destroy(gameObject,3f);
             }
         }
     }

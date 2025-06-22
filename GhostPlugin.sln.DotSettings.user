@@ -85,5 +85,7 @@
   &lt;Assembly Path="/Users/hanbin/RiderProjects/GhostPlugin/packages/ExMod.Exiled.9.6.0-beta4/lib/net48/NorthwoodLib.dll" /&gt;
   &lt;Assembly Path="/Users/hanbin/Documents/1403/Assembly-CSharp.dll" /&gt;
   &lt;Assembly Path="/Users/hanbin/RiderProjects/GhostPlugin/GhostPlugin/bin/Release/Unity.TextMeshPro.dll" /&gt;
+  &lt;Assembly Path="/Users/hanbin/RiderProjects/GhostPlugin/packages/ExMod.Exiled.9.6.1/lib/net48/LabApi.dll" /&gt;
+  &lt;Assembly Path="/Users/hanbin/RiderProjects/GhostPlugin/GhostPlugin/bin/Release/ProjectMER.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/Environment/InlayHints/GeneralInlayHintsOptions/EnableInlayHints/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>

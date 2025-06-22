@@ -22,6 +22,8 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
 
             if (target != null && target != _attacker)
             {
+                if (target.Role.Team == _attacker.Role.Team)
+                    return;
                 Log.Debug($"Hit Player: {target.Nickname}");
                 
                 target.EnableEffect<Decontaminating>(duration: 8,intensity:1);
@@ -30,11 +32,11 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 target.ShowHint("<color=red>매우 심각한 방사선 염산물질에 노출되었습니다!</color>",10);
                 _attacker.ShowHitMarker();
 
-                Destroy(gameObject, 4.5f);
+                Destroy(gameObject);
             }
             else
             {
-                Destroy(gameObject,1f);
+                Destroy(gameObject,4.5f);
             }
         }
     }

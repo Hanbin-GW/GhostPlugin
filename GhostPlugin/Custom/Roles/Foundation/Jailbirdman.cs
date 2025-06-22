@@ -8,7 +8,6 @@ using Exiled.Events.EventArgs.Player;
 using GhostPlugin.API;
 using MEC;
 using PlayerRoles;
-using PlayerStatsSystem;
 using Player = Exiled.API.Features.Player;
 
 namespace GhostPlugin.Custom.Roles.Foundation

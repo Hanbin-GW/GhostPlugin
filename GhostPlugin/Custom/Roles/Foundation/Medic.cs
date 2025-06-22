@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
 using PlayerRoles;
@@ -19,6 +20,11 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         public int Chance { get; set; } = 55;
         public override bool DisplayCustomItemMessages { get; set; } = false;
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+        };
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {
