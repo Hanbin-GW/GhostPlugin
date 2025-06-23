@@ -13,8 +13,8 @@ namespace GhostPlugin.Custom.Roles.Foundation
     {
         public override uint Id { get; set; } = 21;
         public override int MaxHealth { get; set; } = 100;
-        public override string Name { get; set; } = "Medic";
-        public override string Description { get; set; } = "부활키트를 사용하여 아군을 회복하십시요!";
+        public override string Name { get; set; } = "<color=#0096FF>MTF Medic</color>";
+        public override string Description { get; set; } = "<color=#0096FF>부활키트</color>를 사용하여 아군을 회복하십시요!";
         public override string CustomInfo { get; set; } = "Medic";
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfPrivate;
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
@@ -32,6 +32,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
             ItemType.GunCrossvec.ToString(),
             ItemType.Radio.ToString(),
             ItemType.ArmorCombat.ToString(),
+            "13",
             "39",
             "39",
             "20",
