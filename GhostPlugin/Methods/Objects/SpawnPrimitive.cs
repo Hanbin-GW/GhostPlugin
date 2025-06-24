@@ -29,7 +29,7 @@ namespace GhostPlugin.Methods.Objects
             if (pt.GameObject.GetComponent<Collider>() == null)
                 pt.GameObject.AddComponent<BoxCollider>();
         }
-        public static void spawnPrimitives(Player player,int count,Quaternion rotation, Vector3 laserPos, Color laserColor,int damage, int velocity)
+        public static void spawnPrimitivesfire(Player player,int count,Quaternion rotation, Vector3 laserPos, Color laserColor,int damage, int velocity)
         {
             Vector3 scale = new Vector3(0.05f, 0.05f, 0.05f);
             for (int i = 0; i < count; i++)

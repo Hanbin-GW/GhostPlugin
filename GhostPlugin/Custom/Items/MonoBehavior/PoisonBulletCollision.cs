@@ -9,21 +9,25 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
     {
         private int damage;
         private Player _attacker;
-
+        private bool _hasCollided = false;
         public void Initialize(int damage, Player attacker)
         {
             this.damage = damage;
             _attacker = attacker;
+            Log.Debug($"[PoisonBullet] Initialized with damage: {damage}, attacker: {_attacker?.Nickname}");
         }
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (_hasCollided) return;
+
             Player target = Player.Get(collision.collider) ?? Player.Get(collision.collider.GetComponentInParent<Collider>());
 
             if (target != null && target != _attacker)
             {
                 if (target.Role.Team == _attacker.Role.Team)
                     return;
+                _hasCollided = true;
                 Log.Debug($"Hit Player: {target.Nickname}");
                 
                 target.EnableEffect<Decontaminating>(duration: 8,intensity:1);

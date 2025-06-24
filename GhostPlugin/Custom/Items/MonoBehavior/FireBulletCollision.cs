@@ -11,11 +11,12 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
     {
         private int _damage;
         private Player _attacker;
-
+        private bool _hasCollided = false;
         public void Initialize(int damage, Player attacker)
         {
             _damage = damage;
             _attacker = attacker;
+            Log.Debug($"[FireBullet] Initialized with damage: {damage}, attacker: {_attacker?.Nickname}");
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -24,6 +25,9 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
 
             if (target != null && target != _attacker)
             {
+                if (target.Role.Team == _attacker.Role.Team)
+                    return;
+                _hasCollided = true; 
                 if (target.Role.Team == _attacker.Role.Team)
                     return;
                 Log.Debug($"Hit Player: {target.Nickname} - Damage: {_damage}");

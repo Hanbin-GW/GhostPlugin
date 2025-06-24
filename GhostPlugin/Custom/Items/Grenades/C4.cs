@@ -154,6 +154,7 @@ namespace GhostPlugin.Custom.Items.Grenades
         {
             if (!PlacedCharges.ContainsKey(ev.Projectile))
             {
+                ev.Projectile.PreviousOwner = ev.Player;
                 PlacedCharges.Add(ev.Projectile, ev.Player);
                 ev.Projectile.GameObject.AddComponent<StickyGrenadeBehavior>();
             }
