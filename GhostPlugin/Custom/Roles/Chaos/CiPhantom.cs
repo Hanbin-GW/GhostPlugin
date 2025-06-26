@@ -53,7 +53,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
             30.ToString(),
             17.ToString(),
             14.ToString(),
-            12.ToString(),
+            44.ToString(),
         };
         
         private void OnTogglingNoClip(TogglingNoClipEventArgs ev)
