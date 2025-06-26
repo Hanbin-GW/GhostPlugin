@@ -35,7 +35,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 //target.Hurt(_damage, DamageType.E11Sr, _attacker.Nickname);
                 target.Hurt(new CustomReasonDamageHandler( "Buring bullet", _damage));
                 _attacker.ShowHitMarker();
-                Destroy(gameObject);
+                Destroy(gameObject, 1f);
             }
             else
             {

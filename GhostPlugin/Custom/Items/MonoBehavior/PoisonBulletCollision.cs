@@ -36,7 +36,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 target.ShowHint("<color=red>You are exposed to very serious radiation hydrochloride!</color>",10);
                 _attacker.ShowHitMarker();
 
-                Destroy(gameObject);
+                Destroy(gameObject, 1f);
             }
             else
             {

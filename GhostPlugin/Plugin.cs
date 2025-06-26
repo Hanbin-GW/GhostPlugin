@@ -31,7 +31,7 @@ namespace GhostPlugin
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(6, 2, 1);
+        public override Version Version { get; } = new(6, 2, 3);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin-Eng";
         public override PluginPriority Priority { get; } = PluginPriority.Low;
