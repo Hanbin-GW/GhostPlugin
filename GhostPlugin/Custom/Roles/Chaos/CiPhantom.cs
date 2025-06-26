@@ -35,12 +35,12 @@ namespace GhostPlugin.Custom.Roles.Chaos
             new Focous()
             {
                 Name = "Focous (집중)",
-                Description = "반동과, 조준시간, 장전시간이 줄어듭니다!"
+                Description = "Extrem 1853 effect!"
             },
             new Ghost()
             {
                 Name = "Ghost",
-                Description = "20초간 조용해지고 문을 통과하고 투명해집니다!"
+                Description = "You'll became quiet for 20 seconds, it's through the door, and invisible!"
             }
         };
         public int Chance { get; set; } = 40;

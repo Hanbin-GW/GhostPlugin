@@ -14,14 +14,16 @@ namespace GhostPlugin.Custom.Items.Etc
     {
         public override uint Id { get; set; } = 39;
         public override string Name { get; set; } = "Revive kit [Test Version]";
-        public override string Description { get; set; } = "You can aim at a dead body and revive it when you use it!";
+        public override string Description { get; set; } = "Aim at a dead body and revive it when you use it!";
         public override ItemType Type { get; set; } = ItemType.Medkit;
         public override float Weight { get; set; } = 4f;
         public override SpawnProperties SpawnProperties { get; set; }
 
+        // Record Deat body Location and Previous Role
         private readonly Dictionary<Player, Vector3> deathPositions = new();
         private readonly Dictionary<Player, RoleTypeId> deathRoles = new();
 
+        // Save information in case of user death
         private void OnDying(DyingEventArgs ev)
         {
             Log.Debug($"[ReviveKit] {ev.Player.Nickname} died at {ev.Player.Position}");
@@ -30,14 +32,14 @@ namespace GhostPlugin.Custom.Items.Etc
             //deathRoles[ev.Player] = ev.Player.PreviousRole;
         }
 
-        // 아이템 사용 시 부활 처리
+        // Resurrect when using the item
         private void OnUsedItem(UsedItemEventArgs ev)
         {
             if (!Check(ev.Item)) return;
 
             const float MaxReviveDistance = 20f;
 
-            // Raycast로 시체 조준 감지
+            // detection of dead bodies to using Raycast
             if (Physics.Raycast(ev.Player.CameraTransform.position, ev.Player.CameraTransform.forward, out RaycastHit hit, MaxReviveDistance))
             {
                 var hub = hit.collider.GetComponentInParent<ReferenceHub>();
@@ -53,7 +55,7 @@ namespace GhostPlugin.Custom.Items.Etc
                 }
             }
 
-            // Raycast 실패 시 주변 시체 탐색
+            // if Raycast fails -> find a near body
             float closestDistance = float.MaxValue;
             Player closestPlayer = null;
 
@@ -79,7 +81,8 @@ namespace GhostPlugin.Custom.Items.Etc
             {
                 RevivePlayer(closestPlayer);
                 ev.Player.ShowHint($"You have revived {closestPlayer.Nickname} within range ({closestDistance:F1}m)", 5);
-                closestPlayer.ShowHint($"You're Rivived by {ev.Player}!");
+                closestPlayer.ShowHint($"You are revived by {ev.Player}!");
+                //ev.Player.ShowHint($"You have revived {closestPlayer.Nickname} within range ({closestDistance:F1}m)", 5);
             }
             else
             {
@@ -87,6 +90,7 @@ namespace GhostPlugin.Custom.Items.Etc
             }
         }
 
+        // 플레이어 부활 처리
         private void RevivePlayer(Player player)
         {
             if (player.IsDead || player.PreviousRole.IsHuman())
@@ -106,6 +110,7 @@ namespace GhostPlugin.Custom.Items.Etc
             }
         }
 
+        // 이벤트 등록
         protected override void SubscribeEvents()
         {
             Exiled.Events.Handlers.Player.Dying += OnDying;
@@ -113,6 +118,7 @@ namespace GhostPlugin.Custom.Items.Etc
             base.SubscribeEvents();
         }
 
+        // 이벤트 해제
         protected override void UnsubscribeEvents()
         {
             Exiled.Events.Handlers.Player.Dying -= OnDying;

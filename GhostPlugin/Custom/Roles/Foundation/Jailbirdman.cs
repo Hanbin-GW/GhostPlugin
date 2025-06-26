@@ -19,7 +19,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override uint Id { get; set; } = 6;
         public override int MaxHealth { get; set; } = 110;
         public override string Name { get; set; } = "<color=#0096FF>Jailbird Man</color>";
-        public override string Description { get; set; } = "Agent Bethalang, who is very good at handling Jailbird well.";
+        public override string Description { get; set; } = "Agent veteran, who is very good at handling Jailbird well.";
         public override string CustomInfo { get; set; } = "Jailbird Man";
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfSergeant;
         public override bool DisplayCustomItemMessages { get; set; } = false;

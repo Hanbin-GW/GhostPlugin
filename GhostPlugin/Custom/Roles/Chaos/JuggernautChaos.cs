@@ -24,7 +24,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
 
         public override string Description { get; set; } = "It's a very navy-armed Juggernaut Chaos Rebellion!";
 
-        public override string CustomInfo { get; set; } = "Explosive Chaos";
+        public override string CustomInfo { get; set; } = "Juggernaut Chaos";
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
