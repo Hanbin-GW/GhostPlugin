@@ -1,3 +1,4 @@
+using System;
 using CameraShaking;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
@@ -45,8 +46,15 @@ namespace GhostPlugin.Custom.Items.Firearms
                 RpcSyncRecoil(ev.Player.Id, syncedRecoil.ZAxis, syncedRecoil.UpKick, syncedRecoil.SideKick, syncedRecoil.FovKick);
             }
             ev.Firearm.Recoil = syncedRecoil;
-            ev.Firearm.Inaccuracy = 0;
             base.OnShot(ev);
+        }
+
+        private void Onaimimg(AimingDownSightEventArgs ev)
+        {
+            if (Check(ev.Player.CurrentItem))
+            {
+                ev.Firearm.Inaccuracy = 0;
+            }
         }
         protected override void OnShooting(ShootingEventArgs ev)
         {

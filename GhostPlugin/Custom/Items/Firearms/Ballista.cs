@@ -108,6 +108,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         {
             if (!Check(ev.Player.CurrentItem)) return;
             ev.CanHurt = false;
+            ev.Firearm.Inaccuracy = 0f;
 
             var laserColor = new Color(0f, 1f, 1f, 0.1f) * 50;
             var origin = ev.Player.CameraTransform.position + ev.Player.CameraTransform.forward * 0.3f;
