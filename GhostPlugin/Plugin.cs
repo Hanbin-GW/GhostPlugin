@@ -34,7 +34,7 @@ namespace GhostPlugin
         public override Version Version { get; } = new(6, 2, 3);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin-Eng";
-        public override PluginPriority Priority { get; } = PluginPriority.Low;
+        public override PluginPriority Priority { get; } = PluginPriority.Medium;
         //private MyCustomKeyBind _myCustomKeyBind;
         
         /// <summary>
@@ -82,7 +82,7 @@ namespace GhostPlugin
             }
 
             Log.Send($"[Exiled.API] {Instance.Name} is enabled By {Instance.Author} | Version: {Instance.Version}",LogLevel.Info, ConsoleColor.DarkRed);
-            Config.LoadConfigs();
+            //Config.LoadConfigs();
             if(Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled){BlackoutMod.RegisterEvents();}
 
             //CustomItem Config
@@ -159,7 +159,7 @@ namespace GhostPlugin
                 Config.CustomRolesConfig.ReinforceZombies.Register();
                 foreach (CustomRole role in CustomRole.Registered)
                 {
-                    Instance.Config.LoadConfigs();
+                    //Instance.Config.LoadConfigs();
                     if (role.CustomAbilities is not null)
                     {
                         foreach (CustomAbility ability in role.CustomAbilities)
