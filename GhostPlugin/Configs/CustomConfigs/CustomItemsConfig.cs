@@ -191,7 +191,7 @@ namespace GhostPlugin.Configs.CustomConfigs
             new LaserGun()
         };
 
-        public List<Ballista> Ballistae { get; private set; } = new List<Ballista>()
+        public List<Ballista> MorsReworks { get; private set; } = new List<Ballista>()
         {
             new Ballista()
         };

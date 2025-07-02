@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using GhostPlugin.Custom.Abilities.Active;
 using GhostPlugin.Custom.Roles.Chaos;
 using GhostPlugin.Custom.Roles.ClassD;
 using GhostPlugin.Custom.Roles.Foundation;
@@ -114,11 +115,15 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Quartermaster()
         };
+
+        public List<Medic> Medics { get; set; } = new()
+        {
+            new Medic()
+        };
         public List<DwarfZombie> DwarfZombies { get; set; } = new()
         {
             new DwarfZombie()
         };
-
         public List<ExplosiveZombie> ExplosiveZombies { get; set; } = new()
         {
             new ExplosiveZombie()
@@ -127,6 +132,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         public List<EodSoldierZombie> EodSoldierZombies { get; set; } = new()
         {
             new EodSoldierZombie()
+        };
+
+        public List<ShockWaveZombie> ShockWaveZombies { get; set; } = new()
+        {
+            new ShockWaveZombie()
         };
 
         public List<ReinforceZombie> ReinforceZombies { get; set; } = new()

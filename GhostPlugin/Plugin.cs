@@ -12,10 +12,10 @@ using GhostPlugin.API;
 using GhostPlugin.Configs;
 using GhostPlugin.EventHandlers;
 //using HarmonyLib;
+using Scp049Events = Exiled.Events.Handlers.Scp049;
 using ProjectMER.Features.Objects;
 using UserSettings.ServerSpecific;
 using Server = Exiled.Events.Handlers.Server;
-using Scp049Events = Exiled.Events.Handlers.Scp049;
 
 namespace GhostPlugin
 {
@@ -31,12 +31,12 @@ namespace GhostPlugin
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(6, 2, 3);
+        public override Version Version { get; } = new(6, 2, 2);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin-Eng";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
         //private MyCustomKeyBind _myCustomKeyBind;
-        
+        public CustomRoleHandler CustomRoleHandler;
         /// <summary>
         /// Minimap Dict
         /// </summary>
@@ -51,10 +51,7 @@ namespace GhostPlugin
         /// Casual FPS Mode
         /// </summary>
         public CasualFPSModeHandler CasualFPSModeHandler;
-        /// <summary>
-        /// CustomRoleHandler
-        /// </summary>
-        public CustomRoleHandler CustomRoleHandler;
+        
         //Audio Dir
         public readonly string AudioDirectory;
         public readonly string EffectDirectory;
@@ -82,7 +79,7 @@ namespace GhostPlugin
             }
 
             Log.Send($"[Exiled.API] {Instance.Name} is enabled By {Instance.Author} | Version: {Instance.Version}",LogLevel.Info, ConsoleColor.DarkRed);
-            //Config.LoadConfigs();
+            Config.LoadConfigs();
             if(Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled){BlackoutMod.RegisterEvents();}
 
             //CustomItem Config
@@ -126,12 +123,13 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.MachineGuns.Register();
                 Config.CustomItemsConfig.Riveters.Register();
                 Config.CustomItemsConfig.LaserGuns.Register();
-                Config.CustomItemsConfig.Ballistae.Register();
+                Config.CustomItemsConfig.MorsReworks.Register();
             }
             
             //CustomRole Config
             if (Config.CustomRolesConfig.IsEnabled)
             {
+                CustomRoleHandler = new CustomRoleHandler(this);
                 Config.CustomRolesConfig.ChiefScientists.Register();
                 Config.CustomRolesConfig.CiPhantoms.Register();
                 Config.CustomRolesConfig.DAlphas.Register();
@@ -153,13 +151,15 @@ namespace GhostPlugin
                 Config.CustomRolesConfig.Enforcers.Register();
                 Config.CustomRolesConfig.Strategists.Register();
                 Config.CustomRolesConfig.Quartermasters.Register();
+                Config.CustomRolesConfig.Medics.Register();
                 Config.CustomRolesConfig.DwarfZombies.Register();
                 Config.CustomRolesConfig.ExplosiveZombies.Register();
                 Config.CustomRolesConfig.EodSoldierZombies.Register();
+                Config.CustomRolesConfig.ShockWaveZombies.Register();
                 Config.CustomRolesConfig.ReinforceZombies.Register();
                 foreach (CustomRole role in CustomRole.Registered)
                 {
-                    //Instance.Config.LoadConfigs();
+                    Instance.Config.LoadConfigs();
                     if (role.CustomAbilities is not null)
                     {
                         foreach (CustomAbility ability in role.CustomAbilities)
@@ -185,6 +185,8 @@ namespace GhostPlugin
                             team = StartTeam.ClassD;
                         else if (custom.StartTeam.HasFlag(StartTeam.Scp))
                             team = StartTeam.Scp;
+                        else if (custom.StartTeam.HasFlag(StartTeam.Revived))
+                            team = StartTeam.Revived;
                         else
                             team = StartTeam.Other;
 
@@ -210,11 +212,11 @@ namespace GhostPlugin
             //music event
             if (Config.MusicConfig.OnEnabled) {MusicEventHandlers.RegisterEvents();}
 
-            /*if (Config.EnableHarmony)
+            /*if (Instance.Config.EnableHarmony)
             {
-                Harmony = new Harmony($"Hanbin-GW.GhostPlugin.{DateTime.Now.Ticks}");
+                Harmony = new Harmony($"[GhostPlugin] Hanbin-GW.GhostPlugin.{DateTime.Now.Ticks}");
                 Harmony.PatchAll();
-                Log.Send($"[Ghost-Plugin-Eng] {Harmony.Id} is enabled",LogLevel.Info, ConsoleColor.Green);
+                Log.Send($"{Harmony.Id} is enabled", LogLevel.Info, ConsoleColor.DarkYellow);
             }*/
             
             //SSSS
@@ -232,23 +234,23 @@ namespace GhostPlugin
 
                     if (SsssEventHandler is null)
                     {
-                        Log.Error("SsssEventHandler is null!");
+                        Log.Error("SsssEventHandler가 null입니다!");
                         return;
                     }
 
                     Server.RoundStarted += SsssEventHandler.OnRoundStarted;
                     Exiled.Events.Handlers.Player.Verified += SsssEventHandler.OnVerified;
                     ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
-                    Log.Info("SsssEventHandler was sucessfully registrated");
+                    Log.Info("SsssEventHandler 이벤트 정상 등록됨");
                 }
                 else
                 {
-                    Log.Warn(" SsssConfig was disabled.");
+                    Log.Warn(" SsssConfig가 비활성화됨.");
                 }
             }
             catch (Exception ex)
             {
-                Log.Error($"exception occured during creation SsssEventHandler: {ex.Message}");
+                Log.Error($"SsssEventHandler 생성 중 예외 발생: {ex.Message}");
                 return;
             }
 
@@ -294,7 +296,6 @@ namespace GhostPlugin
                 Scp049Events.FinishingRecall -= CustomRoleHandler.FinishingRecall;
                 CustomRoleHandler = null;
             }
-
             //Harmony
             //Harmony.UnpatchAll();
             
@@ -326,12 +327,12 @@ namespace GhostPlugin
             // 폴더가 없으면 생성
             if (!Directory.Exists(path))
             {
-                Log.Warn($"The music folder does not exist, create a new one: {path}");
-                Directory.CreateDirectory(path);
+                Log.Warn($"음악 폴더가 존재하지 않습니다. 새로 생성합니다: {path}");
+                Directory.CreateDirectory(path);  // 폴더 생성
             }
             else
             {
-                Log.Info("The music folder already exists.");
+                Log.Info("음악 폴더가 이미 존재합니다.");
             }
         }
     }
