@@ -258,6 +258,7 @@
         <Compile Include="Custom\Roles\Chaos\Strategist.cs" />
         <Compile Include="Custom\Roles\ClassD\D-Alpha.cs" />
         <Compile Include="Custom\Roles\ClassD\Dwarf.cs" />
+        <Compile Include="Custom\Roles\Foundation\AdvancedMTF.cs" />
         <Compile Include="Custom\Roles\Foundation\ContainmentSpecialList.cs" />
         <Compile Include="Custom\Roles\Foundation\Demolitionist.cs" />
         <Compile Include="Custom\Roles\Foundation\Elite.cs" />

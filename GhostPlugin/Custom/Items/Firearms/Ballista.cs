@@ -110,7 +110,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             ev.CanHurt = false;
             ev.Firearm.Inaccuracy = 0f;
 
-            var laserColor = new Color(0f, 1f, 1f, 0.1f) * 50;
+            //var laserColor = new Color(0f, 1f, 1f, 0.1f) * 50;
+            var laserColor = new Color(1f, 0.1f, 0f, 0.1f) * 50;
             var origin = ev.Player.CameraTransform.position + ev.Player.CameraTransform.forward * 0.3f;
             var direction = ev.Player.CameraTransform.forward;
             float distance = 200f;
