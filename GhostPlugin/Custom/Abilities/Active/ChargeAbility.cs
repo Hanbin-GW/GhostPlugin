@@ -57,8 +57,42 @@ namespace GhostPlugin.Custom.Abilities.Active
             Vector3 forward = player.CameraTransform.forward;
             return Physics.Raycast(player.Position + forward, forward, out hit, 200f, HitscanHitregModuleBase.HitregMask);
         }
-
         private IEnumerator<float> MovePlayer(Player player, RaycastHit hit)
+        {
+            float duration = 1.5f; // 돌진 지속 시간
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                player.Position = Vector3.MoveTowards(player.Position, hit.point, 0.5f);
+                elapsed += 0.00025f;
+                yield return Timing.WaitForSeconds(0.00025f);
+            }
+
+            // 나머지 충돌 처리 로직은 원래대로 유지
+            Timing.CallDelayed(0.5f, () => player.EnableEffect(EffectType.Ensnared, EnsnareDuration));
+
+            Player target = Player.Get(hit.collider.GetComponentInParent<ReferenceHub>());
+            if (target != null)
+            {
+                if ((target.Position - hit.point).sqrMagnitude >= 3f)
+                {
+                    target.Hurt(new ScpDamageHandler(player.ReferenceHub, ContactDamage * AccuracyMultiplier, DeathTranslations.Zombie));
+                    target.EnableEffect(EffectType.Ensnared, EnsnareDuration);
+                }
+                else
+                {
+                    player.Hurt(new UniversalDamageHandler(ContactDamage, DeathTranslations.Falldown));
+                }
+            }
+            else
+            {
+                player.Hurt(new UniversalDamageHandler(ContactDamage, DeathTranslations.Falldown));
+            }
+
+            EndAbility(player);
+        }
+        /*rivate IEnumerator<float> MovePlayer(Player player, RaycastHit hit)
         {
             while ((player.Position - hit.point).sqrMagnitude >= 2.5f)
             {
@@ -88,6 +122,6 @@ namespace GhostPlugin.Custom.Abilities.Active
             }
 
             EndAbility(player);
-        }
+        }*/
     }
 }
