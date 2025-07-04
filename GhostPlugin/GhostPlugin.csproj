@@ -251,6 +251,7 @@
         <Compile Include="Custom\Roles\Chaos\CiPhantom.cs" />
         <Compile Include="Custom\Roles\Chaos\FedoraAgent.cs" />
         <Compile Include="Custom\Roles\Chaos\Gunslinger.cs" />
+        <Compile Include="Custom\Roles\Chaos\Hunter.cs" />
         <Compile Include="Custom\Roles\Chaos\JuggernautChaos.cs" />
         <Compile Include="Custom\Roles\Chaos\Ninja.cs" />
         <Compile Include="Custom\Roles\Chaos\SpyAgent.cs" />
@@ -263,6 +264,7 @@
         <Compile Include="Custom\Roles\Foundation\Demolitionist.cs" />
         <Compile Include="Custom\Roles\Foundation\Elite.cs" />
         <Compile Include="Custom\Roles\Foundation\Enforcer.cs" />
+        <Compile Include="Custom\Roles\Foundation\HugoBoss.cs" />
         <Compile Include="Custom\Roles\Foundation\Jailbirdman.cs" />
         <Compile Include="Custom\Roles\Foundation\KSK.cs" />
         <Compile Include="Custom\Roles\Foundation\LuckyGuard.cs" />

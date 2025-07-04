@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using Exiled.API.Enums;
+using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
+using PlayerRoles;
 
 namespace GhostPlugin.Custom.Roles.Foundation
 {
+    [CustomRole(RoleTypeId.NtfPrivate)]
     public class AdvancedMTF : CustomRole, ICustomRole
     {
         public override uint Id { get; set; } = 22;
@@ -15,6 +18,8 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override string CustomInfo { get; set; } = "Advanced MTF";
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         public int Chance { get; set; } = 80;
+        public override RoleTypeId Role { get; set; } = RoleTypeId.NtfPrivate;
+        public override bool DisplayCustomItemMessages { get; set; } = false;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
