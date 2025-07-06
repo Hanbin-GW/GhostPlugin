@@ -21,6 +21,8 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (_hasCollided) return;
+
             Player target = Player.Get(collision.collider) ?? Player.Get(collision.collider.GetComponentInParent<Collider>());
 
             if (target != null && target != _attacker)
