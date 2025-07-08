@@ -24,7 +24,7 @@ namespace GhostPlugin.Custom.Abilities.Active
         public override float Cooldown { get; set; } = 45f;
 
         [Description("The amount of damage inflicted when the player collides with something.")]
-        public float ContactDamage { get; set; } = 15f;
+        public float ContactDamage { get; set; } = 30f;
 
         [Description("The bonus multiplier if the target player wasn't moving.")] 
         public float AccuracyMultiplier { get; set; } = 2f;
@@ -55,8 +55,8 @@ namespace GhostPlugin.Custom.Abilities.Active
         private bool RunRaycast(Player player, out RaycastHit hit)
         {
             Vector3 forward = player.CameraTransform.forward;
-            return Physics.Raycast(player.Position + forward, forward, out hit, 200f, HitscanHitregModuleBase.HitregMask);
-            //return Physics.Raycast(player.CameraTransform.position, forward, out hit, 200f, HitscanHitregModuleBase.HitregMask);
+            //return Physics.Raycast(player.Position + forward, forward, out hit, 200f, HitscanHitregModuleBase.HitregMask);
+            return Physics.Raycast(player.CameraTransform.position, forward, out hit, 200f, HitscanHitregModuleBase.HitregMask);
         }
         private IEnumerator<float> MovePlayer(Player player, RaycastHit hit)
         {
@@ -91,7 +91,7 @@ namespace GhostPlugin.Custom.Abilities.Active
             // ✅ 이제 대상이 확실하므로 피해 적용
             target.Hurt(new ScpDamageHandler(player.ReferenceHub, ContactDamage * AccuracyMultiplier, DeathTranslations.Zombie));
             target.EnableEffect(EffectType.Ensnared, EnsnareDuration);
-            player.ShowHitMarker(1.8f);
+            player.ShowHitMarker(0.7f);
 
             EndAbility(player);
         }

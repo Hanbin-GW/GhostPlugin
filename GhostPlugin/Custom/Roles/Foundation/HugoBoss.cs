@@ -19,6 +19,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public int Chance { get; set; } = 0;
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfSergeant;
+        public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>();
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {
