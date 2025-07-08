@@ -15,7 +15,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override uint Id { get; set; } = 23;
         public override int MaxHealth { get; set; } = 200;
         public override string Name { get; set; } = "헌터";
-        public override string Description { get; set; } = "특정 한명을 처치하는거에 특화되어 있습니다.";
+        public override string Description { get; set; } = "특정 대상을 처치하는거에 특화되어 있습니다.";
         public override string CustomInfo { get; set; } = "Hunter";
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
