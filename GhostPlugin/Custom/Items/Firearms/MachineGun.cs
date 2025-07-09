@@ -16,7 +16,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Description { get; set; } = ".300 구경을 사용한 피해량과 반동이 약간 높은 기관총입니다.";
         public override float Weight { get; set; } = 6f;
         public override SpawnProperties SpawnProperties { get; set; }
-        public override float Damage { get; set; } = 38.5f;
+        public override float Damage { get; set; } = 28.5f;
         public override ItemType Type { get; set; } = ItemType.GunLogicer;
         public override byte ClipSize { get; set; } = 75;
 

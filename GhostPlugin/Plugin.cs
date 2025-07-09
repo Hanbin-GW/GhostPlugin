@@ -31,7 +31,7 @@ namespace GhostPlugin
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(6, 3, 3);
+        public override Version Version { get; } = new(6, 4, 0);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
@@ -154,6 +154,7 @@ namespace GhostPlugin
                 Config.CustomRolesConfig.Medics.Register();
                 Config.CustomRolesConfig.AdvancedMtfs.Register();
                 Config.CustomRolesConfig.Hunters.Register();
+                Config.CustomRolesConfig.HugoBosses.Register();
                 Config.CustomRolesConfig.DwarfZombies.Register();
                 Config.CustomRolesConfig.ExplosiveZombies.Register();
                 Config.CustomRolesConfig.EodSoldierZombies.Register();

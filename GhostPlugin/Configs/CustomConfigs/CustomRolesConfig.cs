@@ -129,6 +129,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Hunter()
         };
+
+        public List<HugoBoss> HugoBosses { get; set; } = new()
+        {
+            new HugoBoss()
+        };
         public List<DwarfZombie> DwarfZombies { get; set; } = new()
         {
             new DwarfZombie()
