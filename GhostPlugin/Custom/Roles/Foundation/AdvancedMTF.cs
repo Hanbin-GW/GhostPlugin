@@ -13,7 +13,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
     {
         public override uint Id { get; set; } = 22;
         public override int MaxHealth { get; set; } = 125;
-        public override string Name { get; set; } = "<color=#eb6b34>Advanced Ops</color>";
+        public override string Name { get; set; } = "<color=#3bffe2>Advanced Ops</color>";
         public override string Description { get; set; } = "고급 무기들을 가지고 있습니다";
         public override string CustomInfo { get; set; } = "Advanced MTF";
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
