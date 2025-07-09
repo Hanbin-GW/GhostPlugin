@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Discord;
@@ -10,7 +11,6 @@ using GhostPlugin.Methods.Legacy;
 using GhostPlugin.Methods.Music;
 using MEC;
 using PlayerRoles;
-
 namespace GhostPlugin.EventHandlers
 {
     public class MusicEventHandlers
@@ -19,6 +19,8 @@ namespace GhostPlugin.EventHandlers
         public MusicEventHandlers(Plugin plugin) => this._plugin = plugin;
         public static MusicManager MusicManager = new MusicManager();
         public static AudioManagemanet AudioManagemanet = new AudioManagemanet();
+        private static CoroutineHandle loopCoroutine;
+
         /// <summary>
         /// evnet regsister
         /// </summary>
@@ -59,6 +61,8 @@ namespace GhostPlugin.EventHandlers
         public static void OnWaitingPlayers()
         { 
             MusicManager.EnsureMusicDirectoryExists();
+            string[] playlist = Plugin.Instance.Config.MusicConfig.MusicPlayList;
+
             var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.LobbySongPath);
             AudioClipStorage.LoadClip(path, "lobby_music");
 
@@ -73,11 +77,12 @@ namespace GhostPlugin.EventHandlers
             {
                 globalPlayer.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
 
-                globalPlayer.AddClip("lobby_music",
+                /*globalPlayer.AddClip("lobby_music",
                     volume: Plugin.Instance.Config.MusicConfig.Volume,
                     loop: Plugin.Instance.Config.MusicConfig.Loop,
-                    destroyOnEnd: false);
-
+                    destroyOnEnd: false);*/
+                loopCoroutine = Timing.RunCoroutine(LoopPlaylist(globalPlayer, playlist));
+                
                 Log.Info("main song playing");
             }
             else
@@ -91,6 +96,8 @@ namespace GhostPlugin.EventHandlers
         /// </summary>
         public static void OnRoundStarted()
         {
+            if (loopCoroutine.IsRunning)
+                Timing.KillCoroutines(loopCoroutine);
             if (!AudioPlayer.TryGet("Lobby", out AudioPlayer lobbyPlayer))
                 return;
             lobbyPlayer.ClipsById.Clear();
@@ -246,6 +253,29 @@ namespace GhostPlugin.EventHandlers
                         }
                         break;
                     }
+                }
+            }
+        }
+        public static IEnumerator<float> LoopPlaylist(AudioPlayer player, string[] playlist)
+        {
+            while (true)
+            {
+                foreach (string fileName in playlist)
+                {
+                    string path = Path.Combine(Plugin.Instance.AudioDirectory, fileName);
+                    string clipId = Path.GetFileNameWithoutExtension(fileName);
+
+                    AudioClipStorage.LoadClip(path, clipId);
+                    player.AddClip(clipId, volume: Plugin.Instance.Config.MusicConfig.Volume, loop: false, destroyOnEnd: true);
+                    float duration = API.Audio.AudioUtils.GetOggDurationInSeconds(path);
+                    if (Plugin.Instance.Config.MusicConfig.Debug)
+                    {
+                        Log.Send($"재생 중: {clipId}", LogLevel.Debug, ConsoleColor.DarkGreen);
+                        Log.Send($"{duration} secound", LogLevel.Debug, ConsoleColor.DarkGreen);
+                    }
+
+                    yield return Timing.WaitForSeconds(duration);
+                    player.ClipsById.Clear();
                 }
             }
         }

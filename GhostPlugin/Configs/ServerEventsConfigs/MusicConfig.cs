@@ -4,7 +4,8 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
 {
     public class MusicConfig
     {
-        public bool OnEnabled { get; set; } = true; 
+        public bool OnEnabled { get; set; } = true;
+        public bool Debug { get; set; } = true;
         public string LobbySongPath { get; set; } = "Epic SciFi Military by Infraction No Copyright Music  War.ogg";
         public string WarheadBGMPath { get; set; } = "badending.ogg";
         public float Volume { get; set; } = 0.4f;
@@ -29,6 +30,13 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
         {
             "76561199133709329@steam",
             "76561199248290923@steam"
+        };
+
+        public string[] MusicPlayList { get; set; } = new[]
+        {
+            "77part2ost.ogg",
+            "Slow_Light.ogg",
+            "77.ogg"
         };
     }
 }
