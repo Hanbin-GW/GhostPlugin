@@ -4,7 +4,9 @@ using Exiled.CustomItems.API.Features;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.Events.EventArgs.Player;
+using Mirror;
 using PlayerRoles;
+using PlayerRoles.Ragdolls;
 using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Etc
@@ -101,6 +103,14 @@ namespace GhostPlugin.Custom.Items.Etc
 
                 player.Role.Set(reviveRole, RoleSpawnFlags.AssignInventory);
                 player.Health = 10;
+                foreach (var doll in RagdollManager.AllRagdolls)
+                {
+                    if (doll.Info.Nickname == player.Nickname)
+                    {
+                        Object.Destroy(doll);
+                        Log.Debug($"[ReviveKit] Removed ragdoll of {player.Nickname}");
+                    }
+                }
 
                 Log.Info($"[ReviveKit] {player.Nickname} has been revived as {reviveRole}!");
             }

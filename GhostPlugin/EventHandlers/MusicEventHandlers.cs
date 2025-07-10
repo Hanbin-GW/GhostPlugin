@@ -95,22 +95,38 @@ namespace GhostPlugin.EventHandlers
         public static void OnDetonated()
         {
             var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.WarheadBGMPath);
-            AudioClipStorage.LoadClip(path,"Warhead");
-            
-            AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("WarheadAudioPlayer",onIntialCreation: (p) =>
+            Log.Info($"Warhead BGM Path: {path}");
+
+            if (!File.Exists(path))
             {
-                p.AddSpeaker("Main", isSpatial: true, maxDistance: 5000f);
+                Log.Error("오디오 파일이 존재하지 않습니다.");
+                return;
+            }
+
+            AudioClipStorage.LoadClip(path, "Warhead");
+
+            if (!AudioClipStorage.AudioClips.ContainsKey("Warhead"))
+            {
+                Log.Error("오디오 클립 로딩 실패");
+                return;
+            }
+
+            AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("WarheadAudioPlayer", onIntialCreation: (p) =>
+            {
+                p.AddSpeaker("Main", isSpatial: false); // 위치 상관 없이 전체에게 들림
             });
 
             globalPlayer.AddClip("Warhead", volume: 1f, loop: false, destroyOnEnd: true);
+
             Timing.CallDelayed(24f, () =>
             {
-                if (!AudioPlayer.TryGet("WarheadAudioPlayer", out AudioPlayer lobbyPlayer))
-                    return;
-                lobbyPlayer.ClipsById.Clear();
+                if (AudioPlayer.TryGet("WarheadAudioPlayer", out AudioPlayer lobbyPlayer))
+                {
+                    lobbyPlayer.ClipsById.Clear();
+                }
             });
         }
-        
+
         /// <summary>
         /// when the round is started, the music is stopped.
         /// </summary>
