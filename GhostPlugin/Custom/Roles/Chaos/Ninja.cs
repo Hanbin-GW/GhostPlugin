@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CustomPlayerEffects;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.CustomRoles.API.Features;
@@ -30,6 +31,12 @@ namespace GhostPlugin.Custom.Roles.Chaos
             20.ToString(),
             20.ToString(),
             13.ToString(),
+        };
+
+        public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
+        {
+            { AmmoType.Ammo12Gauge, 32 },
+            { AmmoType.Ammo44Cal, 15 }
         };
 
         protected override void RoleAdded(Player player)

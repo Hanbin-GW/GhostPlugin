@@ -26,6 +26,7 @@ namespace GhostPlugin.EventHandlers
         /// </summary>
         public static void RegisterEvents()
         {
+            Exiled.Events.Handlers.Warhead.Detonated += OnDetonated;
             Exiled.Events.Handlers.Server.WaitingForPlayers += OnWaitingPlayers;
             Exiled.Events.Handlers.Server.RoundStarted += OnRoundStarted;
             Exiled.Events.Handlers.Server.RespawningTeam += OnRespawnedTeam;
@@ -36,6 +37,7 @@ namespace GhostPlugin.EventHandlers
         /// </summary>
         public static void UnregisterEvents()
         {
+            Exiled.Events.Handlers.Warhead.Detonated -= OnDetonated;
             Exiled.Events.Handlers.Server.WaitingForPlayers -= OnWaitingPlayers;
             Exiled.Events.Handlers.Server.RoundStarted -= OnRoundStarted;
             Exiled.Events.Handlers.Server.RespawningTeam -= OnRespawnedTeam;
@@ -63,8 +65,8 @@ namespace GhostPlugin.EventHandlers
             MusicManager.EnsureMusicDirectoryExists();
             string[] playlist = Plugin.Instance.Config.MusicConfig.MusicPlayList;
 
-            var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.LobbySongPath);
-            AudioClipStorage.LoadClip(path, "lobby_music");
+            /*var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.LobbySongPath);
+            AudioClipStorage.LoadClip(path, "lobby_music");*/
 
             AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("Lobby", condition: (hub) =>
             {
@@ -89,6 +91,24 @@ namespace GhostPlugin.EventHandlers
             {
                 Log.Error("globalPlayer를 생성하지 못했습니다!");
             }
+        }
+        public static void OnDetonated()
+        {
+            var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.WarheadBGMPath);
+            AudioClipStorage.LoadClip(path,"Warhead");
+            
+            AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("WarheadAudioPlayer",onIntialCreation: (p) =>
+            {
+                p.AddSpeaker("Main", isSpatial: true, maxDistance: 5000f);
+            });
+
+            globalPlayer.AddClip("Warhead", volume: 1f, loop: false, destroyOnEnd: true);
+            Timing.CallDelayed(24f, () =>
+            {
+                if (!AudioPlayer.TryGet("WarheadAudioPlayer", out AudioPlayer lobbyPlayer))
+                    return;
+                lobbyPlayer.ClipsById.Clear();
+            });
         }
         
         /// <summary>
