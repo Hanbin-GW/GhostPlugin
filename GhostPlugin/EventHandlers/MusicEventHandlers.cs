@@ -7,6 +7,7 @@ using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Server;
+using GhostPlugin.Commands.MusicCommand;
 using GhostPlugin.Methods.Legacy;
 using GhostPlugin.Methods.Music;
 using MEC;
@@ -103,27 +104,18 @@ namespace GhostPlugin.EventHandlers
                 return;
             }
 
-            AudioClipStorage.LoadClip(path, "Warhead");
+            //AudioClipStorage.LoadClip(path, "Warhead");
 
             if (!AudioClipStorage.AudioClips.ContainsKey("Warhead"))
             {
                 Log.Error("오디오 클립 로딩 실패");
                 return;
             }
-
-            AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("WarheadAudioPlayer", onIntialCreation: (p) =>
-            {
-                p.AddSpeaker("Main", isSpatial: false); // 위치 상관 없이 전체에게 들림
-            });
-
-            globalPlayer.AddClip("Warhead", volume: 1f, loop: false, destroyOnEnd: true);
+            MusicManager.PlaySpecificMusic(path);
 
             Timing.CallDelayed(24f, () =>
             {
-                if (AudioPlayer.TryGet("WarheadAudioPlayer", out AudioPlayer lobbyPlayer))
-                {
-                    lobbyPlayer.ClipsById.Clear();
-                }
+                MusicManager.StopMusic();
             });
         }
 
