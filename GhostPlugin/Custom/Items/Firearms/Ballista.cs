@@ -136,19 +136,10 @@ namespace GhostPlugin.Custom.Items.Firearms
             var hits = Physics.RaycastAll(origin, direction, distance);
             foreach (var hit in hits)
             {
-                if (ev?.Target == null)
-                {
-                    Log.Warn("[OnDying] ev or ev.Player is null");
-                    return;
-                }
-
-                Log.Debug($"[OnDying] Player {ev.Target.Nickname} died.");
-
-                if (ev.Player != null)
-                    Log.Debug($"Killed by: {ev.Player.Nickname}");
                 var hub = hit.collider.GetComponentInParent<ReferenceHub>();
                 var target = Exiled.API.Features.Player.Get(hub);
-                if(target == null || target == ev.Player || damagedPlayers.Contains(target)) 
+
+                if (target == null || target == ev.Player || damagedPlayers.Contains(target))
                     continue;
 
                 if (!target.IsAlive || target.LeadingTeam == ev.Player.LeadingTeam)
@@ -156,11 +147,8 @@ namespace GhostPlugin.Custom.Items.Firearms
 
                 damagedPlayers.Add(target); // 중복 방지
                 ev.Player.ShowHitMarker(1.5f);
-
-                target.Hurt(new CustomReasonDamageHandler( "레이저 관통", 100));
-
+                target.Hurt(new CustomReasonDamageHandler("레이저 관통", 100));
             }
-
             Timing.CallDelayed(LaserVisibleTime, laser.Destroy);
         }
     }
