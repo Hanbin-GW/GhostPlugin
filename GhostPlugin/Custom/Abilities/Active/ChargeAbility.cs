@@ -73,7 +73,6 @@ namespace GhostPlugin.Custom.Abilities.Active
             var hub = hit.transform.root.GetComponent<ReferenceHub>();
             if (hub == null)
             {
-                Log.Debug("ReferenceHub를 찾을 수 없음 (충돌 대상이 유저가 아님)");
                 player.Hurt(new UniversalDamageHandler(ContactDamage, DeathTranslations.Falldown));
                 EndAbility(player);
                 yield break;
@@ -82,18 +81,13 @@ namespace GhostPlugin.Custom.Abilities.Active
             Player target = Player.Get(hub);
             if (target == null || target == player)
             {
-                Log.Debug("대상이 null이거나 자기 자신임");
                 player.Hurt(new UniversalDamageHandler(ContactDamage, DeathTranslations.Falldown));
                 EndAbility(player);
                 yield break;
             }
 
-            // ✅ 이제 대상이 확실하므로 피해 적용
             target.Hurt(new ScpDamageHandler(player.ReferenceHub, ContactDamage * AccuracyMultiplier, DeathTranslations.Zombie));
             target.EnableEffect(EffectType.Ensnared, EnsnareDuration);
-            player.ShowHitMarker(0.7f);
-
-            EndAbility(player);
         }
 
     }
