@@ -104,9 +104,9 @@ namespace GhostPlugin.EventHandlers
                 return;
             }
 
-            //AudioClipStorage.LoadClip(path, "Warhead");
+            AudioClipStorage.LoadClip(path, "Doom");
 
-            if (!AudioClipStorage.AudioClips.ContainsKey("Warhead"))
+            if (!AudioClipStorage.AudioClips.ContainsKey("Doom"))
             {
                 Log.Error("오디오 클립 로딩 실패");
                 return;

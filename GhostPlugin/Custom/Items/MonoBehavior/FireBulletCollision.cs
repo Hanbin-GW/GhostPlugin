@@ -52,7 +52,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                         _color = new Color(1f, 1f, 1f, 0.1f) * 50;
                         break;
                 }
-                SpawnPrimitiveToy.Spawn(target, 2, _color);
+                SpawnPrimitiveToy.Spawn(target, 1, _color);
                 Destroy(gameObject);
             }
             else
