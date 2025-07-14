@@ -51,13 +51,31 @@ namespace GhostPlugin.Custom.Abilities.Active
                 Timing.RunCoroutine(MovePlayer(player, hit));
             }
         }
+        private bool RunRaycast(Player player, out RaycastHit validHit)
+        {
+            Vector3 forward = player.CameraTransform.forward;
+            Ray ray = new Ray(player.CameraTransform.position, forward);
 
-        private bool RunRaycast(Player player, out RaycastHit hit)
+            foreach (var hit in Physics.RaycastAll(ray, 200f, HitscanHitregModuleBase.HitregMask))
+            {
+                var hub = hit.transform.root.GetComponent<ReferenceHub>();
+                if (hub != null && Player.Get(hub) != player) // 적 플레이어 찾음
+                {
+                    validHit = hit;
+                    return true;
+                }
+            }
+
+            // fallback: 아무 플레이어도 못 찾았지만 뭔가에 맞긴 함
+            return Physics.Raycast(ray, out validHit, 200f, HitscanHitregModuleBase.HitregMask);
+        }
+
+        /*private bool RunRaycast(Player player, out RaycastHit hit)
         {
             Vector3 forward = player.CameraTransform.forward;
             //return Physics.Raycast(player.Position + forward, forward, out hit, 200f, HitscanHitregModuleBase.HitregMask);
             return Physics.Raycast(player.CameraTransform.position, forward, out hit, 200f, HitscanHitregModuleBase.HitregMask);
-        }
+        }*/
         private IEnumerator<float> MovePlayer(Player player, RaycastHit hit)
         {
             while ((player.Position - hit.point).sqrMagnitude >= 2.5f)
