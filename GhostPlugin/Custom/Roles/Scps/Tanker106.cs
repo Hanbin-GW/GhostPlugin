@@ -103,7 +103,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         }
     }
     
-    [CommandHandler(typeof(ClientCommandHandler))]
+    //[CommandHandler(typeof(ClientCommandHandler))]
     internal class SpecialAbility106 : ICommand
     {
         public string Command { get; } = "God's Power";
