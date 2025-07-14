@@ -1,18 +1,14 @@
-using Exiled.API.Features;
 
-namespace GhostPlugin.Methods.CustomRole
+using Exiled.API.Features;
+using Exiled.CustomRoles.API.Features;
+
+namespace GhostPlugin.Methods.CustomRoles
 {
     public class RoleMethods
     {
-        public bool HasCustomRole(Player player, uint roleId)
+        public bool HasCustomRole(Player player, string roleName)
         {
-            foreach (var role in CustomRole.)
-            {
-                if (role.Id == roleId && role.Check(player))
-                    return true;
-            }
-
-            return false;
+            return CustomRole.Get(roleName)?.Check(player) ?? false;
         }
     }
 }
