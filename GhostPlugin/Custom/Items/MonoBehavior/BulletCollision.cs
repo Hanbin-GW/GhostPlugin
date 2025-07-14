@@ -66,18 +66,21 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                         _color = new Color(0f, 1f, 1f, 0.1f) * 50; ;
                         break;
                     case (Team.Scientists):
-                        _color = new Color(1f, 1f, 0f, 0.1f) * 50f;
+                        _color = new Color(1f, 1f, 0f, 0.1f) * 50;
+                        break;
+                    case (Team.ChaosInsurgency):
+                        _color = new Color(0.1f, 1f, 0.1f, 0.1f) * 50;
                         break;
                     case (Team.OtherAlive):
-                        _color = new Color(1f, 1f, 1f, 0.1f) * 50f;
+                        _color = new Color(1f, 1f, 1f, 0.1f) * 50;
                         break;
                 }
                 SpawnPrimitiveToy.Spawn(target, 5, _color);
-                Destroy(gameObject, 7f);
+                Destroy(gameObject, 1f);
             }
             else
             {
-                Destroy(gameObject, 2f);
+                Destroy(gameObject, 2.5f);
             }
         }
 

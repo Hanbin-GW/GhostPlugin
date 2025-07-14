@@ -43,7 +43,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 switch (_attacker.Role.Team)
                 {
                     case (Team.FoundationForces):
-                        _color = new Color(0f, 1f, 1f, 0.1f) * 50; ;
+                        _color = new Color(0f, 1f, 1f, 0.1f) * 50;
                         break;
                     case (Team.Scientists):
                         _color = new Color(1f, 1f, 0f, 0.1f) * 50;
