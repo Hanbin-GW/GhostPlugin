@@ -126,7 +126,7 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.MorsReworks.Register();
             }
             
-            //CustomRole Config
+            //CustomRoles Config
             if (Config.CustomRolesConfig.IsEnabled)
             {
                 CustomRoleHandler = new CustomRoleHandler(this);

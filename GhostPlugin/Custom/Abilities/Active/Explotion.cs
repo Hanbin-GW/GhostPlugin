@@ -19,7 +19,6 @@ namespace GhostPlugin.Custom.Abilities.Active
 
         protected override void AbilityUsed(Player player)
         {
-            //SoleStealer049 soleStealer049 = CustomRole.Get(10)as SoleStealer049;
             base.AbilityUsed(player);
             player.IsGodModeEnabled = true;
             Vector3 position = player.Position;

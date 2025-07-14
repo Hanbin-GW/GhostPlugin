@@ -293,6 +293,7 @@
         <Compile Include="EventHandlers\Scp914Handler.cs" />
         <Compile Include="EventHandlers\SsssEventHandler.cs" />
         <Compile Include="Methods\Administration\SendBroadcastGhost.cs" />
+        <Compile Include="Methods\CustomRoles\RoleMethods.cs" />
         <Compile Include="Methods\Legacy\AudioManagemanet.cs" />
         <Compile Include="Methods\MER\ObjectManager.cs" />
         <Compile Include="Methods\Music\JukeboxManagement.cs" />
