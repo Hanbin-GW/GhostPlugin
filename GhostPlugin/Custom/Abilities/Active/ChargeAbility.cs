@@ -24,7 +24,7 @@ namespace GhostPlugin.Custom.Abilities.Active
         public override float Cooldown { get; set; } = 45f;
 
         [Description("The amount of damage inflicted when the player collides with something.")]
-        public float ContactDamage { get; set; } = 15f;
+        public float ContactDamage { get; set; } = 30f;
 
         [Description("The bonus multiplier if the target player wasn't moving.")] 
         public float AccuracyMultiplier { get; set; } = 2f;
@@ -51,43 +51,62 @@ namespace GhostPlugin.Custom.Abilities.Active
                 Timing.RunCoroutine(MovePlayer(player, hit));
             }
         }
-
-        private bool RunRaycast(Player player, out RaycastHit hit)
+        private bool RunRaycast(Player player, out RaycastHit validHit)
         {
             Vector3 forward = player.CameraTransform.forward;
-            return Physics.Raycast(player.Position + forward, forward, out hit, 200f, HitscanHitregModuleBase.HitregMask);
+            Ray ray = new Ray(player.CameraTransform.position, forward);
+
+            foreach (var hit in Physics.RaycastAll(ray, 200f, HitscanHitregModuleBase.HitregMask))
+            {
+                var hub = hit.transform.root.GetComponent<ReferenceHub>();
+                if (hub != null && Player.Get(hub) != player) // 적 플레이어 찾음
+                {
+                    validHit = hit;
+                    return true;
+                }
+            }
+
+            // fallback: 아무 플레이어도 못 찾았지만 뭔가에 맞긴 함
+            return Physics.Raycast(ray, out validHit, 200f, HitscanHitregModuleBase.HitregMask);
         }
 
+        /*private bool RunRaycast(Player player, out RaycastHit hit)
+        {
+            Vector3 forward = player.CameraTransform.forward;
+            //return Physics.Raycast(player.Position + forward, forward, out hit, 200f, HitscanHitregModuleBase.HitregMask);
+            return Physics.Raycast(player.CameraTransform.position, forward, out hit, 200f, HitscanHitregModuleBase.HitregMask);
+        }*/
         private IEnumerator<float> MovePlayer(Player player, RaycastHit hit)
         {
             while ((player.Position - hit.point).sqrMagnitude >= 2.5f)
             {
                 player.Position = Vector3.MoveTowards(player.Position, hit.point, 0.5f);
-
                 yield return Timing.WaitForSeconds(0.00025f);
             }
 
-            Timing.CallDelayed(0.5f, () => player.EnableEffect(EffectType.Ensnared, EnsnareDuration));
+            // 필요하면 돌진 후 잠시 속박
+            Timing.CallDelayed(0.5f, () => player.EnableEffect(EffectType.Ensnared, 0.5f));
 
-            Player target = Player.Get(hit.collider.GetComponentInParent<ReferenceHub>());
-            if (target != null)
-            {
-                if ((target.Position - hit.point).sqrMagnitude >= 3f)
-                {
-                    target.Hurt(new ScpDamageHandler(player.ReferenceHub, ContactDamage * AccuracyMultiplier, DeathTranslations.Zombie));
-                    target.EnableEffect(EffectType.Ensnared, EnsnareDuration);
-                }
-                else
-                {
-                    player.Hurt(new UniversalDamageHandler(ContactDamage, DeathTranslations.Falldown));
-                }
-            }
-            else
+            // ReferenceHub 가져오기: 더 확실한 방식
+            var hub = hit.transform.root.GetComponent<ReferenceHub>();
+            if (hub == null)
             {
                 player.Hurt(new UniversalDamageHandler(ContactDamage, DeathTranslations.Falldown));
+                EndAbility(player);
+                yield break;
             }
 
-            EndAbility(player);
+            Player target = Player.Get(hub);
+            if (target == null || target == player)
+            {
+                player.Hurt(new UniversalDamageHandler(ContactDamage, DeathTranslations.Falldown));
+                EndAbility(player);
+                yield break;
+            }
+
+            target.Hurt(new ScpDamageHandler(player.ReferenceHub, ContactDamage * AccuracyMultiplier, DeathTranslations.Zombie));
+            target.EnableEffect(EffectType.Ensnared, EnsnareDuration);
         }
+
     }
 }
