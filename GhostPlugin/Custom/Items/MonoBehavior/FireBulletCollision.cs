@@ -1,6 +1,8 @@
 using CustomPlayerEffects;
 using Exiled.API.Enums;
 using Exiled.API.Features;
+using GhostPlugin.Methods.Objects;
+using PlayerRoles;
 using PlayerStatsSystem;
 using UnityEngine;
 
@@ -12,6 +14,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
         private int _damage;
         private Player _attacker;
         private bool _hasCollided = false;
+        private Color _color;
         public void Initialize(int damage, Player attacker)
         {
             _damage = damage;
@@ -21,6 +24,8 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (_hasCollided) return;
+
             Player target = Player.Get(collision.collider) ?? Player.Get(collision.collider.GetComponentInParent<Collider>());
 
             if (target != null && target != _attacker)
@@ -33,9 +38,22 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 Log.Debug($"Hit Player: {target.Nickname} - Damage: {_damage}");
                 target.EnableEffect<Burned>(duration: 5);
                 //target.Hurt(_damage, DamageType.E11Sr, _attacker.Nickname);
-                target.Hurt(new CustomReasonDamageHandler( "Buring bullet", _damage));
+                target.Hurt(new CustomReasonDamageHandler( "불탄 총알", _damage));
                 _attacker.ShowHitMarker();
-                Destroy(gameObject, 1f);
+                switch (_attacker.Role.Team)
+                {
+                    case (Team.FoundationForces):
+                        _color = new Color(0f, 1f, 1f, 0.1f) * 50;
+                        break;
+                    case (Team.Scientists):
+                        _color = new Color(1f, 1f, 0f, 0.1f) * 50;
+                        break;
+                    case (Team.OtherAlive):
+                        _color = new Color(1f, 1f, 1f, 0.1f) * 50;
+                        break;
+                }
+                SpawnPrimitiveToy.Spawn(target, 1, _color);
+                Destroy(gameObject);
             }
             else
             {

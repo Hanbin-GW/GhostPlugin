@@ -11,6 +11,7 @@ using GhostPlugin.Methods.Objects;
 using GhostPlugin.Methods.ToyUtils;
 using MEC;
 using PlayerRoles;
+using UnityEngine;
 using ServerEvents = Exiled.Events.Handlers.Server;
 using PlayerEvents = Exiled.Events.Handlers.Player;
 using MapEvents = Exiled.Events.Handlers.Map;
@@ -158,7 +159,8 @@ namespace GhostPlugin.EventHandlers
             if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Group
                    .BadgeText))
             {
-                SpawnPrimitiveToy.Spawn(ev.Player, 15);
+                Color glowcolor =new Color(1f, 0.0f, 0.0f, 0.1f) * 50f;
+                SpawnPrimitiveToy.Spawn(ev.Player, 15, glowcolor);
                 TextUtils.SpawnText(ev.Player, ev.Player.Position,"<size=10>Content Deleted</size>",15f);
                 ev.Player.Vaporize();
             }

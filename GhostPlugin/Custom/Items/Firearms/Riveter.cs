@@ -1,10 +1,12 @@
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
+using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 using UnityEngine;
 using YamlDotNet.Serialization;
 using GhostPlugin.Methods.Objects;
+using PlayerRoles;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
@@ -20,19 +22,42 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override ItemType Type { get; set; } = ItemType.GunE11SR;
         [YamlIgnore] 
         public override float Damage { get; set; }
-        
         protected override void OnShot(ShotEventArgs ev)
         {
             if (Check(ev.Player.CurrentItem))
             {
                 ev.CanHurt = false;
-                Color glowColor = new Color(1.0f, 0.0f, 0.0f, 0.1f) * 50f;
+                //Color glowColor = new Color(1.0f, 0.0f, 0.0f, 0.1f) * 50f;
+                Color glowColor = new ();
                 //var direction = ev.Position - ev.Player.Position;
                 var direction = ev.Player.CameraTransform.forward.normalized;
-                //var laserPos = ev.Player.Position + direction * 0.5f;
                 var laserPos = ev.Player.CameraTransform.position + direction * 0.5f;
+                //var laserPos = ev.Player.Position + direction * 0.25f;
                 var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
-                SpawnPrimitive.spawnPrimitives(ev.Player, 15, rotation, laserPos, glowColor,5,20);
+                //PlasmaCube.SpawmSparkBuckshot(ev.Player, ev.Firearm.Base.transform.position,13,15f,0.05f,glowColor); 
+                
+                switch (ev.Player.Role.Team)
+                {
+                    case (Team.FoundationForces):
+                        glowColor = new Color(0f, 1f, 1f, 0.1f) * 50;
+                        break;
+                    case (Team.Scientists):
+                        glowColor = new Color(1f, 1f, 0f, 0.1f) * 50;
+                        break;
+                    case (Team.ChaosInsurgency):
+                        glowColor = new Color(0.1f, 1f, 0.1f, 0.1f) * 50;
+                        break;
+                    case (Team.OtherAlive):
+                        glowColor = new Color(1f, 1f, 1f, 0.1f) * 50;
+                        break;
+                }
+
+                if (CustomRole.Get(18)?.Check(ev.Player) == true)
+                {
+                    glowColor = new Color(1f, 0f, 0f, 0.1f) * 50;
+                }
+                
+                SpawnPrimitive.spawnPrimitives(ev.Player, 10, rotation, laserPos, glowColor,5,20);
             }
             base.OnShot(ev);
         }

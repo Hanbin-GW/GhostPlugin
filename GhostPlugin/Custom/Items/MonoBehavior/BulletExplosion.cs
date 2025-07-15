@@ -50,7 +50,6 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 // 이펙트/수류탄 같은 물체랑 충돌 시 무시
                 if (collision.collider.gameObject.TryGetComponent<EffectGrenade>(out _))
                 {
-                    Log.Debug("BulletExplosion: 다른 이펙트/수류탄과 충돌 - 무시됨");
                     return;
                 }
 
