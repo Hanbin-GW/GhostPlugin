@@ -23,7 +23,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override ItemType Type { get; set; } = ItemType.GunE11SR;
         public override uint Id { get; set; } = 53;
         public override string Name { get; set; } = "Ballista";
-        public override string Description { get; set; } = "Laser cannon which penetrate wall!";
+        public override string Description { get; set; } = "벽을 관통하는 레이저 캐논입니다!";
         public override float Weight { get; set; } = 10;
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
@@ -88,7 +88,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             if (!Check(ev.Player.CurrentItem))
                 return;
             ev.IsAllowed = false;
-            ev.Player.ShowHint("cannot able to change an attachments!", 3);
+            ev.Player.ShowHint("You cannot able to change attachment in this items", 3);
         }
         protected override void SubscribeEvents()
         {
@@ -108,13 +108,14 @@ namespace GhostPlugin.Custom.Items.Firearms
         {
             if (!Check(ev.Player.CurrentItem)) return;
             ev.CanHurt = false;
+            ev.Firearm.Inaccuracy = 0f;
 
-            var laserColor = new Color(0f, 1f, 1f, 0.1f) * 50;
+            var laserColor = new Color(1f, 0.3f, 0.2f, 0.1f) * 50f;
             var origin = ev.Player.CameraTransform.position + ev.Player.CameraTransform.forward * 0.3f;
             var direction = ev.Player.CameraTransform.forward;
             float distance = 200f;
 
-            // 시각 효과 (무조건 직진으로 200 거리)
+            // Visual Effects (unconditionally straight 200 distances)
             var laserPos = origin + direction * (distance * 0.5f);
             var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90f, 0f, 0f);
             
@@ -130,35 +131,23 @@ namespace GhostPlugin.Custom.Items.Firearms
                 laserColor
             );
             var damagedPlayers = new HashSet<Exiled.API.Features.Player>();
-            // 대미지: 레이저에 맞은 사람 탐지
+            // Damage: Detecting people who have been laser-hit
             var hits = Physics.RaycastAll(origin, direction, distance);
             foreach (var hit in hits)
             {
-                if (ev?.Target == null)
-                {
-                    Log.Warn("[OnDying] ev or ev.Player is null");
-                    return;
-                }
-
-                Log.Debug($"[OnDying] Player {ev.Target.Nickname} died.");
-
-                if (ev.Player != null)
-                    Log.Debug($"Killed by: {ev.Player.Nickname}");
                 var hub = hit.collider.GetComponentInParent<ReferenceHub>();
                 var target = Exiled.API.Features.Player.Get(hub);
-                if(target == null || target == ev.Player || damagedPlayers.Contains(target)) 
+
+                if (target == null || target == ev.Player || damagedPlayers.Contains(target))
                     continue;
 
                 if (!target.IsAlive || target.LeadingTeam == ev.Player.LeadingTeam)
                     continue;
 
-                damagedPlayers.Add(target); // 중복 방지
+                damagedPlayers.Add(target); // Avoid duplication
                 ev.Player.ShowHitMarker(1.5f);
-
-                target.Hurt(new CustomReasonDamageHandler( "Laser penetration", 100));
-
+                target.Hurt(new CustomReasonDamageHandler("레이저 관통", 100));
             }
-
             Timing.CallDelayed(LaserVisibleTime, laser.Destroy);
         }
     }
