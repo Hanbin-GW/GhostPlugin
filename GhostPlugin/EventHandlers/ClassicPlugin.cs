@@ -8,7 +8,7 @@ using Exiled.Events.EventArgs.Scp096;
 using Exiled.Events.EventArgs.Server;
 using Exiled.Events.EventArgs.Warhead;
 using GhostPlugin.Methods.Objects;
-using GhostPlugin.Methods.TextToy;
+using GhostPlugin.Methods.ToyUtils;
 using MEC;
 using PlayerRoles;
 using ServerEvents = Exiled.Events.Handlers.Server;
@@ -159,7 +159,7 @@ namespace GhostPlugin.EventHandlers
                    .BadgeText))
             {
                 SpawnPrimitiveToy.Spawn(ev.Player, 15);
-                SpawnTextToy.SpawnText(ev.Player, ev.Player.Position,"<size=10>Content Deleted</size>",15f);
+                TextUtils.SpawnText(ev.Player, ev.Player.Position,"<size=10>Content Deleted</size>",15f);
                 ev.Player.Vaporize();
             }
             else

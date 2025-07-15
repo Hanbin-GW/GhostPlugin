@@ -1,13 +1,17 @@
 using System.Collections.Generic;
 using AdminToys;
-using CustomPlayerEffects;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Items;
 using Exiled.API.Features.Spawn;
+using Exiled.API.Features.Toys;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using GhostPlugin.Custom.Items.MonoBehavior;
 using GhostPlugin.Methods.Objects;
+using GhostPlugin.Methods.ToyUtils;
+using MEC;
 using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Firearms
@@ -58,5 +62,31 @@ namespace GhostPlugin.Custom.Items.Firearms
             }
             base.OnShot(ev);
         }
+
+        protected override void OnAcquired(Player player, Item item, bool displayMessage)
+        {
+            if(!Check(player.CurrentItem))
+                return;
+            base.OnAcquired(player, item, displayMessage);
+            var light = LightUtils.SpawnLight(player.Position + Vector3.up, Quaternion.identity, 4f, 12f, Color.red);
+            if (light == null)
+                return;
+            Timing.RunCoroutine(FollowPlayerLight(player, light));
+        }
+        
+        private IEnumerator<float> FollowPlayerLight(Player player, LightSourceToy light)
+        {
+            while (player.IsAlive && player.IsConnected)
+            {
+                if (!Check(player.CurrentItem))
+                    break;
+
+                light.transform.position = player.Position + Vector3.up;
+                yield return Timing.WaitForSeconds(0.1f);
+            }
+
+            Object.Destroy(light);
+        }
+
     }
 }

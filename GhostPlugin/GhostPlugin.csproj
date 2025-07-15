@@ -205,13 +205,8 @@
         <Compile Include="Custom\Items\Armor\EODPadding.cs" />
         <Compile Include="Custom\Items\Armor\OverkillVest.cs" />
         <Compile Include="Custom\Items\Etc\AmmoBox.cs" />
-        <Compile Include="Custom\Items\Etc\Anti173.cs" />
-        <Compile Include="Custom\Items\Etc\AromorPlateKit.cs" />
-        <Compile Include="Custom\Items\Etc\BattleRage.cs" />
-        <Compile Include="Custom\Items\Etc\ReviveKit.cs" />
         <Compile Include="Custom\Items\Etc\SCP500A.cs" />
         <Compile Include="Custom\Items\Etc\Spike_Jailbird.cs" />
-        <Compile Include="Custom\Items\Etc\Stim.cs" />
         <Compile Include="Custom\Items\Etc\TrophySystem.cs" />
         <Compile Include="Custom\Items\Firearms\AcidShooter.cs" />
         <Compile Include="Custom\Items\Firearms\Ballista.cs" />
@@ -242,6 +237,11 @@
         <Compile Include="Custom\Items\Grenades\StunGrenade.cs" />
         <Compile Include="Custom\Items\Grenades\TripleFlashGrenade.cs" />
         <Compile Include="Custom\Items\Keycard\HackingDevice.cs" />
+        <Compile Include="Custom\Items\Medkit\Anti173.cs" />
+        <Compile Include="Custom\Items\Medkit\AromorPlateKit.cs" />
+        <Compile Include="Custom\Items\Medkit\BattleRage.cs" />
+        <Compile Include="Custom\Items\Medkit\ReviveKit.cs" />
+        <Compile Include="Custom\Items\Medkit\Stim.cs" />
         <Compile Include="Custom\Items\MonoBehavior\BulletCollision.cs" />
         <Compile Include="Custom\Items\MonoBehavior\BulletExplosion.cs" />
         <Compile Include="Custom\Items\MonoBehavior\FireBulletCollision.cs" />
@@ -295,10 +295,12 @@
         <Compile Include="Methods\Objects\PlasmaCube.cs" />
         <Compile Include="Methods\Objects\SpawnDoorType.cs" />
         <Compile Include="Methods\Objects\SpawnLaserObject.cs" />
+        <Compile Include="Methods\Objects\SpawnLight.cs" />
         <Compile Include="Methods\Objects\SpawnParticleSpark.cs" />
         <Compile Include="Methods\Objects\SpawnPrimitive.cs" />
         <Compile Include="Methods\Objects\SpawnPrimitiveToy.cs" />
-        <Compile Include="Methods\TextToy\SpawnTextToy.cs" />
+        <Compile Include="Methods\ToyUtils\LightUtils.cs" />
+        <Compile Include="Methods\ToyUtils\TextUtils.cs" />
         <Compile Include="MyCustomKeyBind.cs" />
         <Compile Include="Patches\Scp106Patch.cs" />
         <Compile Include="Patches\Scp939Patch_2.cs" />
@@ -309,9 +311,6 @@
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Custom\Items\Medkit\" />
     </ItemGroup>
     <ItemGroup>
       <Content Include="..\README.md">
