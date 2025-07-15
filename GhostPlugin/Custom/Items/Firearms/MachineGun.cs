@@ -16,7 +16,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Description { get; set; } = "It's a machine gun with a slightly higher amount of damage and recoil";
         public override float Weight { get; set; } = 6f;
         public override SpawnProperties SpawnProperties { get; set; }
-        public override float Damage { get; set; } = 38.5f;
+        public override float Damage { get; set; } = 28.5f;
         public override ItemType Type { get; set; } = ItemType.GunLogicer;
         public override byte ClipSize { get; set; } = 75;
 
