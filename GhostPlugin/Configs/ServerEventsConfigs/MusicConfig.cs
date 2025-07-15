@@ -18,7 +18,7 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
         public string Lcz5min { get; set; } = "77-Fearofthedark.ogg";
         public string Lcz1min { get; set; } = "77-Cauterizer.ogg";
         public string Lcz30sec { get; set; } = "Slow_Light.ogg";
-
+        public bool Debug { get; set; } = false;
         public string ChaosSpawmBgm { get; set; } = "Flower Crown of Poppy.ogg";
         public string CSquadSpawmBgm { get; set; } = "Flower Crown of Poppy.ogg";
         public string RespawnMtfBgm { get; set; } = "77part2ost.ogg";
@@ -29,6 +29,12 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
         {
             "76561199133709329@steam",
             "76561199248290923@steam"
+        };
+
+        public string[] MusicPlayList { get; set; } = new[]
+        {
+            "77part2ost.ogg",
+            "77.ogg"
         };
     }
 }

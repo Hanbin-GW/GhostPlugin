@@ -156,6 +156,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="API\API.cs" />
+        <Compile Include="API\Audio\AudioUtils.cs" />
         <Compile Include="API\CustomHint\FileDotNet.cs" />
         <Compile Include="API\ExcemptionType.cs" />
         <Compile Include="API\ICustomRole.cs" />

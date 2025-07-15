@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Discord;
@@ -10,7 +11,6 @@ using GhostPlugin.Methods.Legacy;
 using GhostPlugin.Methods.Music;
 using MEC;
 using PlayerRoles;
-
 namespace GhostPlugin.EventHandlers
 {
     public class MusicEventHandlers
@@ -19,11 +19,14 @@ namespace GhostPlugin.EventHandlers
         public MusicEventHandlers(Plugin plugin) => this._plugin = plugin;
         public static MusicManager MusicManager = new MusicManager();
         public static AudioManagemanet AudioManagemanet = new AudioManagemanet();
+        private static CoroutineHandle loopCoroutine;
+
         /// <summary>
         /// evnet regsister
         /// </summary>
         public static void RegisterEvents()
         {
+            Exiled.Events.Handlers.Warhead.Detonated += OnDetonated;
             Exiled.Events.Handlers.Server.WaitingForPlayers += OnWaitingPlayers;
             Exiled.Events.Handlers.Server.RoundStarted += OnRoundStarted;
             Exiled.Events.Handlers.Server.RespawningTeam += OnRespawnedTeam;
@@ -34,6 +37,7 @@ namespace GhostPlugin.EventHandlers
         /// </summary>
         public static void UnregisterEvents()
         {
+            Exiled.Events.Handlers.Warhead.Detonated -= OnDetonated;
             Exiled.Events.Handlers.Server.WaitingForPlayers -= OnWaitingPlayers;
             Exiled.Events.Handlers.Server.RoundStarted -= OnRoundStarted;
             Exiled.Events.Handlers.Server.RespawningTeam -= OnRespawnedTeam;
@@ -59,8 +63,10 @@ namespace GhostPlugin.EventHandlers
         public static void OnWaitingPlayers()
         { 
             MusicManager.EnsureMusicDirectoryExists();
-            var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.LobbySongPath);
-            AudioClipStorage.LoadClip(path, "lobby_music");
+            string[] playlist = Plugin.Instance.Config.MusicConfig.MusicPlayList;
+
+            /*var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.LobbySongPath);
+            AudioClipStorage.LoadClip(path, "lobby_music");*/
 
             AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("Lobby", condition: (hub) =>
             {
@@ -68,29 +74,56 @@ namespace GhostPlugin.EventHandlers
                 return !Plugin.Instance.musicDisabledPlayers.TryGetValue(plr.Id, out bool disabled) || !disabled;
             });
 
-            // AudioPlayer가 완전히 준비된 이후에 스피커 추가
             if (globalPlayer != null)
             {
                 globalPlayer.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
 
-                globalPlayer.AddClip("lobby_music",
+                /*globalPlayer.AddClip("lobby_music",
                     volume: Plugin.Instance.Config.MusicConfig.Volume,
                     loop: Plugin.Instance.Config.MusicConfig.Loop,
-                    destroyOnEnd: false);
-
+                    destroyOnEnd: false);*/
+                loopCoroutine = Timing.RunCoroutine(LoopPlaylist(globalPlayer, playlist));
+                
                 Log.Info("main song playing");
             }
             else
             {
-                Log.Error("Failed to spawn the globalPlayer!");
+                Log.Error("Failed to spawn globalPlayer");
             }
         }
-        
+        public static void OnDetonated()
+        {
+            var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.WarheadBGMPath);
+            Log.Info($"Warhead BGM Path: {path}");
+
+            if (!File.Exists(path))
+            {
+                Log.Error("AudioFile does not exist.");
+                return;
+            }
+
+            AudioClipStorage.LoadClip(path, "Doom");
+
+            if (!AudioClipStorage.AudioClips.ContainsKey("Doom"))
+            {
+                Log.Error("Filed to load AudioClip");
+                return;
+            }
+            MusicManager.PlaySpecificMusic(path);
+
+            Timing.CallDelayed(24f, () =>
+            {
+                MusicManager.StopMusic();
+            });
+        }
+
         /// <summary>
         /// when the round is started, the music is stopped.
         /// </summary>
         public static void OnRoundStarted()
         {
+            if (loopCoroutine.IsRunning)
+                Timing.KillCoroutines(loopCoroutine);
             if (!AudioPlayer.TryGet("Lobby", out AudioPlayer lobbyPlayer))
                 return;
             lobbyPlayer.ClipsById.Clear();
@@ -237,7 +270,7 @@ namespace GhostPlugin.EventHandlers
                     {
                         foreach (Player player in Player.List)
                         {
-                            if (player.CurrentRoom.Zone == ZoneType.LightContainment)  // 특정 구역에 있는지 확인
+                            if (player.CurrentRoom.Zone == ZoneType.LightContainment) 
                             {
                                 string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "audio");
                                 string filePath = Path.Combine(directory, Plugin.Instance.Config.MusicConfig.Lcz30sec);
@@ -246,6 +279,29 @@ namespace GhostPlugin.EventHandlers
                         }
                         break;
                     }
+                }
+            }
+        }
+        public static IEnumerator<float> LoopPlaylist(AudioPlayer player, string[] playlist)
+        {
+            while (true)
+            {
+                foreach (string fileName in playlist)
+                {
+                    string path = Path.Combine(Plugin.Instance.AudioDirectory, fileName);
+                    string clipId = Path.GetFileNameWithoutExtension(fileName);
+
+                    AudioClipStorage.LoadClip(path, clipId);
+                    player.AddClip(clipId, volume: Plugin.Instance.Config.MusicConfig.Volume, loop: false, destroyOnEnd: true);
+                    float duration = API.Audio.AudioUtils.GetOggDurationInSeconds(path);
+                    if (Plugin.Instance.Config.MusicConfig.Debug)
+                    {
+                        Log.Send($"Playing : {clipId}", LogLevel.Debug, ConsoleColor.DarkGreen);
+                        Log.Send($"{duration} secound", LogLevel.Debug, ConsoleColor.DarkGreen);
+                    }
+
+                    yield return Timing.WaitForSeconds(duration);
+                    player.ClipsById.Clear();
                 }
             }
         }
