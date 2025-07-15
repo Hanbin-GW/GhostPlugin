@@ -41,7 +41,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             if (Check(ev.Player.CurrentItem))
             {
                 ev.CanHurt = false;
-                Color glowColor = new Color(0.0f, 1.0f, 0.0f, 0.1f) * 50f;
+                Color glowColor = new Color(0.5f, 1.0f, 0.0f, 0.1f) * 50f;
 
                 /*List<PrimitiveObjectToy> bullets = PlasmaCube.SpawmSparkAmmos(ev.Player, ev.Firearm.Base.transform.position, 10, 25f, 0.5f, glowColor);
 
