@@ -8,7 +8,7 @@ using PlayerRoles;
 
 namespace GhostPlugin.Commands
 {
-    //[CommandHandler(typeof(ClientCommandHandler))]
+    [CommandHandler(typeof(ClientCommandHandler))]
     public class Chat : ICommand
     {
         private readonly Dictionary<RoleTypeId, List<string>> _teamMessages = new();
@@ -20,7 +20,7 @@ namespace GhostPlugin.Commands
 
             if (string.IsNullOrEmpty(string.Join("", arguments)))
             {
-                response = "<color=red>메시지를 입력해야 합니다.</color>";
+                response = "<color=red>You should write the message.</color>";
                 return false;
             }
 
@@ -30,7 +30,7 @@ namespace GhostPlugin.Commands
             if (!_teamMessages.ContainsKey(team))
                 _teamMessages[team] = new List<string>();
 
-            _teamMessages[team].Add($"채팅 : {message}");
+            _teamMessages[team].Add($"chat : {message}");
 
             // 최근 5개 메시지를 가져오기 (TakeLast 대체)
             List<string> lastMessages = _teamMessages[team].Skip(Math.Max(0, _teamMessages[team].Count - 5)).ToList();

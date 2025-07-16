@@ -29,12 +29,12 @@ namespace GhostPlugin.Custom.Roles.Foundation
             new HealOnKill()
             {
                 Name = "HealOnKill",
-                Description = "누군가를 처치시 HP 가 회복됩니다.",
+                Description = "Recover HP when you kill the enemy",
             },
             new EnhancedGoggleVision()
             {
                 Name = "Enhance Vision",
-                Description = "Scp-1344 의 효과를 일시적으로 부여합니다."
+                Description = "Temporary effect of Scp-1344."
             }
         };
         public override List<string> Inventory { get; set; } = new()
@@ -57,14 +57,6 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
             Limit = 1,
-            RoleSpawnPoints = new List<RoleSpawnPoint>()
-            {
-                new()
-                {
-                    Role = RoleTypeId.NtfSergeant,
-                    Chance = 85,
-                }
-            }
         };
         
         protected override void RoleAdded(Player player)

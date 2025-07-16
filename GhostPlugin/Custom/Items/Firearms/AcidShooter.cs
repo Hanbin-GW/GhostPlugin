@@ -12,6 +12,7 @@ using GhostPlugin.Custom.Items.MonoBehavior;
 using GhostPlugin.Methods.Objects;
 using GhostPlugin.Methods.ToyUtils;
 using MEC;
+using Mirror;
 using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Firearms
@@ -62,31 +63,71 @@ namespace GhostPlugin.Custom.Items.Firearms
             }
             base.OnShot(ev);
         }
-
-        protected override void OnAcquired(Player player, Item item, bool displayMessage)
+        
+        /*protected override void OnAcquired(Player player, Item item, bool displayMessage)
         {
-            if(!Check(player.CurrentItem))
-                return;
             base.OnAcquired(player, item, displayMessage);
-            var light = LightUtils.SpawnLight(player.Position + Vector3.up, Quaternion.identity, 4f, 12f, Color.red);
+            var light = LightUtils.SpawnLight(player,player.Position + Vector3.up, Quaternion.identity, 4f, 12f, Color.red);
             if (light == null)
                 return;
+            NetworkServer.Spawn(light.gameObject);
             Timing.RunCoroutine(FollowPlayerLight(player, light));
+            Timing.CallDelayed(0.2f, () =>
+            {
+                var light = LightUtils.SpawnLight(player, player.Position + Vector3.up, Quaternion.identity, 4f, 12f, Color.red);
+                if (light == null)
+                {
+                    Log.Error("Light spawn failed in OnAcquired");
+                    return;
+                }
+
+                Timing.RunCoroutine(FollowPlayerLight(player, light));
+            });
+        }*/
+
+        protected override void OnChanging(ChangingItemEventArgs ev)
+        {
+            var light = LightUtils.SpawnLight(ev.Player,ev.Player.Position + Vector3.up, Quaternion.identity, 4f, 12f, Color.red);
+            if (light == null)
+                return;
+            NetworkServer.Spawn(light.gameObject);
+            Timing.RunCoroutine(FollowPlayerLight(ev.Player, light));
+            Timing.CallDelayed(0.2f, () =>
+            {
+                var light = LightUtils.SpawnLight(ev.Player, ev.Player.Position + Vector3.up, Quaternion.identity, 4f, 12f, Color.red);
+                if (light == null)
+                {
+                    Log.Error("Light spawn failed in OnAcquired");
+                    return;
+                }
+
+                Timing.RunCoroutine(FollowPlayerLight(ev.Player, light));
+            });
+            base.OnChanging(ev);
         }
-        
+
+        protected override void OnDroppingItem(DroppingItemEventArgs ev)
+        {
+            base.OnDroppingItem(ev);
+        }
+
         private IEnumerator<float> FollowPlayerLight(Player player, LightSourceToy light)
         {
             while (player.IsAlive && player.IsConnected)
             {
+                if (light == null || light.gameObject == null)
+                    break;
+                
                 if (!Check(player.CurrentItem))
                     break;
 
                 light.transform.position = player.Position + Vector3.up;
+                light.transform.rotation = Quaternion.identity;
                 yield return Timing.WaitForSeconds(0.1f);
             }
 
-            Object.Destroy(light);
+            if (light != null && light.gameObject != null)
+                NetworkServer.Destroy(light.gameObject);
         }
-
     }
 }

@@ -170,6 +170,7 @@
         <Compile Include="Commands\RoleInfo.cs" />
         <Compile Include="Commands\SendBroadcast.cs" />
         <Compile Include="Commands\SetAllItemGravity.cs" />
+        <Compile Include="Commands\Test.cs" />
         <Compile Include="Configs\Config.cs.old" />
         <Compile Include="Configs\CustomConfigs\CustomItemsConfig.cs" />
         <Compile Include="Configs\CustomConfigs\CustomRolesAbilitiesConfig.cs" />
