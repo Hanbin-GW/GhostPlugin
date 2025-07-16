@@ -87,14 +87,14 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         protected override void OnChanging(ChangingItemEventArgs ev)
         {
-            var light = LightUtils.SpawnLight(ev.Player,ev.Player.Position + Vector3.up, Quaternion.identity, 4f, 12f, Color.red);
+            var light = LightUtils.SpawnLight(ev.Player,ev.Player.Position + Vector3.up, Quaternion.identity, 4f, 12f, Color.green);
             if (light == null)
                 return;
             NetworkServer.Spawn(light.gameObject);
             Timing.RunCoroutine(FollowPlayerLight(ev.Player, light));
             Timing.CallDelayed(0.2f, () =>
             {
-                var light = LightUtils.SpawnLight(ev.Player, ev.Player.Position + Vector3.up, Quaternion.identity, 4f, 12f, Color.red);
+                var light = LightUtils.SpawnLight(ev.Player, ev.Player.Position + Vector3.up, Quaternion.identity, 4f, 12f, Color.green);
                 if (light == null)
                 {
                     Log.Error("Light spawn failed in OnAcquired");
