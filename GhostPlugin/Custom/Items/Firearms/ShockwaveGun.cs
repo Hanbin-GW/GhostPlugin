@@ -15,16 +15,16 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 4;
         public override string Name { get; set; } = "Shockwave Electricity Gun";
-        public override string Description { get; set; } = "A prototype machine gun with special ammunition.\nVery lethal to Scp049-2.";
+        public override string Description { get; set; } = "A prototype machine gun with special ammunition.\nVery critical to Scp049-2.";
         public override float Weight { get; set; } = 5;
         public override ItemType Type { get; set; } = ItemType.GunCrossvec;
         [YamlIgnore]
         public override float Damage { get; set; }
         public override SpawnProperties SpawnProperties { get; set; }
-        public override byte ClipSize { get; set; } = 25;
-        public float HumanDamageMultiplier { get; set; } = 1.7f;
-        public float ZombieDamageMultiplier { get; set; } = 8.0f;
-        public float ScpDamageMultiplier { get; set; } = 2.0f;
+        public override byte ClipSize { get; set; } = 60;
+        public float HumanDamageMultiplier { get; set; } = 1.2f;
+        public float ZombieDamageMultiplier { get; set; } = 2.1f;
+        public float ScpDamageMultiplier { get; set; } = 1.5f;
 
         public override AttachmentName[] Attachments { get; set; } = new AttachmentName[]
         {

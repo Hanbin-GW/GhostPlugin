@@ -23,7 +23,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override ItemType Type { get; set; } = ItemType.GunE11SR;
         public override uint Id { get; set; } = 53;
         public override string Name { get; set; } = "Ballista";
-        public override string Description { get; set; } = "벽을 관통하는 레이저 캐논입니다!";
+        public override string Description { get; set; } = "It's a laser canon that penetrates the wall!";
         public override float Weight { get; set; } = 10;
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {

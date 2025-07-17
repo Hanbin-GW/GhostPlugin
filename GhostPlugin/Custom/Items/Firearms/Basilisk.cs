@@ -60,7 +60,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             if (!Check(ev.Player.CurrentItem))
                 return;
             ev.IsAllowed = false;
-            ev.Player.ShowHint("이 아이탬은 부착물 변경이 금지되어있습니다!", 3);
+            ev.Player.ShowHint("You cannot able to change an attachments!", 3);
         }
         protected override void OnShot(ShotEventArgs ev)
         {
