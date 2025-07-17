@@ -252,6 +252,7 @@
         <Compile Include="Custom\Roles\Chaos\CiPhantom.cs" />
         <Compile Include="Custom\Roles\Chaos\FedoraAgent.cs" />
         <Compile Include="Custom\Roles\Chaos\Gunslinger.cs" />
+        <Compile Include="Custom\Roles\Chaos\Hunter.cs" />
         <Compile Include="Custom\Roles\Chaos\JuggernautChaos.cs" />
         <Compile Include="Custom\Roles\Chaos\Ninja.cs" />
         <Compile Include="Custom\Roles\Chaos\SpyAgent.cs" />
