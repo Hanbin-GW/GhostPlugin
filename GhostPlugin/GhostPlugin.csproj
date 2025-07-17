@@ -267,6 +267,7 @@
         <Compile Include="Custom\Roles\Foundation\KSK.cs" />
         <Compile Include="Custom\Roles\Foundation\LuckyGuard.cs" />
         <Compile Include="Custom\Roles\Foundation\Medic.cs" />
+        <Compile Include="Custom\Roles\Foundation\Sniper.cs" />
         <Compile Include="Custom\Roles\Foundation\Viper.cs" />
         <Compile Include="Custom\Roles\Other\SecretAgent.cs" />
         <Compile Include="Custom\Roles\Scientist\ChiefScientist.cs" />

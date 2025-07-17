@@ -55,7 +55,7 @@ namespace GhostPlugin.SSSS
                     CustomRole.Get(typeof(SpyAgent)),
                     CustomRole.Get(typeof(D_Alpha)),
                     CustomRole.Get(typeof(Dwarf)),
-                    CustomRole.Get(typeof(ContainmentSpecialList)),
+                    CustomRole.Get(typeof(Sniper)),
                     CustomRole.Get(typeof(Demolitionist)),
                     CustomRole.Get(typeof(Elite)),
                     CustomRole.Get(typeof(Jailbirdman)),

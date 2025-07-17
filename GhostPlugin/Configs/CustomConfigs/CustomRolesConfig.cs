@@ -120,6 +120,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Medic()
         };
+
+        public List<Sniper> Snipers { get; set; } = new()
+        {
+            new Sniper()
+        };
         public List<DwarfZombie> DwarfZombies { get; set; } = new()
         {
             new DwarfZombie()
