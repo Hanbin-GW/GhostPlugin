@@ -3,7 +3,7 @@ namespace GhostPlugin.Configs
     public class SsssConfig
     {
         public bool IsEnabled { get; set; } = true;
-
+        public string Header { get; set; } = "Custom Ability Keybind";
         public int ActiveCamoId { get; set; } = 10000;
         public int ChargeId { get; set; } = 10001;
         public int DetectId { get; set; } = 10002;

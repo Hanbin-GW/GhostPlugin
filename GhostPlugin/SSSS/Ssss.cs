@@ -43,6 +43,7 @@ namespace GhostPlugin.SSSS
             List<ServerSpecificSettingBase> settings = new List<ServerSpecificSettingBase>();
             settings.Add(new SSGroupHeader($"{Plugin.Instance.Name} | Version {Plugin.Instance.Version}"));
             StringBuilder stringBuilder = StringBuilderPool.Shared.Rent();
+            settings.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.Header));
             if (Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
             {
                 var customRoles = new List<CustomRole>

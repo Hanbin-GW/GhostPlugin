@@ -32,7 +32,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
             new BoostOnKill()
             {
                 Name = "Boost On Kill",
-                Description = "적을 처치할 때마다 이동속도가 증가합니다.",
+                Description = "when you kills the enemy, your will get a movement boost.",
             }
         };
         
