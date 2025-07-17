@@ -152,6 +152,9 @@ namespace GhostPlugin
                 Config.CustomRolesConfig.Strategists.Register();
                 Config.CustomRolesConfig.Quartermasters.Register();
                 Config.CustomRolesConfig.Medics.Register();
+                Config.CustomRolesConfig.AdvancedMtfs.Register();
+                Config.CustomRolesConfig.Hunters.Register();
+                Config.CustomRolesConfig.HugoBosses.Register();
                 Config.CustomRolesConfig.Snipers.Register();
                 Config.CustomRolesConfig.DwarfZombies.Register();
                 Config.CustomRolesConfig.ExplosiveZombies.Register();

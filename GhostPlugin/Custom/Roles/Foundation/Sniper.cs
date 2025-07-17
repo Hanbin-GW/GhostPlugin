@@ -9,7 +9,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
     [CustomRole(RoleTypeId.NtfPrivate)]
     public class Sniper : CustomRole, ICustomRole
     {
-        public override uint Id { get; set; } = 22;
+        public override uint Id { get; set; } = 25;
         public override int MaxHealth { get; set; } = 105;
         public override string Name { get; set; } = "Sniper";
         public override string Description { get; set; } = "you have a Sniper Railgun";

@@ -121,6 +121,21 @@ namespace GhostPlugin.Configs.CustomConfigs
             new Medic()
         };
 
+        public List<AdvancedMTF> AdvancedMtfs { get; set; } = new()
+        {
+            new AdvancedMTF()
+        };
+
+        public List<Hunter> Hunters { get; set; } = new()
+        {
+            new Hunter()
+        };
+
+        public List<HugoBoss> HugoBosses { get; set; } = new()
+        {
+            new HugoBoss()
+        };
+
         public List<Sniper> Snipers { get; set; } = new()
         {
             new Sniper()
