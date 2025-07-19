@@ -9,7 +9,7 @@ using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using MEC;
 
-namespace GhostPlugin.Custom.Items.Etc
+namespace GhostPlugin.Custom.Items.Medkit
 {
     [CustomItem(ItemType.Adrenaline)]
     public class BattleRage : CustomItem

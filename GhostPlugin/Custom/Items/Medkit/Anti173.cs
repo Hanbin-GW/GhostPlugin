@@ -7,7 +7,7 @@ using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp173;
 using MEC;
 
-namespace GhostPlugin.Custom.Items.Etc
+namespace GhostPlugin.Custom.Items.Medkit
 {
     [CustomItem(ItemType.Painkillers)]
     public class Anti173 : CustomItem

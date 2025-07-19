@@ -7,7 +7,7 @@ using Exiled.Events.EventArgs.Player;
 using PlayerRoles;
 using UnityEngine;
 
-namespace GhostPlugin.Custom.Items.Etc
+namespace GhostPlugin.Custom.Items.Medkit
 {
     [CustomItem(ItemType.Medkit)]
     public class ReviveKit : CustomItem
