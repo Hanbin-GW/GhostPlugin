@@ -4,9 +4,9 @@ using Mirror;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace GhostPlugin.Methods.TextToy
+namespace GhostPlugin.Methods.ToyUtils
 {
-    public class SpawnTextToy
+    public class TextUtils
     {
         public static void SpawnText(Player player, Vector3 position, string format, float duration)
         {

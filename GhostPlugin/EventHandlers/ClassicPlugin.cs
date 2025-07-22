@@ -8,7 +8,7 @@ using Exiled.Events.EventArgs.Scp096;
 using Exiled.Events.EventArgs.Server;
 using Exiled.Events.EventArgs.Warhead;
 using GhostPlugin.Methods.Objects;
-using GhostPlugin.Methods.TextToy;
+using GhostPlugin.Methods.ToyUtils;
 using MEC;
 using PlayerRoles;
 using UnityEngine;
@@ -164,22 +164,22 @@ namespace GhostPlugin.EventHandlers
                     case LeadingTeam.Anomalies:
                     Color Color_red = new Color(1f, 0.0f, 0.0f, 0.1f) * 50f;
                     SpawnPrimitiveToy.Spawn(ev.Player, 15,Color_red);
-                    SpawnTextToy.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
+                    TextUtils.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
                         break;
                     case LeadingTeam.FacilityForces:
                         Color Color_blue = new Color(0f, 0f, 1f, 0.1f) * 50f;
                         SpawnPrimitiveToy.Spawn(ev.Player, 15,Color_blue);
-                        SpawnTextToy.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
+                        TextUtils.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
                         break;
                     case LeadingTeam.ChaosInsurgency:
                         Color Color_green = new Color(0f,1f,0f,0.1f) * 50f;
                         SpawnPrimitiveToy.Spawn(ev.Player, 15,Color_green);
-                        SpawnTextToy.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
+                        TextUtils.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
                         break;
                     case LeadingTeam.Draw:
                         Color elseColor = new Color(1f, 1f, 1f, 0.1f) * 50;
                         SpawnPrimitiveToy.Spawn(ev.Player, 15,elseColor);
-                        SpawnTextToy.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
+                        TextUtils.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
                         break;
                 }
                 ev.Player.Vaporize();

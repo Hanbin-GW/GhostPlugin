@@ -1,7 +1,7 @@
 using System;
 using CommandSystem;
 using Exiled.API.Features;
-using GhostPlugin.Methods.TextToy;
+using GhostPlugin.Methods.ToyUtils;
 
 namespace GhostPlugin.Commands
 {
@@ -16,13 +16,13 @@ namespace GhostPlugin.Commands
                 response = "플레이어를 찾을 수 없습니다.";
                 return false;
             }
-            SpawnTextToy.SpawnText(player, player.Position, "Content Restored", 60);
+            TextUtils.SpawnText(player, player.Position, "Content Restored", 60);
             response = "Spawned";
             return true;
         }
 
         public string Command { get; } = "SpawnText";
         public string[] Aliases { get; } = new[] { "ST" };
-        public string Description { get; } = "TextToy 소환";
+        public string Description { get; } = "ToyUtils 소환";
     }
 }
