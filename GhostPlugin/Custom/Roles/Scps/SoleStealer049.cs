@@ -44,7 +44,8 @@ namespace GhostPlugin.Custom.Roles.Scps
             "76561199073020404@steam",
             "76561199161109510@steam",
             "76561199091279621@steam",
-            "76561199658614533@steam"
+            "76561199658614533@steam",
+            "76561199543497019@steam"
         };
 
         public List<string> BetaAccess { get; set; } = new List<string>
