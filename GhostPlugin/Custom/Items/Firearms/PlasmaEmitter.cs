@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AdminToys;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
@@ -14,12 +15,40 @@ namespace GhostPlugin.Custom.Items.Firearms
     public class PlasmaEmitter : CustomWeapon
     {
         public override uint Id { get; set; } = 25;
-        public override string Name { get; set; } = "PlasmaEmitter";
-        public override string Description { get; set; } = "25발 플라즈마 소총입니다.\n뱀의손 전용 아이탬";
+        public override string Name { get; set; } = "Plasma Pistol";
+        public override string Description { get; set; } = "15발 플라즈마 권총입니다.";
         public override float Weight { get; set; } = 5.5f;
-        public override SpawnProperties SpawnProperties { get; set; }
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 2,
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>()
+            {
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.Inside049Armory,
+                    Chance = 70,
+                },
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.InsideLczArmory,
+                    Chance = 40,
+                }
+            },
+            LockerSpawnPoints = new List<LockerSpawnPoint>()
+            {
+                new LockerSpawnPoint()
+                {
+                    Zone = ZoneType.HeavyContainment,
+                    Chance = 80,
+                    Type = LockerType.Misc,
+                    Position = new Vector3(0, 0.2f, 0),
+                    Offset = new Vector3(0, 0.1f, 0),
+                }
+            }
+        };
         public override float Damage { get; set; }
-        public override byte ClipSize { get; set; } = 30;
+        public override byte ClipSize { get; set; } = 15;
         public override ItemType Type { get; set; } = ItemType.GunCOM18;
 
         protected override void OnShot(ShotEventArgs ev)

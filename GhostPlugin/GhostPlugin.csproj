@@ -222,6 +222,7 @@
         <Compile Include="Custom\Items\Firearms\Ballista.cs" />
         <Compile Include="Custom\Items\Firearms\ParalyzeRife.cs" />
         <Compile Include="Custom\Items\Firearms\PhotonCannon.cs" />
+        <Compile Include="Custom\Items\Firearms\PlasmaBlaster.cs" />
         <Compile Include="Custom\Items\Firearms\PlasmaEmitter.cs" />
         <Compile Include="Custom\Items\Firearms\PlasmaShockwaveEmitter.cs" />
         <Compile Include="Custom\Items\Firearms\PlasmaShotgun.cs" />
