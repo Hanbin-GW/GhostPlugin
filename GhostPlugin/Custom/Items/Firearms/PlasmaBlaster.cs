@@ -14,6 +14,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Description { get; set; } = "태스트 버전";
         public override float Weight { get; set; } = 4f;
         public override SpawnProperties SpawnProperties { get; set; }
+        public override ItemType Type { get; set; } = ItemType.GunCrossvec;
         public override byte ClipSize { get; set; } = 35;
 
         protected override void OnShot(ShotEventArgs ev)
@@ -25,7 +26,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                     glowColor = new Color(0f, 1f, 1f, 0.1f) * 50;
                     break;
                 case (LeadingTeam.ChaosInsurgency):
-                    glowColor = new Color(1f, 0.5f, 0f, 0.1f) * 50;
+                    glowColor = new Color(0.1f, 1f, 0.1f, 0.1f) * 50;
                     break;
                 case LeadingTeam.Anomalies:
                     glowColor = new Color(1f, 0f, 0f, 0.1f) * 50;
