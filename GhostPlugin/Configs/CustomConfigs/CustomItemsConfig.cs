@@ -177,6 +177,11 @@ namespace GhostPlugin.Configs.CustomConfigs
             new OverkillVest()
         };
 
+        public List<PlasmaBlaster> PlasmaBlasters { get; private set; } = new List<PlasmaBlaster>()
+        {
+            new PlasmaBlaster()
+        };
+
         public List<MachineGun> MachineGuns { get; private set; } = new List<MachineGun>()
         {
             new MachineGun()

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
@@ -11,9 +12,25 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 46;
         public override string Name { get; set; } = "플라스마 소총";
-        public override string Description { get; set; } = "태스트 버전";
+        public override string Description { get; set; } = "압도적인 화력과 강력한 플라즈마 기술이 들어가있는 블래스터입니다.";
         public override float Weight { get; set; } = 4f;
-        public override SpawnProperties SpawnProperties { get; set; }
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>()
+            {
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.Inside049Armory,
+                    Chance = 100,
+                },
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.InsideLczArmory,
+                    Chance = 40,
+                }
+            }
+        };
         public override ItemType Type { get; set; } = ItemType.GunCrossvec;
         public override byte ClipSize { get; set; } = 35;
 
