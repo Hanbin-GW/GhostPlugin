@@ -154,10 +154,9 @@ namespace GhostPlugin.EventHandlers
             if (ev.Player == null)
                 return;
             var attacker = ev.Attacker;
-            if (attacker == null || attacker.Group == null || string.IsNullOrEmpty(attacker.Group.BadgeText))
+            if (attacker == null || string.IsNullOrEmpty(attacker.Id.ToString()))
                 return;
-            if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Group
-                        .BadgeText))
+            if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Id.ToString()))
             {
                 switch (ev.Player.LeadingTeam)
                 {
@@ -176,7 +175,7 @@ namespace GhostPlugin.EventHandlers
                         SpawnPrimitiveToy.Spawn(ev.Player, 15,Color_green);
                         TextUtils.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
                         break;
-                    case LeadingTeam.Draw:
+                    default:
                         Color elseColor = new Color(1f, 1f, 1f, 0.1f) * 50;
                         SpawnPrimitiveToy.Spawn(ev.Player, 15,elseColor);
                         TextUtils.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);

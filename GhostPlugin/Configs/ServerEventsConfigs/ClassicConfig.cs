@@ -68,9 +68,7 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
 
         public List<string> DonatorList { get; set; } = new List<string>()
         {
-            "서버 관리자",
-            "서버 운영자",
-            "[Level4] - 후원자"
+            "76561199133709329@steam"
         };
     }
 }

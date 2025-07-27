@@ -42,8 +42,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                     Zone = ZoneType.HeavyContainment,
                     Chance = 80,
                     Type = LockerType.Misc,
-                    Position = new Vector3(0, 0.2f, 0),
-                    Offset = new Vector3(0, 0.1f, 0),
+                    Offset = new Vector3(0, 1.1f, 0),
                 }
             }
         };
