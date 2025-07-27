@@ -156,6 +156,8 @@ namespace GhostPlugin.EventHandlers
             var attacker = ev.Attacker;
             if (attacker == null || string.IsNullOrEmpty(attacker.Id.ToString()))
                 return;
+            if(attacker.LeadingTeam is LeadingTeam.Anomalies)
+                return;
             if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Id.ToString()))
             {
                 switch (ev.Player.LeadingTeam)
