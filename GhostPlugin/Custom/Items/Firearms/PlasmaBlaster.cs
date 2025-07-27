@@ -32,7 +32,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             }
         };
         public override ItemType Type { get; set; } = ItemType.GunCrossvec;
-        public override byte ClipSize { get; set; } = 35;
+        public override byte ClipSize { get; set; } = 20;
 
         protected override void OnShot(ShotEventArgs ev)
         {
