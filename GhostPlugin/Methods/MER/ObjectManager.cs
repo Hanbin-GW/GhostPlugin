@@ -8,9 +8,9 @@ namespace GhostPlugin.Methods.MER
 {
     public class ObjectManager
     {
-        public static SchematicObject SpawnObject(String schematicName, Vector3 spawnPos, Vector3 rotation)
+        public static SchematicObject SpawnObject(String schematicName, Vector3 spawnPos, Quaternion quaternion)
         {
-            SchematicObject schematicObject = ObjectSpawner.SpawnSchematic(schematicName, spawnPos, rotation);
+            SchematicObject schematicObject = ObjectSpawner.SpawnSchematic(schematicName, spawnPos, quaternion);
             if (schematicObject != null)
             {
                 Log.Debug($"Schematic '{schematicName}' has been successfully spawned.");

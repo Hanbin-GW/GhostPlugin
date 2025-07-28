@@ -47,7 +47,7 @@ namespace GhostPlugin.Custom.Items.Etc
                 if (ev.IsThrown)
                 {
                     ev.Item.Destroy();
-                    obj = ObjectManager.SpawnObject("Ammobox", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, Vector3.zero);
+                    obj = ObjectManager.SpawnObject("Ammobox", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, Quaternion.identity);
                     Timing.CallDelayed(60, () => ObjectManager.RemoveObject(obj));
                 }
             }
