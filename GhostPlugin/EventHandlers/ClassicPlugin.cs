@@ -158,7 +158,7 @@ namespace GhostPlugin.EventHandlers
                 return;
             if(attacker.LeadingTeam is LeadingTeam.Anomalies)
                 return;
-            if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DonatorList.Contains(ev.Attacker.Id.ToString()))
+            if(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.DeleteEffectList.Contains(ev.Attacker.Id.ToString()))
             {
                 switch (ev.Player.LeadingTeam)
                 {
