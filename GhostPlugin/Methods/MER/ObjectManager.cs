@@ -17,6 +17,8 @@ namespace GhostPlugin.Methods.MER
                 GameObject schematicGameObject = schematicObject.gameObject;
                 Rigidbody rigidbody = schematicGameObject.AddComponent<Rigidbody>();
                 rigidbody.useGravity = true;
+                schematicGameObject.transform.rotation = quaternion;
+                rigidbody.rotation = quaternion;
             }
             return schematicObject;
         }

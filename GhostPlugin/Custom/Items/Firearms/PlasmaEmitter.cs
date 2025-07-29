@@ -55,7 +55,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         {
             if (Check(ev.Player.CurrentItem) && ev.AdsIn)
             {
-                obj = ObjectManager.SpawnObject("Shield", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, Quaternion.identity);
+                obj = ObjectManager.SpawnObject("Shield", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, ev.Player.Transform.rotation);
             }
             else if (Check(ev.Player.CurrentItem) && ev.AdsIn == false)
             {
