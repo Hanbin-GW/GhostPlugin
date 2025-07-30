@@ -6,6 +6,7 @@ using GhostPlugin.Custom.Items.Firearms;
 using GhostPlugin.Custom.Items.Grenades;
 using GhostPlugin.Custom.Items.Keycard;
 using GhostPlugin.Custom.Items.Medkit;
+using ProjectMER.Commands.Utility;
 
 namespace GhostPlugin.Configs.CustomConfigs
 {
@@ -200,6 +201,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         public List<Ballista> MorsReworks { get; private set; } = new List<Ballista>()
         {
             new Ballista()
+        };
+
+        public List<M16> M16s { get; private set; } = new List<M16>()
+        {
+            new M16()
         };
     }
 }

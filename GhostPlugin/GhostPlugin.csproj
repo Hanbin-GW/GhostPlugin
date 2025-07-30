@@ -217,6 +217,7 @@
         <Compile Include="Custom\Items\Firearms\GernadeLuncher.cs" />
         <Compile Include="Custom\Items\Firearms\LaserCannon.cs" />
         <Compile Include="Custom\Items\Firearms\LaserGun.cs" />
+        <Compile Include="Custom\Items\Firearms\M16.cs" />
         <Compile Include="Custom\Items\Firearms\MachineGun.cs" />
         <Compile Include="Custom\Items\Firearms\MORS.cs" />
         <Compile Include="Custom\Items\Firearms\Ballista.cs" />

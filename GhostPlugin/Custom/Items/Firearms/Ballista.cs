@@ -19,7 +19,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     [CustomItem(ItemType.GunE11SR)]
     public class Ballista : CustomWeapon
     {
-        public override byte ClipSize { get; set; } = 1;
+        public override byte ClipSize { get; set; } = 53;
         public override ItemType Type { get; set; } = ItemType.GunE11SR;
         public override uint Id { get; set; } = 53;
         public override string Name { get; set; } = "Ballista";
