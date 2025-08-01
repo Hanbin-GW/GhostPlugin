@@ -135,6 +135,9 @@
           <HintPath>..\..\..\Documents\1.0.7\System.ValueTuple.dll</HintPath>
         </Reference>
         <Reference Include="System.Xml" />
+        <Reference Include="TeamDeathmatch">
+          <HintPath>..\..\TeamDeathmatch\TeamDeathmatch\obj\Release\TeamDeathmatch.dll</HintPath>
+        </Reference>
         <Reference Include="Unity.TextMeshPro">
           <HintPath>..\..\..\Documents\1403\Unity.TextMeshPro.dll</HintPath>
         </Reference>

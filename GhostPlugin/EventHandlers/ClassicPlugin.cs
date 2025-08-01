@@ -183,7 +183,8 @@ namespace GhostPlugin.EventHandlers
                         TextUtils.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
                         break;
                 }
-                ev.Player.Vaporize();
+                if(!TeamDeathmatch.Plugin.Instance.Config.IsEnabled)
+                    ev.Player.Vaporize();
             }
             else
             {
