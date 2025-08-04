@@ -24,7 +24,7 @@ namespace GhostPlugin.Methods.Objects
             rb.mass = 1f;
             rb.drag = 0.5f;
             rb.angularDrag = 0.1f;
-            rb.velocity = player.GameObject.transform.forward * 25;
+            rb.velocity = player.GameObject.transform.forward * 60;
 
             if (pt.GameObject.GetComponent<Collider>() == null)
                 pt.GameObject.AddComponent<BoxCollider>();
