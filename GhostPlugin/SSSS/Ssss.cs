@@ -34,7 +34,8 @@ namespace GhostPlugin.SSSS
                 "Listen",  // Option A
                 "Turn off",  // Option B
                 false,   // 기본값: 듣기
-                "Set whether to play music." // 설명
+                "Set whether to play music.",
+                225
             ));
 
             return settings.ToArray();
