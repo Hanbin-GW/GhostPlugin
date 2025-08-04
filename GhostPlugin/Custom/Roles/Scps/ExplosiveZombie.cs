@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Exiled.CustomRoles.API.Features;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Spawn;
 using PlayerRoles;
 using GhostPlugin.API;
 using GhostPlugin.Custom.Abilities.Passive;
@@ -18,6 +19,10 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override string CustomInfo { get; set; } = "Ballistic SCP-049-2";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
         public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+        };
 
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>
         {

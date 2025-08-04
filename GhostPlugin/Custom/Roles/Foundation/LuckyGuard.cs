@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.Features;
@@ -120,6 +121,11 @@ namespace GhostPlugin.Custom.Roles.Foundation
         // (get) Token: 0x0600020B RID: 523 RVA: 0x0000B780 File Offset: 0x00009980
         // (set) Token: 0x0600020C RID: 524 RVA: 0x0000B788 File Offset: 0x00009988
         public StartTeam StartTeam { get; set; } = StartTeam.Guard;
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1
+        };
 
         // Token: 0x170000AC RID: 172
         // (get) Token: 0x0600020D RID: 525 RVA: 0x0000B791 File Offset: 0x00009991

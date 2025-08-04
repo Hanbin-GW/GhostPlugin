@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
 using PlayerRoles;
@@ -28,6 +29,11 @@ namespace GhostPlugin.Custom.Roles.Foundation
             ItemType.KeycardGuard.ToString(),
             ItemType.Medkit.ToString(),
             ItemType.Radio.ToString(),
+        };
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
         };
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
