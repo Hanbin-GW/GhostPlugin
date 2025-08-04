@@ -31,10 +31,12 @@ namespace GhostPlugin.SSSS
             settings.Add(new SSTwoButtonsSetting(
                 Plugin.Instance.Config.SsssConfig.MusicToggleId,
                 "로비 및 이벤트 음악 설정",
-                "듣기",  // Option A
-                "끄기",  // Option B
-                false,   // 기본값: 듣기
-                "음악 재생 여부를 설정합니다." // 설명
+                "듣기",
+                "끄기",
+                false,
+                "음악 재생 여부를 설정합니다.",
+                255,
+                true
             ));
 
             return settings.ToArray();
