@@ -1,11 +1,12 @@
-using AdminToys;
+using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
-using GhostPlugin.Custom.Items.MonoBehavior;
+using GhostPlugin.Methods.MER;
 using GhostPlugin.Methods.Objects;
+using ProjectMER.Features.Objects;
 using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Firearms
@@ -14,13 +15,52 @@ namespace GhostPlugin.Custom.Items.Firearms
     public class PlasmaEmitter : CustomWeapon
     {
         public override uint Id { get; set; } = 25;
-        public override string Name { get; set; } = "PlasmaEmitter";
+        public override string Name { get; set; } = "Plasma Pistol";
         public override string Description { get; set; } = "25 Ammo plasma rifles.\na Serpents Hand-only itam";
         public override float Weight { get; set; } = 5.5f;
-        public override SpawnProperties SpawnProperties { get; set; }
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 2,
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>()
+            {
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.Inside049Armory,
+                    Chance = 70,
+                },
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.InsideLczArmory,
+                    Chance = 40,
+                }
+            },
+            LockerSpawnPoints = new List<LockerSpawnPoint>()
+            {
+                new LockerSpawnPoint()
+                {
+                    Zone = ZoneType.HeavyContainment,
+                    Chance = 80,
+                    Type = LockerType.Misc,
+                    Offset = new Vector3(0, 1.1f, 0),
+                }
+            }
+        };
         public override float Damage { get; set; }
         public override byte ClipSize { get; set; } = 30;
         public override ItemType Type { get; set; } = ItemType.GunCOM18;
+        public SchematicObject obj = null;
+        private void OnAimDownSight(AimingDownSightEventArgs ev)
+        {
+            if (Check(ev.Player.CurrentItem) && ev.AdsIn)
+            {
+                obj = ObjectManager.SpawnObject("Shield", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, ev.Player.Transform.rotation);
+            }
+            else if (Check(ev.Player.CurrentItem) && ev.AdsIn == false)
+            {
+                if (obj != null)
+                    ObjectManager.RemoveObject(obj);
+            }
+        }
 
         protected override void OnShot(ShotEventArgs ev)
         {
@@ -53,6 +93,17 @@ namespace GhostPlugin.Custom.Items.Firearms
             SpawnPrimitive.spawnPrimitive(ev.Player, PrimitiveType.Cube, rotation, laserPos, glowColor,25);
             ev.CanHurt = false;
             base.OnShot(ev);
+        }
+        
+        protected override void SubscribeEvents()
+        {
+            Exiled.Events.Handlers.Player.AimingDownSight += OnAimDownSight;
+            base.SubscribeEvents();
+        }
+        protected override void UnsubscribeEvents()
+        {
+            Exiled.Events.Handlers.Player.AimingDownSight -= OnAimDownSight;
+            base.UnsubscribeEvents();
         }
     }
 }

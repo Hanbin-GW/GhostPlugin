@@ -41,7 +41,7 @@ namespace GhostPlugin.Custom.Items.Etc
                 if (ev.IsThrown)
                 {
                     ev.Item.Destroy();
-                    obj = ObjectManager.SpawnObject("TrophySystem", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, Vector3.zero);
+                    obj = ObjectManager.SpawnObject("TrophySystem", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, Quaternion.identity);
                     grenadeScanCoroutine = Timing.RunCoroutine(ScanAndDestroyGrenades(obj));
                     Timing.CallDelayed(60, () =>
                     {
