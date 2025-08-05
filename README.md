@@ -65,3 +65,16 @@ Minimap (Disabled)
 |    Serpents Hand Oversee    | 71 |   None    |
 |   Serpents Hand Guardian    | 72 |   None    |
 |    Serpents Hand Trooper    | 73 |   None    |
+
+# GhostPlugin's CustomItem
+|                                                     ItemName                                                      | Id |                                                        Description                                                         |
+|:-----------------------------------------------------------------------------------------------------------------:|:--:|:--------------------------------------------------------------------------------------------------------------------------:|
+|                                                [Hacking Device]()                                                 | 1  |                    Lock the door for 7 seconds when interacting with the door. (10 seconds of cool down                    |
+|               [MORS](https://www.notion.so/MORS-233626d7af6a8024b6dac8e62eef3577?source=copy_link)                | 2  | It is a modified version of the E-11-SR, and instead of having one ammunition, it is 7.5 times of the existing E-11 damage |
+|         [FTAC Recon](https://www.notion.so/FTAC-recon-246626d7af6a808d8757d46cc86fd7ef?source=copy_link)          | 3  |                               Press the [R] Key, you can track down the target that was shot                               |
+| [Shockwave Electricity Gun](https://www.notion.so/ShockwaveGun-233626d7af6a807d9934f7df130337e2?source=copy_linkP | 4  |                                      A prototype machine gun with special ammunition.                                      |
+|                                               M79 (Gernade Luncher)                                               | 5  |                                             TESTING IN PROGRESS Don'T USE  IT!                                             |
+|                                                     [BSP- 9]                                                      | 8  |                         A machine gun containing toxic substances.\nToxic effect on attack target                          |
+|                                                 Cluster Grenade]                                                  | 9  |                                 It's a grenade that explodes in series\nZone Annihilation                                  |
+|       [Acid Shotter](https://www.notion.so/Acid-Shotter-233626d7af6a80afbc17ca65876f3b42?source=copy_link)        | 33 |                                         It has 12 gauges with powerful toxic acid.                                         |
+
