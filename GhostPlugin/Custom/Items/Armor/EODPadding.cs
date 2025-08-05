@@ -16,7 +16,7 @@ namespace GhostPlugin.Custom.Items.Armor
     {
         public override uint Id { get; set; } = 11;
         public override string Name { get; set; } = "<color=#ffb145>EOD Padding</color>";
-        public override string Description { get; set; } = "It reduces 80% of explosion and flame damage.";
+        public override string Description { get; set; } = "It reduces 80% of explosion damage and flame damage.";
         public override float Weight { get; set; }
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
