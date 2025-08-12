@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
-    [CustomItem(ItemType.GunCOM18)]
+    [CustomItem(ItemType.GunCrossvec)]
     public class PortableEnergyShild : CustomWeapon
     {
         public override uint Id { get; set; } = 54;
@@ -19,6 +19,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override float Weight { get; set; } = 2.3f;
         public SchematicObject obj = null;
         public override byte ClipSize { get; set; } = 0;
+        public override ItemType Type { get; set; } = ItemType.GunCrossvec;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
