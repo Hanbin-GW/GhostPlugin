@@ -23,15 +23,15 @@ namespace GhostPlugin.Commands{
                 {
                     foreach (CustomRole customRole in CustomRole.Registered)
                     {
-                        if (customRole.Check(player)) // 플레이어가 해당 커스텀 롤을 가지고 있는지 확인
+                        if (customRole.Check(player))
                         {
                             player.ShowHint($"Role Name: {customRole.Name}\nDescription: {customRole.Description}\nRole: {customRole.Role}");
                             player.Broadcast(5,$"Role Name: {customRole.Name}\nDescription: {customRole.Description}\nRole: {customRole.Role}");
-                            response = $"당신은 {customRole.Name}입니다.\n{customRole.Description} \n\n커스텀 역할 정보가 성공적으로 출력되었습니다.";
+                            response = $"You are {customRole.Name}.\n{customRole.Description}";
                             return true;
                         }
                     }
-                    response = "<color=red>커스텀 롤이 없습니다.</color>";
+                    response = "<color=red>You don't have any CustomRole.</color>";
                     return false;
                 }
             }
