@@ -6,6 +6,7 @@ using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using GhostPlugin.Methods.MER;
 using ProjectMER.Features.Objects;
+using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
@@ -57,6 +58,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             if (Check(ev.Player.CurrentItem) && ev.AdsIn)
             {
                 obj = ObjectManager.SpawnObject("Shield", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, ev.Player.Transform.rotation);
+                ObjectManager.RecolorAllPrimitives(obj, new Color(191f, 152f, 10f, 20f));
             }
             else if (Check(ev.Player.CurrentItem) && ev.AdsIn == false)
             {

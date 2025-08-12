@@ -1,4 +1,5 @@
 using System;
+using AdminToys;
 using Exiled.API.Features;
 using ProjectMER.Features;
 using ProjectMER.Features.Objects;
@@ -21,6 +22,14 @@ namespace GhostPlugin.Methods.MER
                 rigidbody.rotation = quaternion;
             }
             return schematicObject;
+        }
+        
+        public static void RecolorAllPrimitives(SchematicObject schem, Color color)
+        {
+            foreach (var toy in schem.GetComponentsInChildren<PrimitiveObjectToy>(true))
+            {
+                toy.NetworkMaterialColor = color; 
+            }
         }
 
         public static void RemoveObject(SchematicObject schematicObject)
