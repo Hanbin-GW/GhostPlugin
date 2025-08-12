@@ -196,5 +196,10 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Ballista()
         };
+
+        public List<PortableEnergyShild> PortableEnergyShilds { get; private set; } = new List<PortableEnergyShild>()
+        {
+            new PortableEnergyShild()
+        };
     }
 }

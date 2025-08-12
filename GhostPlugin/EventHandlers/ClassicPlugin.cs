@@ -233,7 +233,8 @@ namespace GhostPlugin.EventHandlers
             Map.Broadcast(5, Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.RoundStartMSG);
             if (BlackoutMod.IsBlackout)
                 return;
-            Cassie.MessageTranslated(message: "Attention Containment breach detected", isSubtitles: true, translation: "Attention <color=red>Containment breach</color> detected", isNoisy: false);
+            if(!TeamDeathmatch.Plugin.Instance.Config.IsEnabled)
+                Cassie.MessageTranslated(message: "Attention Containment breach detected", isSubtitles: true, translation: "Attention <color=red>Containment breach</color> detected", isNoisy: false);
         }
         private static void OnRoundEnded(EndingRoundEventArgs ev)
         {

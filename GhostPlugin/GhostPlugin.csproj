@@ -141,6 +141,9 @@
           <HintPath>..\..\..\Documents\1.0.7\System.ValueTuple.dll</HintPath>
         </Reference>
         <Reference Include="System.Xml"/>
+        <Reference Include="TeamDeathmatch">
+          <HintPath>..\..\TeamDeathmatch\TeamDeathmatch\obj\Release\TeamDeathmatch-Eng.dll</HintPath>
+        </Reference>
         <Reference Include="Unity.TextMeshPro">
           <HintPath>..\..\..\Documents\1403\Unity.TextMeshPro.dll</HintPath>
         </Reference>
@@ -229,6 +232,7 @@
         <Compile Include="Custom\Items\Firearms\PlasmaShockwaveEmitter.cs" />
         <Compile Include="Custom\Items\Firearms\PlasmaShotgun.cs" />
         <Compile Include="Custom\Items\Firearms\PoisonGun.cs" />
+        <Compile Include="Custom\Items\Firearms\PortableEnergyShild.cs" />
         <Compile Include="Custom\Items\Firearms\ReconBattleRife.cs" />
         <Compile Include="Custom\Items\Firearms\Riveter.cs" />
         <Compile Include="Custom\Items\Firearms\ShockwaveGun.cs" />

@@ -15,8 +15,8 @@ namespace GhostPlugin.Custom.Items.Firearms
     public class PlasmaEmitter : CustomWeapon
     {
         public override uint Id { get; set; } = 25;
-        public override string Name { get; set; } = "Plasma Pistol";
-        public override string Description { get; set; } = "25 Ammo plasma rifles.\na Serpents Hand-only itam";
+        public override string Name { get; set; } = "Hybrid Plasma Pistol";
+        public override string Description { get; set; } = "25 Ammo plasma rifles.";
         public override float Weight { get; set; } = 5.5f;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
