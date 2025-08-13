@@ -7,6 +7,7 @@ using Exiled.Events.EventArgs.Player;
 using GhostPlugin.Methods.MER;
 using ProjectMER.Features.Objects;
 using UnityEngine;
+using YamlDotNet.Serialization;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
@@ -18,6 +19,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Description { get; set; } = "The energy shild is activated when ADS.";
         public override float Weight { get; set; } = 2.3f;
         public SchematicObject obj = null;
+        [YamlIgnore]
         public override byte ClipSize { get; set; } = 0;
         public override ItemType Type { get; set; } = ItemType.GunCrossvec;
 
@@ -59,7 +61,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             if (Check(ev.Player.CurrentItem) && ev.AdsIn)
             {
                 obj = ObjectManager.SpawnObject("Shield", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, ev.Player.Transform.rotation);
-                ObjectManager.RecolorAllPrimitives(obj, new Color(191f, 152f, 10f, 20f));
+                ObjectManager.RecolorAllPrimitives(obj, new Color(0f, 1f, 1f, 0.1f) * 25);
             }
             else if (Check(ev.Player.CurrentItem) && ev.AdsIn == false)
             {
