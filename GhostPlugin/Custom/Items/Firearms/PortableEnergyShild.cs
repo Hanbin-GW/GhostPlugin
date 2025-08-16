@@ -20,7 +20,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override float Weight { get; set; } = 2.3f;
         public SchematicObject obj = null;
         [YamlIgnore]
-        public override byte ClipSize { get; set; } = 0;
+        public override byte ClipSize { get; set; } = 1;
         public override ItemType Type { get; set; } = ItemType.GunCrossvec;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()

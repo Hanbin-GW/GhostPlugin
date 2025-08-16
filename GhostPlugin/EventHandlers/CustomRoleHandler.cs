@@ -7,23 +7,29 @@ using Exiled.Events.EventArgs.Scp049;
 using Exiled.Events.EventArgs.Server;
 using PlayerRoles;
 using GhostPlugin.API;
+using GhostPlugin.Methods.CustomRoles;
 
 namespace GhostPlugin.EventHandlers
 {
-    public class CustomRoleHandler
+    public class CustomRoleEventHandler
     {
         private readonly Plugin Plugin;
-
-        public CustomRoleHandler(Plugin plugin) => Plugin = plugin;
-
+        public CustomRoleEventHandler(Plugin plugin) => Plugin = plugin;
         public void OnRoundStarted()
         {
-            if (!Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
-                return;
             List<ICustomRole>.Enumerator dClassRoles = new();
             List<ICustomRole>.Enumerator scientistRoles = new();
             List<ICustomRole>.Enumerator guardRoles = new();
-            List<ICustomRole>.Enumerator scpRoles = new();
+            // Can apply to any SCPs
+            List<ICustomRole>.Enumerator scpRoles = new(); 
+            // Specific SCP roles
+            List<ICustomRole>.Enumerator scp173Roles = new();
+            List<ICustomRole>.Enumerator scp106Roles = new();
+            List<ICustomRole>.Enumerator scp049Roles = new();
+            List<ICustomRole>.Enumerator scp079Roles = new();
+            List<ICustomRole>.Enumerator scp096Roles = new();
+            List<ICustomRole>.Enumerator scp939Roles = new();
+            List<ICustomRole>.Enumerator scp3114Roles = new();
 
             foreach (KeyValuePair<StartTeam, List<ICustomRole>> kvp in Plugin.Roles)
             {
@@ -43,6 +49,27 @@ namespace GhostPlugin.EventHandlers
                     case StartTeam.Scp:
                         scpRoles = kvp.Value.GetEnumerator();
                         break;
+                    case StartTeam.Scp173:
+                        scp173Roles = kvp.Value.GetEnumerator();
+                        break;
+                    case StartTeam.Scp106:
+                        scp106Roles = kvp.Value.GetEnumerator();
+                        break;
+                    case StartTeam.Scp049:
+                        scp049Roles = kvp.Value.GetEnumerator();
+                        break;
+                    case StartTeam.Scp079:
+                        scp079Roles = kvp.Value.GetEnumerator();
+                        break;
+                    case StartTeam.Scp096:
+                        scp096Roles = kvp.Value.GetEnumerator();
+                        break;
+                    case StartTeam.Scp939:
+                        scp939Roles = kvp.Value.GetEnumerator();
+                        break;
+                    case StartTeam.Scp3114:
+                        scp3114Roles = kvp.Value.GetEnumerator();
+                        break;
                 }
             }
 
@@ -61,24 +88,54 @@ namespace GhostPlugin.EventHandlers
                     case RoleTypeId.ClassD:
                         role = CustomRoleMethods.GetCustomRole(ref dClassRoles);
                         break;
+                    case RoleTypeId.Scp173:
+                        role = CustomRoleMethods.GetCustomRole(ref scp173Roles);
+                        break;
+                    case RoleTypeId.Scp106:
+                        role = CustomRoleMethods.GetCustomRole(ref scp106Roles);
+                        break;
+                    case RoleTypeId.Scp049:
+                        role = CustomRoleMethods.GetCustomRole(ref scp049Roles);
+                        break;
+                    case RoleTypeId.Scp079:
+                        role = CustomRoleMethods.GetCustomRole(ref scp079Roles);
+                        break;
+                    case RoleTypeId.Scp096:
+                        role = CustomRoleMethods.GetCustomRole(ref scp096Roles);
+                        break;
+                    case RoleTypeId.Scp939:
+                        role = CustomRoleMethods.GetCustomRole(ref scp939Roles);
+                        break;
+                    case RoleTypeId.Scp3114:
+                        role = CustomRoleMethods.GetCustomRole(ref scp3114Roles);
+                        break;
                     case { } when player.Role.Side == Side.Scp:
                         role = CustomRoleMethods.GetCustomRole(ref scpRoles);
                         break;
                 }
 
-                role?.AddRole(player);
+                if (player.GetCustomRoles().Count == 0)
+                    role?.AddRole(player);
             }
 
             guardRoles.Dispose();
             scientistRoles.Dispose();
             dClassRoles.Dispose();
             scpRoles.Dispose();
+            scp173Roles.Dispose();
+            scp106Roles.Dispose();
+            scp049Roles.Dispose();
+            scp079Roles.Dispose();
+            scp096Roles.Dispose();
+            scp939Roles.Dispose();
+            scp3114Roles.Dispose();
         }
 
         public void OnRespawningTeam(RespawningTeamEventArgs ev)
         {
-            if (!Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
+            if (C_Squad.Plugin.Instance.IsSpawnable || Reinforcements.Plugin.Instance.IsSpawnable)
                 return;
+            
             if (ev.Players.Count == 0)
             {
                 Log.Warn(
@@ -110,7 +167,8 @@ namespace GhostPlugin.EventHandlers
             {
                 CustomRole? role = CustomRoleMethods.GetCustomRole(ref roles);
 
-                role?.AddRole(player);
+                if (player.GetCustomRoles().Count == 0)
+                    role?.AddRole(player);
             }
 
             roles.Dispose();
@@ -118,8 +176,6 @@ namespace GhostPlugin.EventHandlers
 
         public void FinishingRecall(FinishingRecallEventArgs ev)
         {
-            if (!Plugin.Instance.Config.CustomRolesConfig.IsEnabled)
-                return;
             Log.Debug($"VVUP Custom Roles: {nameof(FinishingRecall)}: Selecting random zombie role.");
             if (Plugin.Roles.ContainsKey(StartTeam.Scp) && ev.Target is not null)
             {

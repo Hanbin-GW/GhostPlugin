@@ -36,7 +36,7 @@ namespace GhostPlugin
         public override string Name { get; } = "Ghost-Plugin-Eng";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
         //private MyCustomKeyBind _myCustomKeyBind;
-        public CustomRoleHandler CustomRoleHandler;
+        public CustomRoleEventHandler CustomRoleHandler;
         /// <summary>
         /// Minimap Dict
         /// </summary>
@@ -130,7 +130,7 @@ namespace GhostPlugin
             //CustomRole Config
             if (Config.CustomRolesConfig.IsEnabled)
             {
-                CustomRoleHandler = new CustomRoleHandler(this);
+                CustomRoleHandler = new CustomRoleEventHandler(this);
                 Config.CustomRolesConfig.ChiefScientists.Register();
                 Config.CustomRolesConfig.CiPhantoms.Register();
                 Config.CustomRolesConfig.DAlphas.Register();
