@@ -231,6 +231,7 @@
         <Compile Include="Custom\Items\Firearms\PlasmaShockwaveEmitter.cs" />
         <Compile Include="Custom\Items\Firearms\PlasmaShotgun.cs" />
         <Compile Include="Custom\Items\Firearms\PoisonGun.cs" />
+        <Compile Include="Custom\Items\Firearms\PortableEnergyShild.cs" />
         <Compile Include="Custom\Items\Firearms\ReconBattleRife.cs" />
         <Compile Include="Custom\Items\Firearms\Riveter.cs" />
         <Compile Include="Custom\Items\Firearms\ShockwaveGun.cs" />
