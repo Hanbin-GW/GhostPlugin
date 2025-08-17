@@ -65,3 +65,36 @@ GhostPlugin은 내가 제작한 대부분의 플러그인을 하나로 합친 SC
 | 뱀의 손 병사  |  73 |
 
 ---
+Development Context (SCP: Secret Laboratory Custom Multiplayer Modding)
+
+In the Unity-based multiplayer game SCP: Secret Laboratory, I do not merely participate as a player—I engage as a developer who disassembles and reconstructs core systems to create new gameplay experiences.
+
+Engine / Language: Unity (C#)
+
+Key Technologies & Techniques:
+
+(a) Utilized the CreateSchematic() method to dynamically spawn in-game objects (e.g., shields) in real time at the player’s aiming position.
+
+(b) Integrated custom modules and self-developed methods to extend game logic.
+
+(c) Injected Project MER (DLL-based modules) to manipulate server–client logic at runtime.
+
+(d) Used HarmonyLib with IL injection to modify compiled bytecode for deeper control.
+
+This type of work requires an advanced understanding of game engine architecture and real-time systems. My implementation includes:
+
+(a) Raycasting – to detect gaze coordinates for precise object spawning.
+
+(b) Prefab Instantiation – to dynamically place pre-designed assets into the scene.
+
+(c) Physics Layers & Colliders – to handle real-time collisions and trigger-based behavior.
+
+(d) Object Pooling – to minimize garbage collection and ensure memory efficiency.
+
+(e) Multiplayer Synchronization – to align object state and behavior across server and clients.
+
+This is a highly complex topic that blends game design with low-level systems control. I implemented it independently, without formal instruction.
+
+Supporting media such as the yellow shield image, demo video, and my public service platform MAMBAB will be included in my online portfolio.
+<img width="577" height="348" alt="KakaoTalk_Photo_2025-08-17-19-34-39" src="https://github.com/user-attachments/assets/40612760-afad-4f86-b0a2-706e77a48dd2" />
+<img width="577" height="348" alt="image" src="https://github.com/user-attachments/assets/93da984b-11f9-4436-a311-aed80265bd8a" />
