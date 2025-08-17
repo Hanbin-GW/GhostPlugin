@@ -96,5 +96,7 @@ This type of work requires an advanced understanding of game engine architecture
 This is a highly complex topic that blends game design with low-level systems control. I implemented it independently, without formal instruction.
 
 Supporting media such as the yellow shield image, demo video, and my public service platform MAMBAB will be included in my online portfolio.
+
 <img width="577" height="348" alt="KakaoTalk_Photo_2025-08-17-19-34-39" src="https://github.com/user-attachments/assets/40612760-afad-4f86-b0a2-706e77a48dd2" />
-<img width="577" height="348" alt="image" src="https://github.com/user-attachments/assets/93da984b-11f9-4436-a311-aed80265bd8a" />
+
+<img width="360" height="202" alt="image" src="https://github.com/user-attachments/assets/d4af5b75-cc9a-44db-adaa-b9fa8c5bec3a" />
