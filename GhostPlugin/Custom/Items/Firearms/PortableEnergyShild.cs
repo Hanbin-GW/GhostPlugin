@@ -61,7 +61,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             if (Check(ev.Player.CurrentItem) && ev.AdsIn)
             {
                 obj = ObjectManager.SpawnObject("Shield", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, ev.Player.Transform.rotation);
-                ObjectManager.RecolorAllPrimitives(obj, new Color(0f, 1f, 1f, 0.1f) * 25);
+                ObjectManager.RecolorAllPrimitives(obj, new Color(0.039f, 0.529f, 0.749f, 0.078f) * 4f);
             }
             else if (Check(ev.Player.CurrentItem) && ev.AdsIn == false)
             {
