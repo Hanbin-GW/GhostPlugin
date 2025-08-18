@@ -24,7 +24,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override string Description { get; set; } = "SCP049 의 각성버전입니다.\n다양한 능력이 있으며, 다양한 SCP 능력을 이용하여 시설을 파괴하십시요.";
         public override string CustomInfo { get; set; } = "The Soul Stealer";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp049;
-        public StartTeam StartTeam { get; set; } = StartTeam.Scp;
+        public StartTeam StartTeam { get; set; } = StartTeam.Scp049;
         public int Chance { get; set; } = 10;
         public override float SpawnChance { get; set; } = 0;
         private readonly Dictionary<Player, CoroutineHandle> _altKeyCooldowns = new Dictionary<Player, CoroutineHandle>();

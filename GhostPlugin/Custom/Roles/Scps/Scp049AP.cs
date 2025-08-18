@@ -38,7 +38,7 @@ namespace GhostPlugin.Custom.Roles.Scps
             base.UnsubscribeEvents();
         }
 
-        public StartTeam StartTeam { get; set; } = StartTeam.Scp;
+        public StartTeam StartTeam { get; set; } = StartTeam.Scp049;
         public int Chance { get; set; } = 35;
     }
 }

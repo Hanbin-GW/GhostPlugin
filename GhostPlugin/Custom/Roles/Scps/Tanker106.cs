@@ -22,7 +22,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override string Description { get; set; } = "구버전 106 입니다.\n스토킹이 불가능한 대신, 데미지 75% 저항이 있습니다!\n`.g` 명령어를 입력하여 일시적으로 무적이 될수 있습니다! ";
         public override string CustomInfo { get; set; } = "SCP 106 Tanker";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp106;
-        public StartTeam StartTeam { get; set; } = StartTeam.Scp;
+        public StartTeam StartTeam { get; set; } = StartTeam.Scp106;
         private readonly Dictionary<Player, CoroutineHandle> _altKeyCooldowns = new Dictionary<Player, CoroutineHandle>();
         private readonly float _altKeyCooldownDuration = 80f;
 
