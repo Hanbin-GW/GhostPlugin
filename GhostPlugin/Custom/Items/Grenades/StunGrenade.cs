@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Linq;
 using CustomPlayerEffects;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
@@ -18,7 +20,33 @@ namespace GhostPlugin.Custom.Items.Grenades
         public override string Description { get; set; } = "If you get it right, you'll get a <color=yellow>Stun</color> effect";
         public override ItemType Type { get; set; } = ItemType.GrenadeFlash;
         public override float Weight { get; set; } = 3f;
-        public override SpawnProperties SpawnProperties { get; set; }
+        public override SpawnProperties SpawnProperties { get; set; } = new()
+        {
+            Limit = 5,
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>
+            {
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.InsideHczArmory,
+                },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.Inside330,
+                },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.Inside106Primary,
+                },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.InsideLczArmory,
+                },
+            },
+        };
         public override float FuseTime { get; set; } = 3f;
         public override bool ExplodeOnCollision { get; set; } = false;
 

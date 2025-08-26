@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
@@ -18,7 +19,18 @@ namespace GhostPlugin.Custom.Items.Grenades
         public override string Name { get; set; } = "<color=#6600CC>Cluster Flash Gernade</color>";
         public override string Description { get; set; } = "It's a flash that explodes three times in a row";
         public override float Weight { get; set; } = 5f;
-        public override SpawnProperties SpawnProperties { get; set; }
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>()
+            {
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.Inside106Primary,
+                    Chance = 100
+                }
+            }
+        };
         public override bool ExplodeOnCollision { get; set; } = false;
         public override float FuseTime { get; set; } = 4f;
         public override ItemType Type { get; set; } = ItemType.GrenadeFlash;
