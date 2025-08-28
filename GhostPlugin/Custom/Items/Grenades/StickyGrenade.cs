@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
@@ -13,8 +15,33 @@ namespace GhostPlugin.Custom.Items.Grenades
         public override string Name { get; set; } = "Sticky Grenade";
         public override string Description { get; set; } = "<color=red>Reminder: When it comes into contact with a watercolor, it sticks to it as it is</color> ";
         public override float Weight { get; set; } = 3f;
-        public override SpawnProperties SpawnProperties { get; set; }
-        public override bool ExplodeOnCollision { get; set; } = false;
+        public override SpawnProperties SpawnProperties { get; set; } = new()
+        {
+            Limit = 5,
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>
+            {
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.InsideHczArmory,
+                },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.Inside330,
+                },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.Inside106Primary,
+                },
+                new()
+                {
+                    Chance = 25,
+                    Location = SpawnLocationType.InsideLczArmory,
+                },
+            },
+        };        public override bool ExplodeOnCollision { get; set; } = false;
         public override ItemType Type { get; set; } = ItemType.GrenadeHE;
         public override float FuseTime { get; set; } = 3.5f;
 
