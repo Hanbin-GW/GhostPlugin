@@ -21,7 +21,7 @@ namespace GhostPlugin.Custom.Items.Grenades
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
-            Limit = 2,
+            Limit = 4,
             DynamicSpawnPoints = new List<DynamicSpawnPoint>()
             {
                 new DynamicSpawnPoint()
