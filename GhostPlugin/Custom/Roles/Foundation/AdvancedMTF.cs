@@ -31,7 +31,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
             ItemType.KeycardMTFOperative.ToString(),
             ItemType.ArmorCombat.ToString(),
             4.ToString(),
-            52.ToString(),
+            46.ToString(),
             ItemType.SCP500.ToString(),
             9.ToString(),
             ItemType.Radio.ToString(),
