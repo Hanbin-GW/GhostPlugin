@@ -11,7 +11,7 @@ namespace GhostPlugin.Commands{
     {
         public string Command { get; } = "RoleInfo";
         public string[] Aliases { get; } = new[] {"ri"};
-        public string Description { get; } = "Check a Role Description";
+        public string Description { get; } = "Check a Custom Role";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -36,7 +36,7 @@ namespace GhostPlugin.Commands{
                 }
             }
 
-            response = "플래이어가 아닙니다. 또는 커스텀 역할이 없습니다.";
+            response = "It is not a player, or there is no custom role.";
             return false;
         }
     }
