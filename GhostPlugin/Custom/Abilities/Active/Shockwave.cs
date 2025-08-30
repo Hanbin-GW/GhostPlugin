@@ -15,7 +15,7 @@ namespace GhostPlugin.Custom.Abilities.Active
         protected override void AbilityUsed(Player player)
         {
             var grenade = new StunGrenade();
-            var pickup = grenade.Throw(
+            grenade.Throw(
                 position: player.Position,
                 force: 0f,
                 weight:0.1f,
