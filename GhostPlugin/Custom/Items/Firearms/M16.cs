@@ -9,7 +9,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     [CustomItem(ItemType.GunE11SR)]
     public class M16 : CustomWeapon
     {
-        public override uint Id { get; set; } = 60;
+        public override uint Id { get; set; } = 55;
         public override string Name { get; set; } = "M16";
         public override float Damage { get; set; } = 30;
         public override string Description { get; set; } = "Prototype weapon";

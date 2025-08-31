@@ -31,7 +31,7 @@ namespace GhostPlugin
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(6, 8, 3);
+        public override Version Version { get; } = new(7, 0, 0);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
@@ -51,6 +51,8 @@ namespace GhostPlugin
         /// Casual FPS Mode
         /// </summary>
         public CasualFPSModeHandler CasualFPSModeHandler;
+
+        public PerkEventHandlers PerkEventHandlers;
         
         //Audio Dir
         public readonly string AudioDirectory;
@@ -265,6 +267,14 @@ namespace GhostPlugin
                 CasualFPSModeHandler = new CasualFPSModeHandler(this);
                 CasualFPSModeHandler.RegisterEvents();
             }
+            
+            //PerkEventHandler
+            if(Plugin.Instance.Config.EnablePerkEvents)
+            {
+                PerkEventHandlers = new PerkEventHandlers(this); 
+                PerkEventHandlers.RegisterEvents();
+                Plugin.Instance.Config.CustomItemsConfig.QuickfixPerks.Register();
+            }
 
             /*if (Config.ServerEventsMasterConfig.SsssConfig.IsEnabled)
             {
@@ -315,6 +325,14 @@ namespace GhostPlugin
             {
                 CasualFPSModeHandler.UnregisterEvents();
                 CasualFPSModeHandler = null;
+            }
+            
+            
+            //PerkEventHandler
+            if(Plugin.Instance.Config.EnablePerkEvents)
+            {
+                PerkEventHandlers.UnregisterEvents();
+                PerkEventHandlers = null; 
             }
 
             //SSSS - REWORK

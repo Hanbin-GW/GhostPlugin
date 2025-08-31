@@ -6,6 +6,7 @@ using GhostPlugin.Custom.Items.Firearms;
 using GhostPlugin.Custom.Items.Grenades;
 using GhostPlugin.Custom.Items.Keycard;
 using GhostPlugin.Custom.Items.Medkit;
+using GhostPlugin.Custom.Items.Perks;
 using ProjectMER.Commands.Utility;
 
 namespace GhostPlugin.Configs.CustomConfigs
@@ -211,6 +212,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         public List<M16> M16s { get; private set; } = new List<M16>()
         {
             new M16()
+        };
+
+        public List<QuickfixPerk> QuickfixPerks { get; private set; } = new List<QuickfixPerk>()
+        {
+            new QuickfixPerk()
         };
     }
 }
