@@ -82,7 +82,6 @@ namespace GhostPlugin.Custom.Items.Firearms
             });
             base.OnChanging(ev);
         }
-
         protected override void OnDroppingItem(DroppingItemEventArgs ev)
         {
             base.OnDroppingItem(ev);

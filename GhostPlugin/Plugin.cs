@@ -274,6 +274,7 @@ namespace GhostPlugin
                 PerkEventHandlers = new PerkEventHandlers(this); 
                 PerkEventHandlers.RegisterEvents();
                 Plugin.Instance.Config.CustomItemsConfig.QuickfixPerks.Register();
+                Plugin.Instance.Config.CustomItemsConfig.FocusPerks.Register();
             }
 
             /*if (Config.ServerEventsMasterConfig.SsssConfig.IsEnabled)

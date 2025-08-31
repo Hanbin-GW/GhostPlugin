@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Exiled.API.Features;
+using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Server;
@@ -46,6 +47,7 @@ namespace GhostPlugin.EventHandlers
 
             playerPassives[player].Add(ability);
             ability.AddAbility(player);
+            ability.Register();
 
             player.ShowHint($"패시브능력 '{ability.Name}' 를 획득했습니다!", 5);
         }

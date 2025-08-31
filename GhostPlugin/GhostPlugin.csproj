@@ -251,6 +251,7 @@
         <Compile Include="Custom\Items\MonoBehavior\LaserShooter.cs" />
         <Compile Include="Custom\Items\MonoBehavior\PoisonBulletCollision.cs" />
         <Compile Include="Custom\Items\MonoBehavior\StickyGrenadeBehavior.cs" />
+        <Compile Include="Custom\Items\Perks\FocusPerk.cs" />
         <Compile Include="Custom\Items\Perks\QuickfixPerk.cs" />
         <Compile Include="Custom\Roles\Chaos\CiPhantom.cs" />
         <Compile Include="Custom\Roles\Chaos\FedoraAgent.cs" />

@@ -1,25 +1,17 @@
-using Exiled.Events.Features;
-using Exiled.Events.EventArgs;
-using System.Globalization;
-using Exiled.Events.EventArgs.Player;
+using Exiled.CustomItems.API.Features;
+using Exiled.Events.EventArgs.Item;
 
 namespace GhostPlugin.EventHandlers
 {
     public class CustomItemHandler
     {
-        public static void RegisterEvents()
+        public void OnInspectingItem(InspectingItemEventArgs ev)
         {
-            Exiled.Events.Handlers.Player.PickingUpItem += OnPickingUpItem; 
-        }
-
-        public static void UnregisterEvents()
-        {
-            Exiled.Events.Handlers.Player.PickingUpItem -= OnPickingUpItem;
-        }
-        
-        private static void OnPickingUpItem(PickingUpItemEventArgs ev)
-        {
-            string language = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            if (CustomItem.TryGet(ev.Item, out CustomItem customItem))
+            {
+                if(customItem != null)
+                    ev.Player.ShowHint($"<b><color=yellow>{customItem.Name}</color></b>\n<size=20>{customItem.Description}</size>", 5f);
+            }
         }
     }
 }

@@ -218,5 +218,9 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new QuickfixPerk()
         };
+        public List<FocusPerk> FocusPerks { get; private set; } = new List<FocusPerk>()
+        {
+            new FocusPerk()
+        };
     }
 }
