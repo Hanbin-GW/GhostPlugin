@@ -5,6 +5,9 @@ namespace GhostPlugin.EventHandlers
 {
     public class CustomItemHandler
     {
+        public Plugin Plugin;
+        public CustomItemHandler(Plugin plugin) => Plugin = plugin;
+
         public void OnInspectingItem(InspectingItemEventArgs ev)
         {
             if (CustomItem.TryGet(ev.Item, out CustomItem customItem))

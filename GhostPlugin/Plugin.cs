@@ -53,7 +53,8 @@ namespace GhostPlugin
         public CasualFPSModeHandler CasualFPSModeHandler;
 
         public PerkEventHandlers PerkEventHandlers;
-        
+
+        public CustomItemHandler CustomItemHandler;
         //Audio Dir
         public readonly string AudioDirectory;
         public readonly string EffectDirectory;
@@ -87,6 +88,7 @@ namespace GhostPlugin
             //CustomItem Config
             if (Config.CustomItemsConfig.IsEnabled)
             {
+                CustomItemHandler = new CustomItemHandler(this);
                 Config.CustomItemsConfig.HackingDevices.Register();
                 Config.CustomItemsConfig.Morses.Register();
                 Config.CustomItemsConfig.ShockwaveGuns.Register();
@@ -129,6 +131,7 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.MorsReworks.Register();
                 Config.CustomItemsConfig.PortableEnergyShilds.Register();
                 Config.CustomItemsConfig.M16s.Register();
+                Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
             }
             
             //CustomRoles Config
@@ -292,7 +295,12 @@ namespace GhostPlugin
             if(Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled){BlackoutMod.UnregisterEvents();}
             
             //CustItem
-            if (Config.CustomItemsConfig.IsEnabled) {CustomItem.UnregisterItems();}
+            if (Config.CustomItemsConfig.IsEnabled)
+            {
+                CustomItem.UnregisterItems();
+                Exiled.Events.Handlers.Item.InspectingItem -= CustomItemHandler.OnInspectingItem;
+                CustomItemHandler = null;
+            }
             
             //ClassicPlugin
             if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled){ClassicPlugin.UnregisterEvents();}
