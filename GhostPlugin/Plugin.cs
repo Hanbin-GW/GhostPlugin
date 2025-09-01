@@ -278,6 +278,10 @@ namespace GhostPlugin
                 PerkEventHandlers.RegisterEvents();
                 Plugin.Instance.Config.CustomItemsConfig.QuickfixPerks.Register();
                 Plugin.Instance.Config.CustomItemsConfig.FocusPerks.Register();
+                Plugin.Instance.Config.CustomItemsConfig.BoostOnKillPerks.Register();
+                Plugin.Instance.Config.CustomItemsConfig.MartydomPerks.Register();
+                Plugin.Instance.Config.CustomItemsConfig.EngineerPerks.Register();
+                Plugin.Instance.Config.CustomItemsConfig.OverkillPerks.Register();
             }
 
             /*if (Config.ServerEventsMasterConfig.SsssConfig.IsEnabled)

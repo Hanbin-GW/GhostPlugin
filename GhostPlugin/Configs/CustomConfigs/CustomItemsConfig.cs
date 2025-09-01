@@ -222,5 +222,25 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new FocusPerk()
         };
+
+        public List<BoostOnKillPerk> BoostOnKillPerks { get; private set; } = new List<BoostOnKillPerk>()
+        {
+            new BoostOnKillPerk()
+        };
+
+        public List<MartydomPerk> MartydomPerks { get; private set; } = new List<MartydomPerk>()
+        {
+            new MartydomPerk()
+        };
+
+        public List<EngineerPerk> EngineerPerks { get; private set; } = new List<EngineerPerk>()
+        {
+            new EngineerPerk()
+        };
+
+        public List<OverkillPerk> OverkillPerks { get; private set; } = new List<OverkillPerk>()
+        {
+            new OverkillPerk()
+        };
     }
 }
