@@ -13,7 +13,7 @@ namespace GhostPlugin.EventHandlers
             if (CustomItem.TryGet(ev.Item, out CustomItem customItem))
             {
                 if(customItem != null)
-                    ev.Player.ShowHint($"<b><color=yellow>{customItem.Name}</color></b>\n<size=20>{customItem.Description}</size>", 5f);
+                    ev.Player.ShowHint(new string('\n', 10) + $"<b><color=yellow>{customItem.Name}</color></b>\n<size=20>{customItem.Description}</size>", 5f);
             }
         }
     }
