@@ -1,3 +1,4 @@
+using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
@@ -5,12 +6,14 @@ using GhostPlugin.Custom.Abilities.Active;
 
 namespace GhostPlugin.Custom.Items.Perks
 {
+    [CustomItem(ItemType.Coin)]
     public class EngineerPerk : CustomItem
     {
         public override uint Id { get; set; } = 65;
         public override string Name { get; set; } = "<color=#68d9e3>Engineer Perk</color>";
         public override string Description { get; set; } = "이 퍽을 적용시키고 작동시키면 문을 강제로 열을수 있습니다.";
         public override float Weight { get; set; } = 1.5f;
+        public override ItemType Type { get; set; } = ItemType.Coin;
         public override SpawnProperties SpawnProperties { get; set; }
         private void OnFlippingCoin(FlippingCoinEventArgs ev)
         {
