@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using GhostPlugin.Custom.Abilities.Active;
 using GhostPlugin.Custom.Items.Armor;
 using GhostPlugin.Custom.Items.Etc;
 using GhostPlugin.Custom.Items.Firearms;
@@ -241,6 +242,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         public List<OverkillPerk> OverkillPerks { get; private set; } = new List<OverkillPerk>()
         {
             new OverkillPerk()
+        };
+
+        public List<EnhancedVisionPerk> EnhancedVisionPerks { get; private set; } = new List<EnhancedVisionPerk>()
+        {
+            new EnhancedVisionPerk()
         };
     }
 }

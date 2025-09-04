@@ -253,6 +253,7 @@
         <Compile Include="Custom\Items\MonoBehavior\StickyGrenadeBehavior.cs" />
         <Compile Include="Custom\Items\Perks\BoostOnKillPerk.cs" />
         <Compile Include="Custom\Items\Perks\EngineerPerk.cs" />
+        <Compile Include="Custom\Items\Perks\EnhancedVisionPerk.cs" />
         <Compile Include="Custom\Items\Perks\FocusPerk.cs" />
         <Compile Include="Custom\Items\Perks\MartydomPerk.cs" />
         <Compile Include="Custom\Items\Perks\OverkillPerk.cs" />

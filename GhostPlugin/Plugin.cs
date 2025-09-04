@@ -282,6 +282,7 @@ namespace GhostPlugin
                 Plugin.Instance.Config.CustomItemsConfig.MartydomPerks.Register();
                 Plugin.Instance.Config.CustomItemsConfig.EngineerPerks.Register();
                 Plugin.Instance.Config.CustomItemsConfig.OverkillPerks.Register();
+                Plugin.Instance.Config.CustomItemsConfig.EnhancedVisionPerks.Register();
             }
 
             /*if (Config.ServerEventsMasterConfig.SsssConfig.IsEnabled)
