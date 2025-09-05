@@ -12,6 +12,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override string Name { get; set; } = "Tracker";
         public override string Description { get; set; } = "베틀라이플로 목표를 추척하고 적을 처치하십시요!";
         public override string CustomInfo { get; set; } = "추적자";
+        public override bool DisplayCustomItemMessages { get; set; } = false;
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         public int Chance { get; set; } = 100;
 
