@@ -4,6 +4,7 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Etc
 {
@@ -27,12 +28,15 @@ namespace GhostPlugin.Custom.Items.Etc
                     UseChamber = true,
                     Type = LockerType.Medkit,
                 },
+                
                 new LockerSpawnPoint()
-                {
-                    Chance = 100,
-                    Zone = ZoneType.LightContainment,
-                    Type = LockerType.Misc
+                { 
+                    Type = LockerType.Misc, 
+                    Chance = 100, 
+                    UseChamber = true,
+                    Offset = new Vector3(1,2.5f,1),
                 }
+            
             }
         };
 

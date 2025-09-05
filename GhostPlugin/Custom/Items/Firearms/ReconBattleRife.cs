@@ -56,7 +56,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override float Damage { get; set; } = 45;
         public override ItemType Type { get; set; } = ItemType.GunE11SR;
         public override byte ClipSize { get; set; } = 10;
-        public string lastHitRoomName = "";
+        public string lastHitRoomName = string.Empty;
         private Player lastHitPlayer;
 
         protected override void OnHurting(HurtingEventArgs ev)

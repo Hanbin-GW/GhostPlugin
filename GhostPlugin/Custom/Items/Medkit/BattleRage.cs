@@ -8,6 +8,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using MEC;
+using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Medkit
 {
@@ -21,13 +22,23 @@ namespace GhostPlugin.Custom.Items.Medkit
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
-            Limit = 2,
+            Limit = 4,
             RoomSpawnPoints = new List<RoomSpawnPoint>()
             {
                 new RoomSpawnPoint()
                 {
                     Room = RoomType.HczNuke,
                     Chance = 100
+                },
+            },
+            LockerSpawnPoints = new List<LockerSpawnPoint>()
+            {
+                new LockerSpawnPoint()
+                { 
+                    Type = LockerType.Medkit,
+                    Chance = 100,
+                    UseChamber = true,
+                    Offset = new Vector3(1,2,1),
                 }
             }
         };
