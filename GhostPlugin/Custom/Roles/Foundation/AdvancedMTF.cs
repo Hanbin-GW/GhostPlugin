@@ -40,6 +40,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
         {
             { AmmoType.Nato556, 120 },
+            { AmmoType.Nato9 ,150},
         };
     }
 }
