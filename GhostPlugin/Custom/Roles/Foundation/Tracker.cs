@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using Exiled.API.Enums;
+using Exiled.API.Features.Attributes;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
+using PlayerRoles;
 
 namespace GhostPlugin.Custom.Roles.Foundation
 {
+    [CustomRole(RoleTypeId.NtfSergeant)]
     public class Tracker : CustomRole, ICustomRole
     {
         public override uint Id { get; set; } = 25;
@@ -13,6 +16,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override string Description { get; set; } = "베틀라이플로 목표를 추척하고 적을 처치하십시요!";
         public override string CustomInfo { get; set; } = "추적자";
         public override bool DisplayCustomItemMessages { get; set; } = false;
+        public override RoleTypeId Role { get; set; } = RoleTypeId.NtfSergeant;
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         public int Chance { get; set; } = 100;
 

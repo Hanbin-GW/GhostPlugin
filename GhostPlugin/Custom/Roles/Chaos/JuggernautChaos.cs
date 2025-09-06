@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using CustomPlayerEffects;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
@@ -55,5 +57,14 @@ namespace GhostPlugin.Custom.Roles.Chaos
             { AmmoType.Ammo44Cal, 12 },
             { AmmoType.Nato762 ,200},
         };
+
+        protected override void RoleAdded(Player player)
+        {
+            if (Check(player))
+            {
+                player.EnableEffect<AntiScp207>(intensity: 3);
+            }
+            base.RoleAdded(player);
+        }
     }
 }
