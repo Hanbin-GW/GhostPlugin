@@ -163,6 +163,7 @@ namespace GhostPlugin
                 Config.CustomRolesConfig.AdvancedMtfs.Register();
                 Config.CustomRolesConfig.Hunters.Register();
                 Config.CustomRolesConfig.HugoBosses.Register();
+                Config.CustomRolesConfig.Trackers.Register();
                 Config.CustomRolesConfig.DwarfZombies.Register();
                 Config.CustomRolesConfig.ExplosiveZombies.Register();
                 Config.CustomRolesConfig.EodSoldierZombies.Register();

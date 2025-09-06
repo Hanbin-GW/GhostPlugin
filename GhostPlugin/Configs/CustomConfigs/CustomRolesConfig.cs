@@ -134,6 +134,10 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new HugoBoss()
         };
+        public List<Tracker> Trackers { get; set; } = new List<Tracker>()
+        {
+            new Tracker()
+        };
         public List<DwarfZombie> DwarfZombies { get; set; } = new()
         {
             new DwarfZombie()
