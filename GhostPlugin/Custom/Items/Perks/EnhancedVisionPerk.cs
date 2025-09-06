@@ -20,6 +20,7 @@ namespace GhostPlugin.Custom.Items.Perks
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
+            Limit = 3,
             DynamicSpawnPoints = new List<DynamicSpawnPoint>()
             {
                 new DynamicSpawnPoint()
