@@ -110,6 +110,9 @@
         <Reference Include="SemanticVersioning">
           <HintPath>..\..\..\Documents\Exiled\SCP Secret Laboratory\LabAPI\dependencies\global\SemanticVersioning.dll</HintPath>
         </Reference>
+        <Reference Include="SharpCompress">
+          <HintPath>..\..\..\Documents\AudioPlayerAPI\SharpCompress.dll</HintPath>
+        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Buffers">
           <HintPath>..\..\..\Documents\AudioPlayerAPI\System.Buffers.dll</HintPath>
@@ -124,6 +127,9 @@
         </Reference>
         <Reference Include="System.Numerics.Vectors">
           <HintPath>..\..\..\Documents\1.0.7\System.Numerics.Vectors.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.CompilerServices.Unsafe">
+          <HintPath>..\..\..\Documents\AudioPlayerAPI\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
         </Reference>
         <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
           <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.4.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
