@@ -162,6 +162,7 @@
         <Compile Include="Commands\Chat_RueI.cs" />
         <Compile Include="Commands\EnergyWaveEffect.cs" />
         <Compile Include="Commands\Jukebox\ManageJukebox.cs" />
+        <Compile Include="Commands\Jukebox\MusicList.cs" />
         <Compile Include="Commands\MusicCommand\ForcePlayMusic.cs" />
         <Compile Include="Commands\MusicCommand\StopMusic.cs" />
         <Compile Include="Commands\RoleInfo.cs" />

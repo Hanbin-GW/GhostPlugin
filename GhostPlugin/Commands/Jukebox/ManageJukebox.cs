@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using CommandSystem;
 using Exiled.API.Features;
 using GhostPlugin.Methods.Music;
@@ -78,13 +79,15 @@ namespace GhostPlugin.Commands.Jukebox
                 response = "사용법: manage_speaker spawn <곡 이름>";
                 return false;
             }
+            
+            
 
             string schematicName = "Speaker";
             Vector3 spawnPosition = player.Position + player.Transform.forward * 1 + player.Transform.up;
             Vector3 rotation = Vector3.forward;
             
-            string inputSong = string.Join(" ", arguments);
-            string audioDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "audio");
+            var songTokens = arguments.Skip(1);                   // <- 핵심 수정
+            string inputSong = string.Join(" ", songTokens);            string audioDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "audio");
             string filePath = Path.Combine(audioDirectory, inputSong);
             
             SchematicObject schematicObject = ObjectSpawner.SpawnSchematic(schematicName, spawnPosition, rotation);

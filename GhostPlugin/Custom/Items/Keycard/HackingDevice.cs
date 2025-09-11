@@ -7,10 +7,11 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using MEC;
+using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Keycard
 {
-    [CustomItem(ItemType.KeycardChaosInsurgency)]
+    [CustomItem(ItemType.KeycardJanitor)]
     public class HackingDevice : CustomKeycard
     {
         private readonly Dictionary<Player, CoroutineHandle> altKeyCooldowns = new Dictionary<Player, CoroutineHandle>();
@@ -18,7 +19,9 @@ namespace GhostPlugin.Custom.Items.Keycard
         public override string Name { get; set; } = "<color=#1aff00>Hacking Device</color>";
         public override string Description { get; set; } = "문이랑 상호작용시 7초간 문을 잠굽니다. (쿨다운 10초)";
         public override float Weight { get; set; } = 1f;
-
+        public override string KeycardLabel { get; set; } = "Hacking Device";
+        public override string KeycardName { get; set; } = "Hacking Decice";
+        
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
             Limit = 1,
@@ -32,7 +35,7 @@ namespace GhostPlugin.Custom.Items.Keycard
             }
         };
         public override KeycardPermissions Permissions { get; set; } = KeycardPermissions.None;
-        public override ItemType Type { get; set; } = ItemType.KeycardChaosInsurgency;
+        public override ItemType Type { get; set; } = ItemType.KeycardJanitor;
         private void OnInteractingDoor(InteractingDoorEventArgs ev)
         {
             if (Check(ev.Player.CurrentItem))
