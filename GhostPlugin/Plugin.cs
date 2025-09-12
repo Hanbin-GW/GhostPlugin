@@ -11,6 +11,7 @@ using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
 using GhostPlugin.Configs;
 using GhostPlugin.EventHandlers;
+using GhostPlugin.Methods.Music;
 //using HarmonyLib;
 using Scp049Events = Exiled.Events.Handlers.Scp049;
 using ProjectMER.Features.Objects;
@@ -31,7 +32,7 @@ namespace GhostPlugin
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(7, 0, 1);
+        public override Version Version { get; } = new(7, 1, 0);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
@@ -55,6 +56,9 @@ namespace GhostPlugin
         public PerkEventHandlers PerkEventHandlers;
 
         public CustomItemHandler CustomItemHandler;
+
+        public MusicEventHandlers MusicEventHandlers;
+        
         //Audio Dir
         public readonly string AudioDirectory;
         public readonly string EffectDirectory;
@@ -68,6 +72,14 @@ namespace GhostPlugin
         public override void OnEnabled()
         {
             Instance = this;
+            if (Instance == null)
+            {
+                Log.Warn("Instance is null");
+            }
+            var musicManager = new MusicManager(
+                AudioDirectory,
+                "/home/vscode/steamcmd/scpsl/tmp-audio"
+            );
             if (Config == null)
             {
                 Log.Error("Config is null!");
@@ -83,7 +95,10 @@ namespace GhostPlugin
 
             Log.Send($"[Exiled.API] {Instance.Name} is enabled By {Instance.Author} | Version: {Instance.Version}",LogLevel.Info, ConsoleColor.DarkRed);
             Config.LoadConfigs();
-            if(Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled){BlackoutMod.RegisterEvents();}
+            if (Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled)
+            {
+                BlackoutMod.RegisterEvents();
+            }
 
             //CustomItem Config
             if (Config.CustomItemsConfig.IsEnabled)
@@ -222,7 +237,11 @@ namespace GhostPlugin
             if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.RegisterEvents();}
             if (Config.Scp914Config.IsEnabled) {Scp914Handler.RegisterEvents();}
             //music event
-            if (Config.MusicConfig.OnEnabled) {MusicEventHandlers.RegisterEvents();}
+            if (Config.MusicConfig.OnEnabled)
+            {
+                MusicEventHandlers = new MusicEventHandlers(this);
+                MusicEventHandlers.RegisterEvents();
+            }
 
             /*if (Instance.Config.EnableHarmony)
             {
@@ -232,12 +251,12 @@ namespace GhostPlugin
             }*/
             
             //SSSS
-            /*if (Config.SsssConfig.IsEnabled == true)
+            if (Config.SsssConfig.IsEnabled == true)
             {
                 SsssEventHandler = new SsssEventHandler(this);
                 Server.RoundStarted += SsssEventHandler.OnRoundStarted;
                 ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
-            }*/
+            }
             try
             {
                 if (Config.SsssConfig.IsEnabled)
@@ -316,7 +335,11 @@ namespace GhostPlugin
             //Scp914 Event
             if (Config.Scp914Config.IsEnabled) {Scp914Handler.UnregisterEvents();}
             //Music Event
-            if(Config.MusicConfig.OnEnabled) {MusicEventHandlers.UnregisterEvents();}
+            if (Config.MusicConfig.OnEnabled)
+            {
+                MusicEventHandlers.UnregisterEvents();
+                MusicEventHandlers = null;
+            }
 
             //CustomRoles
             if (Config.CustomRolesConfig.IsEnabled)

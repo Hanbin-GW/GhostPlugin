@@ -18,14 +18,15 @@ namespace GhostPlugin.EventHandlers
     {
         private readonly Plugin _plugin;
         public MusicEventHandlers(Plugin plugin) => this._plugin = plugin;
-        public static MusicManager MusicManager = new MusicManager();
+        public readonly MusicManager MusicManager = 
+            new MusicManager(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
         public static AudioManagemanet AudioManagemanet = new AudioManagemanet();
         private static CoroutineHandle loopCoroutine;
 
         /// <summary>
         /// evnet regsister
         /// </summary>
-        public static void RegisterEvents()
+        public void RegisterEvents()
         {
             Exiled.Events.Handlers.Warhead.Detonated += OnDetonated;
             Exiled.Events.Handlers.Server.WaitingForPlayers += OnWaitingPlayers;
@@ -36,7 +37,7 @@ namespace GhostPlugin.EventHandlers
         /// <summary>
         /// event unregsister
         /// </summary>
-        public static void UnregisterEvents()
+        public void UnregisterEvents()
         {
             Exiled.Events.Handlers.Warhead.Detonated -= OnDetonated;
             Exiled.Events.Handlers.Server.WaitingForPlayers -= OnWaitingPlayers;
@@ -50,7 +51,7 @@ namespace GhostPlugin.EventHandlers
         /*public static void OnWaitingPlayers()
         { 
             MusicManager.EnsureMusicDirectoryExists();
-            var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.LobbySongPath);
+            var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfigs.LobbySongPath);
             AudioClipStorage.LoadClip(path,"lobby_music");
 
             AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("Lobby",onIntialCreation: (p) =>
@@ -58,15 +59,15 @@ namespace GhostPlugin.EventHandlers
                 p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
             });
 
-            globalPlayer.AddClip("lobby_music", volume: Plugin.Instance.Config.MusicConfig.Volume, loop: Plugin.Instance.Config.MusicConfig.Loop, destroyOnEnd: false);
+            globalPlayer.AddClip("lobby_music", volume: Plugin.Instance.Config.MusicConfigs.Volume, loop: Plugin.Instance.Config.MusicConfigs.Loop, destroyOnEnd: false);
             Log.Info("main song playing");
         }*/
-        public static void OnWaitingPlayers()
+        public void OnWaitingPlayers()
         { 
             MusicManager.EnsureMusicDirectoryExists();
             string[] playlist = Plugin.Instance.Config.MusicConfig.MusicPlayList;
 
-            /*var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.LobbySongPath);
+            /*var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfigs.LobbySongPath);
             AudioClipStorage.LoadClip(path, "lobby_music");*/
 
             AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("Lobby", condition: (hub) =>
@@ -81,8 +82,8 @@ namespace GhostPlugin.EventHandlers
                 globalPlayer.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
 
                 /*globalPlayer.AddClip("lobby_music",
-                    volume: Plugin.Instance.Config.MusicConfig.Volume,
-                    loop: Plugin.Instance.Config.MusicConfig.Loop,
+                    volume: Plugin.Instance.Config.MusicConfigs.Volume,
+                    loop: Plugin.Instance.Config.MusicConfigs.Loop,
                     destroyOnEnd: false);*/
                 loopCoroutine = Timing.RunCoroutine(LoopPlaylist(globalPlayer, playlist));
                 
@@ -93,7 +94,7 @@ namespace GhostPlugin.EventHandlers
                 Log.Error("globalPlayer를 생성하지 못했습니다!");
             }
         }
-        public static void OnDetonated()
+        public void OnDetonated()
         {
             var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.WarheadBGMPath);
             Log.Info($"Warhead BGM Path: {path}");
@@ -122,7 +123,7 @@ namespace GhostPlugin.EventHandlers
         /// <summary>
         /// when the round is started, the music is stopped.
         /// </summary>
-        public static void OnRoundStarted()
+        public void OnRoundStarted()
         {
             if (loopCoroutine.IsRunning)
                 Timing.KillCoroutines(loopCoroutine);
@@ -134,7 +135,7 @@ namespace GhostPlugin.EventHandlers
         /// Play a music when the Military forces are spawned.
         /// </summary>
         /// <param name="ev">RespawningTeamEventArgs</param>
-        public static void OnRespawnedTeam(RespawningTeamEventArgs ev)
+        public void OnRespawnedTeam(RespawningTeamEventArgs ev)
         {
             if(ev.Wave.IsMiniWave)
                 return;
