@@ -9,8 +9,9 @@ namespace GhostPlugin.Commands.MusicCommand
     {
         public string Command => "StopMusic";
         public string[] Aliases { get; } =  new []{"sm"};
-        public string Description => "현재 재생 중인 음악을 중지합니다.";
-        public MusicManager MusicManager = new MusicManager();
+        public string Description => "Stop the music that is currently playing.";
+        private readonly MusicManager _musicManager = 
+            new MusicManager(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (Plugin.Instance == null)

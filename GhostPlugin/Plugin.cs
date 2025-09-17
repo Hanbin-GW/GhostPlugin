@@ -210,7 +210,7 @@ namespace GhostPlugin
             }
             //CustomAbility Config
             if (Instance.Config.CustomRolesAbilitiesConfig.IsEnabled)
-                CustomAbility.RegisterAbilities();
+                CustomAbility.RegisterAbilities(false);
             
             if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled) { ClassicPlugin.RegisterEvents(); }
             if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.RegisterEvents();}

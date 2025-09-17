@@ -1,6 +1,8 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Exiled.API.Features;
+using GhostPlugin.Commands.MusicCommand;
 
 namespace GhostPlugin.Methods.Music
 {
@@ -9,25 +11,30 @@ namespace GhostPlugin.Methods.Music
         /// <summary>
         /// check a directory when the music file is exists.
         /// </summary>
-        public void EnsureMusicDirectoryExists()
+        public readonly AudioCommands audioCommands;
+        public MusicManager(string audioDir, string workDir) {
+            Directory.CreateDirectory(audioDir);
+            audioCommands = new AudioCommands(audioDir, workDir); // 생성자에서 주입
+        }
+        public static void EnsureMusicDirectoryExists()
         {
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "audio");
 
             // 폴더가 없으면 생성
             if (!Directory.Exists(path))
             {
-                Log.Warn($"music folder is not existed create new one : {path}");
+                Log.Warn($"음악 폴더가 존재하지 않습니다. 새로 생성합니다: {path}");
                 Directory.CreateDirectory(path);  // 폴더 생성
             }
             else
             {
-                Log.Info("music folder already exists.");
+                Log.Info("음악 폴더가 이미 존재합니다.");
             }
         }
         /// <summary>
         /// Stop a Music
         /// </summary>
-        public void StopMusic()
+        public static void StopMusic()
         {
             if(!AudioPlayer.AudioPlayerByName.TryGetValue("GlobalAudioPlayer",out AudioPlayer ap))
                 return;
@@ -45,7 +52,7 @@ namespace GhostPlugin.Methods.Music
             // 파일 존재 여부 확인
             if (!File.Exists(path))
             {
-                Log.Error($"file didn't exists: {path}");
+                Log.Error($"파일이 존재하지 않습니다: {path}");
                 return;
             }
 
@@ -64,13 +71,31 @@ namespace GhostPlugin.Methods.Music
                 // 클립 추가
                 musicPlayer.AddClip("Music", 1f, false, false);
 
-                Log.Info($"playing music: {filename}");
+                Log.Info($"음악이 재생됩니다: {filename}");
             }
             catch (Exception ex)
             {
                 // 예외 처리
-                Log.Error($"the error occured during playing music: {ex.Message}");
+                Log.Error($"음악 재생 명령어 중 오류가 발생했습니다: {ex.Message}");
             }
         }
+        public async Task PlayPreparedAlias(string alias)
+        {
+            try
+            {
+                //StopMusic();
+                var fileName = await audioCommands.PrepareClipFromYouTubeAsync(alias);
+                if (fileName != null)
+                {
+                    PlaySpecificMusic(fileName); // 밑의 함수 호출
+                }
+                Log.Info($"음악이 재생됩니다 (alias): {alias}");
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"음악 재생 명령어 중 오류가 발생했습니다: {ex.Message}");
+            }
+        }
+
     }
 }
