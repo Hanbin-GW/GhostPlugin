@@ -51,6 +51,8 @@ namespace GhostPlugin
         /// Casual FPS Mode
         /// </summary>
         public CasualFPSModeHandler CasualFPSModeHandler;
+
+        public PerkEventHandlers PerkEventHandlers;
         
         //Audio Dir
         public readonly string AudioDirectory;
@@ -217,6 +219,19 @@ namespace GhostPlugin
             if (Config.Scp914Config.IsEnabled) {Scp914Handler.RegisterEvents();}
             //music event
             if (Config.MusicConfig.OnEnabled) {MusicEventHandlers.RegisterEvents();}
+            //PerkEventHandler
+            if(Plugin.Instance.Config.EnablePerkEvents)
+            {
+                PerkEventHandlers = new PerkEventHandlers(this); 
+                PerkEventHandlers.RegisterEvents();
+                Plugin.Instance.Config.CustomItemsConfig.QuickfixPerks.Register();
+                Plugin.Instance.Config.CustomItemsConfig.FocusPerks.Register();
+                Plugin.Instance.Config.CustomItemsConfig.BoostOnKillPerks.Register();
+                Plugin.Instance.Config.CustomItemsConfig.MartydomPerks.Register();
+                Plugin.Instance.Config.CustomItemsConfig.EngineerPerks.Register();
+                Plugin.Instance.Config.CustomItemsConfig.OverkillPerks.Register();
+                Plugin.Instance.Config.CustomItemsConfig.EnhancedVisionPerks.Register();
+            }
 
             /*if (Instance.Config.EnableHarmony)
             {
@@ -315,6 +330,11 @@ namespace GhostPlugin
             {
                 CasualFPSModeHandler.UnregisterEvents();
                 CasualFPSModeHandler = null;
+            }
+            if(Plugin.Instance.Config.EnablePerkEvents)
+            {
+                PerkEventHandlers.UnregisterEvents();
+                PerkEventHandlers = null; 
             }
 
             //SSSS - REWORK

@@ -43,7 +43,7 @@ namespace GhostPlugin.Configs
 
         public string Scp914ConfigFile { get; set; } = "Scp914.yml";
         public bool EnableHarmony { get; set; } = true;
-
+        public bool EnablePerkEvents { get; set; } = false;
         public void LoadConfigs()
         {
             if(!Directory.Exists(ConfigFolder))

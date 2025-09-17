@@ -32,9 +32,9 @@ namespace GhostPlugin.Custom.Roles.Chaos
                 Name = "HealOnKill",
                 Description = "Heals the player when they kill someone.",
             },
-            new Focous()
+            new Focus()
             {
-                Name = "Focous (집중)",
+                Name = "Focus (집중)",
                 Description = "Extrem 1853 effect!"
             },
             new Ghost()

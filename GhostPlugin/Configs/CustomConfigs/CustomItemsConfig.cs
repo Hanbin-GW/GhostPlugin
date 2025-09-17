@@ -6,6 +6,7 @@ using GhostPlugin.Custom.Items.Firearms;
 using GhostPlugin.Custom.Items.Grenades;
 using GhostPlugin.Custom.Items.Keycard;
 using GhostPlugin.Custom.Items.Medkit;
+using GhostPlugin.Custom.Items.Perks;
 
 namespace GhostPlugin.Configs.CustomConfigs
 {
@@ -123,7 +124,6 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Bolter()
         };
-
         public List<AcidShooter> AcidShooters { get; private set; } = new List<AcidShooter>()
         {
             new AcidShooter()
@@ -204,6 +204,40 @@ namespace GhostPlugin.Configs.CustomConfigs
         public List<PortableEnergyShild> PortableEnergyShilds { get; private set; } = new List<PortableEnergyShild>()
         {
             new PortableEnergyShild()
+        };
+        
+        public List<QuickfixPerk> QuickfixPerks { get; private set; } = new List<QuickfixPerk>()
+        {
+            new QuickfixPerk()
+        };
+        public List<FocusPerk> FocusPerks { get; private set; } = new List<FocusPerk>()
+        {
+            new FocusPerk()
+        };
+
+        public List<BoostOnKillPerk> BoostOnKillPerks { get; private set; } = new List<BoostOnKillPerk>()
+        {
+            new BoostOnKillPerk()
+        };
+
+        public List<MartydomPerk> MartydomPerks { get; private set; } = new List<MartydomPerk>()
+        {
+            new MartydomPerk()
+        };
+
+        public List<EngineerPerk> EngineerPerks { get; private set; } = new List<EngineerPerk>()
+        {
+            new EngineerPerk()
+        };
+
+        public List<OverkillPerk> OverkillPerks { get; private set; } = new List<OverkillPerk>()
+        {
+            new OverkillPerk()
+        };
+
+        public List<EnhancedVisionPerk> EnhancedVisionPerks { get; private set; } = new List<EnhancedVisionPerk>()
+        {
+            new EnhancedVisionPerk()
         };
     }
 }

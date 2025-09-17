@@ -167,7 +167,7 @@ namespace GhostPlugin.SSSS
                     KeyCode.B, true, false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.RemoveDisguiseId, "Remove Disguise",
                     KeyCode.B, true, false,"B"));
-                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.FocousId, "Focous",
+                settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.FocousId, "Focus",
                     KeyCode.B,true,false,"B"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.EnhanseVisionId, "Enhance Vision",
                     KeyCode.B,true,false,"B"));

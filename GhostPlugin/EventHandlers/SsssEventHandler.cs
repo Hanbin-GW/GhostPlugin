@@ -209,7 +209,7 @@ namespace GhostPlugin.EventHandlers
                     }
                     else if(ssKeybindSetting.SettingId == Plugin.Instance.Config.SsssConfig.FocousId)
                     {
-                        var focousAbility = abilities.FirstOrDefault(ability => ability.GetType() == typeof(Focous));
+                        var focousAbility = abilities.FirstOrDefault(ability => ability.GetType() == typeof(Focus));
                         if (focousAbility != null && focousAbility.CanUseAbility(player, out response))
                         {
                             focousAbility.SelectAbility(player);

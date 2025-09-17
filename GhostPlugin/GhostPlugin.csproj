@@ -194,9 +194,10 @@
         <Compile Include="Custom\Abilities\Active\ActiveCamo.cs" />
         <Compile Include="Custom\Abilities\Active\ChargeAbility.cs" />
         <Compile Include="Custom\Abilities\Active\Detect.cs" />
+        <Compile Include="Custom\Abilities\Active\DoorPicking.cs" />
         <Compile Include="Custom\Abilities\Active\EnhancedGoggleVision.cs" />
         <Compile Include="Custom\Abilities\Active\Explotion.cs" />
-        <Compile Include="Custom\Abilities\Active\Focous.cs" />
+        <Compile Include="Custom\Abilities\Active\Focus.cs" />
         <Compile Include="Custom\Abilities\Active\Ghost.cs" />
         <Compile Include="Custom\Abilities\Active\Overkill.cs" />
         <Compile Include="Custom\Abilities\Active\Resupply.cs" />
@@ -257,6 +258,13 @@
         <Compile Include="Custom\Items\MonoBehavior\FireBulletCollision.cs" />
         <Compile Include="Custom\Items\MonoBehavior\PoisonBulletCollision.cs" />
         <Compile Include="Custom\Items\MonoBehavior\StickyGrenadeBehavior.cs" />
+        <Compile Include="Custom\Items\Perks\BoostOnKillPerk.cs" />
+        <Compile Include="Custom\Items\Perks\EngineerPerk.cs" />
+        <Compile Include="Custom\Items\Perks\EnhancedVisionPerk.cs" />
+        <Compile Include="Custom\Items\Perks\FocusPerk.cs" />
+        <Compile Include="Custom\Items\Perks\MartydomPerk.cs" />
+        <Compile Include="Custom\Items\Perks\OverkillPerk.cs" />
+        <Compile Include="Custom\Items\Perks\QuickfixPerk.cs" />
         <Compile Include="Custom\Roles\Chaos\CiPhantom.cs" />
         <Compile Include="Custom\Roles\Chaos\FedoraAgent.cs" />
         <Compile Include="Custom\Roles\Chaos\Gunslinger.cs" />
@@ -298,6 +306,7 @@
         <Compile Include="EventHandlers\CustomRoleHandler.cs" />
         <Compile Include="EventHandlers\MusicEventHandlers.cs" />
         <Compile Include="EventHandlers\NoobSupport.cs" />
+        <Compile Include="EventHandlers\PerkEventHandlers.cs" />
         <Compile Include="EventHandlers\Scp914Handler.cs" />
         <Compile Include="EventHandlers\SsssEventHandler.cs" />
         <Compile Include="Methods\Administration\SendBroadcastGhost.cs" />
