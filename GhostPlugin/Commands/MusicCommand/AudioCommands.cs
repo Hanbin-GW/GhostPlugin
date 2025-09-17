@@ -15,7 +15,7 @@ namespace GhostPlugin.Commands.MusicCommand
             {
                 YtDlpPath  = "yt-dlp",
                 FfmpegPath = "ffmpeg",
-                WorkDir    = "/home/vscode/steamcmd/scpsl/tmp-audio",
+                WorkDir    = "/root/Steam/steamapps/common/SCP Secret Laboratory Dedicated Server/tmp-audio",
                 AudioDir   = Plugin.Instance.AudioDirectory,
                 SampleRate = 48000,
                 Channels   = 1,
@@ -39,7 +39,7 @@ namespace GhostPlugin.Commands.MusicCommand
                 return null;
 
             // 2) AudioClipStorage.LoadClip works safely with absolute paths.
-            var absPath = Path.Combine("/home/vscode/steamcmd/scpsl", relPath);
+            var absPath = Path.Combine("/root/Steam/steamapps/common/SCP Secret Laboratory Dedicated Server", relPath);
 
             // 3) Decide the alias (clipAlias); use the filename if clipAlias is not provided.
             var alias = clipAlias ?? Path.GetFileNameWithoutExtension(absPath);
