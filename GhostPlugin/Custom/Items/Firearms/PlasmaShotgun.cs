@@ -60,7 +60,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                 //var laserPos = ev.Player.Position + direction * 0.5f;
                 var laserPos = ev.Player.CameraTransform.position + direction * 0.5f;
                 var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
-                SpawnPrimitive.spawnPrimitive(ev.Player, PrimitiveType.Cube, rotation, laserPos, glowColor,25);
+                SpawnPrimitive.spawnPrimitive(ev.Player, PrimitiveType.Cube, rotation, laserPos, glowColor,25, 55);
             }
             base.OnShot(ev);
         }
