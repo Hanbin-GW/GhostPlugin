@@ -7,8 +7,8 @@ namespace GhostPlugin.MusicConfigs
         public string FfmpegPath { get; init; } = "/usr/local/bin/ffmpeg";
 
         // Working directory and final audio folder (based on SCP:SL server root)
-        public string WorkDir { get; init; } = "/home/vscode/steamcmd/scpsl/tmp-audio";
-        public string AudioDir { get; init; } = "/home/vscode/steamcmd/scpsl/Audio";
+        public string WorkDir { get; init; } = "/root/Steam/steamapps/common/SCP Secret Laboratory Dedicated Server/tmp-audio";
+        public string AudioDir { get; init; } = "/root/Steam/steamapps/common/SCP Secret Laboratory Dedicated Server/Audio";
 
         // Audio Output Settings
         public int SampleRate { get; init; } = 48000;   // 48kHz
