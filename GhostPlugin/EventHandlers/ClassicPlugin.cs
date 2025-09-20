@@ -193,15 +193,15 @@ namespace GhostPlugin.EventHandlers
             }
             if (ev.Attacker != null && ev.Attacker.UnitName != null)
             {
-                return $"<size=35><color=#d7ff36>🔫사살자 이름: </color> by {ev.Attacker.Nickname}\n진영: {GetTeamName(ev.Attacker.Role.Team)}</size>";
+                return $"<size=35><color=#d7ff36>🔫Name: </color> by {ev.Attacker.Nickname}\n Role: {GetTeamName(ev.Attacker.Role.Team)}</size>";
             }
             if (ev.DamageHandler.Type == DamageType.Unknown)
             {
-                return "<size=35><color=#c2c2c2>사유: ❓알수 없음 ❓</color>/size>";
+                return "<size=35><color=#c2c2c2>사유: ❓Unknown ❓</color>/size>";
             }
             if (ev.Attacker == null)
             {
-                return "<size=35><color=#c2c2c2>사유: ❓알수 없음 ❓</color></size>";
+                return "<size=35><color=#c2c2c2>사유: ❓Unknown ❓</color></size>";
             }
             
             return ev.DamageHandler.Type.ToString();
@@ -242,7 +242,7 @@ namespace GhostPlugin.EventHandlers
         }
         private static void OnWarheadStopped(StoppingEventArgs ev)
         {
-            Map.Broadcast(5, "<size=30><color=#418043> ⚠ 자폭 중지 시스템 재시작 ⚠ </color></size>",shouldClearPrevious:true);
+            Map.Broadcast(5, "<size=30><color=#418043> ⚠ Detonation Cancelled ⚠ </color></size>",shouldClearPrevious:true);
         }
 
         private static void OnAnnouncingNtfEntrance(AnnouncingNtfEntranceEventArgs ev)
