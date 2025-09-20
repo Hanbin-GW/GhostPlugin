@@ -139,7 +139,7 @@
         </Reference>
         <Reference Include="System.Xml"/>
         <Reference Include="TeamDeathmatch">
-          <HintPath>..\..\TeamDeathmatch\TeamDeathmatch\obj\Release\TeamDeathmatch-Eng.dll</HintPath>
+          <HintPath>..\..\TeamDeathmatch\TeamDeathmatch\obj\Release\TeamDeathmatch.dll</HintPath>
         </Reference>
         <Reference Include="Unity.TextMeshPro">
           <HintPath>..\..\..\Documents\1403\Unity.TextMeshPro.dll</HintPath>

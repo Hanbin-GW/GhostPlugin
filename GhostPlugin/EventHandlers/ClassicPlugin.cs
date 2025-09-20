@@ -213,17 +213,17 @@ namespace GhostPlugin.EventHandlers
                 case Team.FoundationForces:
                     return "<size=35><color=blue>Mobile Task Force</color></size>";
                 case Team.ChaosInsurgency:
-                    return "<size=35><color=green>혼돈의 반란</color></size>";
+                    return "<size=35><color=green>C.I</color></size>";
                 case Team.Scientists:
-                    return "<size=35><color=yellow>과학자</color></size>";
+                    return "<size=35><color=yellow>Scientist</color></size>";
                 case Team.ClassD:
-                    return "<size=35><color=orange>D계급 인원</color></size>";
+                    return "<size=35><color=orange>D-Class Personal</color></size>";
                 case Team.OtherAlive:
-                    return "<size=35><color=#c2c2c2>알수 없음</color></size>";
+                    return "<size=35><color=#c2c2c2>Unkown</color></size>";
                 case Team.SCPs:
                     return "<size=35><color=red>SCP</color></size>";
                 default:
-                    return "<size=35><color=#c2c2c2>알수 없음</color></size>";
+                    return "<size=35><color=#c2c2c2>Unkown</color></size>";
             }
         }
         private static void OnRoundStarted()
