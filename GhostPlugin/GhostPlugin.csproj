@@ -345,6 +345,7 @@
       <Content Include="..\README.md">
         <Link>README.md</Link>
       </Content>
+      <Content Include="Archive.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

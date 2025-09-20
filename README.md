@@ -1,35 +1,58 @@
-# Development Context (SCP: Secret Laboratory Custom Multiplayer Modding)
+# Ghost Plugin
+A comprehensive Exiled plugin for SCP: Secret Laboratory, featuring custom roles, unique weapons, interactive items, multimedia enhancements, and integrations with other community plugins.
+![img.png](img.png)
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)
 
-In the Unity-based multiplayer game SCP: Secret Laboratory, I do not merely participate as a player—I engage as a developer who disassembles and reconstructs core systems to create new gameplay experiences.
-
-Engine / Language: Unity (C#)
-
-### Key Technologies & Techniques:
-
-- Utilized the CreateSchematic() method to dynamically spawn in-game objects (e.g., shields) in real time at the player’s aiming position.
-
+<!--## Features
 - Integrated custom modules and self-developed methods to extend game logic.
+- Injected `Project MER` (DLL-based modules) to manipulate server–client logic at runtime.
+    - Utilized the `CreateSchematic()` method to dynamically spawn in-game objects (e.g., shields) in real time at the player’s aiming position.
+- Used `HarmonyLib` with `IL injection` to modify compiled bytecode for deeper control.
+- Dynamic Music Playback – Supports background music, situational tracks, and jukebox-style area music.
+- YouTube Integration – Play audio directly from YouTube URLs (powered by AudioPlayerAPI and youtube-dl/yt-dlp)-->
+## Features
+- **Custom Items & Weapons** – Special firearms, unique perks, and custom items inspired by Call of Duty.
+- **Custom Roles** – Adds new playable roles to diversify SCP:SL gameplay.
+- **Special Ammunition System** – Primitive raycast bullets and alternative ammo types.
+- **Dynamic Music Playback** – Background music, situational tracks, and jukebox system.
+- **YouTube Integration** – Play music directly from YouTube URLs (via AudioPlayerAPI + youtube-dl/yt-dlp).
+- **Classic Subtitles System** – Adds a retro-style subtitle overlay for immersion.
+- **Blackout Mode** – Enable or disable map-wide power outages dynamically.
+- **Plugin Interoperability** – Works seamlessly with other community plugins (UIU, Serpent’s Hand, etc.).
 
-- Injected Project MER (DLL-based modules) to manipulate server–client logic at runtime.
+### Implementation Notes
+> Music playback is implemented via [AudioPlayerAPI](https://github.com/Killers0992/AudioPlayerApi)
+and `youtube-dl`/`yt-dlp` for YouTube URL support.
 
-- Used HarmonyLib with IL injection to modify compiled bytecode for deeper control.
+## Installation
+### 🚫 Confidential Notice
+```[!IMPORTANT]
+This plugin is proprietary and strictly confidential.
+Installation, redistribution, or public usage is prohibited.
+Authorized use only within designated environments.
+```
+You should be install or add dependencies this
+- [ProjectMER](https://github.com/Michal78900/ProjectMER/releases/latest)
+- [AudioPlayerAPI](https://github.com/Killers0992/AudioPlayerApi)
+- [Team Death Match](https://github.com/Hanbin-GW/Team-Deathmatch/releases/latest)
+- ReinforceMents (My customized UIU)
+- C-Squad (My customized Chaos Version UIU`)
+- Invader (My Custom Serpents hand)
 
-### This type of work requires an advanced understanding of game engine architecture and real-time systems. My implementation includes:
+#### Also You need to install `yt-dlp`
+ubuntu
+```bash
+sudo wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
+sudo chmod a+rx /usr/local/bin/yt-dlp
+```
+windows
+- Download in this link [Least Version of Yt-dlp](https://github.com/yt-dlp/yt-dlp/releases/tag/latest)
 
-- Raycasting – to detect gaze coordinates for precise object spawning.
-
-- Prefab Instantiation – to dynamically place pre-designed assets into the scene.
-
-- Physics Layers & Colliders – to handle real-time collisions and trigger-based behavior.
-
-- Object Pooling – to minimize garbage collection and ensure memory efficiency.
-
-- Multiplayer Synchronization – to align object state and behavior across server and clients.
-
-### This is a highly complex topic that blends game design with low-level systems control. I implemented it independently, without formal instruction.
-
-Supporting media such as the yellow shield image, demo video, and my public service platform MAMBAB will be included in my online portfolio.
-
-<img width="577" height="348" alt="KakaoTalk_Photo_2025-08-17-19-34-39" src="https://github.com/user-attachments/assets/40612760-afad-4f86-b0a2-706e77a48dd2" />
-
-<img width="360" height="202" alt="image" src="https://github.com/user-attachments/assets/d4af5b75-cc9a-44db-adaa-b9fa8c5bec3a" />
+check a instllation in ubuntu
+```bash
+yt-dlp --version
+```
