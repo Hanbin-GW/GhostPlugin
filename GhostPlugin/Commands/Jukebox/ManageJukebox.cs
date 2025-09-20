@@ -9,6 +9,8 @@ using RemoteAdmin;
 using UnityEngine;
 using ProjectMER.Features;
 using ProjectMER.Features.Objects;
+using System.Threading.Tasks;
+using GhostPlugin.Commands.MusicCommand;
 
 namespace GhostPlugin.Commands.Jukebox
 {
@@ -23,6 +25,12 @@ namespace GhostPlugin.Commands.Jukebox
         public string Description { get; } = "소환 위치에 스피커 주크박스를 관리합니다.";
 
         public static JukeboxManagement JukeboxManagement = new JukeboxManagement();
+        // 플러그인 경로/워크디렉토리 주입
+        private readonly AudioCommands _audio = new AudioCommands(
+            Plugin.Instance.AudioDirectory,
+            "/home/vscode/steamcmd/scpsl/tmp-audio"
+        );
+
 
         private static readonly List<string> AllowedGroups = new List<string>()
         {
@@ -80,34 +88,72 @@ namespace GhostPlugin.Commands.Jukebox
                 return false;
             }
             
-            
-
             string schematicName = "Speaker";
             Vector3 spawnPosition = player.Position + player.Transform.forward * 1 + player.Transform.up;
             Vector3 rotation = Vector3.forward;
             
-            var songTokens = arguments.Skip(1);                   // <- 핵심 수정
-            string inputSong = string.Join(" ", songTokens);            string audioDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "audio");
+            var songTokens = arguments.Skip(1);
+            string inputSong = string.Join(" ", songTokens);
+
+            // URL인지 판별
+            bool isUrl = Uri.TryCreate(inputSong, UriKind.Absolute, out var uri)
+                         && (uri.Host.IndexOf("youtube.com", StringComparison.OrdinalIgnoreCase) >= 0
+                             || uri.Host.IndexOf("youtu.be", StringComparison.OrdinalIgnoreCase) >=0 );
+            //string inputSong = string.Join(" ", songTokens);
+            string audioDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "audio");
             string filePath = Path.Combine(audioDirectory, inputSong);
             
             SchematicObject schematicObject = ObjectSpawner.SpawnSchematic(schematicName, spawnPosition, rotation);
             
-            if (schematicObject != null)
+            int id = Plugin.Instance.CurrentId++;
+            Plugin.Instance.Speakers[id] = schematicObject; 
+            Log.Info($"Schematic '{schematicName}' has been successfully spawned.");
+            GameObject schematicGameObject = schematicObject.gameObject;
+            Rigidbody rigidbody = schematicGameObject.AddComponent<Rigidbody>();
+            rigidbody.useGravity = true;
+            if (isUrl)
             {
-                int id = Plugin.Instance.CurrentId++;
-                Plugin.Instance.Speakers[id] = schematicObject;
-                Log.Info($"Schematic '{schematicName}' has been successfully spawned.");
-                GameObject schematicGameObject = schematicObject.gameObject;
-                Rigidbody rigidbody = schematicGameObject.AddComponent<Rigidbody>();
-                rigidbody.useGravity = true;
-                JukeboxManagement.PlayMusicSpeaker(filePath,schematicObject.transform.position,id);
+                // URL: 비동기 다운로드 후 해당 스피커에서 재생
+                response = $"스피커(ID: {id}) 생성됨. 유튜브 다운로드 시작…";
+                _ = DownloadAndPlayAsync(uri.ToString(), schematicObject.transform.position, id);
+                return true;
+            }
+            else
+            {
+                JukeboxManagement.PlayMusicSpeaker(filePath, schematicObject.transform.position, id);
                 response = $"스피커(ID: {id})가 생성되었습니다. 위치: {schematicObject.transform.position}";
                 return true;
             }
-
-            response = "스피커를 생성하지 못했습니다.";
-            return false;
         }
+        
+        private async Task DownloadAndPlayAsync(string youtubeUrl, Vector3 pos, int speakerId)
+        {
+            try
+            {
+                var fileName = await _audio.PrepareFileFromYouTubeAsync(youtubeUrl); // "xxx.ogg"
+                if (string.IsNullOrEmpty(fileName))
+                {
+                    Log.Error($"[Jukebox] 유튜브 다운로드/변환 실패: {youtubeUrl}");
+                    return;
+                }
+
+                string filePath = Path.Combine(Plugin.Instance.AudioDirectory, fileName);
+                if (!File.Exists(filePath))
+                {
+                    Log.Error($"[Jukebox] 변환된 파일을 찾을 수 없음: {filePath}");
+                    return;
+                }
+
+                // 해당 스피커 ID에서 재생
+                JukeboxManagement.PlayMusicSpeaker(filePath, pos, speakerId);
+                Log.Info($"[Jukebox] 스피커 {speakerId} 재생 시작: {fileName}");
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[Jukebox] 유튜브 처리 중 예외: {ex}");
+            }
+        }
+
 
         private bool DeleteSpeaker(ArraySegment<string> arguments, out string response)
         {
