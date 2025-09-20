@@ -1,6 +1,6 @@
 namespace GhostPlugin.MusicConfigs
 {
-    public sealed class AudioDownloadConfig
+    public sealed class MusicPlaybackModule
     {
         // yt-dlp / ffmpeg 실행파일 경로 (심볼릭 링크를 PATH에 걸었으면 "yt-dlp", "ffmpeg"만 둬도 됨)
         public string YtDlpPath { get; init; } = "/usr/local/bin/yt-dlp";

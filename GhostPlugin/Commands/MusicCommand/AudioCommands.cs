@@ -11,7 +11,7 @@ namespace GhostPlugin.Commands.MusicCommand
 
         public AudioCommands(string audioDir, string workDir)
         {
-            _svc = new YouTubeAudioService(new AudioDownloadConfig
+            _svc = new YouTubeAudioService(new MusicPlaybackModule
             {
                 YtDlpPath  = "yt-dlp",
                 FfmpegPath = "ffmpeg",
