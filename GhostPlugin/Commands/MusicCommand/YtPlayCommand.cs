@@ -13,8 +13,8 @@ namespace GhostPlugin.Commands.MusicCommand
         public string[] Aliases { get; } = { "ytmusic" };
         public string Description { get; } = "유튜브 URL을 다운로드하여 음악을 재생합니다.";
 
-        private readonly MusicManager _musicManager = 
-            new MusicManager(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
+        private readonly MusicMethods musicMethods = 
+            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -31,14 +31,14 @@ namespace GhostPlugin.Commands.MusicCommand
             {
                 try
                 {
-                    var fileName = await _musicManager.audioCommands.PrepareFileFromYouTubeAsync(url);
+                    var fileName = await musicMethods.audioCommands.PrepareFileFromYouTubeAsync(url);
                     if (fileName == null)
                     {
                         Log.Error("유튜브 다운로드/변환 실패");
                         return;
                     }
 
-                    _musicManager.PlaySpecificMusic(fileName);
+                    musicMethods.PlaySpecificMusic(fileName);
                 }
                 catch (Exception ex)
                 {

@@ -18,8 +18,8 @@ namespace GhostPlugin.EventHandlers
     {
         private readonly Plugin _plugin;
         public MusicEventHandlers(Plugin plugin) => this._plugin = plugin;
-        public readonly MusicManager MusicManager = 
-            new MusicManager(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
+        public readonly MusicMethods MusicMethods = 
+            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
         public static AudioManagemanet AudioManagemanet = new AudioManagemanet();
         private static CoroutineHandle loopCoroutine;
 
@@ -50,7 +50,7 @@ namespace GhostPlugin.EventHandlers
         /// </summary>
         /*public static void OnWaitingPlayers()
         { 
-            MusicManager.EnsureMusicDirectoryExists();
+            MusicMethods.EnsureMusicDirectoryExists();
             var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfigs.LobbySongPath);
             AudioClipStorage.LoadClip(path,"lobby_music");
 
@@ -64,7 +64,7 @@ namespace GhostPlugin.EventHandlers
         }*/
         public void OnWaitingPlayers()
         { 
-            MusicManager.EnsureMusicDirectoryExists();
+            MusicMethods.EnsureMusicDirectoryExists();
             string[] playlist = Plugin.Instance.Config.MusicConfig.MusicPlayList;
 
             /*var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfigs.LobbySongPath);
@@ -112,11 +112,11 @@ namespace GhostPlugin.EventHandlers
                 Log.Error("오디오 클립 로딩 실패");
                 return;
             }
-            MusicManager.PlaySpecificMusic(path);
+            MusicMethods.PlaySpecificMusic(path);
 
             Timing.CallDelayed(24f, () =>
             {
-                MusicManager.StopMusic();
+                MusicMethods.StopMusic();
             });
         }
 
@@ -141,7 +141,7 @@ namespace GhostPlugin.EventHandlers
                 return;
             if (ev.Wave.Faction == Faction.FoundationStaff)
             {
-                //MusicManager.StopMusic();
+                //MusicMethods.StopMusic();
                 string filePath = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.RespawnMtfBgm);
                 if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsSafeMode)
                 {
@@ -155,17 +155,17 @@ namespace GhostPlugin.EventHandlers
                 }
                 else
                 {
-                    MusicManager.PlaySpecificMusic(filePath);
-                    Timing.CallDelayed(50f, () => MusicManager.StopMusic());
+                    MusicMethods.PlaySpecificMusic(filePath);
+                    Timing.CallDelayed(50f, () => MusicMethods.StopMusic());
                 }
             }
 
             if (ev.Wave.Faction == Faction.FoundationEnemy)
             {
-                //MusicManager.StopMusic();
+                //MusicMethods.StopMusic();
                 string filePath = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.ChaosSpawmBgm);
-                MusicManager.PlaySpecificMusic(filePath);
-                Timing.CallDelayed(50f, () => MusicManager.StopMusic());
+                MusicMethods.PlaySpecificMusic(filePath);
+                Timing.CallDelayed(50f, () => MusicMethods.StopMusic());
             }
         }
         

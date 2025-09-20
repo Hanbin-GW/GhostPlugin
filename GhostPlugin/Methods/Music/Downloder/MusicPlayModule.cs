@@ -9,11 +9,11 @@ using GhostPlugin.MusicConfigs;
 
 namespace GhostPlugin.Methods.Music.Downloder
 {
-    public sealed class YouTubeAudioService
+    public sealed class MusicPlayModule
     {
         private readonly MusicPlaybackModule _cfg;
 
-        public YouTubeAudioService(MusicPlaybackModule cfg) => _cfg = cfg;
+        public MusicPlayModule(MusicPlaybackModule cfg) => _cfg = cfg;
 
         public async Task<string?> DownloadAndConvertAsync(string youtubeUrl, CancellationToken ct = default)
         {
@@ -40,7 +40,7 @@ namespace GhostPlugin.Methods.Music.Downloder
                 $"--user-agent \"{uaWeb}\"{cookies}{ipv4}{sleep} \"{youtubeUrl}\"";
 
             Log.Info($"[YT] {argsWeb}");
-            var (exit1, so1, se1) = await ProcUtil.RunAsync(_cfg.YtDlpPath, argsWeb, _cfg.WorkDir, 600_000);
+            var (exit1, so1, se1) = await MusicProcUtil.RunAsync(_cfg.YtDlpPath, argsWeb, _cfg.WorkDir, 600_000);
             if (exit1 != 0)
             {
                 var errAll = (so1 + "\n" + se1);
@@ -52,7 +52,7 @@ namespace GhostPlugin.Methods.Music.Downloder
                     $"{cookies}{ipv4}{sleep} \"{youtubeUrl}\"";
 
                 Log.Info($"[YT] fallback(iOS) {argsIos}");
-                var (exit2, so2, se2) = await ProcUtil.RunAsync(_cfg.YtDlpPath, argsIos, _cfg.WorkDir, 600_000);
+                var (exit2, so2, se2) = await MusicProcUtil.RunAsync(_cfg.YtDlpPath, argsIos, _cfg.WorkDir, 600_000);
 
                 if (exit2 != 0)
                 {
@@ -92,7 +92,7 @@ namespace GhostPlugin.Methods.Music.Downloder
                 $"-y -i \"{src}\" -ar {_cfg.SampleRate} -ac {_cfg.Channels} -c:a libvorbis -b:a {_cfg.VorbisBitrate} \"{dstOgg}\"";
             Log.Info($"[FFMPEG] {ffArgs}");
 
-            var (exitF, soF, seF) = await ProcUtil.RunAsync(_cfg.FfmpegPath, ffArgs, _cfg.WorkDir, 600_000);
+            var (exitF, soF, seF) = await MusicProcUtil.RunAsync(_cfg.FfmpegPath, ffArgs, _cfg.WorkDir, 600_000);
             if (exitF != 0 || !File.Exists(dstOgg))
             {
                 Log.Error($"[FFMPEG] convert failed (exit {exitF})\nSTDOUT:\n{soF}\nSTDERR:\n{seF}");

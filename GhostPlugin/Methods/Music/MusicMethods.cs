@@ -6,13 +6,13 @@ using GhostPlugin.Commands.MusicCommand;
 
 namespace GhostPlugin.Methods.Music
 {
-    public class MusicManager
+    public class MusicMethods
     {
         /// <summary>
         /// check a directory when the music file is exists.
         /// </summary>
         public readonly AudioCommands audioCommands;
-        public MusicManager(string audioDir, string workDir) {
+        public MusicMethods(string audioDir, string workDir) {
             Directory.CreateDirectory(audioDir);
             audioCommands = new AudioCommands(audioDir, workDir); // 생성자에서 주입
         }

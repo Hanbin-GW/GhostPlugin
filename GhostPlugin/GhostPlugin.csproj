@@ -319,10 +319,10 @@
         <Compile Include="Methods\CustomRoles\RoleMethods.cs" />
         <Compile Include="Methods\Legacy\AudioManagemanet.cs" />
         <Compile Include="Methods\MER\ObjectManager.cs" />
-        <Compile Include="Methods\Music\Downloder\YouTubeAudioService.cs" />
+        <Compile Include="Methods\Music\Downloder\MusicPlayModule.cs" />
         <Compile Include="Methods\Music\JukeboxManagement.cs" />
-        <Compile Include="Methods\Music\MusicManager.cs" />
-        <Compile Include="Methods\Music\ProcUtil.cs" />
+        <Compile Include="Methods\Music\MusicMethods.cs" />
+        <Compile Include="Methods\Music\MusicProcUtil.cs" />
         <Compile Include="Methods\Objects\SpawnDoorType.cs" />
         <Compile Include="Methods\Objects\SpawnParticleSpark.cs" />
         <Compile Include="Methods\Objects\SpawnPrimitive.cs" />

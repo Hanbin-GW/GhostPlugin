@@ -76,7 +76,7 @@ namespace GhostPlugin
             {
                 Log.Warn("Instance is null");
             }
-            var musicManager = new MusicManager(
+            var musicManager = new MusicMethods(
                 AudioDirectory,
                 "/home/vscode/steamcmd/scpsl/tmp-audio"
             );

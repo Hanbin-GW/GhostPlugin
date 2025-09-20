@@ -7,11 +7,11 @@ namespace GhostPlugin.Commands.MusicCommand
 {
     public class AudioCommands
     {
-        private readonly YouTubeAudioService _svc;
+        private readonly MusicPlayModule _svc;
 
         public AudioCommands(string audioDir, string workDir)
         {
-            _svc = new YouTubeAudioService(new MusicPlaybackModule
+            _svc = new MusicPlayModule(new MusicPlaybackModule
             {
                 YtDlpPath  = "yt-dlp",
                 FfmpegPath = "ffmpeg",

@@ -11,8 +11,8 @@ namespace GhostPlugin.Commands.MusicCommand
         public string Command { get; } = "LivePlayMusic";
         public string[] Aliases { get; } = new[] { "lpm" };
         public string Description { get; } = "라이브 스트리밍 커맨드!";
-        private readonly MusicManager MusicManager = 
-            new MusicManager(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
+        private readonly MusicMethods musicMethods = 
+            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
         
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -30,7 +30,7 @@ namespace GhostPlugin.Commands.MusicCommand
                 return false;
             }
 
-            MusicManager.PlayPreparedAlias(urlName);
+            musicMethods.PlayPreparedAlias(urlName);
             response = $"음악을 재생합니다: {urlName}";
             return true;
         }

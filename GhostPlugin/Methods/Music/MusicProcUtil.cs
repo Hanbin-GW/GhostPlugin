@@ -7,7 +7,7 @@ using Exiled.API.Features;
 
 namespace GhostPlugin.Methods.Music
 {
-    public static class ProcUtil
+    public static class MusicProcUtil
     {
         public static async Task<(int Exit, string Out, string Err)> RunAsync(
             string fileName, string args, string? workDir = null, int timeoutMs = 180_000)
