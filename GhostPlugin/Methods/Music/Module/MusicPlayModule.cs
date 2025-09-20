@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Exiled.API.Features;
 using GhostPlugin.MusicConfigs;
 
-namespace GhostPlugin.Methods.Music.Downloder
+namespace GhostPlugin.Methods.Music.Module
 {
     public sealed class MusicPlayModule
     {

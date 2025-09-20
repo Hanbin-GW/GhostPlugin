@@ -319,7 +319,7 @@
         <Compile Include="Methods\CustomRoles\RoleMethods.cs" />
         <Compile Include="Methods\Legacy\AudioManagemanet.cs" />
         <Compile Include="Methods\MER\ObjectManager.cs" />
-        <Compile Include="Methods\Music\Downloder\MusicPlayModule.cs" />
+        <Compile Include="Methods\Music\Module\MusicPlayModule.cs" />
         <Compile Include="Methods\Music\JukeboxManagement.cs" />
         <Compile Include="Methods\Music\MusicMethods.cs" />
         <Compile Include="Methods\Music\MusicProcUtil.cs" />

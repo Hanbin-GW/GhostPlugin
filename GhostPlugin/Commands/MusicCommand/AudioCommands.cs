@@ -1,7 +1,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using GhostPlugin.MusicConfigs;
-using GhostPlugin.Methods.Music.Downloder;
+using GhostPlugin.Methods.Music.Module;
 
 namespace GhostPlugin.Commands.MusicCommand
 {
