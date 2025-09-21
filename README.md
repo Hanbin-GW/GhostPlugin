@@ -56,3 +56,26 @@ check a instllation in ubuntu
 ```bash
 yt-dlp --version
 ```
+
+### Dependencies & APIs
+
+* **Unity (C#)** – game runtime / engine
+* **EXILED** – SCP\:SL server modding framework (plugin lifecycle, events)
+* **SCPSLAudioApi** – audio playback (AudioPlayer, AudioClipStorage, speakers)
+* **Project MER** – runtime DLL modules / object spawn helpers (schematics)
+* **HarmonyLib** – IL patching for deep runtime control
+* **MEC (More Effective Coroutines)** – lightweight coroutines for server logic
+* **yt-dlp** – YouTube audio extraction (bestaudio)
+* **FFmpeg** – audio transcode to OGG/Vorbis (48kHz mono)
+* **.NET / C# BCL** – `System.IO`, `System.Diagnostics`, `System.Linq`, etc.
+
+> Server paths default to the EXILED plugin data directory. Ensure `yt-dlp` and `ffmpeg` are in `PATH` or configure absolute paths.
+
+### Attribution & Licenses
+
+* **yt-dlp**: open-source (per its license). Updating to the latest release is recommended.
+* **FFmpeg**: LGPL/GPL components; your usage (static vs dynamic link, codecs) must comply.
+* **EXILED / SCPSLAudioApi / HarmonyLib / MEC / Project MER**: follow each project’s license and attribution requirements.
+* **YouTube content**: only download/play material you have the right to use; respect YouTube ToS and local laws.
+
+> This project **inherits/complies** licenses for each dependent item. Obligations may vary depending on distribution type (source/binary) and code link method (static/dynamic), so check the license before distribution.
