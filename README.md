@@ -1,11 +1,11 @@
 # Ghost Plugin
 A comprehensive Exiled plugin for SCP: Secret Laboratory, featuring custom roles, unique weapons, interactive items, multimedia enhancements, and integrations with other community plugins.
-![img.png](img.png)
-![img_1.png](img_1.png)
-![img_2.png](img_2.png)
-![img_3.png](img_3.png)
-![img_4.png](img_4.png)
-![img_5.png](img_5.png)
+![img.png](/GhostPlugin/README/img.png)
+![img_1.png](/GhostPlugin/README/img_1.png)
+![img_2.png](/GhostPlugin/README/img_2.png)
+![img_3.png](/GhostPlugin/README/img_3.png)
+![img_4.png](/GhostPlugin/README/img_4.png)
+![img_5.png](/GhostPlugin/README/img_5.png)
 
 <!--## Features
 - Integrated custom modules and self-developed methods to extend game logic.

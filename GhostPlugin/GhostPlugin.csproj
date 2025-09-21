@@ -345,7 +345,14 @@
       <Content Include="..\README.md">
         <Link>README.md</Link>
       </Content>
-      <Content Include="Archive.md" />
+      <Content Include="README\Archive\Archive.md" />
+      <Content Include="README\Archive\README.md.old" />
+      <Content Include="README\img.png" />
+      <Content Include="README\img_1.png" />
+      <Content Include="README\img_2.png" />
+      <Content Include="README\img_3.png" />
+      <Content Include="README\img_4.png" />
+      <Content Include="README\img_5.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
