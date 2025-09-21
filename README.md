@@ -30,11 +30,11 @@ and `youtube-dl`/`yt-dlp` for YouTube URL support.
 
 ## Installation
 ### 🚫 Confidential Notice
-```[!IMPORTANT]
-This plugin is proprietary and strictly confidential.
-Installation, redistribution, or public usage is prohibited.
-Authorized use only within designated environments.
-```
+> [!IMPORTANT]
+> This plugin is proprietary and strictly confidential.
+> Installation, redistribution, or public usage is prohibited.
+> Authorized use only within designated environments.
+
 You should be install or add dependencies this
 - [ProjectMER](https://github.com/Michal78900/ProjectMER/releases/latest)
 - [AudioPlayerAPI](https://github.com/Killers0992/AudioPlayerApi)
@@ -50,7 +50,7 @@ sudo wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /u
 sudo chmod a+rx /usr/local/bin/yt-dlp
 ```
 windows
-- Download in this link [Least Version of Yt-dlp](https://github.com/yt-dlp/yt-dlp/releases/tag/latest)
+- Download in this link [of Yt-dlp](https://github.com/yt-dlp/yt-dlp/releases)
 
 check a instllation in ubuntu
 ```bash
