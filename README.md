@@ -1,11 +1,11 @@
 # Ghost Plugin
 A comprehensive Exiled plugin for SCP: Secret Laboratory, featuring custom roles, unique weapons, interactive items, multimedia enhancements, and integrations with other community plugins.
-![img.png](/GhostPlugin/README/img.png)
-![img_1.png](/GhostPlugin/README/img_1.png)
-![img_2.png](/GhostPlugin/README/img_2.png)
-![img_3.png](/GhostPlugin/README/img_3.png)
-![img_4.png](/GhostPlugin/README/img_4.png)
-![img_5.png](/GhostPlugin/README/img_5.png)
+![img.png](GhostPlugin/README/img.png)
+![img_1.png](GhostPlugin/README/img_1.png)
+![img_2.png](GhostPlugin/README/img_2.png)
+![img_3.png](GhostPlugin/README/img_3.png)
+![img_4.png](GhostPlugin/README/img_4.png)
+![img_5.png](GhostPlugin/README/img_5.png)
 
 <!--## Features
 - Integrated custom modules and self-developed methods to extend game logic.
@@ -79,3 +79,6 @@ yt-dlp --version
 * **YouTube content**: only download/play material you have the right to use; respect YouTube ToS and local laws.
 
 > This project **inherits/complies** licenses for each dependent item. Obligations may vary depending on distribution type (source/binary) and code link method (static/dynamic), so check the license before distribution.
+
+### Legacy Features (No More Using)
+Check this page: [Legacy_Features](GhostPlugin/README/Legacy_Features.md)
