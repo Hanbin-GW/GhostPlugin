@@ -128,6 +128,7 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.LaserGuns.Register();
                 Config.CustomItemsConfig.MorsReworks.Register();
                 Config.CustomItemsConfig.PortableEnergyShilds.Register();
+                Config.CustomItemsConfig.LowGravityGrenadeItems.Register();
             }
             
             //CustomRole Config
