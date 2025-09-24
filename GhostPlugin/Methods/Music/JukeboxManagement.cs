@@ -13,7 +13,7 @@ namespace GhostPlugin.Methods.Music
 
             AudioPlayer globalPlayer = AudioPlayer.CreateOrGet($"SpeakerBox{id}",onIntialCreation: (p) =>
             {
-                p.AddSpeaker("Main", isSpatial: true, maxDistance: 5f, volume: 0.7f, position:pos);
+                p.AddSpeaker("Main", isSpatial: true, maxDistance: 5f, volume: 1f, position:pos);
             });
             
             globalPlayer.AddClip(filepath, volume: Plugin.Instance.Config.MusicConfig.Volume, loop: Plugin.Instance.Config.MusicConfig.Loop, destroyOnEnd: false);

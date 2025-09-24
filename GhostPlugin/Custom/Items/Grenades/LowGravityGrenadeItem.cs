@@ -26,7 +26,7 @@ namespace GhostPlugin.Custom.Items.Grenades
 
         public override bool ExplodeOnCollision { get; set; } = true;
 
-        public override float FuseTime { get; set; } = 0.3f;
+        public override float FuseTime { get; set; } = 0.1f;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties
         {

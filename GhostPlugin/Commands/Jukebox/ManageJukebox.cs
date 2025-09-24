@@ -114,7 +114,7 @@ namespace GhostPlugin.Commands.Jukebox
             if (isUrl)
             {
                 // URL: 비동기 다운로드 후 해당 스피커에서 재생
-                response = $"Speaker(ID: {id}) Spawned. Starting downloading youtube video...";
+                response = $"Speaker(ID: {id}) Spawned. Starting playback youtube video...";
                 _ = DownloadAndPlayAsync(uri.ToString(), schematicObject.transform.position, id);
                 return true;
             }
