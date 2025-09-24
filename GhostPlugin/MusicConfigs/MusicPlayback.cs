@@ -1,14 +1,14 @@
 namespace GhostPlugin.MusicConfigs
 {
-    public sealed class AudioDownloadConfig
+    public sealed class MusicPlayback
     {
         // yt-dlp / ffmpeg executable path (you can just leave "yt-dlp" and "ffmpeg" if you put a symbolic link on PATH)
         public string YtDlpPath { get; init; } = "/usr/local/bin/yt-dlp";
         public string FfmpegPath { get; init; } = "/usr/local/bin/ffmpeg";
 
         // Working directory and final audio folder (based on SCP:SL server root)
-        public string WorkDir { get; init; } = "/root/Steam/steamapps/common/SCP Secret Laboratory Dedicated Server/tmp-audio";
-        public string AudioDir { get; init; } = "/root/Steam/steamapps/common/SCP Secret Laboratory Dedicated Server/Audio";
+        public string WorkDir { get; init; } = "/home/Omega/steamcmd/scpsl/tmp-audio";
+        public string AudioDir { get; init; } = "/home/Omega/steamcmd/scpsl/Audio";
 
         // Audio Output Settings
         public int SampleRate { get; init; } = 48000;   // 48kHz

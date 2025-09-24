@@ -11,9 +11,9 @@ namespace GhostPlugin.Methods.Music.Downloder
 {
     public sealed class YouTubeAudioService
     {
-        private readonly AudioDownloadConfig _cfg;
+        private readonly MusicPlayback _cfg;
 
-        public YouTubeAudioService(AudioDownloadConfig cfg) => _cfg = cfg;
+        public YouTubeAudioService(MusicPlayback cfg) => _cfg = cfg;
 
         public async Task<string?> DownloadAndConvertAsync(string youtubeUrl, CancellationToken ct = default)
         {

@@ -11,10 +11,10 @@ namespace GhostPlugin.Commands.MusicCommand
     {
         public string Command { get; } = "ytplay";
         public string[] Aliases { get; } = { "ytmusic" };
-        public string Description { get; } = "Download a YouTube URL to play music.";
+        public string Description { get; } = "Play a YouTube URL to play music.";
 
         private readonly MusicManager _musicManager = 
-            new MusicManager(Plugin.Instance.AudioDirectory, "/root/Steam/steamapps/common/SCP Secret Laboratory Dedicated Server/tmp-audio");
+            new MusicManager(Plugin.Instance.AudioDirectory, "/home/Omega/steamcmd/scpsl/tmp-audio");
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -34,7 +34,7 @@ namespace GhostPlugin.Commands.MusicCommand
                     var fileName = await _musicManager.audioCommands.PrepareFileFromYouTubeAsync(url);
                     if (fileName == null)
                     {
-                        Log.Error("Failed to download/convert YouTube");
+                        Log.Error("Failed to Playback/convert YouTube");
                         return;
                     }
 
@@ -46,7 +46,7 @@ namespace GhostPlugin.Commands.MusicCommand
                 }
             });
 
-            response = $"Download Start: {url}\nplease Give a time to play";
+            response = $"Playback Start: {url}\nplease Give a time to play";
             return true;
         }
     }

@@ -28,7 +28,7 @@ namespace GhostPlugin.Commands.Jukebox
         // Insert Plugin Dir / Workspace Dir
         private readonly AudioCommands _audio = new AudioCommands(
             Plugin.Instance.AudioDirectory,
-            "/root/Steam/steamapps/common/SCP Secret Laboratory Dedicated Server/tmp-audio"
+            "/home/Omega/steamcmd/scpsl/tmp-audio"
         );
 
 

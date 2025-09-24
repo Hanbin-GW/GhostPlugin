@@ -329,7 +329,7 @@
         <Compile Include="Methods\Objects\SpawnPrimitiveToy.cs" />
         <Compile Include="Methods\ToyUtils\LightUtils.cs" />
         <Compile Include="Methods\ToyUtils\TextUtils.cs" />
-        <Compile Include="MusicConfigs\AudioDownloadConfig.cs" />
+        <Compile Include="MusicConfigs\MusicPlayback.cs" />
         <Compile Include="MyCustomKeyBind.cs" />
         <Compile Include="Patches\Scp106Patch.cs" />
         <Compile Include="Patches\Scp939Patch_2.cs" />

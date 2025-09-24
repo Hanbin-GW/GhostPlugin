@@ -11,11 +11,11 @@ namespace GhostPlugin.Commands.MusicCommand
 
         public AudioCommands(string audioDir, string workDir)
         {
-            _svc = new YouTubeAudioService(new AudioDownloadConfig
+            _svc = new YouTubeAudioService(new MusicPlayback
             {
                 YtDlpPath  = "yt-dlp",
                 FfmpegPath = "ffmpeg",
-                WorkDir    = "/root/Steam/steamapps/common/SCP Secret Laboratory Dedicated Server/tmp-audio",
+                WorkDir    = "/home/Omega/steamcmd/scpsl/tmp-audio",
                 AudioDir   = Plugin.Instance.AudioDirectory,
                 SampleRate = 48000,
                 Channels   = 1,
