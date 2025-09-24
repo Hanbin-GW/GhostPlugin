@@ -8,6 +8,8 @@ namespace GhostPlugin.Commands.MusicCommand
     public class AudioCommands
     {
         private readonly MusicPlayModule _svc;
+        private readonly string _audioDir;   // 오디오 최종 저장 경로 (플레이 때 사용할 곳)
+        private readonly string _workDir;    // 임시 작업 경로
 
         public AudioCommands(string audioDir, string workDir)
         {
@@ -15,7 +17,8 @@ namespace GhostPlugin.Commands.MusicCommand
             {
                 YtDlpPath  = "yt-dlp",
                 FfmpegPath = "ffmpeg",
-                WorkDir    = "/home/vscode/steamcmd/scpsl/tmp-audio",
+                //WorkDir    = "C:\\STEAMCMD\\steamapps\\common\\SCP Secret Laboratory Dedicated Server\\tmp-audio",
+                WorkDir = _workDir,
                 AudioDir   = Plugin.Instance.AudioDirectory,
                 SampleRate = 48000,
                 Channels   = 1,

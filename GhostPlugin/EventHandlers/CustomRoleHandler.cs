@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.CustomRoles.API;
@@ -133,8 +134,40 @@ namespace GhostPlugin.EventHandlers
 
         public void OnRespawningTeam(RespawningTeamEventArgs ev)
         {
-            if (C_Squad.Plugin.Instance.IsSpawnable || Reinforcements.Plugin.Instance.IsSpawnable)
+            /*if (C_Squad.Plugin.Instance.IsSpawnable || Reinforcements.Plugin.Instance.IsSpawnable)
+                return;*/
+            bool cSquadActive = false;
+            bool reinfActive = false;
+            try
+            {
+                var asm = Assembly.Load("C_Squad");
+                var type = asm.GetType("C_Squad.Plugin");
+                var instance = type?.GetProperty("Instance")?.GetValue(null);
+                cSquadActive = instance != null &&
+                               (bool)(type.GetProperty("IsSpawnable")?.GetValue(instance) ?? false);
+            }
+            catch
+            {
+                Log.Warn($"[CustomRoles] Failed to check C_Squad");
+            }
+
+            try
+            {
+                var asm = Assembly.Load("Reinforcements");
+                var type = asm.GetType("Reinforcements.Plugin");
+                var instance = type?.GetProperty("Instance")?.GetValue(null);
+                reinfActive = instance != null &&
+                              (bool)(type.GetProperty("IsSpawnable")?.GetValue(instance) ?? false);
+            }
+            catch
+            {
+                Log.Warn($"[CustomRoles] Failed to check Reinforcements");
+            }
+
+            // 외부가 스폰 담당이면 그냥 빠져나감
+            if (cSquadActive || reinfActive)
                 return;
+
             
             if (ev.Players.Count == 0)
             {
