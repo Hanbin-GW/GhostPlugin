@@ -248,5 +248,9 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new EnhancedVisionPerk()
         };
+        public List<LowGravityGrenadeItem> LowGravityGrenadeItems { get; private set; } = new List<LowGravityGrenadeItem>()
+        {
+            new LowGravityGrenadeItem()
+        };
     }
 }

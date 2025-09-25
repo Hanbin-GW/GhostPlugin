@@ -146,6 +146,7 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.MorsReworks.Register();
                 Config.CustomItemsConfig.PortableEnergyShilds.Register();
                 Config.CustomItemsConfig.M16s.Register();
+                Config.CustomItemsConfig.LowGravityGrenadeItems.Register();
                 Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
             }
             

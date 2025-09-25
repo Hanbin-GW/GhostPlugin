@@ -246,6 +246,7 @@
         <Compile Include="Custom\Items\Grenades\C4.cs" />
         <Compile Include="Custom\Items\Grenades\ClusterGrenade.cs" />
         <Compile Include="Custom\Items\Grenades\ImpactGrenade.cs" />
+        <Compile Include="Custom\Items\Grenades\LowGravityGrenadeItem.cs" />
         <Compile Include="Custom\Items\Grenades\PoisonGrenade.cs" />
         <Compile Include="Custom\Items\Grenades\SmokeGrenade.cs" />
         <Compile Include="Custom\Items\Grenades\StickyGrenade.cs" />
