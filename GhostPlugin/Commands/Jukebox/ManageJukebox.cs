@@ -30,10 +30,14 @@ namespace GhostPlugin.Commands.Jukebox
             Plugin.Instance.AudioDirectory,
             "/home/vscode/steamcmd/scpsl/tmp-audio"
         );*/
-        private readonly AudioCommands _audio = new AudioCommands(
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "audio"),
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "tmp-audio")
-        );
+        static string audioDir = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "EXILED", "Plugins", "audio");
+        static string workDir = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "EXILED", "Plugins", "tmp-audio");
+
+        private readonly AudioCommands _audio = new AudioCommands(audioDir, workDir);
 
         private static readonly List<string> AllowedGroups = new List<string>()
         {
@@ -79,11 +83,11 @@ namespace GhostPlugin.Commands.Jukebox
                 return false;
             }
             
-            if (player.Group == null || !AllowedGroups.Contains(player.Group.BadgeText))
+            /*if (player.Group == null || !AllowedGroups.Contains(player.Group.BadgeText))
             {
                 response = "이 명령어를 사용할 권한이 없습니다.";
                 return false;
-            }
+            }*/
 
             if (arguments.Count < 2)
             {
@@ -117,7 +121,7 @@ namespace GhostPlugin.Commands.Jukebox
             if (isUrl)
             {
                 // URL: 비동기 다운로드 후 해당 스피커에서 재생
-                response = $"스피커(ID: {id}) 생성됨. 유튜브 다운로드 시작…";
+                response = $"스피커(ID: {id}) 생성됨. 유튜브 플래이백 시작…";
                 _ = DownloadAndPlayAsync(uri.ToString(), schematicObject.transform.position, id);
                 return true;
             }

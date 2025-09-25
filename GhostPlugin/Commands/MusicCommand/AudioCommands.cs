@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using GhostPlugin.MusicConfigs;
@@ -8,16 +9,17 @@ namespace GhostPlugin.Commands.MusicCommand
     public class AudioCommands
     {
         private readonly MusicPlayModule _svc;
-        private readonly string _audioDir;   // 오디오 최종 저장 경로 (플레이 때 사용할 곳)
-        private readonly string _workDir;  
         public AudioCommands(string audioDir, string workDir)
         {
+
+            Directory.CreateDirectory(audioDir);
+            Directory.CreateDirectory(workDir);
             _svc = new MusicPlayModule(new MusicPlaybackModule
             {
                 YtDlpPath  = "yt-dlp",
                 FfmpegPath = "ffmpeg",
                 //WorkDir    = "/home/vscode/steamcmd/scpsl/tmp-audio",
-                WorkDir = _workDir,
+                WorkDir = workDir,
                 AudioDir   = Plugin.Instance.AudioDirectory,
                 SampleRate = 48000,
                 Channels   = 1,
@@ -43,7 +45,9 @@ namespace GhostPlugin.Commands.MusicCommand
             // 2) AudioClipStorage.LoadClip은 '절대경로'가 안전합니다(README 예시).
             //    서버 루트를 아신다면 절대경로로 합쳐주세요.
             //    아래는 relPath가 "Audio/xxx.ogg" 형태라고 가정.
-            var absPath = Path.Combine("/home/vscode/steamcmd/scpsl", relPath);
+            var fileName = Path.GetFileName(relPath);                // "foo.ogg"
+            var absPath  = Path.Combine(Plugin.Instance.AudioDirectory, fileName);
+            //var absPath = Path.Combine("/home/vscode/steamcmd/scpsl", relPath);
 
             // 3) 별칭(clipAlias) 정하기
             var alias = clipAlias ?? Path.GetFileNameWithoutExtension(absPath);

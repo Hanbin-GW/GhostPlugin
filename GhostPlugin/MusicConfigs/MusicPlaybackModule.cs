@@ -3,11 +3,13 @@ namespace GhostPlugin.MusicConfigs
     public sealed class MusicPlaybackModule
     {
         // yt-dlp / ffmpeg 실행파일 경로 (심볼릭 링크를 PATH에 걸었으면 "yt-dlp", "ffmpeg"만 둬도 됨)
-        public string YtDlpPath { get; init; } = "/usr/local/bin/yt-dlp";
-        public string FfmpegPath { get; init; } = "/usr/local/bin/ffmpeg";
+        public string YtDlpPath { get; init; } = "yt-dlp";
+        public string FfmpegPath { get; init; } = "ffmpeg";
 
         // 작업 디렉토리 및 최종 오디오 폴더 (SCP:SL 서버 루트 기준)
+        //public string WorkDir { get; init; } = "/home/vscode/steamcmd/scpsl/tmp-audio";
         public string WorkDir { get; init; } = "/home/vscode/steamcmd/scpsl/tmp-audio";
+        //public string AudioDir { get; init; } = "/home/vscode/steamcmd/scpsl/Audio";
         public string AudioDir { get; init; } = "/home/vscode/steamcmd/scpsl/Audio";
 
         // 오디오 출력 설정
