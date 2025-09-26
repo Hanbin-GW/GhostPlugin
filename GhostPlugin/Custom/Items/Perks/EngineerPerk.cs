@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Items.Perks
     {
         public override uint Id { get; set; } = 65;
         public override string Name { get; set; } = "<color=#68d9e3>Engineer Perk</color>";
-        public override string Description { get; set; } = "이 퍽을 적용시키고 작동시키면 문을 강제로 열을수 있습니다.";
+        public override string Description { get; set; } = "이 퍽을 적용시키고 작동시키면 문을 강제로 열을수 있습니다.\n(설정 -> Server-Specific 에서 단축키 설정 가능)";
         public override float Weight { get; set; } = 1.5f;
         public override ItemType Type { get; set; } = ItemType.Coin;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()

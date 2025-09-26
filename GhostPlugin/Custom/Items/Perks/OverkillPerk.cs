@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Items.Perks
     {
         public override uint Id { get; set; } = 66;
         public override string Name { get; set; } = "OverKill Perk";
-        public override string Description { get; set; } = "동전을 돌릴시 오버킬 능력을 얻을수 있습니다!";
+        public override string Description { get; set; } = "동전을 돌릴시 오버킬 능력을 얻을수 있습니다!\n오버킬: 오버킬 능력 단축키 눌를시 랜덤 총기지금 (설정들어가서 Server-Specific 에서 확인)";
         public override float Weight { get; set; } = 1f;
         public override ItemType Type { get; set; } = ItemType.Coin;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()

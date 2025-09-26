@@ -16,7 +16,7 @@ namespace GhostPlugin.Custom.Items.Perks
     {
         public override uint Id { get; set; } = 63;
         public override string Name { get; set; } = "Boost On Kill Perk";
-        public override string Description { get; set; } = "동전을 돌릴시 <color=#f2ff00>사살 이속 부스트</color> 능력을 얻을수 있습니다!";
+        public override string Description { get; set; } = "동전을 돌릴시 <color=#f2ff00>사살 이속 부스트</color> 능력을 얻을수 있습니다!\n(처치시 자동으로 이속 증가)";
         public override float Weight { get; set; } = 1f;
         public override ItemType Type { get; set; } = ItemType.Coin;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()

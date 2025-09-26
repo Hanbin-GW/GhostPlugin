@@ -16,7 +16,7 @@ namespace GhostPlugin.Custom.Items.Perks
     {
         public override uint Id { get; set; } = 62;
         public override string Name { get; set; } = "Focus Perk";
-        public override string Description { get; set; } = "동전을 돌릴시 집중 능력을 얻을수 있습니다!";
+        public override string Description { get; set; } = "동전을 돌릴시 집중 능력을 얻을수 있습니다!\n집중: 무기 재장선 속도와, 반동, 조준시간이 감소합니다. (설정 -> Server-Specific 에서 단축키 설정 가능)";
         public override float Weight { get; set; } = 1f;
         public override ItemType Type { get; set; } = ItemType.Coin;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()

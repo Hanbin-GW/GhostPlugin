@@ -88,6 +88,7 @@ namespace GhostPlugin.Commands.Jukebox
                 response = "이 명령어를 사용할 권한이 없습니다.";
                 return false;
             }*/
+            
 
             if (arguments.Count < 2)
             {
@@ -97,8 +98,12 @@ namespace GhostPlugin.Commands.Jukebox
             
             string schematicName = "Speaker";
             Vector3 spawnPosition = player.Position + player.Transform.forward * 1 + player.Transform.up;
-            Vector3 rotation = Vector3.forward;
-            
+            Quaternion rotation = player.Transform.rotation;
+
+            if (AllowedGroups.Contains(player.Group.BadgeText))
+            {
+                schematicName = "LargeSpeaker";
+            }
             var songTokens = arguments.Skip(1);
             string inputSong = string.Join(" ", songTokens);
 

@@ -15,7 +15,7 @@ namespace GhostPlugin.Custom.Items.Perks
     {
         public override uint Id { get; set; } = 61;
         public override string Name { get; set; } = "Quick Fix Perk";
-        public override string Description { get; set; } = "동전을 돌릴시 빠른회복 능력을 얻을수 있습니다!";
+        public override string Description { get; set; } = "동전을 돌릴시 빠른회복 능력을 얻을수 있습니다!\n빠른 회복: 적을 처치시 HP 를 회복합니다!";
         public override float Weight { get; set; } = 1f;
         public override ItemType Type { get; set; } = ItemType.Coin;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()

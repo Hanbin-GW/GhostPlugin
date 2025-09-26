@@ -8,7 +8,7 @@ using PlayerRoles;
 
 namespace GhostPlugin.Commands
 {
-    //[CommandHandler(typeof(ClientCommandHandler))]
+    [CommandHandler(typeof(ClientCommandHandler))]
     public class Chat : ICommand
     {
         private readonly Dictionary<RoleTypeId, List<string>> _teamMessages = new();
