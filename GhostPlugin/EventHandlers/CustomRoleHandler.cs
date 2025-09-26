@@ -182,13 +182,15 @@ namespace GhostPlugin.EventHandlers
             List<ICustomRole>.Enumerator roles = new();
             switch (ev.NextKnownTeam)
             {
-                case (Faction)SpawnableFaction.ChaosWave or (Faction)SpawnableFaction.ChaosMiniWave:
+                case (Faction)SpawnableFaction.ChaosWave: 
+                case (Faction)SpawnableFaction.ChaosMiniWave:
                 {
                     if (Plugin.Roles.TryGetValue(StartTeam.Chaos, out List<ICustomRole> role))
                         roles = role.GetEnumerator();
                     break;
                 }
-                case (Faction)SpawnableFaction.NtfWave or (Faction)SpawnableFaction.NtfMiniWave:
+                case (Faction)SpawnableFaction.NtfWave: 
+                case (Faction)SpawnableFaction.NtfMiniWave:
                 {
                     if (Plugin.Roles.TryGetValue(StartTeam.Ntf, out List<ICustomRole> pluginRole))
                         roles = pluginRole.GetEnumerator();
