@@ -91,7 +91,6 @@ namespace GhostPlugin.Custom.Roles.Foundation
         
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
-            Limit = 1,
             RoleSpawnPoints = new List<RoleSpawnPoint>
             {
                 new()

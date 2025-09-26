@@ -20,10 +20,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfPrivate;
         public override bool DisplayCustomItemMessages { get; set; } = false;
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 1,
-        };
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         public int Chance { get; set; } = 40;
 
