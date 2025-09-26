@@ -122,10 +122,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         // (set) Token: 0x0600020C RID: 524 RVA: 0x0000B788 File Offset: 0x00009988
         public StartTeam StartTeam { get; set; } = StartTeam.Guard;
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 1
-        };
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
 
         // Token: 0x170000AC RID: 172
         // (get) Token: 0x0600020D RID: 525 RVA: 0x0000B791 File Offset: 0x00009991

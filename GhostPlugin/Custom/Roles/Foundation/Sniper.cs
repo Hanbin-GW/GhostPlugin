@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
@@ -17,10 +18,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override string CustomInfo { get; set; } = "Sniper";
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfPrivate;
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 1,
-        };
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         public int Chance { get; set; } = 90;
 
@@ -33,6 +31,11 @@ namespace GhostPlugin.Custom.Roles.Foundation
             ItemType.ArmorCombat.ToString(),
             ItemType.Radio.ToString(),
             ItemType.Medkit.ToString(),
+        };
+
+        public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
+        {
+            { AmmoType.Nato556, 20 },
         };
     }
 }
