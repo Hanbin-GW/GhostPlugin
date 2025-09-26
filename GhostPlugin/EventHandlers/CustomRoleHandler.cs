@@ -134,7 +134,7 @@ namespace GhostPlugin.EventHandlers
 
         public void OnRespawningTeam(RespawningTeamEventArgs ev)
         {
-            bool cSquadActive = false;
+            /*bool cSquadActive = false;
             bool reinfActive = false;
             try
             {
@@ -164,7 +164,7 @@ namespace GhostPlugin.EventHandlers
 
             // 외부가 스폰 담당이면 그냥 빠져나감
             if (cSquadActive || reinfActive)
-                return;
+                return;*/
 
             /*if (C_Squad.Plugin.Instance.IsSpawnable || Reinforcements.Plugin.Instance.IsSpawnable)
                 return;*/
@@ -182,13 +182,15 @@ namespace GhostPlugin.EventHandlers
             List<ICustomRole>.Enumerator roles = new();
             switch (ev.NextKnownTeam)
             {
-                case (Faction)SpawnableFaction.ChaosWave or (Faction)SpawnableFaction.ChaosMiniWave:
+                case (Faction)SpawnableFaction.ChaosWave :
+                case (Faction)SpawnableFaction.ChaosMiniWave:
                 {
                     if (Plugin.Roles.TryGetValue(StartTeam.Chaos, out List<ICustomRole> role))
                         roles = role.GetEnumerator();
                     break;
                 }
-                case (Faction)SpawnableFaction.NtfWave or (Faction)SpawnableFaction.NtfMiniWave:
+                case (Faction)SpawnableFaction.NtfWave:
+                case (Faction)SpawnableFaction.NtfMiniWave:
                 {
                     if (Plugin.Roles.TryGetValue(StartTeam.Ntf, out List<ICustomRole> pluginRole))
                         roles = pluginRole.GetEnumerator();
