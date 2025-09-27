@@ -102,7 +102,8 @@ namespace GhostPlugin.Commands.Jukebox
 
             if (AllowedGroups.Contains(player.Group.BadgeText))
             {
-                schematicName = "LargeSpeaker";
+                //reminder: chance to LargeSpeaker
+                schematicName = "TitanSpeaker";
             }
             var songTokens = arguments.Skip(1);
             string inputSong = string.Join(" ", songTokens);
