@@ -64,6 +64,7 @@ namespace GhostPlugin.Custom.Items.Etc
                     if (Vector3.Distance(grenade.transform.position, center.transform.position) <= radius)
                     {
                         grenade.DestroySelf(); // 안전하게 폭발시켜 제거
+                        grenade.PlayExplosionEffects(grenade.transform.position);
                     }
                 }
 
@@ -82,6 +83,14 @@ namespace GhostPlugin.Custom.Items.Etc
                     if (Vector3.Distance(ball.transform.position, center.transform.position) <= radius)
                     {
                         ball.DestroySelf();
+                    }
+                }
+
+                foreach (var ghostlight in Object.FindObjectsOfType<Scp2176Projectile>())
+                {
+                    if (Vector3.Distance(ghostlight.transform.position, center.transform.position) <= radius)
+                    {
+                        ghostlight.DestroySelf();
                     }
                 }
 
