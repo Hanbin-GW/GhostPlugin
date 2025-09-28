@@ -32,7 +32,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                 new RoomSpawnPoint()
                 {
                     Room = RoomType.HczNuke,
-                    Chance = 100
+                    Chance = 20
                 }
             }
         };

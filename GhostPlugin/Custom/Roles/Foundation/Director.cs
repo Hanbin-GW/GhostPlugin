@@ -11,7 +11,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
     [CustomRole(RoleTypeId.NtfCaptain)]
     public class Director : CustomRole, ICustomRole
     {
-        public override uint Id { get; set; } = 26;
+        public override uint Id { get; set; } = 27;
         public override int MaxHealth { get; set; } = 120;
         public override string Name { get; set; } = "MTF 감독관";
         public override string Description { get; set; } = "TaskForce 부대를 감독하는 감독관입니다.";
