@@ -180,6 +180,7 @@ namespace GhostPlugin
                 Config.CustomRolesConfig.Hunters.Register();
                 Config.CustomRolesConfig.HugoBosses.Register();
                 Config.CustomRolesConfig.Trackers.Register();
+                Config.CustomRolesConfig.Directors.Register();
                 Config.CustomRolesConfig.DwarfZombies.Register();
                 Config.CustomRolesConfig.ExplosiveZombies.Register();
                 Config.CustomRolesConfig.EodSoldierZombies.Register();

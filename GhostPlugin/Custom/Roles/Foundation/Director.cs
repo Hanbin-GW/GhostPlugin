@@ -1,0 +1,42 @@
+using System.Collections.Generic;
+using Exiled.API.Enums;
+using Exiled.API.Features.Attributes;
+using Exiled.CustomRoles.API.Features;
+using GhostPlugin.API;
+using GhostPlugin.Custom.Abilities.Passive;
+using PlayerRoles;
+
+namespace GhostPlugin.Custom.Roles.Foundation
+{
+    [CustomRole(RoleTypeId.NtfCaptain)]
+    public class Director : CustomRole, ICustomRole
+    {
+        public override uint Id { get; set; } = 26;
+        public override int MaxHealth { get; set; } = 120;
+        public override string Name { get; set; } = "MTF 감독관";
+        public override string Description { get; set; } = "TaskForce 부대를 감독하는 감독관입니다.";
+        public override string CustomInfo { get; set; } = "MTF 감독관";
+        public override RoleTypeId Role { get; set; } = RoleTypeId.NtfCaptain;
+        public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
+        public int Chance { get; set; } = 50;
+
+        public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>()
+        {
+            new HealOnKill()
+        };
+
+        public override List<string> Inventory { get; set; } = new List<string>()
+        {
+            ItemType.KeycardMTFCaptain.ToString(),
+            ItemType.ArmorHeavy.ToString(),
+            ItemType.GunFRMG0.ToString(),
+            ItemType.AntiSCP207.ToString(),
+            ItemType.Adrenaline.ToString(),
+            10.ToString(),
+            34.ToString(),
+            ItemType.Radio.ToString(),
+        };
+
+        public override Dictionary<AmmoType, ushort> Ammo { get; set; }
+    }
+}

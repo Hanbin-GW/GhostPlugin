@@ -138,6 +138,10 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Tracker()
         };
+        public List<Director> Directors { get; set; } = new List<Director>()
+        {
+            new Director()
+        };
         public List<DwarfZombie> DwarfZombies { get; set; } = new()
         {
             new DwarfZombie()

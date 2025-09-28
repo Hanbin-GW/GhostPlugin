@@ -283,6 +283,7 @@
         <Compile Include="Custom\Roles\Foundation\AdvancedMTF.cs" />
         <Compile Include="Custom\Roles\Foundation\ContainmentSpecialList.cs" />
         <Compile Include="Custom\Roles\Foundation\Demolitionist.cs" />
+        <Compile Include="Custom\Roles\Foundation\Director.cs" />
         <Compile Include="Custom\Roles\Foundation\Elite.cs" />
         <Compile Include="Custom\Roles\Foundation\Enforcer.cs" />
         <Compile Include="Custom\Roles\Foundation\HugoBoss.cs" />
