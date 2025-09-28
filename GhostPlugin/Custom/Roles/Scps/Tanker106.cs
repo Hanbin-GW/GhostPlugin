@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using CommandSystem;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.CustomRoles.API.Features;
@@ -9,7 +8,6 @@ using Exiled.Events.EventArgs.Scp106;
 using GhostPlugin.API;
 using MEC;
 using PlayerRoles;
-using RemoteAdmin;
 
 namespace GhostPlugin.Custom.Roles.Scps
 {
