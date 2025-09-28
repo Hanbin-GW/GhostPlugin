@@ -64,7 +64,7 @@ namespace GhostPlugin.Custom.Items.Etc
                     if (Vector3.Distance(grenade.transform.position, center.transform.position) <= radius)
                     {
                         grenade.DestroySelf(); // 안전하게 폭발시켜 제거
-                        grenade.PlayExplosionEffects(grenade.transform.position);
+                        //grenade.PlayExplosionEffects(grenade.transform.position);
                     }
                 }
 
