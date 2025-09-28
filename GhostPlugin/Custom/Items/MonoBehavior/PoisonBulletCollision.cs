@@ -30,7 +30,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 _hasCollided = true;
                 Log.Debug($"Hit Player: {target.Nickname}");
                 
-                target.EnableEffect<Decontaminating>(duration: 4,intensity:1);
+                target.EnableEffect<Decontaminating>(duration: 1,intensity:1);
                 //target.EnableEffect<Poisoned>(duration: 20,intensity:2);
                 target.Hurt(damage, DamageType.Com15, _attacker.Nickname);
                 target.ShowHint("<color=red>매우 심각한 방사선 염산물질에 노출되었습니다!</color>",10);
