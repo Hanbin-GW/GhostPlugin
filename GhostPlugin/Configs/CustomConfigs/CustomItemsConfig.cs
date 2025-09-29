@@ -80,9 +80,9 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new SmokeGrenade()
         };
-        public List<ExplosiveRoundRevolver> ExplosiveRoundRevolvers { get; private set; } = new List<ExplosiveRoundRevolver>()
+        public List<GrenadeLauncher> ExplosiveRoundRevolvers { get; private set; } = new List<GrenadeLauncher>()
         {
-            new ExplosiveRoundRevolver()
+            new GrenadeLauncher()
         };
 
         public List<ParalyzeRife> ParalyzeRifes { get; private set; } = new List<ParalyzeRife>()

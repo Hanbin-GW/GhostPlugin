@@ -18,7 +18,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 5;
         public override string Name { get; set; } = "M79 (유탄 발사기)";
-        public override string Description { get; set; } = "수류탄을 발사하는 리볼버 입니다!";
+        public override string Description { get; set; } = "수류탄을 발사하는 리볼버 입니다!\n(알림: 해당 아이탬은 폐기된 아이탬입니다)";
         public override float Weight { get; set; } = 4f;
         public override ItemType Type { get; set; } = ItemType.GunRevolver;
         public override byte ClipSize { get; set; } = 1;
@@ -31,7 +31,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             base.OnShooting(ev);
         }
 
-        protected override void OnShot(ShotEventArgs ev)
+        /*protected override void OnShot(ShotEventArgs ev)
         {
             if (Check(ev.Player.CurrentItem))
             {
@@ -43,7 +43,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
                 spark.SpawnGrenade(ev.Player, position, 10, 0, color);
         
-                //ar bulletCollision = bullet.gameObject.AddComponent<BulletExplosion>();
+                //var bulletCollision = bullet.gameObject.AddComponent<BulletExplosion>();
                 //bulletCollision.Initialize(ev.Player);
 
                 /*CharacterController playerController = ev.Player.GameObject.GetComponent<CharacterController>();
@@ -53,11 +53,10 @@ namespace GhostPlugin.Custom.Items.Firearms
                 {
                     Physics.IgnoreCollision(bulletCollider, playerController, true);
                     Log.Info("발사자와 총알 간 충돌 무시 처리 완료.");
-                }*/
+                }
             }
 
             base.OnShot(ev);
-        }
-
+        }*/
     }
 }

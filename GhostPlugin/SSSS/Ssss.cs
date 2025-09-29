@@ -108,7 +108,7 @@ namespace GhostPlugin.SSSS
                     CustomItem.Get(typeof(Stim)),
                     CustomItem.Get(typeof(ClusterGrenade)),
                     CustomItem.Get(typeof(C4)),
-                    CustomItem.Get(typeof(ExplosiveRoundRevolver)),
+                    CustomItem.Get(typeof(GrenadeLauncher)),
                     CustomItem.Get(typeof(Basilisk)),
                     CustomItem.Get(typeof(Bolter)),
                     CustomItem.Get(typeof(LaserCannon)),

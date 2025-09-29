@@ -223,7 +223,7 @@
         <Compile Include="Custom\Items\Firearms\AcidShooter.cs" />
         <Compile Include="Custom\Items\Firearms\Basilisk.cs" />
         <Compile Include="Custom\Items\Firearms\Bolter.cs" />
-        <Compile Include="Custom\Items\Firearms\ExplosiveRoundRevolver.cs" />
+        <Compile Include="Custom\Items\Firearms\GrenadeLauncher.cs" />
         <Compile Include="Custom\Items\Firearms\GernadeLuncher.cs" />
         <Compile Include="Custom\Items\Firearms\LaserCannon.cs" />
         <Compile Include="Custom\Items\Firearms\LaserGun.cs" />
@@ -356,6 +356,9 @@
       <Content Include="README\img_4.png" />
       <Content Include="README\img_5.png" />
       <Content Include="README\Legacy_Features.md" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Methods\Effects\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
