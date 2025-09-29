@@ -17,7 +17,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override uint Id { get; set; } = 4;
         public override int MaxHealth { get; set; } = 110;
         public override string Name { get; set; } = "<color=#0096FF>Elite Agent</color>";
-        public override string Description { get; set; } = "제단의 엘리트 요원";
+        public override string Description { get; set; } = "제단의 엘리트 요원\n보유중인 능력:\n• HealOnKill\n• 향상된 비전 고글";
         public override string CustomInfo { get; set; } = "Elite Agent";
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfSergeant;
         public override bool DisplayCustomItemMessages { get; set; } = false;

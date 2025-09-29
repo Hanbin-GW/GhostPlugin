@@ -30,7 +30,6 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
-            Limit = 1,
             RoleSpawnPoints = new List<RoleSpawnPoint>
             {
                 new()

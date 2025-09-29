@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override uint Id { get; set; } = 20;
         public override int MaxHealth { get; set; } = 100;
         public override string Name { get; set; } = "Quartermaster (보급관)";
-        public override string Description { get; set; } = "혼돈의반란 보급병입니다!\n항상뒤에서 대원들의 탄약을 보충해줍니다!";
+        public override string Description { get; set; } = "혼돈의반란 보급병입니다!\n항상뒤에서 대원들의 탄약을 보충해줍니다!\n보유중인 능력\n• Resupply (보충)ㄴ";
         public override string CustomInfo { get; set; } = "Quartermaster";
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
         public int Chance { get; set; } = 80;
