@@ -24,12 +24,12 @@ namespace GhostPlugin.Custom.Items.Firearms
         [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GunLogicer;
         public override uint Id { get; set; } = 5;
-        public override string Name { get; set; } = "<color=#FF0000>유탄 발사기</color>";
-        public override string Description { get; set; } = "수류탄을 탄약으로 하는 유탄발사기 입니다!";
+        public override string Name { get; set; } = "<color=#FF0000>ADATS 로캣 런처</color>";
+        public override string Description { get; set; } = "수류탄을 탄약으로 하는 <color=red>로캣런처</color> 입니다!";
         public override float Weight { get; set; } = 3;
 
-        public override SpawnProperties SpawnProperties { get; set; } = new();
-        /*{
+        public override SpawnProperties SpawnProperties { get; set; } = new()
+        {
             Limit = 1,
             DynamicSpawnPoints = new List<DynamicSpawnPoint>()
             {
@@ -49,7 +49,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                     Location = SpawnLocationType.Inside079Armory,
                 },
             }
-        };*/
+        };
         public override byte ClipSize { get; set; } = 1;
         [Description("Set to false if you want to include Custom Grenades (such as Cluster Grenades) in the grenade launcher. NOTE: This will not make the grenade launcher launch a Cluster Grenade")]
         public bool IgnoreCustomGrenades { get; set; } = true;
@@ -59,12 +59,12 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         [Description(
             "If UseGrenadesToReload is true, this message will be shown to the player to be told to dry fire it")]
-        public string ReloadMessageDryfire { get; set; } = "You need a grenade, and to dry fire ADATS to reload it";
+        public string ReloadMessageDryfire { get; set; } = "재장전하려면 수류탄이 필요하며, ADATS를 공포 사격해야 합니다";
         
-        public string FullForceSetMessage { get; set; } = "The ADATS is set to full force mode";
-        public string HalfForceSetMessage { get; set; } = "The ADATS is set to half force mode";
-        public string LaunchTypeImpactSetMessage { get; set; } = "The ADATS is set to impact detonation mode";
-        public string LaunchTypeRollerSetMessage { get; set; } = "The ADATS is set to roller detonation mode";
+        public string FullForceSetMessage { get; set; } = "ADATS가 최대 화력 모드로 설정되었습니다";
+        public string HalfForceSetMessage { get; set; } = "ADATS가 절반 화력 모드로 설정되었습니다";
+        public string LaunchTypeImpactSetMessage { get; set; } = "ADATS가 충격 기폭 모드로 설정되었습니다";
+        public string LaunchTypeRollerSetMessage { get; set; } = "ADATS가 구르기 기폭 모드로 설정되었습니다";
         [Description("If true, the player will get a hint when a message is displayed, otherwise it will be a broadcast")]
         public bool UseHints { get; set; } = true;
         [Description("How long the hint/broadcast will be shown for")]
@@ -87,7 +87,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         protected override void UnsubscribeEvents()
         {
-            Exiled.Events.Handlers.Player.DryfiringWeapon += OnDryfiringWeapon;
+            Exiled.Events.Handlers.Player.DryfiringWeapon -= OnDryfiringWeapon;
             base.UnsubscribeEvents();
         }
 
