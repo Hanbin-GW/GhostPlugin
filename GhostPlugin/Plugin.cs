@@ -107,7 +107,6 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.HackingDevices.Register();
                 Config.CustomItemsConfig.Morses.Register();
                 Config.CustomItemsConfig.ShockwaveGuns.Register();
-                Config.CustomItemsConfig.GernadeLunchers.Register();
                 Config.CustomItemsConfig.FtacReacon.Register();
                 Config.CustomItemsConfig.PoisonGuns.Register();
                 Config.CustomItemsConfig.ClusterGrenades.Register();
@@ -118,7 +117,7 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.Svds.Register();
                 Config.CustomItemsConfig.EodPaddings.Register();
                 Config.CustomItemsConfig.SmokeGrenades.Register();
-                Config.CustomItemsConfig.ExplosiveRoundRevolvers.Register();
+                Config.CustomItemsConfig.GrenadeLaunchers.Register();
                 Config.CustomItemsConfig.ParalyzeRifes.Register();
                 Config.CustomItemsConfig.PlasmaEmitters.Register();
                 Config.CustomItemsConfig.PlasmaShockwaveEmitters.Register();

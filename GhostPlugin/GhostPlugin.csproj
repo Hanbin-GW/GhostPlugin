@@ -224,7 +224,6 @@
         <Compile Include="Custom\Items\Firearms\Basilisk.cs" />
         <Compile Include="Custom\Items\Firearms\Bolter.cs" />
         <Compile Include="Custom\Items\Firearms\GrenadeLauncher.cs" />
-        <Compile Include="Custom\Items\Firearms\GernadeLuncher.cs" />
         <Compile Include="Custom\Items\Firearms\LaserCannon.cs" />
         <Compile Include="Custom\Items\Firearms\LaserGun.cs" />
         <Compile Include="Custom\Items\Firearms\M16.cs" />

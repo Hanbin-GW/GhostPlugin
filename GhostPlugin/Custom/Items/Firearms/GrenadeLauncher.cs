@@ -23,9 +23,9 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GunLogicer;
-        public override uint Id { get; set; } = 21;
+        public override uint Id { get; set; } = 5;
         public override string Name { get; set; } = "<color=#FF0000>유탄 발사기</color>";
-        public override string Description { get; set; } = "A grenade launcher";
+        public override string Description { get; set; } = "수류탄을 탄약으로 하는 유탄발사기 입니다!";
         public override float Weight { get; set; } = 3;
 
         public override SpawnProperties SpawnProperties { get; set; } = new();

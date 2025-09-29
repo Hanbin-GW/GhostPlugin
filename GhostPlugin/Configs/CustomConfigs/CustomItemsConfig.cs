@@ -30,11 +30,7 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new ShockwaveGun()
         };
-
-        public List<GernadeLuncher> GernadeLunchers { get; private set; } = new List<GernadeLuncher>()
-        {
-            new GernadeLuncher()
-        };
+        
         public List<ReconBattleRife> FtacReacon { get; private set; } = new List<ReconBattleRife>()
         {
             new ReconBattleRife()
@@ -80,7 +76,7 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new SmokeGrenade()
         };
-        public List<GrenadeLauncher> ExplosiveRoundRevolvers { get; private set; } = new List<GrenadeLauncher>()
+        public List<GrenadeLauncher> GrenadeLaunchers { get; private set; } = new List<GrenadeLauncher>()
         {
             new GrenadeLauncher()
         };
