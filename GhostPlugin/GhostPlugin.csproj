@@ -41,7 +41,7 @@
           <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp-firstpass">
-          <HintPath>..\..\..\Documents\14.0 dll\Assembly-CSharp-firstpass.dll</HintPath>
+          <HintPath>..\..\..\Documents\LabAPI\Assembly-CSharp-firstpass.dll</HintPath>
         </Reference>
         <Reference Include="AudioPlayerApi">
           <HintPath>..\..\..\Documents\AudioPlayerAPI\AudioPlayerApi.dll</HintPath>
@@ -86,7 +86,7 @@
           <HintPath>..\packages\Microsoft.Extensions.Primitives.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
         </Reference>
         <Reference Include="Mirror">
-          <HintPath>..\..\..\Documents\14.0 dll\Mirror.dll</HintPath>
+          <HintPath>..\..\..\Documents\LabAPI\Mirror.dll</HintPath>
         </Reference>
         <Reference Include="Mono.Posix">
           <HintPath>..\..\..\Documents\Exiled9.6.0\SCP Secret Laboratory\LabAPI-Beta\dependencies\Mono.Posix.dll</HintPath>
@@ -105,7 +105,7 @@
           <HintPath>..\..\Reinforcements\Reinforcements\obj\Release\Reinforcements.dll</HintPath>
         </Reference>
         <Reference Include="SCPSLAudioApi">
-          <HintPath>..\..\..\Documents\Depend\SCPSLAudioApi.dll</HintPath>
+          <HintPath>..\..\..\Documents\SCPSLAudioApi.dll</HintPath>
         </Reference>
         <Reference Include="SemanticVersioning">
           <HintPath>..\..\..\Documents\Exiled\SCP Secret Laboratory\LabAPI\dependencies\global\SemanticVersioning.dll</HintPath>
@@ -142,16 +142,16 @@
           <HintPath>..\..\TeamDeathmatch\TeamDeathmatch\obj\Release\TeamDeathmatch.dll</HintPath>
         </Reference>
         <Reference Include="Unity.TextMeshPro">
-          <HintPath>..\..\..\Documents\1403\Unity.TextMeshPro.dll</HintPath>
+          <HintPath>..\..\..\Documents\LabAPI\Unity.TextMeshPro.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine">
-          <HintPath>..\..\..\Documents\14.0 dll\UnityEngine.dll</HintPath>
+          <HintPath>..\..\..\Documents\LabAPI\UnityEngine.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-          <HintPath>..\..\..\Documents\14.0 dll\UnityEngine.CoreModule.dll</HintPath>
+          <HintPath>..\..\..\Documents\LabAPI\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.PhysicsModule">
-          <HintPath>..\..\..\Documents\14.0 dll\UnityEngine.PhysicsModule.dll</HintPath>
+          <HintPath>..\..\..\Documents\LabAPI\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
         <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
           <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\YamlDotNet.dll</HintPath>

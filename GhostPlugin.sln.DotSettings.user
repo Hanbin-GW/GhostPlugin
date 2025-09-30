@@ -63,7 +63,10 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FProjectMER_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FUnityEngine_002ECoreModule_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FUnityEngine_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FUnityEngine_002EPhysicsModule_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FUnity_002ETextMeshPro_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FLabAPI_002FYamlDotNet_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FDocuments_002FSCPSLAudioApi_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FRiderProjects_002FC_002DSquad_002FC_002DSquad_002Fobj_002FRelease_002FC_005FSquad_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FRiderProjects_002FEffect_002FEffect_002Fobj_002FRelease_002FEffect_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fhanbin_002FRiderProjects_002FParticle_002FParticle_002Fobj_002FRelease_002FParticle_002Edll/@EntryIndexedValue">True</s:Boolean>

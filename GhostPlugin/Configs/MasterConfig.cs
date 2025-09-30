@@ -17,19 +17,19 @@ namespace GhostPlugin.Configs
         
         [Description("There is a LOT of debug statements, turn this on if you really need top check something, otherwise keep it off to avoid flooding your server console")]
         public bool Debug { get; set; } = false;
-        public MusicConfig MusicConfig { get; set; } = null!;
+        public MusicConfig MusicConfig { get; set; } = new();
         [YamlIgnore]
-        public CustomItemsConfig CustomItemsConfig { get; set; } = null!;
+        public CustomItemsConfig CustomItemsConfig { get; set; } = new();
         [YamlIgnore]
-        public CustomRolesConfig CustomRolesConfig { get; set; } = null!;
+        public CustomRolesConfig CustomRolesConfig { get; set; } = new();
         [YamlIgnore]
-        public CustomRolesAbilitiesConfig CustomRolesAbilitiesConfig { get; set; } = null!;
+        public CustomRolesAbilitiesConfig CustomRolesAbilitiesConfig { get; set; } = new();
         [YamlIgnore]
-        public ServerEventsMasterConfig ServerEventsMasterConfig { get; set; } = null!;
+        public ServerEventsMasterConfig ServerEventsMasterConfig { get; set; } = new();
         [YamlIgnore]
-        public SsssConfig SsssConfig { get; set; } = null!;
+        public SsssConfig SsssConfig { get; set; } = new ();
         [YamlIgnore] 
-        public Scp914Config Scp914Config { get; set; } = null!;
+        public Scp914Config Scp914Config { get; set; } = new ();
 
         public bool EnableHarmony { get; set; } = false;
 

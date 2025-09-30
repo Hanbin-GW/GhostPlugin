@@ -53,6 +53,8 @@ namespace GhostPlugin
         /// </summary>
         public CasualFPSModeHandler CasualFPSModeHandler;
 
+        public MusicMethods _musicManager;
+
         public PerkEventHandlers PerkEventHandlers;
 
         public CustomItemHandler CustomItemHandler;
@@ -76,10 +78,7 @@ namespace GhostPlugin
             {
                 Log.Warn("Instance is null");
             }
-            var musicManager = new MusicMethods(
-                AudioDirectory,
-                "/home/vscode/steamcmd/scpsl/tmp-audio"
-            );
+            
             if (Config == null)
             {
                 Log.Error("Config is null!");
@@ -146,6 +145,18 @@ namespace GhostPlugin
                 Config.CustomItemsConfig.PortableEnergyShilds.Register();
                 Config.CustomItemsConfig.M16s.Register();
                 Config.CustomItemsConfig.LowGravityGrenadeItems.Register();
+                if(Plugin.Instance.Config?.EnablePerkEvents == true)
+                {
+                    PerkEventHandlers = new PerkEventHandlers(this); 
+                    PerkEventHandlers.RegisterEvents();
+                    Plugin.Instance.Config.CustomItemsConfig.QuickfixPerks.Register();
+                    Plugin.Instance.Config.CustomItemsConfig.FocusPerks.Register();
+                    Plugin.Instance.Config.CustomItemsConfig.BoostOnKillPerks.Register();
+                    Plugin.Instance.Config.CustomItemsConfig.MartydomPerks.Register();
+                    Plugin.Instance.Config.CustomItemsConfig.EngineerPerks.Register();
+                    Plugin.Instance.Config.CustomItemsConfig.OverkillPerks.Register();
+                    Plugin.Instance.Config.CustomItemsConfig.EnhancedVisionPerks.Register();
+                }
                 Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
             }
             
@@ -234,13 +245,21 @@ namespace GhostPlugin
             if (Instance.Config.CustomRolesAbilitiesConfig.IsEnabled)
                 CustomAbility.RegisterAbilities();
             
-            if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled) { ClassicPlugin.RegisterEvents(); }
-            if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.RegisterEvents();}
-            if (Config.Scp914Config.IsEnabled) {Scp914Handler.RegisterEvents();}
+            //if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled) { ClassicPlugin.RegisterEvents(); }
+            //if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.RegisterEvents();}
+            //if (Config.Scp914Config.IsEnabled) {Scp914Handler.RegisterEvents();}
             //music event
-            if (Config.MusicConfig.OnEnabled)
+            if (Config.MusicConfig?.OnEnabled == true)
             {
-                MusicEventHandlers = new MusicEventHandlers(this);
+                string tmpAudio =
+                    Environment.OSVersion.Platform == PlatformID.Win32NT
+                        ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "tmp-audio")
+                        : "/home/hanbin/steamcmd/scpsl/tmp-audio";
+                if (!Directory.Exists(tmpAudio))
+                    Directory.CreateDirectory(tmpAudio);
+
+                _musicManager = new MusicMethods(AudioDirectory, tmpAudio); // ← 이제 생성
+                MusicEventHandlers = new MusicEventHandlers(this /* 필요시 _musicManager 전달 */);
                 MusicEventHandlers.RegisterEvents();
             }
 
@@ -252,7 +271,7 @@ namespace GhostPlugin
             }*/
             
             //SSSS
-            if (Config.SsssConfig.IsEnabled == true)
+            if (Config.SsssConfig.IsEnabled)
             {
                 SsssEventHandler = new SsssEventHandler(this);
                 Server.RoundStarted += SsssEventHandler.OnRoundStarted;
@@ -286,25 +305,13 @@ namespace GhostPlugin
                 return;
             }
 
-            if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
+            if (Plugin.Instance.Config != null && Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
             {
                 CasualFPSModeHandler = new CasualFPSModeHandler(this);
                 CasualFPSModeHandler.RegisterEvents();
             }
             
-            //PerkEventHandler
-            if(Plugin.Instance.Config.EnablePerkEvents)
-            {
-                PerkEventHandlers = new PerkEventHandlers(this); 
-                PerkEventHandlers.RegisterEvents();
-                Plugin.Instance.Config.CustomItemsConfig.QuickfixPerks.Register();
-                Plugin.Instance.Config.CustomItemsConfig.FocusPerks.Register();
-                Plugin.Instance.Config.CustomItemsConfig.BoostOnKillPerks.Register();
-                Plugin.Instance.Config.CustomItemsConfig.MartydomPerks.Register();
-                Plugin.Instance.Config.CustomItemsConfig.EngineerPerks.Register();
-                Plugin.Instance.Config.CustomItemsConfig.OverkillPerks.Register();
-                Plugin.Instance.Config.CustomItemsConfig.EnhancedVisionPerks.Register();
-            }
+            
 
             /*if (Config.ServerEventsMasterConfig.SsssConfig.IsEnabled)
             {
@@ -329,21 +336,21 @@ namespace GhostPlugin
             }
             
             //ClassicPlugin
-            if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled){ClassicPlugin.UnregisterEvents();}
+            //if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled){ClassicPlugin.UnregisterEvents();}
             
             //Noob Support
-            if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.UnregisterEvents();}
+            //if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.UnregisterEvents();}
             //Scp914 Event
-            if (Config.Scp914Config.IsEnabled) {Scp914Handler.UnregisterEvents();}
+            //if (Config.Scp914Config.IsEnabled) {Scp914Handler.UnregisterEvents();}
             //Music Event
-            if (Config.MusicConfig.OnEnabled)
+            if (Config?.MusicConfig.OnEnabled == true)
             {
                 MusicEventHandlers.UnregisterEvents();
                 MusicEventHandlers = null;
             }
 
             //CustomRoles
-            if (Config.CustomRolesConfig.IsEnabled)
+            if (Config?.CustomRolesConfig.IsEnabled == true)
             {
                 CustomRole.UnregisterRoles();
                 Server.RoundStarted -= CustomRoleHandler.OnRoundStarted;
@@ -360,15 +367,15 @@ namespace GhostPlugin
                 _myCustomKeyBind = new MyCustomKeyBind();
                 _myCustomKeyBind.Deactivate();
             }*/
-            if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
+            /*if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
             {
                 CasualFPSModeHandler.UnregisterEvents();
                 CasualFPSModeHandler = null;
-            }
+            }*/
             
             
             //PerkEventHandler
-            if(Plugin.Instance.Config.EnablePerkEvents)
+            if(Plugin.Instance?.Config.EnablePerkEvents == true)
             {
                 PerkEventHandlers.UnregisterEvents();
                 PerkEventHandlers = null; 
