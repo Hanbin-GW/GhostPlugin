@@ -43,8 +43,14 @@ namespace GhostPlugin.Commands.Jukebox
         {
             "후원자-(donator)",
             "서버 관리자",
-            "서버 운영자",
+            //"서버 운영자",
             "부서버장"
+        };
+
+        private static readonly List<string> SpecialUsers = new List<string>()
+        {
+            "76561199445588283@steam",
+            "76561199133709329@steam"
         };
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -104,6 +110,10 @@ namespace GhostPlugin.Commands.Jukebox
             {
                 //reminder: chance to LargeSpeaker
                 schematicName = "TitanSpeaker";
+            }
+            else if (SpecialUsers.Contains(player.UserId))
+            {
+                schematicName = "E_TV";
             }
             var songTokens = arguments.Skip(1);
             string inputSong = string.Join(" ", songTokens);
