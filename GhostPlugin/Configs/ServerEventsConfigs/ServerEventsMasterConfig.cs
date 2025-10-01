@@ -9,16 +9,9 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
         [Description("Is the plugin enabled?")]
         public bool IsEnabled { get; set; } = true;
 
-        public List<string> RandomEventsAllowedToStart { get; set; } = new List<string>
-        {
-            "BlackoutModeConfig",
-            "ClassicConfig",
-            "NoobSupportConfig",
-        };
-
-        public BlackoutModeConfig BlackoutModeConfig { get; set; } = new BlackoutModeConfig();
-        public ClassicConfig ClassicConfig { get; set; } = new ClassicConfig();
-        public NoobSupportConfig NoobSupportConfig { get; set; } = new NoobSupportConfig();
+        public BlackoutModeConfig BlackoutModeConfig { get; set; } = new();
+        public ClassicConfig ClassicConfig { get; set; } = new();
+        public NoobSupportConfig NoobSupportConfig { get; set; } = new();
         //public SsssConfig SsssConfig { get; set; } = new SsssConfig();
     }
 }

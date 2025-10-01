@@ -16,12 +16,20 @@ namespace GhostPlugin.EventHandlers
 {
     public class MusicEventHandlers
     {
+        
+        /*public static MusicMethods MusicMethods = 
+            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");*/
         private readonly Plugin _plugin;
-        public MusicEventHandlers(Plugin plugin) => this._plugin = plugin;
-        public readonly MusicMethods MusicMethods = 
-            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
-        public static AudioManagemanet AudioManagemanet = new AudioManagemanet();
-        private static CoroutineHandle loopCoroutine;
+        private readonly MusicMethods _music;
+        private readonly AudioManagemanet _audioMgmt = new AudioManagemanet();
+        private CoroutineHandle loopCoroutine;
+
+        public MusicEventHandlers(Plugin plugin, string tmpAudio)
+        {
+            _plugin = plugin;
+            _music = new MusicMethods(plugin.AudioDirectory, tmpAudio);
+        }
+
 
         /// <summary>
         /// evnet regsister
@@ -112,7 +120,7 @@ namespace GhostPlugin.EventHandlers
                 Log.Error("오디오 클립 로딩 실패");
                 return;
             }
-            MusicMethods.PlaySpecificMusic(path);
+            _music.PlaySpecificMusic(path);
 
             Timing.CallDelayed(24f, () =>
             {
@@ -155,7 +163,7 @@ namespace GhostPlugin.EventHandlers
                 }
                 else
                 {
-                    MusicMethods.PlaySpecificMusic(filePath);
+                    _music.PlaySpecificMusic(filePath);
                     Timing.CallDelayed(50f, () => MusicMethods.StopMusic());
                 }
             }
@@ -164,7 +172,7 @@ namespace GhostPlugin.EventHandlers
             {
                 //MusicMethods.StopMusic();
                 string filePath = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.ChaosSpawmBgm);
-                MusicMethods.PlaySpecificMusic(filePath);
+                _music.PlaySpecificMusic(filePath);
                 Timing.CallDelayed(50f, () => MusicMethods.StopMusic());
             }
         }
@@ -173,7 +181,7 @@ namespace GhostPlugin.EventHandlers
         /// each situation, the music was playing
         /// </summary>
         /// <param name="ev"></param>
-        public static void OnAnnouncingDecontemination(AnnouncingDecontaminationEventArgs ev)
+        public void OnAnnouncingDecontemination(AnnouncingDecontaminationEventArgs ev)
         {
             if (Plugin.Instance.Config.MusicConfig.EnableSpecialEvent)
             {
@@ -277,7 +285,7 @@ namespace GhostPlugin.EventHandlers
                             {
                                 string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "audio");
                                 string filePath = Path.Combine(directory, Plugin.Instance.Config.MusicConfig.Lcz30sec);
-                                AudioManagemanet.PlaySpecificMusic(filePath);
+                                _audioMgmt.PlaySpecificMusic(filePath);
                             }
                         }
                         break;

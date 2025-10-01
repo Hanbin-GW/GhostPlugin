@@ -32,7 +32,7 @@ namespace GhostPlugin
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(7, 3, 1);
+        public override Version Version { get; } = new(7, 3, 2);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
@@ -53,7 +53,7 @@ namespace GhostPlugin
         /// </summary>
         public CasualFPSModeHandler CasualFPSModeHandler;
 
-        public MusicMethods _musicManager;
+        //public MusicMethods _musicManager;
 
         public PerkEventHandlers PerkEventHandlers;
 
@@ -85,7 +85,7 @@ namespace GhostPlugin
                 return;
             }
 
-            Config.LoadConfigs();
+            //Config.LoadConfigs();
             if (Config.SsssConfig == null)
             {
                 Log.Error("Config.SsssConfig is null!");
@@ -98,7 +98,11 @@ namespace GhostPlugin
             {
                 BlackoutMod.RegisterEvents();
             }
-
+            Log.Info($"[CHK] Blackout null? {Config?.ServerEventsMasterConfig?.BlackoutModeConfig == null}");
+            Log.Info($"[CHK] Music null? {Config?.MusicConfig == null}");
+            Log.Info($"[CHK] scp914 null? {Config?.Scp914Config == null}");
+            Log.Info($"[CHK] Classic null? {Config?.ServerEventsMasterConfig?.ClassicConfig == null}");
+            Log.Info($"[CHK] Ssss isEnabled? {Config?.SsssConfig?.IsEnabled}");
             //CustomItem Config
             if (Config.CustomItemsConfig.IsEnabled)
             {
@@ -198,7 +202,7 @@ namespace GhostPlugin
                 Config.CustomRolesConfig.ReinforceZombies.Register();
                 foreach (CustomRole role in CustomRole.Registered)
                 {
-                    Instance.Config.LoadConfigs();
+                    //Instance.Config.LoadConfigs();
                     if (role.CustomAbilities is not null)
                     {
                         foreach (CustomAbility ability in role.CustomAbilities)
@@ -242,7 +246,7 @@ namespace GhostPlugin
                 Scp049Events.FinishingRecall += CustomRoleHandler.FinishingRecall;
             }
             //CustomAbility Config
-            if (Instance.Config.CustomRolesAbilitiesConfig.IsEnabled)
+            if (Config.CustomRolesAbilitiesConfig?.IsEnabled == true)
                 CustomAbility.RegisterAbilities();
             
             //if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled) { ClassicPlugin.RegisterEvents(); }
@@ -258,8 +262,8 @@ namespace GhostPlugin
                 if (!Directory.Exists(tmpAudio))
                     Directory.CreateDirectory(tmpAudio);
 
-                _musicManager = new MusicMethods(AudioDirectory, tmpAudio); // ← 이제 생성
-                MusicEventHandlers = new MusicEventHandlers(this /* 필요시 _musicManager 전달 */);
+                //_musicManager = new MusicMethods(AudioDirectory, tmpAudio); // ← 이제 생성
+                MusicEventHandlers = new MusicEventHandlers(this, tmpAudio);
                 MusicEventHandlers.RegisterEvents();
             }
 
@@ -346,7 +350,6 @@ namespace GhostPlugin
             if (Config?.MusicConfig.OnEnabled == true)
             {
                 MusicEventHandlers.UnregisterEvents();
-                MusicEventHandlers = null;
             }
 
             //CustomRoles

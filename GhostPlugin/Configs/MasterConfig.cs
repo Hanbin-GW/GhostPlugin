@@ -17,6 +17,7 @@ namespace GhostPlugin.Configs
         
         [Description("There is a LOT of debug statements, turn this on if you really need top check something, otherwise keep it off to avoid flooding your server console")]
         public bool Debug { get; set; } = false;
+        [YamlIgnore]
         public MusicConfig MusicConfig { get; set; } = new();
         [YamlIgnore]
         public CustomItemsConfig CustomItemsConfig { get; set; } = new();
