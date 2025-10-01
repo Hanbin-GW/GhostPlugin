@@ -18,8 +18,8 @@ namespace GhostPlugin.Commands.MusicCommand
             {
                 YtDlpPath  = "yt-dlp",
                 FfmpegPath = "ffmpeg",
-                //WorkDir    = "/home/vscode/steamcmd/scpsl/tmp-audio",
-                WorkDir = workDir,
+                WorkDir    = "/home/hanbin/steamcmd/scpsl/tmp-audio",
+                //WorkDir = workDir,
                 AudioDir   = Plugin.Instance.AudioDirectory,
                 SampleRate = 48000,
                 Channels   = 1,

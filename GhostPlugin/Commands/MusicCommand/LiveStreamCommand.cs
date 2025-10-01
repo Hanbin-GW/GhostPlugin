@@ -12,7 +12,7 @@ namespace GhostPlugin.Commands.MusicCommand
         public string[] Aliases { get; } = new[] { "lpm" };
         public string Description { get; } = "라이브 스트리밍 커맨드!";
         private readonly MusicMethods musicMethods = 
-            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
+            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/hanbin/steamcmd/scpsl/tmp-audio");
         
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

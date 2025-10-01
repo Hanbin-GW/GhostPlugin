@@ -31,7 +31,7 @@ namespace GhostPlugin.Commands.MusicCommand
         }
 
         private readonly MusicMethods musicMethods = 
-            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
+            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/hanbin/steamcmd/scpsl/tmp-audio");
         public string Command { get; } = "ForcePlayMusic";
         public string[] Aliases { get; } = new[] { "Fpm", "ForcePlayMusic", "FPlaym" };
         public string Description { get; } = "특정곡을 강제로 재생합니다!";

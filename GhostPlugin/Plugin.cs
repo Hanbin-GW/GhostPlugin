@@ -70,258 +70,218 @@ namespace GhostPlugin
             EffectDirectory = Path.Combine(appDataPath, "EXILED", "Plugins", "Effects_Audio");
             AudioDirectory = Path.Combine(appDataPath, "EXILED", "Plugins", "audio");
         }
-
+        
+        private void Run(string name, Action a)
+        {
+            try { Log.Info($"[STAGE] {name}: enter"); a(); Log.Info($"[STAGE] {name}: ok"); }
+            catch (Exception e) { Log.Error($"[STAGE] {name}: FAIL -> {e.GetType().Name}: {e.Message}\n{e}"); throw; }
+        }
         public override void OnEnabled()
         {
             Instance = this;
-            if (Instance == null)
-            {
-                Log.Warn("Instance is null");
-            }
-            
-            if (Config == null)
-            {
-                Log.Error("Config is null!");
-                return;
-            }
 
-            //Config.LoadConfigs();
-            if (Config.SsssConfig == null)
+            Run("config.load", () =>
             {
-                Log.Error("Config.SsssConfig is null!");
-                return;
-            }
+                if (Config == null) throw new NullReferenceException("Config is null");
+                Config.LoadConfigs();
+                if (Config.SsssConfig == null) throw new NullReferenceException("SsssConfig is null");
+                Log.Send($"[Exiled.API] {Name} is enabled By {Author} | Version: {Version}", LogLevel.Info,
+                    ConsoleColor.DarkRed);
 
-            Log.Send($"[Exiled.API] {Instance.Name} is enabled By {Instance.Author} | Version: {Instance.Version}",LogLevel.Info, ConsoleColor.DarkRed);
-            Config.LoadConfigs();
-            if (Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled)
+                Log.Info($"[CHK] Blackout null? {Config?.ServerEventsMasterConfig?.BlackoutModeConfig == null}");
+                Log.Info($"[CHK] Music null? {Config?.MusicConfig == null}");
+                Log.Info($"[CHK] scp914 null? {Config?.Scp914Config == null}");
+                Log.Info($"[CHK] Classic null? {Config?.ServerEventsMasterConfig?.ClassicConfig == null}");
+                Log.Info($"[CHK] Ssss isEnabled? {Config?.SsssConfig?.IsEnabled}");
+            });
+
+            Run("blackout.register", () =>
             {
-                BlackoutMod.RegisterEvents();
-            }
-            Log.Info($"[CHK] Blackout null? {Config?.ServerEventsMasterConfig?.BlackoutModeConfig == null}");
-            Log.Info($"[CHK] Music null? {Config?.MusicConfig == null}");
-            Log.Info($"[CHK] scp914 null? {Config?.Scp914Config == null}");
-            Log.Info($"[CHK] Classic null? {Config?.ServerEventsMasterConfig?.ClassicConfig == null}");
-            Log.Info($"[CHK] Ssss isEnabled? {Config?.SsssConfig?.IsEnabled}");
-            //CustomItem Config
-            if (Config.CustomItemsConfig.IsEnabled)
+                if (Config?.ServerEventsMasterConfig?.BlackoutModeConfig?.IsEnabled == true)
+                    BlackoutMod.RegisterEvents();
+            });
+
+            Run("items.register", () =>
             {
-                CustomItemHandler = new CustomItemHandler(this);
-                Config.CustomItemsConfig.HackingDevices.Register();
-                Config.CustomItemsConfig.Morses.Register();
-                Config.CustomItemsConfig.ShockwaveGuns.Register();
-                Config.CustomItemsConfig.FtacReacon.Register();
-                Config.CustomItemsConfig.PoisonGuns.Register();
-                Config.CustomItemsConfig.ClusterGrenades.Register();
-                Config.CustomItemsConfig.TripleFlashGrenades.Register();
-                Config.CustomItemsConfig.StunGrenades.Register();
-                Config.CustomItemsConfig.Stims.Register();
-                Config.CustomItemsConfig.BattleRages.Register();
-                Config.CustomItemsConfig.Svds.Register();
-                Config.CustomItemsConfig.EodPaddings.Register();
-                Config.CustomItemsConfig.SmokeGrenades.Register();
-                Config.CustomItemsConfig.GrenadeLaunchers.Register();
-                Config.CustomItemsConfig.ParalyzeRifes.Register();
-                Config.CustomItemsConfig.PlasmaEmitters.Register();
-                Config.CustomItemsConfig.PlasmaShockwaveEmitters.Register();
-                Config.CustomItemsConfig.PhotonCannons.Register();
-                Config.CustomItemsConfig.ArmorPlateKits.Register();
-                Config.CustomItemsConfig.ImpactGrenades.Register();
-                Config.CustomItemsConfig.StickyGrenades.Register();
-                Config.CustomItemsConfig.PlasmaShotguns.Register();
-                Config.CustomItemsConfig.Bolters.Register();
-                Config.CustomItemsConfig.AcidShooters.Register();
-                Config.CustomItemsConfig.C4s.Register();
-                Config.CustomItemsConfig.SpikeJailbirds.Register();
-                Config.CustomItemsConfig.ReviveKits.Register();
-                Config.CustomItemsConfig.PoisonGrenades.Register();
-                Config.CustomItemsConfig.LaserCannons.Register();
-                Config.CustomItemsConfig.Anti173s.Register();
-                Config.CustomItemsConfig.Basilisks.Register();
-                Config.CustomItemsConfig.AmmoBoxes.Register();
-                Config.CustomItemsConfig.TrophySystems.Register();
-                Config.CustomItemsConfig.OverkillVests.Register();
-                Config.CustomItemsConfig.PlasmaBlasters.Register();
-                Config.CustomItemsConfig.MachineGuns.Register();
-                Config.CustomItemsConfig.Riveters.Register();
-                Config.CustomItemsConfig.LaserGuns.Register();
-                Config.CustomItemsConfig.MorsReworks.Register();
-                Config.CustomItemsConfig.PortableEnergyShilds.Register();
-                Config.CustomItemsConfig.M16s.Register();
-                Config.CustomItemsConfig.LowGravityGrenadeItems.Register();
-                if(Plugin.Instance.Config?.EnablePerkEvents == true)
+                if (Config?.CustomItemsConfig?.IsEnabled == true)
                 {
-                    PerkEventHandlers = new PerkEventHandlers(this); 
-                    PerkEventHandlers.RegisterEvents();
-                    Plugin.Instance.Config.CustomItemsConfig.QuickfixPerks.Register();
-                    Plugin.Instance.Config.CustomItemsConfig.FocusPerks.Register();
-                    Plugin.Instance.Config.CustomItemsConfig.BoostOnKillPerks.Register();
-                    Plugin.Instance.Config.CustomItemsConfig.MartydomPerks.Register();
-                    Plugin.Instance.Config.CustomItemsConfig.EngineerPerks.Register();
-                    Plugin.Instance.Config.CustomItemsConfig.OverkillPerks.Register();
-                    Plugin.Instance.Config.CustomItemsConfig.EnhancedVisionPerks.Register();
-                }
-                Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
-            }
-            
-            //CustomRoles Config
-            if (Config.CustomRolesConfig.IsEnabled)
-            {
-                CustomRoleHandler = new CustomRoleHandler(this);
-                Config.CustomRolesConfig.ChiefScientists.Register();
-                Config.CustomRolesConfig.CiPhantoms.Register();
-                Config.CustomRolesConfig.DAlphas.Register();
-                Config.CustomRolesConfig.Tanker106S.Register();
-                Config.CustomRolesConfig.Vipers.Register();
-                Config.CustomRolesConfig.Jailbirdmans.Register();
-                Config.CustomRolesConfig.Administrators.Register();
-                Config.CustomRolesConfig.FedoraAgents.Register();
-                Config.CustomRolesConfig.Elites.Register();
-                Config.CustomRolesConfig.JuggernautChaosList.Register();
-                Config.CustomRolesConfig.Scp682s.Register();
-                Config.CustomRolesConfig.SoleStealer049s.Register();
-                Config.CustomRolesConfig.Scp049Aps.Register();
-                Config.CustomRolesConfig.LuckyGuards.Register();
-                Config.CustomRolesConfig.Gunslingers.Register();
-                Config.CustomRolesConfig.Demolitionists.Register();
-                Config.CustomRolesConfig.Dwarves.Register();
-                Config.CustomRolesConfig.SpyAgents.Register();
-                Config.CustomRolesConfig.Enforcers.Register();
-                Config.CustomRolesConfig.Strategists.Register();
-                Config.CustomRolesConfig.Quartermasters.Register();
-                Config.CustomRolesConfig.Medics.Register();
-                Config.CustomRolesConfig.AdvancedMtfs.Register();
-                Config.CustomRolesConfig.Hunters.Register();
-                Config.CustomRolesConfig.HugoBosses.Register();
-                Config.CustomRolesConfig.Trackers.Register();
-                Config.CustomRolesConfig.Directors.Register();
-                Config.CustomRolesConfig.DwarfZombies.Register();
-                Config.CustomRolesConfig.ExplosiveZombies.Register();
-                Config.CustomRolesConfig.EodSoldierZombies.Register();
-                Config.CustomRolesConfig.ShockWaveZombies.Register();
-                Config.CustomRolesConfig.ReinforceZombies.Register();
-                foreach (CustomRole role in CustomRole.Registered)
-                {
-                    //Instance.Config.LoadConfigs();
-                    if (role.CustomAbilities is not null)
+                    CustomItemHandler = new CustomItemHandler(this);
+
+                    // 여기서 하나라도 null이면 바로 터집니다. ?. 로 가드
+                    var ci = Config.CustomItemsConfig;
+                    ci.HackingDevices?.Register();
+                    ci.Morses?.Register();
+                    ci.ShockwaveGuns?.Register();
+                    ci.FtacReacon?.Register();
+                    ci.PoisonGuns?.Register();
+                    ci.ClusterGrenades?.Register();
+                    ci.TripleFlashGrenades?.Register();
+                    ci.StunGrenades?.Register();
+                    ci.Stims?.Register();
+                    ci.BattleRages?.Register();
+                    ci.Svds?.Register();
+                    ci.EodPaddings?.Register();
+                    ci.SmokeGrenades?.Register();
+                    ci.GrenadeLaunchers?.Register();
+                    ci.ParalyzeRifes?.Register();
+                    ci.PlasmaEmitters?.Register();
+                    ci.PlasmaShockwaveEmitters?.Register();
+                    ci.PhotonCannons?.Register();
+                    ci.ArmorPlateKits?.Register();
+                    ci.ImpactGrenades?.Register();
+                    ci.StickyGrenades?.Register();
+                    ci.PlasmaShotguns?.Register();
+                    ci.Bolters?.Register();
+                    ci.AcidShooters?.Register();
+                    ci.C4s?.Register();
+                    ci.SpikeJailbirds?.Register();
+                    ci.ReviveKits?.Register();
+                    ci.PoisonGrenades?.Register();
+                    ci.LaserCannons?.Register();
+                    ci.Anti173s?.Register();
+                    ci.Basilisks?.Register();
+                    ci.AmmoBoxes?.Register();
+                    ci.TrophySystems?.Register();
+                    ci.OverkillVests?.Register();
+                    ci.PlasmaBlasters?.Register();
+                    ci.MachineGuns?.Register();
+                    ci.Riveters?.Register();
+                    ci.LaserGuns?.Register();
+                    ci.MorsReworks?.Register();
+                    ci.PortableEnergyShilds?.Register();
+                    ci.M16s?.Register();
+                    ci.LowGravityGrenadeItems?.Register();
+
+                    if (Config?.EnablePerkEvents == true)
                     {
-                        foreach (CustomAbility ability in role.CustomAbilities)
+                        PerkEventHandlers = new PerkEventHandlers(this);
+                        PerkEventHandlers.RegisterEvents();
+                        ci.QuickfixPerks?.Register();
+                        ci.FocusPerks?.Register();
+                        ci.BoostOnKillPerks?.Register();
+                        ci.MartydomPerks?.Register();
+                        ci.EngineerPerks?.Register();
+                        ci.OverkillPerks?.Register();
+                        ci.EnhancedVisionPerks?.Register();
+                    }
+
+                    Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
+                }
+            });
+
+            Run("roles.register", () =>
+            {
+                if (Config?.CustomRolesConfig?.IsEnabled == true)
+                {
+                    CustomRoleHandler = new CustomRoleHandler(this);
+
+                    var cr = Config.CustomRolesConfig;
+                    cr.ChiefScientists?.Register();
+                    cr.CiPhantoms?.Register();
+                    cr.DAlphas?.Register();
+                    cr.Tanker106S?.Register();
+                    cr.Vipers?.Register();
+                    cr.Jailbirdmans?.Register();
+                    cr.Administrators?.Register();
+                    cr.FedoraAgents?.Register();
+                    cr.Elites?.Register();
+                    cr.JuggernautChaosList?.Register();
+                    cr.Scp682s?.Register();
+                    cr.SoleStealer049s?.Register();
+                    cr.Scp049Aps?.Register();
+                    cr.LuckyGuards?.Register();
+                    cr.Gunslingers?.Register();
+                    cr.Demolitionists?.Register();
+                    cr.Dwarves?.Register();
+                    cr.SpyAgents?.Register();
+                    cr.Enforcers?.Register();
+                    cr.Strategists?.Register();
+                    cr.Quartermasters?.Register();
+                    cr.Medics?.Register();
+                    cr.AdvancedMtfs?.Register();
+                    cr.Hunters?.Register();
+                    cr.HugoBosses?.Register();
+                    cr.Trackers?.Register();
+                    cr.Directors?.Register();
+                    cr.DwarfZombies?.Register();
+                    cr.ExplosiveZombies?.Register();
+                    cr.EodSoldierZombies?.Register();
+                    cr.ShockWaveZombies?.Register();
+                    cr.ReinforceZombies?.Register();
+
+                    foreach (CustomRole role in CustomRole.Registered)
+                    {
+                        if (role?.CustomAbilities != null)
+                            foreach (var ability in role.CustomAbilities)
+                                ability?.Register();
+
+                        if (role is ICustomRole custom)
                         {
-                            ability.Register();
+                            var team =
+                                custom.StartTeam.HasFlag(StartTeam.Chaos) ? StartTeam.Chaos :
+                                custom.StartTeam.HasFlag(StartTeam.Guard) ? StartTeam.Guard :
+                                custom.StartTeam.HasFlag(StartTeam.Ntf) ? StartTeam.Ntf :
+                                custom.StartTeam.HasFlag(StartTeam.Scientist) ? StartTeam.Scientist :
+                                custom.StartTeam.HasFlag(StartTeam.ClassD) ? StartTeam.ClassD :
+                                custom.StartTeam.HasFlag(StartTeam.Scp) ? StartTeam.Scp :
+                                custom.StartTeam.HasFlag(StartTeam.Revived) ? StartTeam.Revived :
+                                StartTeam.Other;
+
+                            if (!Roles.ContainsKey(team)) Roles.Add(team, new());
+                            uint limit = role.SpawnProperties?.Limit ?? 0; // ★ 널 가드
+                            for (int i = 0; i < limit; i++) Roles[team].Add(custom);
                         }
                     }
 
-                    if (role is ICustomRole custom)
-                    {
-                        Log.Debug(
-                            $"Adding {role.Name} to dictionary..");
-                        StartTeam team;
-                        if (custom.StartTeam.HasFlag(StartTeam.Chaos))
-                            team = StartTeam.Chaos;
-                        else if (custom.StartTeam.HasFlag(StartTeam.Guard))
-                            team = StartTeam.Guard;
-                        else if (custom.StartTeam.HasFlag(StartTeam.Ntf))
-                            team = StartTeam.Ntf;
-                        else if (custom.StartTeam.HasFlag(StartTeam.Scientist))
-                            team = StartTeam.Scientist;
-                        else if (custom.StartTeam.HasFlag(StartTeam.ClassD))
-                            team = StartTeam.ClassD;
-                        else if (custom.StartTeam.HasFlag(StartTeam.Scp))
-                            team = StartTeam.Scp;
-                        else if (custom.StartTeam.HasFlag(StartTeam.Revived))
-                            team = StartTeam.Revived;
-                        else
-                            team = StartTeam.Other;
-
-                        if (!Instance.Roles.ContainsKey(team))
-                            Instance.Roles.Add(team, new());
-
-                        for (int i = 0; i < role.SpawnProperties.Limit; i++)
-                            Instance.Roles[team].Add(custom);
-                        Log.Debug($"CustomRolesConfig {team} now has {Instance.Roles[team].Count} elements.");
-                    }
+                    Server.RoundStarted += CustomRoleHandler.OnRoundStarted;
+                    Server.RespawningTeam += CustomRoleHandler.OnRespawningTeam;
+                    Scp049Events.FinishingRecall += CustomRoleHandler.FinishingRecall;
                 }
-                Server.RoundStarted += CustomRoleHandler.OnRoundStarted;
-                Server.RespawningTeam += CustomRoleHandler.OnRespawningTeam;
-                Scp049Events.FinishingRecall += CustomRoleHandler.FinishingRecall;
-            }
-            //CustomAbility Config
-            if (Config.CustomRolesAbilitiesConfig?.IsEnabled == true)
-                CustomAbility.RegisterAbilities();
-            
-            //if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled) { ClassicPlugin.RegisterEvents(); }
-            //if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.RegisterEvents();}
-            //if (Config.Scp914Config.IsEnabled) {Scp914Handler.RegisterEvents();}
-            //music event
-            if (Config.MusicConfig?.OnEnabled == true)
-            {
-                string tmpAudio =
-                    Environment.OSVersion.Platform == PlatformID.Win32NT
-                        ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EXILED", "Plugins", "tmp-audio")
-                        : "/home/hanbin/steamcmd/scpsl/tmp-audio";
-                if (!Directory.Exists(tmpAudio))
-                    Directory.CreateDirectory(tmpAudio);
+            });
 
-                //_musicManager = new MusicMethods(AudioDirectory, tmpAudio); // ← 이제 생성
-                MusicEventHandlers = new MusicEventHandlers(this, tmpAudio);
-                MusicEventHandlers.RegisterEvents();
-            }
+            Run("abilities.register", () =>
+            {
+                if (Config?.CustomRolesAbilitiesConfig?.IsEnabled == true)
+                    CustomAbility.RegisterAbilities();
+            });
 
-            /*if (Instance.Config.EnableHarmony)
+            Run("music.register", () =>
             {
-                Harmony = new Harmony($"[GhostPlugin] Hanbin-GW.GhostPlugin.{DateTime.Now.Ticks}");
-                Harmony.PatchAll();
-                Log.Send($"{Harmony.Id} is enabled", LogLevel.Info, ConsoleColor.DarkYellow);
-            }*/
-            
-            //SSSS
-            if (Config.SsssConfig.IsEnabled)
+                if (Config?.MusicConfig?.OnEnabled == true)
+                {
+                    string tmpAudio =
+                        Environment.OSVersion.Platform == PlatformID.Win32NT
+                            ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                                "EXILED", "Plugins", "tmp-audio")
+                            : "/home/hanbin/steamcmd/scpsl/tmp-audio";
+                    if (!Directory.Exists(tmpAudio)) Directory.CreateDirectory(tmpAudio);
+
+                    // 인스턴스 기반일 때
+                    MusicEventHandlers = new MusicEventHandlers(this, tmpAudio);
+                    MusicEventHandlers.RegisterEvents();
+                }
+            });
+
+            Run("ssss.register", () =>
             {
-                SsssEventHandler = new SsssEventHandler(this);
-                Server.RoundStarted += SsssEventHandler.OnRoundStarted;
-                ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
-            }
-            try
-            {
-                if (Config.SsssConfig.IsEnabled)
+                if (Config?.SsssConfig?.IsEnabled == true)
                 {
                     SsssEventHandler = new SsssEventHandler(this);
-
-                    if (SsssEventHandler is null)
-                    {
-                        Log.Error("SsssEventHandler가 null입니다!");
-                        return;
-                    }
-
                     Server.RoundStarted += SsssEventHandler.OnRoundStarted;
                     Exiled.Events.Handlers.Player.Verified += SsssEventHandler.OnVerified;
                     ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
-                    Log.Info("SsssEventHandler 이벤트 정상 등록됨");
                 }
-                else
+            });
+
+            Run("fpsmap.register", () =>
+            {
+                if (Config?.ServerEventsMasterConfig?.ClassicConfig?.IsEnableFPSmap == true)
                 {
-                    Log.Warn(" SsssConfig가 비활성화됨.");
+                    CasualFPSModeHandler = new CasualFPSModeHandler(this);
+                    CasualFPSModeHandler.RegisterEvents();
                 }
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"SsssEventHandler 생성 중 예외 발생: {ex.Message}");
-                return;
-            }
+            });
 
-            if (Plugin.Instance.Config != null && Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
-            {
-                CasualFPSModeHandler = new CasualFPSModeHandler(this);
-                CasualFPSModeHandler.RegisterEvents();
-            }
-            
-            
-
-            /*if (Config.ServerEventsMasterConfig.SsssConfig.IsEnabled)
-            {
-                _myCustomKeyBind = new MyCustomKeyBind();
-                _myCustomKeyBind.Activate();
-            }*/
             base.OnEnabled();
         }
 

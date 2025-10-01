@@ -26,18 +26,18 @@ namespace GhostPlugin.Commands.Jukebox
 
         public static JukeboxManagement JukeboxManagement = new JukeboxManagement();
         // 플러그인 경로/워크디렉토리 주입
-        /*private readonly AudioCommands _audio = new AudioCommands(
+        private readonly AudioCommands _audio = new AudioCommands(
             Plugin.Instance.AudioDirectory,
-            "/home/vscode/steamcmd/scpsl/tmp-audio"
-        );*/
-        static string audioDir = Path.Combine(
+            "/home/hanbin/steamcmd/scpsl/tmp-audio"
+        );
+        /*static string audioDir = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
             "EXILED", "Plugins", "audio");
         static string workDir = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "EXILED", "Plugins", "tmp-audio");
+            "EXILED", "Plugins", "tmp-audio");*/
 
-        private readonly AudioCommands _audio = new AudioCommands(audioDir, workDir);
+        //private readonly AudioCommands _audio = new AudioCommands(audioDir, workDir);
 
         private static readonly List<string> AllowedGroups = new List<string>()
         {
