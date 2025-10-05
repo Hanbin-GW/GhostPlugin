@@ -19,7 +19,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override string Name { get; set; } = "<color=green>Sleeper Agent</color>";
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public override string Description { get; set; } =
-            "제단에 D계급으로 침투한 혼돈의 반란 스파이 요원입니다.\n당신의 정체를 숨기시고, 제단은 몰락시키십시요!\n키카드를 떨어트려 외형을 변할수 있습니다!\n시채 운반을 하여 살인을 은폐하십시요!";
+            "제단에 D계급으로 침투한 혼돈의 반란 스파이 요원입니다.\n당신의 정체를 숨기시고, 제단은 몰락시키십시요!\n키카드를 떨어트려 외형을 변할수 있습니다!\n시채 운반을 하여 살인을 은폐하십시요!\n\n<size=15>적을 무장해제시 사살하게됩니다</size>";
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {

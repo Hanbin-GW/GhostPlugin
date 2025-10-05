@@ -21,7 +21,6 @@ namespace GhostPlugin.Custom.Items.Perks
         public override ItemType Type { get; set; } = ItemType.Coin;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
-            Limit = 4,
             DynamicSpawnPoints = new List<DynamicSpawnPoint>()
             {
                 new DynamicSpawnPoint()

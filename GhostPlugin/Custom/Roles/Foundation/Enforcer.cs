@@ -15,7 +15,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override uint Id { get; set; } = 18;
         public override int MaxHealth { get; set; } = 125;
         public override string Name { get; set; } = "<color=red>Enforcer (집행자)</color>";
-        public override string Description { get; set; } = "Enforcer는 전투 전문 직업으로, 강력한 근접 공격과 방어 능력을 갖추고 있습니다. 이들은 적을 물리치고 팀원들을 보호하는 데 특화되어 있습니다.\n\nEOD 방탄복과 특수 자동샷건 (리버터)을 보유하고 있습니다! 적들을 분쇠하십시요!\n획득한 능력: \n• 처치시 부스트 (패시브)";
+        public override string Description { get; set; } = "Enforcer는 전투 전문 직업으로, 강력한 근접 공격과 방어 능력을 갖추고 있습니다. 이들은 적을 물리치고 팀원들을 보호하는 데 특화되어 있습니다.\n\nEOD 방탄복과 특수 자동샷건 (리버터)을 보유하고 있습니다! 적들을 분쇠하십시요!<size=18>\n------------보유중인 능력------------\n• 처치시 부스트 (패시브 & SSSS 설정 불가능)\n--------------------------------</size>";
         public override string CustomInfo { get; set; } = "Enforcer";
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfPrivate;
         public override bool DisplayCustomItemMessages { get; set; } = false;

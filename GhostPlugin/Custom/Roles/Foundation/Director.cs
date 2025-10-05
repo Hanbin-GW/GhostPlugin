@@ -17,6 +17,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override string Description { get; set; } = "TaskForce 부대를 감독하는 감독관입니다.";
         public override string CustomInfo { get; set; } = "MTF 감독관";
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfCaptain;
+        public override bool DisplayCustomItemMessages { get; set; } = false;
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         public int Chance { get; set; } = 50;
 
@@ -37,6 +38,10 @@ namespace GhostPlugin.Custom.Roles.Foundation
             ItemType.Radio.ToString(),
         };
 
-        public override Dictionary<AmmoType, ushort> Ammo { get; set; }
+        public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
+        {
+            { AmmoType.Nato556 ,180},
+            { AmmoType.Nato9 ,30},
+        };
     }
 }

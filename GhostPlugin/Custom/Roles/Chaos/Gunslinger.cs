@@ -14,7 +14,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override uint Id { get; set; } = 15;
         public override int MaxHealth { get; set; } = 100;
         public override string Name { get; set; } = "Gunslinger";
-        public override string Description { get; set; } = "총기를 아주 잘 조작하는 요원입니다.";
+        public override string Description { get; set; } = "총기를 아주 잘 조작하는 요원입니다.\n<size=18>--------------보유중인 능력--------------\n• 오버킬(랜덤 무기 제공 | SSSS 에서 키바인드 설정)\n• 집중(장전속도 & 반동 감소 | SSSS 에서 키바인드 설정)\n-------------------------------------</size>";
         public override string CustomInfo { get; set; } = "Gunslinger";
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosConscript;

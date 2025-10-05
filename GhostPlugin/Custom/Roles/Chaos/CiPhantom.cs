@@ -20,7 +20,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override uint Id { get; set; } = 2;
         public override int MaxHealth { get; set; } = 110;
         public override string Name { get; set; } = "<color=#53db78>Phantom</color>";
-        public override string Description { get; set; } = "혼돈의 반란의 유령 저격팀입니다.\n 많은 MTF를 저격으로 사살한 엘리트 요원으로 제단의 공포의 상징 입니다.\n보유중인 능력\n• 빠른회복 (처치시 회복)\n• 집중\n• Ghost(유령)";
+        public override string Description { get; set; } = "혼돈의 반란의 유령 저격팀입니다.\n 많은 MTF를 저격으로 사살한 엘리트 요원으로 제단의 공포의 상징 입니다.\n<size=15>--------------보유중인 능력---------------\n• 빠른회복 (처치시 회복 / SSSS 설정 필요없음 / 패시브)\n• 집중 (반동 & 장전속도 감소 | SSSS 키바인드 설정필요)\n• Ghost (문통과 가능 + 투명 | SSSS 키바인드 설정필요)\n-------------------------------------</size>";
         public override string CustomInfo { get; set; } = "Phantom";
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosRifleman;
         public override bool DisplayCustomItemMessages { get; set; } = false;
@@ -39,7 +39,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
             },
             new Ghost()
             {
-                Name = "Ghost",
+                Name = "Ghost (유령)",
                 Description = "20초간 조용해지고 문을 통과하고 투명해집니다!"
             }
         };
@@ -90,7 +90,8 @@ namespace GhostPlugin.Custom.Roles.Chaos
 
         public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
         {
-            { AmmoType.Nato762, 80 }
+            { AmmoType.Nato762, 80 },
+            { AmmoType.Ammo44Cal ,20},
         };
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
