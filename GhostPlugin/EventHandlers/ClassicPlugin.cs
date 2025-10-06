@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Map;
@@ -36,8 +37,7 @@ namespace GhostPlugin.EventHandlers
             MapEvents.AnnouncingNtfEntrance += OnAnnouncingNtfEntrance;
             PlayerEvents.Verified += OnVerified;
             ServerEvents.RoundStarted += OnRoundStarted; 
-            ServerEvents.RestartingRound += OnRestartingRound;
-            ServerEvents.RoundEnded += OnRoundEnded;
+            //ServerEvents.RestartingRound += OnRestartingRound;
             PlayerEvents.Left += OnPlayerLeft;
             PlayerEvents.Dying += OnDying;
         }
@@ -56,17 +56,11 @@ namespace GhostPlugin.EventHandlers
             MapEvents.AnnouncingNtfEntrance -= OnAnnouncingNtfEntrance;
             PlayerEvents.Verified -= OnVerified;
             ServerEvents.RoundStarted -= OnRoundStarted; 
-            ServerEvents.RestartingRound -= OnRestartingRound;
-            ServerEvents.RoundEnded -= OnRoundEnded;
+            //ServerEvents.RestartingRound -= OnRestartingRound;
             PlayerEvents.Left -= OnPlayerLeft;
             PlayerEvents.Dying -= OnDying;
         }
-
-        private static void OnRoundEnded(RoundEndedEventArgs ev)
-        {
-            if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsSafeMode)
-                Map.Broadcast(5,"<color=green>SafeMode</color> Is Activated...<color=orange>Restarting the Server</color>");
-        }
+        
 
         private static void OnRestartingRound()
         {
@@ -260,6 +254,21 @@ namespace GhostPlugin.EventHandlers
         private static void OnRoundEnded(EndingRoundEventArgs ev)
         {
             Timing.KillCoroutines(_broadcastCoroutine);
+            var aliveByTeam = string.Join(", ",
+                Player.List.Where(p => p.IsAlive)
+                    .GroupBy(p => p.Role.Team)
+                    .Select(g => $"{g.Key}:{g.Count()}"));
+
+            Log.Info($"[DEBUG] EndingRound called | IsAllowed={ev.IsAllowed} | AliveByTeam={aliveByTeam}");
+
+            // 문제 많던 커스텀 롤/튜토리얼 추적
+            var tutorials = Player.List.Where(p => p.IsAlive && p.Role.Type == RoleTypeId.Tutorial).ToList();
+            if (tutorials.Count > 0)
+                Log.Info($"[DEBUG] Alive Tutorials: {string.Join(", ", tutorials.Select(t => t.Nickname))}");
+
+            // 예: Spy/스파이 에이전트 표식이 있다면 그 기준으로도 찍어주세요.
+            // var spies = Player.List.Where(IsSpyAgentPredicate).ToList();
+            // Log.Info($"[DEBUG] Alive Spies: {spies.Count}");
         }
         private static void OnWarheadStopped(StoppingEventArgs ev)
         {

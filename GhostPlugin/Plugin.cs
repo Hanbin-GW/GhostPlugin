@@ -300,12 +300,12 @@ namespace GhostPlugin
             }
             
             //ClassicPlugin
-            //if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled){ClassicPlugin.UnregisterEvents();}
+            if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled){ClassicPlugin.UnregisterEvents();}
             
             //Noob Support
-            //if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.UnregisterEvents();}
+            if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.UnregisterEvents();}
             //Scp914 Event
-            //if (Config.Scp914Config.IsEnabled) {Scp914Handler.UnregisterEvents();}
+            if (Config.Scp914Config.IsEnabled) {Scp914Handler.UnregisterEvents();}
             //Music Event
             if (Config?.MusicConfig.OnEnabled == true)
             {
@@ -330,11 +330,11 @@ namespace GhostPlugin
                 _myCustomKeyBind = new MyCustomKeyBind();
                 _myCustomKeyBind.Deactivate();
             }*/
-            /*if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
+            if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
             {
                 CasualFPSModeHandler.UnregisterEvents();
                 CasualFPSModeHandler = null;
-            }*/
+            }
             
             
             //PerkEventHandler
