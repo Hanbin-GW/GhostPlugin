@@ -1,0 +1,33 @@
+using System;
+using Discord;
+using Exiled.API.Features;
+using UnityEngine;
+
+namespace GhostPlugin.DynamicMusicPlayback
+{
+    public class JukeboxManagement
+    {
+        public void PlayMusicSpeaker(string filepath, Vector3 pos, int id)
+        {
+            AudioClipStorage.LoadClip(filepath,filepath);
+
+            AudioPlayer globalPlayer = AudioPlayer.CreateOrGet($"SpeakerBox{id}",onIntialCreation: (p) =>
+            {
+                p.AddSpeaker("Main", isSpatial: true, maxDistance: 5f, volume: 0.7f, position:pos);
+            });
+            
+            globalPlayer.AddClip(filepath, volume: Plugin.Instance.Config.MusicConfig.Volume, loop: Plugin.Instance.Config.MusicConfig.Loop, destroyOnEnd: false);
+            Log.Send("JukeBox song playing",LogLevel.Info,ConsoleColor.DarkRed);
+            Log.Info($"스피커에서 음악 재생 중: {filepath}, 위치: {pos}");
+        }
+        
+        public void StopMusicSpeaker(int id)
+        {
+            if(!AudioPlayer.AudioPlayerByName.TryGetValue($"SpeakerBox{id}",out AudioPlayer ap))
+                return;
+            //ap.ClipsById.Clear();
+            ap.RemoveAllClips();
+            //ap.Destroy();
+        }
+    }
+}

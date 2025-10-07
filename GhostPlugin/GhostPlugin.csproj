@@ -305,6 +305,12 @@
         <Compile Include="Custom\Roles\Scps\ShockwaveZombie.cs" />
         <Compile Include="Custom\Roles\Scps\SoleStealer049.cs" />
         <Compile Include="Custom\Roles\Scps\Tanker106.cs" />
+        <Compile Include="DynamicMusicPlayback\AudioCommands.cs" />
+        <Compile Include="DynamicMusicPlayback\JukeboxManagement.cs" />
+        <Compile Include="DynamicMusicPlayback\ManageJukebox.cs" />
+        <Compile Include="DynamicMusicPlayback\MusicMethods.cs" />
+        <Compile Include="DynamicMusicPlayback\MusicPlayModule.cs" />
+        <Compile Include="DynamicMusicPlayback\MusicProcUtil.cs" />
         <Compile Include="EventHandlers\BlackoutMod.cs" />
         <Compile Include="EventHandlers\CasualFPSModeHandler.cs" />
         <Compile Include="EventHandlers\ClassicPlugin.cs" />
