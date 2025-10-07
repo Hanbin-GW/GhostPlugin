@@ -29,7 +29,7 @@ and `youtube-dl`/`yt-dlp` for YouTube URL support.
 
 ## Installation
 ### 🚫 Confidential Notice
-> [!IMPORTANT]
+> [!WARNING]
 > This plugin is proprietary and strictly confidential.
 > Installation, redistribution, or public usage is prohibited.
 > Authorized use only within designated environments.
