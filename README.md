@@ -18,11 +18,14 @@ A comprehensive Exiled plugin for SCP: Secret Laboratory, featuring custom roles
 - **Custom Items & Weapons** – Special firearms, unique perks, and custom items inspired by Call of Duty.
 - **Custom Roles** – Adds new playable roles to diversify SCP:SL gameplay.
 - **Special Ammunition System** – Primitive raycast bullets and alternative ammo types.
-- **Dynamic Music Playback** – Background music, situational tracks, and jukebox system.
+<!-- **Dynamic Music Playback** – Background music, situational tracks, and jukebox system.-->
 - **Classic Subtitles System** – Adds a retro-style subtitle overlay for immersion.
 - **Blackout Mode** – Enable or disable map-wide power outages dynamically.
 - **Plugin Interoperability** – Works seamlessly with other community plugins (UIU, Serpent’s Hand, etc.).
-
+### Development Process (In-Game Audio System Evolution):
+- LobbyMusic – Scene-based background music control (plays only in lobby, auto-stops when match starts).
+- Jukebox – Location-based audio playback with interactive control (on/off, summon jukebox).
+- MusicPlayback Module – Server-based real-time YouTube streaming and decoding, minimizing client load.
 ### Implementation Notes
 > Music playback is implemented via [AudioPlayerAPI](https://github.com/Killers0992/AudioPlayerApi)
 and `youtube-dl`/`yt-dlp` for YouTube URL support.
