@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Discord;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Map;
@@ -23,6 +24,23 @@ namespace GhostPlugin.EventHandlers
     {
         private static int _activatedGenerators = 0;
         private static CoroutineHandle _broadcastCoroutine;
+        private static bool _printedReadyToEndOnce;
+
+        private static bool IsTdmEnabledSoft()
+        {
+            var asm = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .FirstOrDefault(a => a.GetName().Name == "TeamDeathmatch");
+            if (asm == null) return false;
+
+            var pluginType   = asm.GetType("TeamDeathmatch.Plugin");
+            var instanceProp = pluginType?.GetProperty("Instance");
+            var instance     = instanceProp?.GetValue(null);
+            var configProp   = pluginType?.GetProperty("Config");
+            var config       = configProp?.GetValue(instance);
+            var isEnabled    = config?.GetType().GetProperty("IsEnabled")?.GetValue(config) as bool?;
+            return isEnabled ?? false;
+        }
         public static void RegisterEvents()
         {
             Exiled.Events.Handlers.Scp096.AddingTarget += OnLookingAtScp096;
@@ -177,7 +195,7 @@ namespace GhostPlugin.EventHandlers
                         TextUtils.SpawnText(ev.Player, ev.Player.Position, "<size=10>Content Deleted</size>", 15f);
                         break;
                 }
-                if(!TeamDeathmatch.Plugin.Instance.Config.IsEnabled)
+                if (!IsTdmEnabledSoft())
                     ev.Player.Vaporize();
             }
             else
@@ -254,12 +272,36 @@ namespace GhostPlugin.EventHandlers
         private static void OnRoundEnded(EndingRoundEventArgs ev)
         {
             Timing.KillCoroutines(_broadcastCoroutine);
-            var aliveByTeam = string.Join(", ",
-                Player.List.Where(p => p.IsAlive)
-                    .GroupBy(p => p.Role.Team)
-                    .Select(g => $"{g.Key}:{g.Count()}"));
+            /*if (TeamDeathmatch.Plugin.Instance?.Config?.IsEnabled == true)
+                return;*/
+            var alive = Player.List.Where(p => p.IsAlive).ToList();
+            int scps   = alive.Count(p => p.Role.Team == Team.SCPs);
+            int chaos  = alive.Count(p => p.Role.Team == Team.ChaosInsurgency);
+            int mtf    = alive.Count(p => p.Role.Team == Team.FoundationForces );
+            int others = alive.Count(p => p.Role.Team != Team.SCPs
+                                          && p.Role.Team != Team.ChaosInsurgency
+                                          && p.Role.Team != Team.FoundationForces);
+            int scientist = alive.Count(p => p.Role.Team == Team.Scientists);
+            int dboy = alive.Count(p => p.Role.Team == Team.ClassD);
+            /*int dboy = alive.Count(p =>
+                p.Role.Team == Team.ClassD &&
+                !(p.IsCuffed && p.Cuffer != null && p.Cuffer.Role.Team == Team.FoundationForces)
+            );*/
+            if (!!_printedReadyToEndOnce || !Plugin.Instance.Config.Debug)
+            {
+                _printedReadyToEndOnce = true;
+                Log.Send(
+                    $"[ClassicPlugin] EndingRound fired | IsAllowed={ev.IsAllowed} | SCP={scps}, CHAOS={chaos}, MTF={mtf}, OTHERS={others}, Dclass={dboy}",
+                    LogLevel.Debug, ConsoleColor.Blue);
+            }
 
-            Log.Info($"[DEBUG] EndingRound called | IsAllowed={ev.IsAllowed} | AliveByTeam={aliveByTeam}");
+            // ✅ 적대 진영(SCP/Chaos)이 전멸했고 MTF만 남았으면 강제로 허용
+            if (!_printedReadyToEndOnce || !ev.IsAllowed && dboy == 0 && scps == 0 && chaos == 0 && mtf >= 1)
+            {
+                ev.IsAllowed = true; // 핵심: 다른 플러그인의 취소를 무력화
+                _printedReadyToEndOnce = true;
+                Log.Info("[ClassicPlugin] Forced round end allowed (MTF victory).");
+            }
 
             // 문제 많던 커스텀 롤/튜토리얼 추적
             var tutorials = Player.List.Where(p => p.IsAlive && p.Role.Type == RoleTypeId.Tutorial).ToList();

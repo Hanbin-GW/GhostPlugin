@@ -51,7 +51,7 @@ namespace GhostPlugin.EventHandlers
             Exiled.Events.Handlers.Server.WaitingForPlayers -= OnWaitingPlayers;
             Exiled.Events.Handlers.Server.RoundStarted -= OnRoundStarted;
             Exiled.Events.Handlers.Server.RespawningTeam -= OnRespawnedTeam;
-            Exiled.Events.Handlers.Map.AnnouncingDecontamination += OnAnnouncingDecontemination;
+            Exiled.Events.Handlers.Map.AnnouncingDecontamination -= OnAnnouncingDecontemination;
         }
         /// <summary>
         /// During the round is not started, the music is playing...

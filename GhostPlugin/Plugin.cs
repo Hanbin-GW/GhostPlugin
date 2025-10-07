@@ -168,7 +168,13 @@ namespace GhostPlugin
                     Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
                 }
             });
-
+            Run("classic.register", () =>
+            {
+                if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled)
+                {
+                    ClassicPlugin.RegisterEvents();
+                }
+            });
             Run("roles.register", () =>
             {
                 if (Config?.CustomRolesConfig?.IsEnabled == true)
@@ -300,7 +306,10 @@ namespace GhostPlugin
             }
             
             //ClassicPlugin
-            if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled){ClassicPlugin.UnregisterEvents();}
+            if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled)
+            {
+                ClassicPlugin.UnregisterEvents();
+            }
             
             //Noob Support
             if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.UnregisterEvents();}

@@ -131,6 +131,8 @@ namespace GhostPlugin.Custom.Items.Etc
         // 이벤트 해제
         protected override void UnsubscribeEvents()
         {
+            deathRoles.Clear();
+            deathPositions.Clear();
             Exiled.Events.Handlers.Player.Dying -= OnDying;
             Exiled.Events.Handlers.Player.UsedItem -= OnUsedItem;
             base.UnsubscribeEvents();
