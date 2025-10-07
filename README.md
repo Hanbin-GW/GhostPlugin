@@ -25,8 +25,7 @@ A comprehensive Exiled plugin for SCP: Secret Laboratory, featuring custom roles
 ### Development Process (In-Game Audio System Evolution):
 - LobbyMusic – Scene-based background music control (plays only in lobby, auto-stops when match starts).
 - Jukebox – Location-based audio playback with interactive control (on/off, summon jukebox).
-- MusicPlayback Module  – GhostPlugin  : Music Downloader Integration.•   Applied a Command–Service–Core layered design for scalability and maintainability.
-  - Demonstrated advanced proficiency in API design, system integration, and asynchronous programming.
+- MusicPlayback Module – Server-based real-time YouTube streaming and decoding, minimizing client load.
 ### Implementation Notes
 > Music playback is implemented via [AudioPlayerAPI](https://github.com/Killers0992/AudioPlayerApi)
 and `youtube-dl`/`yt-dlp` for YouTube URL support.
