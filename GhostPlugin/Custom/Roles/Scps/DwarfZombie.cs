@@ -13,7 +13,7 @@ namespace GhostPlugin.Custom.Roles.Scps
     [CustomRole(RoleTypeId.Scp0492)]
     public class DwarfZombie : CustomRole, ICustomRole
     {
-        public int Chance { get; set; } = 100;
+        public int Chance { get; set; } = 80;
         public override uint Id { get; set; } = 43;
         public override int MaxHealth { get; set; } = 200;
         public override string Name { get; set; } = "<color=#FF0000>Dwarf SCP-049-2</color>";

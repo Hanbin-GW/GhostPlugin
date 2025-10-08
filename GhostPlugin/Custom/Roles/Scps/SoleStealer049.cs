@@ -25,7 +25,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override string CustomInfo { get; set; } = "The Soul Stealer";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp049;
         public StartTeam StartTeam { get; set; } = StartTeam.Scp049;
-        public int Chance { get; set; } = 10;
+        public int Chance { get; set; } = 40;
         public override float SpawnChance { get; set; } = 0;
         private readonly Dictionary<Player, CoroutineHandle> _altKeyCooldowns = new Dictionary<Player, CoroutineHandle>();
         public float AltKeyCooldownDuration = 90f;
@@ -154,7 +154,8 @@ namespace GhostPlugin.Custom.Roles.Scps
                 // 특정 유저가 아닐 경우 아무 작업도 하지 않음
                 // 필요시 로그를 추가하거나 다른 동작을 추가할 수 있음
                 RoleTypeId roleReference = RoleTypeIdData();
-                player.Kill($"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 적용되지 않았습니다.");
+                player.Broadcast(5,$"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 해제될 예정입니다.");
+                //player.Kill($"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 적용되지 않았습니다.");
                 Log.Info($"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 적용되지 않았습니다.");
                 player.ShowHint($"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 적용되지 않았습니다.");
                 Timing.CallDelayed(5, () => player.Role.Set(roleReference));

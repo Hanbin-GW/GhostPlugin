@@ -25,7 +25,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         private readonly float _altKeyCooldownDuration = 80f;
 
         
-        public int Chance { get; set; } = 50;
+        public int Chance { get; set; } = 70;
         private void OnStalking(StalkingEventArgs ev)
         {
             if (Check(ev.Player))

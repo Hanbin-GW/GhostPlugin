@@ -1,4 +1,5 @@
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Scp049;
 using GhostPlugin.API;
@@ -16,6 +17,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override string Description { get; set; } = "평행세계 에서 온 세상을 멸망시킨 049 입니다.\n모든 공격이 즉사이며 적을 죽이고 나서 3초뒤에 좀비로 부활시킵니다.";
         public override string CustomInfo { get; set; } = "SCP 049";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp049;
+        public override SpawnProperties SpawnProperties { get; set; }
 
         private void OnAttacking(AttackingEventArgs ev)
         {
