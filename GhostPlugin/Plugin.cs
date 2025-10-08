@@ -163,6 +163,7 @@ namespace GhostPlugin
                         ci.EngineerPerks?.Register();
                         ci.OverkillPerks?.Register();
                         ci.EnhancedVisionPerks?.Register();
+                        ci.BetralPerks?.Register();
                     }
 
                     Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;

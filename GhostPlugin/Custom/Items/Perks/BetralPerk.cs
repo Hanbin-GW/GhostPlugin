@@ -3,7 +3,6 @@ using Exiled.API.Enums;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
-using GhostPlugin.Custom.Abilities.Passive;
 using PlayerRoles;
 using UnityEngine;
 
@@ -45,10 +44,20 @@ namespace GhostPlugin.Custom.Items.Perks
                 }
                 else if (ev.Player.Role == RoleTypeId.ClassD && ev.Player.LeadingTeam == LeadingTeam.ChaosInsurgency)
                 {
-                    
+                    ev.Player.Role.Set(RoleTypeId.FacilityGuard, RoleSpawnFlags.AssignInventory);
                 }
             }
         }
+        protected override void SubscribeEvents()
+        {
+            Exiled.Events.Handlers.Player.FlippingCoin += OnFlippingCoin;
+            base.SubscribeEvents();
+        }
 
+        protected override void UnsubscribeEvents()
+        {
+            Exiled.Events.Handlers.Player.FlippingCoin -= OnFlippingCoin;
+            base.UnsubscribeEvents();
+        }
     }
 }

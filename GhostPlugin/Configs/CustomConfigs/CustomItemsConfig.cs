@@ -244,6 +244,10 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new EnhancedVisionPerk()
         };
+        public List<BetralPerk> BetralPerks { get; private set; } = new List<BetralPerk>()
+        {
+            new BetralPerk()
+        };
         public List<LowGravityGrenadeItem> LowGravityGrenadeItems { get; private set; } = new List<LowGravityGrenadeItem>()
         {
             new LowGravityGrenadeItem()
