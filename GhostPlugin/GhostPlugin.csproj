@@ -210,6 +210,7 @@
         <Compile Include="Custom\Abilities\Passive\HealOnKill.cs" />
         <Compile Include="Custom\Abilities\Passive\Martyrdom.cs" />
         <Compile Include="Custom\Items\Armor\AssassinVest.cs" />
+        <Compile Include="Custom\Items\Armor\ActiveArmor.cs" />
         <Compile Include="Custom\Items\Armor\EnergyShildArmor.cs" />
         <Compile Include="Custom\Items\Armor\EODPadding.cs" />
         <Compile Include="Custom\Items\Armor\OverkillVest.cs" />

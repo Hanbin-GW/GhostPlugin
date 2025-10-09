@@ -300,6 +300,7 @@ namespace GhostPlugin.EventHandlers
             {
                 ev.IsAllowed = true; // 핵심: 다른 플러그인의 취소를 무력화
                 _printedReadyToEndOnce = true;
+                Timing.CallDelayed(5, () => Round.Restart());
                 Log.Info("[ClassicPlugin] Forced round end allowed (MTF victory).");
             }
 

@@ -248,6 +248,10 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new BetralPerk()
         };
+        public List<ActiveArmor> ActiveArmors { get; private set; } = new List<ActiveArmor>()
+        {
+            new ActiveArmor()
+        };
         public List<LowGravityGrenadeItem> LowGravityGrenadeItems { get; private set; } = new List<LowGravityGrenadeItem>()
         {
             new LowGravityGrenadeItem()
