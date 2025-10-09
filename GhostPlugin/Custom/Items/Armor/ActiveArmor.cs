@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Spawn;
 using Exiled.API.Features.Attributes;
@@ -19,7 +20,33 @@ namespace GhostPlugin.Custom.Items.Armor
         public override string Description { get; set; } = "적 처치 / 부상시 AHP 가 적용됩니다.";
         public override float Weight { get; set; } = 6f;
         public override ItemType Type { get; set; } = ItemType.ArmorCombat;
-        public override SpawnProperties SpawnProperties { get; set; }
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>()
+            {
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.InsideLczArmory,
+                    Chance = 50,
+                },
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.InsideGr18,
+                    Chance = 25,
+                },
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.Inside106Primary,
+                    Chance = 15,
+                },
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.InsideGr18Glass,
+                    Chance = 10
+                }
+            }
+        };
         public float RepairAmount { get; set; } = 25f;
         public float RepairOverTimeDuration { get; set; } = 10f;
         public float RepairOverTimeTickFrequency { get; set; } = 1.0f;
