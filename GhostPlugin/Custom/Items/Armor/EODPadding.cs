@@ -17,8 +17,9 @@ namespace GhostPlugin.Custom.Items.Armor
         public override uint Id { get; set; } = 11;
         public override string Name { get; set; } = "<color=#ffb145>EODPadding</color>";
         public override string Description { get; set; } = "폭발 및 화염 대미지의 80% 를 감소시킵니다.";
-        public override float Weight { get; set; }
-
+        public override float Weight { get; set; } = 16f;
+        public override int VestEfficacy { get; set; } = 80;
+        public override int HelmetEfficacy { get; set; } = 55;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
             Limit = 1,

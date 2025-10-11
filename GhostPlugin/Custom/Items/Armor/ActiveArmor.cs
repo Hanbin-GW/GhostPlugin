@@ -4,6 +4,7 @@ using Exiled.API.Features;
 using Exiled.API.Features.Spawn;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
+using Exiled.API.Structs;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using MEC;
@@ -17,9 +18,12 @@ namespace GhostPlugin.Custom.Items.Armor
         private readonly Dictionary<Player, CoroutineHandle> activeArmor = new ();
         public override uint Id { get; set; } = 69;
         public override string Name { get; set; } = "반응형 장갑판 주머니";
-        public override string Description { get; set; } = "적 처치 / 부상시 AHP 가 적용됩니다.";
+        public override string Description { get; set; } = "적 처치 / 부상시 AHP 가 적용됩니다.\n\n몸통방어: 50%\n머리방어: 60%";
         public override float Weight { get; set; } = 6f;
         public override ItemType Type { get; set; } = ItemType.ArmorCombat;
+        public override List<ArmorAmmoLimit> AmmoLimits { get; set; }
+        public override int VestEfficacy { get; set; } = 50;
+        public override int HelmetEfficacy { get; set; } = 60;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
@@ -55,13 +59,13 @@ namespace GhostPlugin.Custom.Items.Armor
         
         protected override void OnAcquired(Player player, Item item, bool displayMessage)
         {
-            player.AddAhp(25);
+            player.AddAhp(25, decay:0);
             base.OnAcquired(player, item, displayMessage);
         }
 
         protected override void OnDroppingItem(DroppingItemEventArgs ev)
         {
-            if (Check(ev.Player.CurrentItem))
+            if (Check(ev.Item))
             {
                 ev.Player.ArtificialHealth = 0;
             }
@@ -74,7 +78,7 @@ namespace GhostPlugin.Custom.Items.Armor
             {
                 if (HealOverTime)
                     activeArmor[ev.Attacker] = Timing.RunCoroutine(RepairOverTime(ev.Attacker));
-                ev.Attacker.AddAhp(RepairAmount);
+                ev.Attacker.AddAhp(RepairAmount, decay:0);
             }
         }
 
@@ -108,7 +112,8 @@ namespace GhostPlugin.Custom.Items.Armor
 
             for (int i = 0; i < tickCount; i++)
             {
-                player.AddAhp(tickAmount);
+                //player.AddAhp(tickAmount);
+                player.AddAhp(tickAmount, decay:0);
                 yield return Timing.WaitForSeconds(RepairOverTimeTickFrequency);
             }
         }
