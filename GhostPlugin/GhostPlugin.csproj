@@ -213,6 +213,7 @@
         <Compile Include="Custom\Items\Armor\ActiveArmor.cs" />
         <Compile Include="Custom\Items\Armor\EnergyShildArmor.cs" />
         <Compile Include="Custom\Items\Armor\EODPadding.cs" />
+        <Compile Include="Custom\Items\Armor\JuggernautArmor.cs" />
         <Compile Include="Custom\Items\Armor\OverkillVest.cs" />
         <Compile Include="Custom\Items\Etc\AmmoBox.cs" />
         <Compile Include="Custom\Items\Etc\AromorPlateKit.cs" />

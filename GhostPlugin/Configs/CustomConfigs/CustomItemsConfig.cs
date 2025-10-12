@@ -253,6 +253,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new ActiveArmor()
         };
+
+        public List<JuggernautArmor> JuggernautArmors { get; private set; } = new List<JuggernautArmor>()
+        {
+            new JuggernautArmor()
+        };
         public List<LowGravityGrenadeItem> LowGravityGrenadeItems { get; private set; } = new List<LowGravityGrenadeItem>()
         {
             new LowGravityGrenadeItem()
