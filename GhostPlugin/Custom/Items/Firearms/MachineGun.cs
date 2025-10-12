@@ -13,12 +13,12 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 50;
         public override string Name { get; set; } = "<color=#ffef94>RAAL MG</color>";
-        public override string Description { get; set; } = ".300 구경을 사용한 피해량과 반동이 약간 높은 기관총입니다.";
+        public override string Description { get; set; } = ".300 구경을 사용한 피해량이 약간 높은 기관총입니다.";
         public override float Weight { get; set; } = 6f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override float Damage { get; set; } = 28.5f;
         public override ItemType Type { get; set; } = ItemType.GunLogicer;
-        public override byte ClipSize { get; set; } = 75;
+        public override byte ClipSize { get; set; } = 55;
 
         protected override void OnShot(ShotEventArgs ev)
         {

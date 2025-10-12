@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using CustomPlayerEffects;
 using Exiled.API.Enums;
-using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
@@ -20,11 +18,11 @@ namespace GhostPlugin.Custom.Roles.Chaos
 
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosConscript;
 
-        public override int MaxHealth { get; set; } = 200;
+        public override int MaxHealth { get; set; } = 120;
 
         public override string Name { get; set; } = "<color=#008f1e>Juggernaut Chaos</color>";
 
-        public override string Description { get; set; } = "매우 해비하게 무장한 저거너트 혼돈의 반란입니다!";
+        public override string Description { get; set; } = "매우 해비하게 무장한 저거너트 혼돈의 반란입니다!\n저거너트 아머를 갖고있습니다!";
 
         public override string CustomInfo { get; set; } = "Juggernaut Chaos";
         public override bool DisplayCustomItemMessages { get; set; } = false;
@@ -43,27 +41,17 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override List<string> Inventory { get; set; } = new()
         {
             $"{ItemType.KeycardChaosInsurgency}",
+            $"{ItemType.GrenadeFlash}",
+            70.ToString(),
             $"{ItemType.GrenadeHE}",
-            $"{ItemType.ArmorHeavy}",
-            30.ToString(),
-            //21.ToString(),
-            32.ToString(),
+            $"{ItemType.GrenadeHE}",
+            5.ToString(),
             50.ToString(),
         };
 
         public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
         {
-            { AmmoType.Ammo44Cal, 12 },
             { AmmoType.Nato762 ,200},
         };
-
-        protected override void RoleAdded(Player player)
-        {
-            if (Check(player))
-            {
-                player.EnableEffect<AntiScp207>(intensity: 3);
-            }
-            base.RoleAdded(player);
-        }
     }
 }
