@@ -16,7 +16,7 @@ namespace GhostPlugin.Custom.Items.Armor
         public override ItemType Type { get; set; } = ItemType.ArmorHeavy;
         public override float Weight { get; set; } = 20f;
         public override SpawnProperties SpawnProperties { get; set; }
-        public override int VestEfficacy { get; set; } = 100;
+        public override int VestEfficacy { get; set; } = 95;
         public override int HelmetEfficacy { get; set; } = 80;
         public override float StaminaUseMultiplier { get; set; } = 1.6f;
 
