@@ -46,7 +46,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                 new ()
                 {
                     Chance = 40,
-                    Location = SpawnLocationType.Inside079Armory,
+                    Location = SpawnLocationType.InsideHidChamber,
                 },
             }
         };
@@ -59,7 +59,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         [Description(
             "If UseGrenadesToReload is true, this message will be shown to the player to be told to dry fire it")]
-        public string ReloadMessageDryfire { get; set; } = "재장전하려면 수류탄이 필요하며, ADATS를 공포 사격해야 합니다";
+        public string ReloadMessageDryfire { get; set; } = "재장전하려면 수류탄이 필요하며, ADATS를 공사격해야 합니다";
         
         public string FullForceSetMessage { get; set; } = "ADATS가 최대 화력 모드로 설정되었습니다";
         public string HalfForceSetMessage { get; set; } = "ADATS가 절반 화력 모드로 설정되었습니다";
