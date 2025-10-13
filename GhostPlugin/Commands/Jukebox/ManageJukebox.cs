@@ -54,7 +54,7 @@ namespace GhostPlugin.Commands.Jukebox
         };
         private static readonly List<string> VipUsers = new List<string>()
         {
-            "76561199133709329@steam"
+            //"76561199133709329@steam"
         };
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

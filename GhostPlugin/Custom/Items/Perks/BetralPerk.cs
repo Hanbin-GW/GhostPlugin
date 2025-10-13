@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Exiled.API.Enums;
+using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
@@ -8,12 +9,15 @@ using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Perks
 {
+    [CustomItem(ItemType.Coin)]
     public class BetralPerk : CustomItem
     {
         public override uint Id { get; set; } = 68;
         public override string Name { get; set; } = "배신 퍽";
         public override string Description { get; set; } = "외부진영과 평화적으로 협력 / 본인의 팀을 배신할수 있게 할수있는 장치입니다.";
         public override float Weight { get; set; } = 1f;
+        public override ItemType Type { get; set; } = ItemType.Coin;
+
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
             LockerSpawnPoints = new List<LockerSpawnPoint>()
@@ -40,11 +44,11 @@ namespace GhostPlugin.Custom.Items.Perks
             {
                 if (ev.Player.Role == RoleTypeId.Scientist && ev.Player.LeadingTeam == LeadingTeam.FacilityForces)
                 {
-                    ev.Player.Role.Set(RoleTypeId.ClassD, RoleSpawnFlags.AssignInventory);
+                    ev.Player.Role.Set(RoleTypeId.ChaosConscript);
                 }
                 else if (ev.Player.Role == RoleTypeId.ClassD && ev.Player.LeadingTeam == LeadingTeam.ChaosInsurgency)
                 {
-                    ev.Player.Role.Set(RoleTypeId.FacilityGuard, RoleSpawnFlags.AssignInventory);
+                    ev.Player.Role.Set(RoleTypeId.FacilityGuard);
                 }
             }
         }

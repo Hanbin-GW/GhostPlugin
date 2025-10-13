@@ -18,7 +18,7 @@ namespace GhostPlugin.Custom.Items.Armor
         public override SpawnProperties SpawnProperties { get; set; }
         public override int VestEfficacy { get; set; } = 95;
         public override int HelmetEfficacy { get; set; } = 80;
-        public override float StaminaUseMultiplier { get; set; } = 1.6f;
+        public override float StaminaUseMultiplier { get; set; } = 2f;
 
         public override List<ArmorAmmoLimit> AmmoLimits { get; set; } = new List<ArmorAmmoLimit>()
         {
