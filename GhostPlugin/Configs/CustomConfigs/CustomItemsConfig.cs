@@ -258,6 +258,13 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new JuggernautArmor()
         };
+<<<<<<< HEAD
+=======
+        public List<Rockety> rocketies { get; private set; } = new List<Rockety>()
+        {
+            new Rockety()
+        };
+>>>>>>> 30b41c4 (change a computer)
         public List<LowGravityGrenadeItem> LowGravityGrenadeItems { get; private set; } = new List<LowGravityGrenadeItem>()
         {
             new LowGravityGrenadeItem()

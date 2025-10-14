@@ -152,7 +152,11 @@ namespace GhostPlugin
                     ci.ActiveArmors?.Register();
                     ci.JuggernautArmors?.Register();
                     ci.LowGravityGrenadeItems?.Register();
+<<<<<<< HEAD
 
+=======
+                    ci.rocketies?.Register();
+>>>>>>> 30b41c4 (change a computer)
                     if (Config?.EnablePerkEvents == true)
                     {
                         PerkEventHandlers = new PerkEventHandlers(this);
