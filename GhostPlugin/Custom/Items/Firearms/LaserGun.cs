@@ -34,6 +34,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
+            Limit = 1,
             DynamicSpawnPoints = new List<DynamicSpawnPoint>
             {
                 new()
@@ -55,7 +56,6 @@ namespace GhostPlugin.Custom.Items.Firearms
             AttachmentName.LowcapMagJHP,
             AttachmentName.MuzzleBooster,
             AttachmentName.Foregrip,
-            AttachmentName.RecoilReducingStock,
         };
 
         public List<float> LaserColorRed { get; set; } = new List<float>()
