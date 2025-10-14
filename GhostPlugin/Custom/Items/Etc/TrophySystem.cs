@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 using System.Collections.Generic;
 using Exiled.API.Features.Attributes;
-=======
 using CustomRendering;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
 using Exiled.API.Features.Pickups;
->>>>>>> 30b41c4 (change a computer)
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
@@ -14,10 +11,7 @@ using GhostPlugin.Methods.MER;
 using InventorySystem.Items.ThrowableProjectiles;
 using MEC;
 using ProjectMER.Features.Objects;
-<<<<<<< HEAD
-=======
 using System.Collections.Generic;
->>>>>>> 30b41c4 (change a computer)
 using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Etc
@@ -100,10 +94,8 @@ namespace GhostPlugin.Custom.Items.Etc
                 foreach (var ghostlight in Object.FindObjectsOfType<Scp2176Projectile>())
                 {
                     if (Vector3.Distance(ghostlight.transform.position, center.transform.position) <= radius)
-                    {
-<<<<<<< HEAD
+                    { 
                         ghostlight.DestroySelf();
-=======
                         ghostlight.DestroySelf();
                         Scp244 scp244 = (Scp244)Item.Create(ItemType.SCP244a);
                         scp244.Scale = new Vector3(0.001f, 0.001f, 0.001f);
@@ -119,7 +111,6 @@ namespace GhostPlugin.Custom.Items.Etc
                                 pickup.Destroy();
                             });
                         });
->>>>>>> 30b41c4 (change a computer)
                     }
                 }
 
