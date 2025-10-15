@@ -63,7 +63,7 @@ namespace GhostPlugin
         public CustomItemHandler CustomItemHandler;
 
         public MusicEventHandlers MusicEventHandlers;
-        
+        private bool _fullUpgraded;
         //Audio Dir
         public readonly string AudioDirectory;
         public readonly string EffectDirectory;
@@ -82,9 +82,7 @@ namespace GhostPlugin
         public override void OnEnabled()
         {
             Instance = this;
-            Server.WaitingForPlayers += OnWaitingPlayers;
-            CurrentRunMode = RunModeResolver.Resolve();
-            Log.Info($"[GhostPlugin] Mode: {CurrentRunMode}, IP: {Exiled.API.Features.Server.IpAddress}");
+            Server.WaitingForPlayers += OnWaitingPlayer;
             Run("config.load", () =>
             {
                 if (Config == null) throw new NullReferenceException("Config is null");
@@ -98,7 +96,8 @@ namespace GhostPlugin
                 Log.Info($"[CHK] Classic null? {Config?.ServerEventsMasterConfig?.ClassicConfig == null}");
                 Log.Info($"[CHK] Ssss isEnabled? {Config?.SsssConfig?.IsEnabled}");
             });
-
+            CurrentRunMode = RunModeResolver.Resolve();
+            Log.Info($"[GhostPlugin] Mode: {CurrentRunMode}, IP: {Exiled.API.Features.Server.IpAddress}");
             Run("blackout.register", () =>
             {
                 if (Config?.ServerEventsMasterConfig?.BlackoutModeConfig?.IsEnabled == true && CurrentRunMode == RunMode.Limited)
@@ -370,7 +369,7 @@ namespace GhostPlugin
             ServerSpecificSettingsSync.ServerOnSettingValueReceived -= SsssEventHandler.OnSettingValueReceived;
             SsssEventHandler = null;
             Instance = null;
-            Server.WaitingForPlayers += OnWaitingPlayers;
+            Server.WaitingForPlayers += OnWaitingPlayer;
             base.OnDisabled();
         }
         
@@ -389,23 +388,197 @@ namespace GhostPlugin
                 Log.Info("음악 폴더가 이미 존재합니다.");
             }
         }
-        private void OnWaitingPlayers()
+
+        private void UpgradeToFullIfAllowed()
         {
-            Log.Info($"Your Ip is: {Exiled.API.Features.Server.IpAddress}");
-            
-            if (!Config.AllowedIP.Contains(Exiled.API.Features.Server.IpAddress))
+            if (_fullUpgraded) return;
+
+            var newMode = RunModeResolver.Resolve();
+            if (newMode != RunMode.Full) return;
+
+            CurrentRunMode = RunMode.Full;
+            _fullUpgraded = true;
+            Log.Warn("[GhostPlugin] Upgrading to FULL mode after IP resolved.");
+
+            // 이제 Run() 함수로 감싸서 단계별 로그 찍기
+            Run("items.register", () =>
             {
-                Log.Error("YOU ARE NOT ALLOWED TO USE THIS PLUGIN");
-                OnDisabled();
+                if (Config?.CustomItemsConfig?.IsEnabled == true && CustomItemHandler == null)
+                {
+                    CustomItemHandler = new CustomItemHandler(this);
+                    var ci = Config.CustomItemsConfig;
+                    ci.HackingDevices?.Register();
+                    ci.Morses?.Register();
+                    ci.ShockwaveGuns?.Register();
+                    ci.FtacReacon?.Register();
+                    ci.PoisonGuns?.Register();
+                    ci.ClusterGrenades?.Register();
+                    ci.TripleFlashGrenades?.Register();
+                    ci.StunGrenades?.Register();
+                    ci.Stims?.Register();
+                    ci.BattleRages?.Register();
+                    ci.Svds?.Register();
+                    ci.EodPaddings?.Register();
+                    ci.SmokeGrenades?.Register();
+                    ci.GrenadeLaunchers?.Register();
+                    ci.ParalyzeRifes?.Register();
+                    ci.PlasmaEmitters?.Register();
+                    ci.PlasmaShockwaveEmitters?.Register();
+                    ci.PhotonCannons?.Register();
+                    ci.ArmorPlateKits?.Register();
+                    ci.ImpactGrenades?.Register();
+                    ci.StickyGrenades?.Register();
+                    ci.PlasmaShotguns?.Register();
+                    ci.Bolters?.Register();
+                    ci.AcidShooters?.Register();
+                    ci.C4s?.Register();
+                    ci.SpikeJailbirds?.Register();
+                    ci.ReviveKits?.Register();
+                    ci.PoisonGrenades?.Register();
+                    ci.LaserCannons?.Register();
+                    ci.Anti173s?.Register();
+                    ci.Basilisks?.Register();
+                    ci.AmmoBoxes?.Register();
+                    ci.TrophySystems?.Register();
+                    ci.OverkillVests?.Register();
+                    ci.PlasmaBlasters?.Register();
+                    ci.MachineGuns?.Register();
+                    ci.Riveters?.Register();
+                    ci.LaserGuns?.Register();
+                    ci.MorsReworks?.Register();
+                    ci.PortableEnergyShilds?.Register();
+                    ci.M16s?.Register();
+                    ci.ActiveArmors?.Register();
+                    ci.JuggernautArmors?.Register();
+                    ci.LowGravityGrenadeItems?.Register();
+                    ci.rocketies?.Register();
+                    // ... 기타 아이템들
+                    if (Config.EnablePerkEvents && PerkEventHandlers == null)
+                    {
+                        PerkEventHandlers = new PerkEventHandlers(this);
+                        PerkEventHandlers.RegisterEvents();
+                        ci.QuickfixPerks?.Register();
+                        ci.FocusPerks?.Register();
+                        ci.BoostOnKillPerks?.Register();
+                        ci.MartydomPerks?.Register();
+                        ci.EngineerPerks?.Register();
+                        ci.OverkillPerks?.Register();
+                        ci.EnhancedVisionPerks?.Register();
+                        ci.BetralPerks?.Register();
+                    }
+
+                    Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
+                }
+            });
+
+            Run("roles.register", () =>
+            {
+                if (Config?.CustomRolesConfig?.IsEnabled == true && CustomRoleHandler == null)
+                {
+                    CustomRoleHandler = new CustomRoleHandler(this);
+                    var cr = Config.CustomRolesConfig;
+                    cr.ChiefScientists?.Register();
+                    cr.CiPhantoms?.Register();
+                    cr.DAlphas?.Register();
+                    cr.Tanker106S?.Register();
+                    cr.Vipers?.Register();
+                    cr.Jailbirdmans?.Register();
+                    cr.Administrators?.Register();
+                    cr.FedoraAgents?.Register();
+                    cr.Elites?.Register();
+                    cr.JuggernautChaosList?.Register();
+                    cr.Scp682s?.Register();
+                    cr.SoleStealer049s?.Register();
+                    cr.Scp049Aps?.Register();
+                    cr.LuckyGuards?.Register();
+                    cr.Gunslingers?.Register();
+                    cr.Demolitionists?.Register();
+                    cr.Dwarves?.Register();
+                    cr.SpyAgents?.Register();
+                    cr.Enforcers?.Register();
+                    cr.Strategists?.Register();
+                    cr.Quartermasters?.Register();
+                    cr.Medics?.Register();
+                    cr.AdvancedMtfs?.Register();
+                    cr.Hunters?.Register();
+                    cr.HugoBosses?.Register();
+                    cr.Trackers?.Register();
+                    cr.Directors?.Register();
+                    cr.DwarfZombies?.Register();
+                    cr.ExplosiveZombies?.Register();
+                    cr.EodSoldierZombies?.Register();
+                    cr.ShockWaveZombies?.Register();
+                    cr.ReinforceZombies?.Register();
+                    Server.RoundStarted += CustomRoleHandler.OnRoundStarted;
+                    Server.RespawningTeam += CustomRoleHandler.OnRespawningTeam;
+                    Scp049Events.FinishingRecall += CustomRoleHandler.FinishingRecall;
+                }
+            });
+
+            Run("abilities.register", () =>
+            {
+                if (Config?.CustomRolesAbilitiesConfig?.IsEnabled == true)
+                    CustomAbility.RegisterAbilities(false);
+            });
+
+            Run("music.register", () =>
+            {
+                if (Config?.MusicConfig?.OnEnabled == true)
+                {
+                    string tmpAudio =
+                        Environment.OSVersion.Platform == PlatformID.Win32NT
+                            ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                                "EXILED", "Plugins", "tmp-audio")
+                            : "/home/hanbin/steamcmd/scpsl/tmp-audio";
+                    if (!Directory.Exists(tmpAudio)) Directory.CreateDirectory(tmpAudio);
+
+                    // 인스턴스 기반일 때
+                    MusicEventHandlers = new MusicEventHandlers(this, tmpAudio);
+                    MusicEventHandlers.RegisterEvents();
+                }
+            });
+
+            Run("fpsmap.register", () =>
+            {
+                if (Config?.ServerEventsMasterConfig?.ClassicConfig?.IsEnableFPSmap == true &&
+                    CasualFPSModeHandler == null)
+                {
+                    CasualFPSModeHandler = new CasualFPSModeHandler(this);
+                    CasualFPSModeHandler.RegisterEvents();
+                }
+            });
+
+            Run("ssss.register", () =>
+            {
+                if (Config?.SsssConfig?.IsEnabled == true && SsssEventHandler == null)
+                {
+                    SsssEventHandler = new SsssEventHandler(this);
+                    Server.RoundStarted += SsssEventHandler.OnRoundStarted;
+                    Exiled.Events.Handlers.Player.Verified += SsssEventHandler.OnVerified;
+                    ServerSpecificSettingsSync.ServerOnSettingValueReceived += SsssEventHandler.OnSettingValueReceived;
+                }
+            });
+
+            Log.Info("[GhostPlugin] All FULL features registered successfully!");
+        }
+
+        private void OnWaitingPlayer()
+        {
+            Log.Send($"Your IP is: {Exiled.API.Features.Server.IpAddress}", LogLevel.Info, ConsoleColor.Yellow);
+
+            // 블랙리스트 서버는 셧다운
+            if (Config.BlackListedIP.Contains(Exiled.API.Features.Server.IpAddress))
+            {
+                Log.Send("BLACKLISTED SERVER. Shutting down in 10 seconds...", LogLevel.Error, ConsoleColor.DarkRed);
+                Timing.CallDelayed(10, Exiled.API.Features.Server.Shutdown);
                 return;
             }
 
-            if (Config.BlackListedIP.Contains(Exiled.API.Features.Server.IpAddress))
-            {
-                Log.Send("YOU ARE BLACKLISTED IN GHOST SERVER\nTHE SERVER WILL SHUTDOWN 10 SECOUNDS LATER", LogLevel.Error, ConsoleColor.DarkRed);
-                OnDisabled();
-                Timing.CallDelayed(10, Exiled.API.Features.Server.Shutdown);
-            }
+            // 허용된 IP면 Full로 승격
+            UpgradeToFullIfAllowed();
+
+            if (!Config.AllowedIP.Contains(Exiled.API.Features.Server.IpAddress))
+                Log.Warn("NOT ALLOWED IP → Running Classic-only (Limited) mode.");
         }
     }
 }

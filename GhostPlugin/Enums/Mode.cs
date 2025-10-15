@@ -26,15 +26,21 @@ namespace GhostPlugin.Enums
         public static RunMode Resolve()
         {
             var ip = Exiled.API.Features.Server.IpAddress;
+            var cfg = global::GhostPlugin.Plugin.Instance?.Config;
 
-            if (Plugin.Instance.Config.BlackListedIP.Contains(ip))
-                return RunMode.Blocked;
+            if (cfg == null) return RunMode.Limited;
 
-            if (Plugin.Instance.Config.AllowedIP.Contains(ip))
-                return RunMode.Full;
+            if (string.IsNullOrWhiteSpace(ip))
+            {
+                Exiled.API.Features.Log.Warn("[GhostPlugin] IP not resolved yet; defaulting to Limited for now.");
+                return RunMode.Limited;
+            }
 
-            // Allowed도 아니고 Blacklist도 아니면 Classic만
+            if (cfg.BlackListedIP.Contains(ip)) return RunMode.Blocked;
+            if (cfg.AllowedIP.Contains(ip))     return RunMode.Full;
+
             return RunMode.Limited;
         }
+
     }
 }
