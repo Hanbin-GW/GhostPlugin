@@ -11,6 +11,8 @@ using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
 using GhostPlugin.Configs;
 using GhostPlugin.EventHandlers;
+using MEC;
+using GhostPlugin.Enums;
 //using HarmonyLib;
 using Scp049Events = Exiled.Events.Handlers.Scp049;
 using ProjectMER.Features.Objects;
@@ -29,9 +31,11 @@ namespace GhostPlugin
         /// Speakers List
         /// </summary>
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
+        public RunMode CurrentRunMode { get; private set; } 
+
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(7, 4, 3);
+        public override Version Version { get; } = new(7, 6, 0);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
@@ -78,14 +82,15 @@ namespace GhostPlugin
         public override void OnEnabled()
         {
             Instance = this;
-
+            Server.WaitingForPlayers += OnWaitingPlayers;
+            CurrentRunMode = RunModeResolver.Resolve();
+            Log.Info($"[GhostPlugin] Mode: {CurrentRunMode}, IP: {Exiled.API.Features.Server.IpAddress}");
             Run("config.load", () =>
             {
                 if (Config == null) throw new NullReferenceException("Config is null");
                 Config.LoadConfigs();
                 if (Config.SsssConfig == null) throw new NullReferenceException("SsssConfig is null");
-                Log.Send($"[Exiled.API] {Name} is enabled By {Author} | Version: {Version}", LogLevel.Info,
-                    ConsoleColor.DarkRed);
+                //Log.Send($"[Exiled.API] {Name} is enabled By {Author} | Version: {Version}", LogLevel.Info, ConsoleColor.DarkRed);
 
                 Log.Info($"[CHK] Blackout null? {Config?.ServerEventsMasterConfig?.BlackoutModeConfig == null}");
                 Log.Info($"[CHK] Music null? {Config?.MusicConfig == null}");
@@ -96,13 +101,13 @@ namespace GhostPlugin
 
             Run("blackout.register", () =>
             {
-                if (Config?.ServerEventsMasterConfig?.BlackoutModeConfig?.IsEnabled == true)
+                if (Config?.ServerEventsMasterConfig?.BlackoutModeConfig?.IsEnabled == true && CurrentRunMode == RunMode.Limited)
                     BlackoutMod.RegisterEvents();
             });
 
             Run("items.register", () =>
             {
-                if (Config?.CustomItemsConfig?.IsEnabled == true)
+                if (Config?.CustomItemsConfig?.IsEnabled == true && CurrentRunMode == RunMode.Full)
                 {
                     CustomItemHandler = new CustomItemHandler(this);
 
@@ -154,7 +159,7 @@ namespace GhostPlugin
                     ci.LowGravityGrenadeItems?.Register();
                     ci.rocketies?.Register();
 
-                    if (Config?.EnablePerkEvents == true)
+                    if (Config?.EnablePerkEvents == true && CurrentRunMode == RunMode.Full)
                     {
                         PerkEventHandlers = new PerkEventHandlers(this);
                         PerkEventHandlers.RegisterEvents();
@@ -173,14 +178,14 @@ namespace GhostPlugin
             });
             Run("classic.register", () =>
             {
-                if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled)
+                if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled && CurrentRunMode == RunMode.Limited)
                 {
                     ClassicPlugin.RegisterEvents();
                 }
             });
             Run("roles.register", () =>
             {
-                if (Config?.CustomRolesConfig?.IsEnabled == true)
+                if (Config?.CustomRolesConfig?.IsEnabled == true && CurrentRunMode == RunMode.Full)
                 {
                     CustomRoleHandler = new CustomRoleHandler(this);
 
@@ -250,13 +255,16 @@ namespace GhostPlugin
 
             Run("abilities.register", () =>
             {
-                if (Config?.CustomRolesAbilitiesConfig?.IsEnabled == true)
+                if (Config?.CustomRolesAbilitiesConfig?.IsEnabled == true && CurrentRunMode == RunMode.Full)
                     CustomAbility.RegisterAbilities(false);
             });
+            
+            if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled && CurrentRunMode == RunMode.Limited) {NoobSupport.RegisterEvents();}
+            if (Config.Scp914Config.IsEnabled && CurrentRunMode == RunMode.Limited) {Scp914Handler.RegisterEvents();}
 
             Run("music.register", () =>
             {
-                if (Config?.MusicConfig?.OnEnabled == true)
+                if (Config?.MusicConfig?.OnEnabled == true && CurrentRunMode == RunMode.Full)
                 {
                     string tmpAudio =
                         Environment.OSVersion.Platform == PlatformID.Win32NT
@@ -273,7 +281,7 @@ namespace GhostPlugin
 
             Run("ssss.register", () =>
             {
-                if (Config?.SsssConfig?.IsEnabled == true)
+                if (Config?.SsssConfig?.IsEnabled == true && CurrentRunMode == RunMode.Full)
                 {
                     SsssEventHandler = new SsssEventHandler(this);
                     Server.RoundStarted += SsssEventHandler.OnRoundStarted;
@@ -284,7 +292,7 @@ namespace GhostPlugin
 
             Run("fpsmap.register", () =>
             {
-                if (Config?.ServerEventsMasterConfig?.ClassicConfig?.IsEnableFPSmap == true)
+                if (Config?.ServerEventsMasterConfig?.ClassicConfig?.IsEnableFPSmap == true && CurrentRunMode == RunMode.Full)
                 {
                     CasualFPSModeHandler = new CasualFPSModeHandler(this);
                     CasualFPSModeHandler.RegisterEvents();
@@ -298,10 +306,10 @@ namespace GhostPlugin
         {
             
             //BlackOut mode
-            if(Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled){BlackoutMod.UnregisterEvents();}
+            if(Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled && CurrentRunMode == RunMode.Limited){BlackoutMod.UnregisterEvents();}
             
             //CustItem
-            if (Config.CustomItemsConfig.IsEnabled)
+            if (Config.CustomItemsConfig.IsEnabled && CurrentRunMode == RunMode.Full)
             {
                 CustomItem.UnregisterItems();
                 Exiled.Events.Handlers.Item.InspectingItem -= CustomItemHandler.OnInspectingItem;
@@ -309,13 +317,13 @@ namespace GhostPlugin
             }
             
             //ClassicPlugin
-            if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled)
+            if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled && CurrentRunMode == RunMode.Limited)
             {
                 ClassicPlugin.UnregisterEvents();
             }
             
             //Noob Support
-            if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled) {NoobSupport.UnregisterEvents();}
+            if (Config.ServerEventsMasterConfig.NoobSupportConfig.OnEnabled && CurrentRunMode == RunMode.Limited) {NoobSupport.UnregisterEvents();}
             //Scp914 Event
             if (Config.Scp914Config.IsEnabled) {Scp914Handler.UnregisterEvents();}
             //Music Event
@@ -342,7 +350,7 @@ namespace GhostPlugin
                 _myCustomKeyBind = new MyCustomKeyBind();
                 _myCustomKeyBind.Deactivate();
             }*/
-            if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap)
+            if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsEnableFPSmap && CurrentRunMode == RunMode.Full)
             {
                 CasualFPSModeHandler.UnregisterEvents();
                 CasualFPSModeHandler = null;
@@ -350,7 +358,7 @@ namespace GhostPlugin
             
             
             //PerkEventHandler
-            if(Plugin.Instance?.Config.EnablePerkEvents == true)
+            if(Plugin.Instance?.Config.EnablePerkEvents == true && CurrentRunMode == RunMode.Full)
             {
                 PerkEventHandlers.UnregisterEvents();
                 PerkEventHandlers = null; 
@@ -362,6 +370,7 @@ namespace GhostPlugin
             ServerSpecificSettingsSync.ServerOnSettingValueReceived -= SsssEventHandler.OnSettingValueReceived;
             SsssEventHandler = null;
             Instance = null;
+            Server.WaitingForPlayers += OnWaitingPlayers;
             base.OnDisabled();
         }
         
@@ -378,6 +387,24 @@ namespace GhostPlugin
             else
             {
                 Log.Info("음악 폴더가 이미 존재합니다.");
+            }
+        }
+        private void OnWaitingPlayers()
+        {
+            Log.Info($"Your Ip is: {Exiled.API.Features.Server.IpAddress}");
+            
+            if (!Config.AllowedIP.Contains(Exiled.API.Features.Server.IpAddress))
+            {
+                Log.Error("YOU ARE NOT ALLOWED TO USE THIS PLUGIN");
+                OnDisabled();
+                return;
+            }
+
+            if (Config.BlackListedIP.Contains(Exiled.API.Features.Server.IpAddress))
+            {
+                Log.Send("YOU ARE BLACKLISTED IN GHOST SERVER\nTHE SERVER WILL SHUTDOWN 10 SECOUNDS LATER", LogLevel.Error, ConsoleColor.DarkRed);
+                OnDisabled();
+                Timing.CallDelayed(10, Exiled.API.Features.Server.Shutdown);
             }
         }
     }

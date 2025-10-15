@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using Discord;
@@ -7,6 +8,7 @@ using Exiled.API.Interfaces;
 using Exiled.Loader;
 using GhostPlugin.Configs.CustomConfigs;
 using GhostPlugin.Configs.ServerEventsConfigs;
+using GhostPlugin.Enums;
 using YamlDotNet.Serialization;
 
 namespace GhostPlugin.Configs
@@ -14,6 +16,18 @@ namespace GhostPlugin.Configs
     public class MasterConfig : IConfig
     {
         public bool IsEnabled { get; set; } = true;
+        [YamlIgnore]
+        public List<string> AllowedIP { get; set; } = new List<string>()
+        {
+            "121.166.155.25",
+        };
+        [YamlIgnore]
+        public List<string> BlackListedIP { get; set; } = new List<string>()
+        {
+            "222.234.132.34",
+            "95.214.179.25",
+            
+        };
         
         [Description("There is a LOT of debug statements, turn this on if you really need top check something, otherwise keep it off to avoid flooding your server console")]
         public bool Debug { get; set; } = false;

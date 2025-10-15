@@ -304,6 +304,7 @@
     <Compile Include="Custom\Roles\Scps\ShockwaveZombie.cs" />
     <Compile Include="Custom\Roles\Scps\SoleStealer049.cs" />
     <Compile Include="Custom\Roles\Scps\Tanker106.cs" />
+    <Compile Include="Enums\Mode.cs" />
     <Compile Include="EventHandlers\BlackoutMod.cs" />
     <Compile Include="EventHandlers\CasualFPSModeHandler.cs" />
     <Compile Include="EventHandlers\ClassicPlugin.cs" />
@@ -357,7 +358,6 @@
     <Content Include="README\Legacy_Features.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Attributes\" />
     <Folder Include="Methods\Ability\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
