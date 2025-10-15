@@ -7,6 +7,8 @@ using Exiled.API.Features.Items;
 using Exiled.API.Structs;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using MEC;
+using PlayerRoles.FirstPersonControl;
 using PlayerStatsSystem;
 
 namespace GhostPlugin.Custom.Items.Armor
@@ -19,58 +21,99 @@ namespace GhostPlugin.Custom.Items.Armor
         public override string Description { get; set; } = "무적에 가까운 고강도 갑옷입니다!";
         public override float Weight { get; set; } = 20f;
         public override SpawnProperties SpawnProperties { get; set; }
-        public override int VestEfficacy { get; set; } = 95;
-        public override int HelmetEfficacy { get; set; } = 80;
-        public override float StaminaUseMultiplier { get; set; } = 2f;
-        //public override int VestEfficacy { get; set; } = 95;
-        //public override int HelmetEfficacy { get; set; } = 80;
-        //public override float StaminaUseMultiplier { get; set; } = 2f;
+        private readonly Dictionary<Player, CoroutineHandle> _drainRoutines = new();
+        private const float ExtraDrainPerSecond = 0.8f;
+        private const float Tick = 0.2f;
+        
+        private void OnDied(Exiled.Events.EventArgs.Player.DiedEventArgs ev) => StopDrain(ev.Player);
+        private void OnLeft(Exiled.Events.EventArgs.Player.LeftEventArgs ev) => StopDrain(ev.Player);
+        private void OnChangingRole(Exiled.Events.EventArgs.Player.ChangingRoleEventArgs ev) => StopDrain(ev.Player);
+        
+        protected override void OnAcquired(Player player, Item item, bool displayMessage)
+        {
+            base.OnAcquired(player, item, displayMessage);
+        }
+
+        private void OnChangingMoveState(ChangingMoveStateEventArgs ev)
+        {
+            if (Check(ev.Player.CurrentArmor) && ev.NewState == PlayerMovementState.Sprinting)
+            {
+                StartDrain(ev.Player);
+            }
+            else
+            {
+                StopDrain(ev.Player);
+            }
+        }
+
+        private void StartDrain(Player player)
+        {
+            if (_drainRoutines.ContainsKey(player))
+                return;
+
+            var handle = Timing.RunCoroutine(DrainRoutine(player));
+            _drainRoutines[player] = handle;
+        }
+
+        private IEnumerator<float> DrainRoutine(Player player)
+        {
+            var stamina = player.GetModule<StaminaStat>(); // PlayerStatsSystem
+
+            while (player.IsAlive && Check(player.CurrentArmor))
+            {
+                // 달리는 동안에만 추가 드레인
+                if (player.IsUsingStamina)
+                {
+                    // Tick마다 깎을 양 = (초당깎는양 / 1초) * Tick
+                    float delta = (ExtraDrainPerSecond * Tick);
+                    stamina.ModifyAmount(-delta);
+                }
+
+                yield return Timing.WaitForSeconds(Tick);
+            }
+
+            StopDrain(player);
+        }
+
+        private void StopDrain(Player player)
+        {
+            if (_drainRoutines.TryGetValue(player, out var handle))
+            {
+                Timing.KillCoroutines(handle);
+                _drainRoutines.Remove(player);
+            }
+        }
         private void OnHurting(HurtingEventArgs ev)
         {
             if (Check(ev.Player.CurrentArmor))
             {
                 if (ev.Player.ArtificialHealth != 0)
+                {
+                    ev.Player.ArtificialHealth -= ev.Amount;
                     ev.Amount = 0;
+                }
                 else
                     ev.Amount *= 0.15f;
             }
         }
-
-        protected override void OnAcquired(Player player, Item item, bool displayMessage)
-        {
-            if (!Check(player.CurrentArmor))
-                return;
-            var stamina = player.GetModule<StaminaStat>();
-            stamina.ModifyAmount(0.4f);
-            base.OnAcquired(player, item, displayMessage);
-        }
-
-        protected override void OnDroppingItem(DroppingItemEventArgs ev)
-        {
-            if (!Check(ev.Item))
-                return;
-            var stamina = ev.Player.GetModule<StaminaStat>();
-            stamina.ModifyAmount(0.05f);
-            base.OnDroppingItem(ev);
-        }
-
         protected override void SubscribeEvents()
         {
+            Exiled.Events.Handlers.Player.ChangingMoveState += OnChangingMoveState;
             Exiled.Events.Handlers.Player.Hurting += OnHurting;
+            Exiled.Events.Handlers.Player.Died += OnDied;
+            Exiled.Events.Handlers.Player.Left += OnLeft;
+            Exiled.Events.Handlers.Player.ChangingRole += OnChangingRole;
             base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
         {
+            Exiled.Events.Handlers.Player.ChangingMoveState -= OnChangingMoveState;
             Exiled.Events.Handlers.Player.Hurting -= OnHurting;
+            Exiled.Events.Handlers.Player.Died -= OnDied;
+            Exiled.Events.Handlers.Player.Left -= OnLeft;
+            Exiled.Events.Handlers.Player.ChangingRole -= OnChangingRole;
             base.UnsubscribeEvents();
         }
-        /*public override List<ArmorAmmoLimit> AmmoLimits { get; set; } = new List<ArmorAmmoLimit>()
-        {
-            new ArmorAmmoLimit(AmmoType.Nato9, 300),
-            new ArmorAmmoLimit(AmmoType.Nato556, 250),
-            new ArmorAmmoLimit(AmmoType.Nato762, 250),
-        };
-        };*/
     }
 }

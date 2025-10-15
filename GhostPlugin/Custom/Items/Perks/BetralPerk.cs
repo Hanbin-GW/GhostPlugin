@@ -44,11 +44,11 @@ namespace GhostPlugin.Custom.Items.Perks
             {
                 if (ev.Player.Role == RoleTypeId.Scientist && ev.Player.LeadingTeam == LeadingTeam.FacilityForces)
                 {
-                    ev.Player.Role.Set(RoleTypeId.ChaosConscript);
+                    ev.Player.Role.Set(RoleTypeId.ChaosConscript, RoleSpawnFlags.UseSpawnpoint);
                 }
                 else if (ev.Player.Role == RoleTypeId.ClassD && ev.Player.LeadingTeam == LeadingTeam.ChaosInsurgency)
                 {
-                    ev.Player.Role.Set(RoleTypeId.FacilityGuard);
+                    ev.Player.Role.Set(RoleTypeId.FacilityGuard, RoleSpawnFlags.UseSpawnpoint);
                 }
             }
         }
