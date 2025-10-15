@@ -18,11 +18,11 @@ namespace GhostPlugin.Custom.Items.Armor
         public override ItemType Type { get; set; } = ItemType.ArmorHeavy;
         public override uint Id { get; set; } = 70;
         public override string Name { get; set; } = "Juggernaut Armor";
-        public override string Description { get; set; } = "무적에 가까운 고강도 갑옷입니다!";
-        public override float Weight { get; set; } = 20f;
+        public override string Description { get; set; } = "무적에 가까운 고강도 갑옷입니다!\n기동성에 아주 심각한 저하를 만들지만, 대부분의 피해를 감소시킵니다!";
+        public override float Weight { get; set; } = 30f;
         public override SpawnProperties SpawnProperties { get; set; }
         private readonly Dictionary<Player, CoroutineHandle> _drainRoutines = new();
-        private const float ExtraDrainPerSecond = 0.8f;
+        private const float ExtraDrainPerSecond = 0.5f;
         private const float Tick = 0.2f;
         
         private void OnDied(Exiled.Events.EventArgs.Player.DiedEventArgs ev) => StopDrain(ev.Player);

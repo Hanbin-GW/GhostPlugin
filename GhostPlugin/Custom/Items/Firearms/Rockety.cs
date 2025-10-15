@@ -18,7 +18,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 71;
         public override string Name { get; set; } = "HE-1";
-        public override string Description { get; set; } = "3번 사용할수 있는 로캣포입니다!";
+        public override string Description { get; set; } = "3번 사용할수 있는 사정거리가 넓은 로캣포입니다!\n(폭탄이 포물선이 아닌 직진으로 갑니다)";
         public override float Weight { get; set; } = 21f;
         public override ItemType Type { get; set; } = ItemType.GunLogicer;
         public override SpawnProperties SpawnProperties { get; set; }
@@ -31,9 +31,9 @@ namespace GhostPlugin.Custom.Items.Firearms
         {
             Log.Debug($"VVUP Custom Items: Grenade Launcher Impact: {ev.Player.Nickname} reloaded the Grenade Launcher Impact setting Magazine Ammo to {ClipSize}.");
             ev.Firearm.MagazineAmmo = ClipSize;
+            --Count;
             if (Count == 0)
                 ev.Item.Destroy();
-            --Count;
         }
 
         protected override void OnShooting(ShootingEventArgs ev)
