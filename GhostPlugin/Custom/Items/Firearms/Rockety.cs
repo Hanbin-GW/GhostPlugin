@@ -1,4 +1,5 @@
-﻿using Exiled.API.Enums;
+﻿using System.Collections.Generic;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Components;
@@ -20,8 +21,40 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Name { get; set; } = "HE-1";
         public override string Description { get; set; } = "3번 사용할수 있는 사정거리가 넓은 로캣포입니다!\n(폭탄이 포물선이 아닌 직진으로 갑니다)";
         public override float Weight { get; set; } = 21f;
+        [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GunLogicer;
-        public override SpawnProperties SpawnProperties { get; set; }
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>()
+            {
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.Inside127Lab,
+                    Chance = 20,
+                },
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.Inside106Primary,
+                    Chance = 20,
+                },
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.Inside096,
+                    Chance = 25,
+                },
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.InsideSurfaceNuke,
+                    Chance = 15,
+                },
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.InsideHidChamber,
+                    Chance = 20
+                }
+            }
+        };
         public int Count = 3;
         public override byte ClipSize { get; set; } = 1;
         [Description("Sometimes you're able to get more than what ClipSize is set to when reloading, if this is set to true, it will check and correct the ammo count")]
@@ -29,11 +62,23 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         protected override void OnReloaded(ReloadedWeaponEventArgs ev)
         {
-            Log.Debug($"VVUP Custom Items: Grenade Launcher Impact: {ev.Player.Nickname} reloaded the Grenade Launcher Impact setting Magazine Ammo to {ClipSize}.");
+            Log.Debug($"GP Custom Items: Grenade Launcher Impact: {ev.Player.Nickname} reloaded the Grenade Launcher Impact setting Magazine Ammo to {ClipSize}.");
             ev.Firearm.MagazineAmmo = ClipSize;
             --Count;
-            if (Count == 0)
+            if (Count <= 0)
                 ev.Item.Destroy();
+        } 
+        
+        protected override void OnReloading(ReloadingWeaponEventArgs ev)
+        {
+            if (Count == 0)
+            {
+                ev.IsAllowed = false;
+            }
+            else
+            {
+                ev.IsAllowed = true;
+            }
         }
 
         protected override void OnShooting(ShootingEventArgs ev)
@@ -43,7 +88,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             {
                 if (firearm.MagazineAmmo > ClipSize && FixOverClipSizeBug)
                 {
-                    Log.Debug("VVUP Custom Items: Grenade Launcher Impact: Fixing ammo count due to over clip size bug");
+                    Log.Debug("GP Custom Items: Grenade Launcher Impact: Fixing ammo count due to over clip size bug");
                     firearm.MagazineAmmo = ClipSize;
                 }
                 firearm.MagazineAmmo -= 1;
