@@ -17,12 +17,12 @@ namespace GhostPlugin.Custom.Items.Firearms
     public class Rockety : CustomWeapon
     {
         public override uint Id { get; set; } = 71;
-        public override string Name { get; set; } = "test";
-        public override string Description { get; set; } = "test";
+        public override string Name { get; set; } = "HE-1";
+        public override string Description { get; set; } = "3번 사용할수 있는 로캣포입니다!";
         public override float Weight { get; set; } = 21f;
         public override ItemType Type { get; set; } = ItemType.GunLogicer;
         public override SpawnProperties SpawnProperties { get; set; }
-        public int count = 3;
+        public int Count = 3;
         public override byte ClipSize { get; set; } = 1;
         [Description("Sometimes you're able to get more than what ClipSize is set to when reloading, if this is set to true, it will check and correct the ammo count")]
         public bool FixOverClipSizeBug { get; set; } = true;
@@ -31,9 +31,9 @@ namespace GhostPlugin.Custom.Items.Firearms
         {
             Log.Debug($"VVUP Custom Items: Grenade Launcher Impact: {ev.Player.Nickname} reloaded the Grenade Launcher Impact setting Magazine Ammo to {ClipSize}.");
             ev.Firearm.MagazineAmmo = ClipSize;
-            if (count == 0)
+            if (Count == 0)
                 ev.Item.Destroy();
-            count --;
+            --Count;
         }
 
         protected override void OnShooting(ShootingEventArgs ev)
