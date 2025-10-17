@@ -8,6 +8,8 @@ using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using InventorySystem.Items.ThrowableProjectiles;
 using System.ComponentModel;
+using Exiled.API.Features.Items;
+using GhostPlugin.Custom.Items.MonoBehavior;
 using UnityEngine;
 using YamlDotNet.Serialization;
 using Firearm = Exiled.API.Features.Items.Firearm;
@@ -55,48 +57,69 @@ namespace GhostPlugin.Custom.Items.Firearms
                 }
             }
         };
-        public int Count = 3;
+        private readonly Dictionary<uint, int> _charges = new();
+        private const int MaxCharges = 3;
         public override byte ClipSize { get; set; } = 1;
         [Description("Sometimes you're able to get more than what ClipSize is set to when reloading, if this is set to true, it will check and correct the ammo count")]
         public bool FixOverClipSizeBug { get; set; } = true;
 
+        protected override void OnAcquired(Player player, Item item, bool displayMessage)
+        {
+            _charges[item.Serial] = MaxCharges;
+            base.OnAcquired(player, item, displayMessage);
+        }
+        private int GetCharges(Item item) =>
+            (item != null && _charges.TryGetValue(item.Serial, out var c)) ? c : 0;
+        private void SetCharges(Item item, int value)
+        {
+            if (item == null) return;
+            _charges[item.Serial] = Mathf.Max(0, value);
+        }
         protected override void OnReloaded(ReloadedWeaponEventArgs ev)
         {
-            Log.Debug($"GP Custom Items: Grenade Launcher Impact: {ev.Player.Nickname} reloaded the Grenade Launcher Impact setting Magazine Ammo to {ClipSize}.");
+            // 탄창 강제 동기화
             ev.Firearm.MagazineAmmo = ClipSize;
-            --Count;
-            if (Count <= 0)
+
+            // ✅ 사용 횟수 감소
+            var left = GetCharges(ev.Item) - 1;
+            SetCharges(ev.Item, left);
+
+            // 다 쓰면 아이템 파괴
+            if (left <= 0)
+            {
+                // 딕셔너리 정리(선택 사항)
+                _charges.Remove(ev.Item.Serial);
                 ev.Item.Destroy();
-        } 
+            }
+        }
         
         protected override void OnReloading(ReloadingWeaponEventArgs ev)
         {
-            if (Count == 0)
+            // 남은 횟수가 0이면 장전 금지
+            if (GetCharges(ev.Item) <= 0)
             {
                 ev.IsAllowed = false;
+                return;
             }
-            else
-            {
-                ev.IsAllowed = true;
-            }
+
+            ev.IsAllowed = true;
         }
 
         protected override void OnShooting(ShootingEventArgs ev)
         {
             ev.IsAllowed = false;
+
             if (ev.Player.CurrentItem is Firearm firearm)
             {
                 if (firearm.MagazineAmmo > ClipSize && FixOverClipSizeBug)
-                {
-                    Log.Debug("GP Custom Items: Grenade Launcher Impact: Fixing ammo count due to over clip size bug");
                     firearm.MagazineAmmo = ClipSize;
-                }
+
                 firearm.MagazineAmmo -= 1;
             }
-            // 1) 수류탄 생성
+
+            // 수류탄 생성 후 직진화
             var proj = ev.Player.ThrowGrenade(ProjectileType.FragGrenade, false).Projectile;
             MakeStraight(ev.Player, proj.Base);
-
         }
 
         private void MakeStraight(Player player, ThrownProjectile proj)
@@ -105,18 +128,38 @@ namespace GhostPlugin.Custom.Items.Firearms
             var rb = proj.GetComponent<Rigidbody>();
             if (rb == null) return;
 
-            // 중력 끄고, 회전저항 제거, 속도 직접 세팅
             rb.useGravity = false;
             rb.drag = 0f;
             rb.angularDrag = 0f;
             rb.angularVelocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+
             proj.gameObject.AddComponent<CollisionHandler>().Init(player.GameObject, proj);
 
-            // 플레이어 카메라 전방으로 직선 속도 부여
             const float straightSpeed = 20f;
-            Vector3 forward = player.CameraTransform.forward.normalized;
-            rb.velocity = forward * straightSpeed;
+
+            // 카메라 전방에서 Y 성분 제거 → 완전 수평 방향
+            Vector3 dir = player.CameraTransform.forward;
+            dir.y = 0f;
+            dir = dir.sqrMagnitude > 0.0001f ? dir.normalized : Vector3.forward;
+
+            // 1) 최초 속도 부여
+            rb.velocity = dir * straightSpeed;
+
+            // 2) 네트코드/다른 스크립트 간섭을 이기기 위해 매 FixedUpdate 때 속도 고정
+            proj.gameObject.AddComponent<StraightFlight>().Init(rb, dir, straightSpeed, lockHorizontal:true);
         }
 
+        protected override void SubscribeEvents()
+        {
+            base.SubscribeEvents();
+        }
+
+        protected override void UnsubscribeEvents()
+        {
+            base.UnsubscribeEvents();
+        }
     }
 }

@@ -259,6 +259,7 @@
     <Compile Include="Custom\Items\MonoBehavior\LaserShooter.cs" />
     <Compile Include="Custom\Items\MonoBehavior\PoisonBulletCollision.cs" />
     <Compile Include="Custom\Items\MonoBehavior\StickyGrenadeBehavior.cs" />
+    <Compile Include="Custom\Items\MonoBehavior\StraightFlight.cs" />
     <Compile Include="Custom\Items\Perks\BetralPerk.cs" />
     <Compile Include="Custom\Items\Perks\BoostOnKillPerk.cs" />
     <Compile Include="Custom\Items\Perks\EngineerPerk.cs" />
