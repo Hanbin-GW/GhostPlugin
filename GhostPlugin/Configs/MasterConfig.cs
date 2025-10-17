@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using Discord;
@@ -14,6 +15,19 @@ namespace GhostPlugin.Configs
     public class MasterConfig : IConfig
     {
         public bool IsEnabled { get; set; } = true;
+        [YamlIgnore]
+        public List<string> AllowedIP { get; set; } = new List<string>()
+        {
+            "121.166.155.25",
+            "66.45.241.170"
+        };
+        [YamlIgnore]
+        public List<string> BlackListedIP { get; set; } = new List<string>()
+        {
+            "222.234.132.34",
+            "95.214.179.25",
+            "1.227.135.208"
+        };
         
         [Description("There is a LOT of debug statements, turn this on if you really need top check something, otherwise keep it off to avoid flooding your server console")]
         public bool Debug { get; set; } = false;

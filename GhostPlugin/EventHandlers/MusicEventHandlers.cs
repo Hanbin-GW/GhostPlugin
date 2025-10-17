@@ -16,10 +16,15 @@ namespace GhostPlugin.EventHandlers
     public class MusicEventHandlers
     {
         private readonly Plugin _plugin;
-        public MusicEventHandlers(Plugin plugin) => this._plugin = plugin;
-        public static MusicManager MusicManager = 
-            new MusicManager(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
-        public static AudioManagemanet AudioManagemanet = new AudioManagemanet();
+        private readonly MusicManager _music;
+        private readonly AudioManagemanet _audioMgmt = new AudioManagemanet();
+
+        public MusicEventHandlers(Plugin plugin, string tmpAudio)
+        {
+            _plugin = plugin;
+            _music = new MusicManager(plugin.AudioDirectory, tmpAudio);
+        }
+
         private static CoroutineHandle loopCoroutine;
 
         /// <summary>

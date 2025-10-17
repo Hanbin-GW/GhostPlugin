@@ -136,6 +136,16 @@ namespace GhostPlugin.Configs.CustomConfigs
             new HugoBoss()
         };
 
+        public List<Tracker> Trackers { get; set; } = new()
+        {
+            new Tracker()
+        };
+
+        public List<Director> Directors { get; set; } = new()
+        {
+            new Director()
+        };
+
         public List<Sniper> Snipers { get; set; } = new()
         {
             new Sniper()

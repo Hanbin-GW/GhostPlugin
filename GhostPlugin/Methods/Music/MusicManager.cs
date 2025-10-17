@@ -45,7 +45,7 @@ namespace GhostPlugin.Methods.Music
         /// play a music
         /// </summary>
         /// <param name="filename">Insert a file name</param>
-        public void PlaySpecificMusic(string filename)
+        public static void PlaySpecificMusic(string filename)
         {
             var path = Path.Combine(Plugin.Instance.AudioDirectory, filename);
 

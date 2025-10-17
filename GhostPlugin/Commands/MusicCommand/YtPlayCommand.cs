@@ -38,7 +38,7 @@ namespace GhostPlugin.Commands.MusicCommand
                         return;
                     }
 
-                    _musicManager.PlaySpecificMusic(fileName);
+                    MusicManager.PlaySpecificMusic(fileName);
                 }
                 catch (Exception ex)
                 {

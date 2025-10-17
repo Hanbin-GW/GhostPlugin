@@ -210,9 +210,11 @@
         <Compile Include="Custom\Abilities\Passive\FriendlyFireRemover.cs" />
         <Compile Include="Custom\Abilities\Passive\HealOnKill.cs" />
         <Compile Include="Custom\Abilities\Passive\Martyrdom.cs" />
+        <Compile Include="Custom\Items\Armor\ActiveArmor.cs" />
         <Compile Include="Custom\Items\Armor\AssassinVest.cs" />
         <Compile Include="Custom\Items\Armor\EnergyShildArmor.cs" />
         <Compile Include="Custom\Items\Armor\EODPadding.cs" />
+        <Compile Include="Custom\Items\Armor\JuggernautArmor.cs" />
         <Compile Include="Custom\Items\Armor\OverkillVest.cs" />
         <Compile Include="Custom\Items\Etc\AmmoBox.cs" />
         <Compile Include="Custom\Items\Etc\SCP500A.cs" />
@@ -224,6 +226,7 @@
         <Compile Include="Custom\Items\Firearms\Bolter.cs" />
         <Compile Include="Custom\Items\Firearms\ExplosiveRoundRevolver.cs" />
         <Compile Include="Custom\Items\Firearms\GernadeLuncher.cs" />
+        <Compile Include="Custom\Items\Firearms\GrenadeLauncher.cs" />
         <Compile Include="Custom\Items\Firearms\LaserCannon.cs" />
         <Compile Include="Custom\Items\Firearms\LaserGun.cs" />
         <Compile Include="Custom\Items\Firearms\MachineGun.cs" />
@@ -238,6 +241,7 @@
         <Compile Include="Custom\Items\Firearms\PortableEnergyShild.cs" />
         <Compile Include="Custom\Items\Firearms\ReconBattleRife.cs" />
         <Compile Include="Custom\Items\Firearms\Riveter.cs" />
+        <Compile Include="Custom\Items\Firearms\Rockety.cs" />
         <Compile Include="Custom\Items\Firearms\ShockwaveGun.cs" />
         <Compile Include="Custom\Items\Firearms\Svd.cs" />
         <Compile Include="Custom\Items\Grenades\C4.cs" />
@@ -260,6 +264,7 @@
         <Compile Include="Custom\Items\MonoBehavior\FireBulletCollision.cs" />
         <Compile Include="Custom\Items\MonoBehavior\PoisonBulletCollision.cs" />
         <Compile Include="Custom\Items\MonoBehavior\StickyGrenadeBehavior.cs" />
+        <Compile Include="Custom\Items\MonoBehavior\StraightFlight.cs" />
         <Compile Include="Custom\Items\Perks\BoostOnKillPerk.cs" />
         <Compile Include="Custom\Items\Perks\EngineerPerk.cs" />
         <Compile Include="Custom\Items\Perks\EnhancedVisionPerk.cs" />
@@ -281,6 +286,7 @@
         <Compile Include="Custom\Roles\Foundation\AdvancedMTF.cs" />
         <Compile Include="Custom\Roles\Foundation\ContainmentSpecialList.cs" />
         <Compile Include="Custom\Roles\Foundation\Demolitionist.cs" />
+        <Compile Include="Custom\Roles\Foundation\Director.cs" />
         <Compile Include="Custom\Roles\Foundation\Elite.cs" />
         <Compile Include="Custom\Roles\Foundation\Enforcer.cs" />
         <Compile Include="Custom\Roles\Foundation\HugoBoss.cs" />
@@ -289,6 +295,7 @@
         <Compile Include="Custom\Roles\Foundation\LuckyGuard.cs" />
         <Compile Include="Custom\Roles\Foundation\Medic.cs" />
         <Compile Include="Custom\Roles\Foundation\Sniper.cs" />
+        <Compile Include="Custom\Roles\Foundation\Tracker.cs" />
         <Compile Include="Custom\Roles\Foundation\Viper.cs" />
         <Compile Include="Custom\Roles\Other\SecretAgent.cs" />
         <Compile Include="Custom\Roles\Scientist\ChiefScientist.cs" />
@@ -302,9 +309,11 @@
         <Compile Include="Custom\Roles\Scps\ShockWaveZombie.cs" />
         <Compile Include="Custom\Roles\Scps\SoleStealer049.cs" />
         <Compile Include="Custom\Roles\Scps\Tanker106.cs" />
+        <Compile Include="Enums\Mode.cs" />
         <Compile Include="EventHandlers\BlackoutMod.cs" />
         <Compile Include="EventHandlers\CasualFPSModeHandler.cs" />
         <Compile Include="EventHandlers\ClassicPlugin.cs" />
+        <Compile Include="EventHandlers\CustomItemHandler.cs" />
         <Compile Include="EventHandlers\CustomRoleHandler.cs" />
         <Compile Include="EventHandlers\MusicEventHandlers.cs" />
         <Compile Include="EventHandlers\NoobSupport.cs" />

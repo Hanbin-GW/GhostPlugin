@@ -239,7 +239,26 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new EnhancedVisionPerk()
         };
-        
+
+        public List<ActiveArmor> ActiveArmors { get; private set; } = new List<ActiveArmor>()
+        {
+            new ActiveArmor()
+        };
+
+        public List<JuggernautArmor> JuggernautArmors { get; private set; } = new List<JuggernautArmor>()
+        {
+            new JuggernautArmor()
+        };
+
+        public List<Rockety> Rocketies { get; private set; } = new List<Rockety>()
+        {
+            new Rockety()
+        };
+
+        public List<GrenadeLauncher> GrenadeLaunchers { get; private set; } = new List<GrenadeLauncher>()
+        {
+            new GrenadeLauncher()
+        };
         public List<LowGravityGrenadeItem> LowGravityGrenadeItems { get; private set; } = new List<LowGravityGrenadeItem>()
         {
             new LowGravityGrenadeItem()

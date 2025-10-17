@@ -1,4 +1,4 @@
-using Exiled.API.Features;
+/*using Exiled.API.Features;
 using GhostPlugin.SSSS;
 
 namespace GhostPlugin
@@ -17,4 +17,4 @@ namespace GhostPlugin
             Log.Info("My custom keybinding functionality deactivated.");
         }
     }
-}
+}*/

@@ -7,12 +7,12 @@ namespace GhostPlugin.Methods.Legacy
 {
     public class AudioManagemanet
     {
-        private AudioPlayerBase SharedAudioPlayer;
+        private static AudioPlayerBase SharedAudioPlayer;
         /// <summary>
         /// SCPSLAudioApi's play music
         /// </summary>
         /// <param name="filepath"></param>
-        public void PlaySpecificMusic(string filepath)
+        public static void PlaySpecificMusic(string filepath)
         {
             if (SharedAudioPlayer == null)
             {
@@ -42,7 +42,7 @@ namespace GhostPlugin.Methods.Legacy
         /// <summary>
         /// SCPSLAudioApi's stop music
         /// </summary>
-        public void StopLobbyMusic()
+        public static void StopLobbyMusic()
         {
             if (SharedAudioPlayer != null)
             {
