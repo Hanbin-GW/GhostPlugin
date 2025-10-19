@@ -103,6 +103,9 @@
     <Reference Include="Reinforcements">
       <HintPath>..\..\Reinforcements\Reinforcements\obj\Release\Reinforcements.dll</HintPath>
     </Reference>
+    <Reference Include="RueI">
+      <HintPath>..\..\..\Downloads\RueI.dll</HintPath>
+    </Reference>
     <Reference Include="SCPSLAudioApi">
       <HintPath>..\..\Dll\else\SCPSLAudioApi.dll</HintPath>
     </Reference>

@@ -13,6 +13,8 @@ using GhostPlugin.Methods.Objects;
 using GhostPlugin.Methods.ToyUtils;
 using MEC;
 using PlayerRoles;
+using RueI.API;
+using RueI.API.Elements;
 using UnityEngine;
 using ServerEvents = Exiled.Events.Handlers.Server;
 using PlayerEvents = Exiled.Events.Handlers.Player;
@@ -117,8 +119,18 @@ namespace GhostPlugin.EventHandlers
                 ev.Player.Broadcast(Config.JoinMessage.Duration, message, default, Config.JoinMessage.Override);
             }*/
             Log.Debug("Showing Verified message to " + ev.Player.Nickname);
+            RueDisplay display = RueDisplay.Get(ev.Player);
+            Tag welcomeTag = new();
+            // display.Show(welcomeTag, new BasicElement(800, "Welcome to the server!"));
+            // display.Show(new BasicElement(300, "Don't forget to read the rules!"), 10f);
+            // Timing.CallDelayed(5f, () =>
+            // {
+            //     display.Show(welcomeTag, new BasicElement(800, "New update: We added support for multiple hints at once!"), 10f);
+            // });
             string message = Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.JoinMessage.Message.Replace("%name%", ev.Player.Nickname);
-            ev.Player.Broadcast(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.JoinMessage.Duration, message, default, Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.JoinMessage.Override);
+            display.Show(welcomeTag, new BasicElement(900, $"{message}"),10);
+
+            //ev.Player.Broadcast(Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.JoinMessage.Duration, message, default, Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.JoinMessage.Override);
         }
         
         private static void OnActivateGenerator(GeneratorActivatingEventArgs ev)

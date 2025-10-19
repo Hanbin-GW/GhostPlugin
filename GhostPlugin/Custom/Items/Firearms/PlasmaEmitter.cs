@@ -19,6 +19,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Description { get; set; } = "15발 플라즈마 권총입니다.";
         public override float Weight { get; set; } = 5.5f;
         public SchematicObject obj = null;
+        private Dictionary<int, float> shieldCooldowns = new();
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
@@ -53,14 +54,30 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         private void OnAimDownSight(AimingDownSightEventArgs ev)
         {
-            if (Check(ev.Player.CurrentItem) && ev.AdsIn)
+            if (!Check(ev.Player.CurrentItem))
+                return;
+            int playerId = ev.Player.Id;
+            if (shieldCooldowns.TryGetValue(playerId, out float lastDisableTime))
+            {
+                if (Time.time - lastDisableTime < 5f)
+                {
+                    ev.Player.ShowHint("<color=red>쉴드가 재충전 중입니다... (5초 쿨다운)</color>", 2);
+                    return;
+                }
+            }
+            if (ev.AdsIn)
             {
                 obj = ObjectManager.SpawnObject("Shield", ev.Player.Position + ev.Player.Transform.forward * 1 + ev.Player.Transform.up, ev.Player.Transform.rotation);
             }
-            else if (Check(ev.Player.CurrentItem) && ev.AdsIn == false)
+            else
             {
                 if (obj != null)
+                {
                     ObjectManager.RemoveObject(obj);
+                    obj = null;
+                }
+                shieldCooldowns[playerId] = Time.time;
+
             }
         }
         protected override void OnShot(ShotEventArgs ev)
