@@ -16,7 +16,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     public class PortableEnergyShild : CustomWeapon
     {
         public override uint Id { get; set; } = 54;
-        public override string Name { get; set; } = "Portable Energy Shild";
+        public override string Name { get; set; } = "Portable Energy Shield";
         public override string Description { get; set; } = "조준시 쉴드가 생성됩니다!";
         public override float Weight { get; set; } = 2.3f;
         public SchematicObject obj = null;

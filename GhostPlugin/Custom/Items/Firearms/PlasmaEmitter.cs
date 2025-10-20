@@ -15,8 +15,8 @@ namespace GhostPlugin.Custom.Items.Firearms
     public class PlasmaEmitter : CustomWeapon
     {
         public override uint Id { get; set; } = 25;
-        public override string Name { get; set; } = "Plasma Pistol";
-        public override string Description { get; set; } = "15발 플라즈마 권총입니다.";
+        public override string Name { get; set; } = "<color=#edd900>하이브리드 플라즈마 권총</color>";
+        public override string Description { get; set; } = "15발 플라즈마 권총입니다.\n조준시 <color=#edd900>에너지 방패가</color> 생성됩니다!";
         public override float Weight { get; set; } = 5.5f;
         public SchematicObject obj = null;
         private Dictionary<int, float> shieldCooldowns = new();

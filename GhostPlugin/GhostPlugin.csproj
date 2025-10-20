@@ -223,6 +223,7 @@
     <Compile Include="Custom\Items\Firearms\AcidShooter.cs" />
     <Compile Include="Custom\Items\Firearms\Basilisk.cs" />
     <Compile Include="Custom\Items\Firearms\Bolter.cs" />
+    <Compile Include="Custom\Items\Firearms\FrMg03.cs" />
     <Compile Include="Custom\Items\Firearms\GrenadeLauncher.cs" />
     <Compile Include="Custom\Items\Firearms\LaserCannon.cs" />
     <Compile Include="Custom\Items\Firearms\LaserGun.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Custom\Items\Perks\PerkBox.cs" />
     <Compile Include="Custom\Items\Perks\QuickfixPerk.cs" />
     <Compile Include="Custom\Roles\Chaos\CiPhantom.cs" />
+    <Compile Include="Custom\Roles\Chaos\Commando.cs" />
     <Compile Include="Custom\Roles\Chaos\FedoraAgent.cs" />
     <Compile Include="Custom\Roles\Chaos\Gunslinger.cs" />
     <Compile Include="Custom\Roles\Chaos\Hunter.cs" />

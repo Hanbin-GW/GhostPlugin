@@ -142,6 +142,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Director()
         };
+
+        public List<Commando> Commandos { get; set; } = new List<Commando>()
+        {
+            new Commando()
+        };
         public List<DwarfZombie> DwarfZombies { get; set; } = new()
         {
             new DwarfZombie()
