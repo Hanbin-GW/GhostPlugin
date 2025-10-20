@@ -3,3 +3,6 @@
 /GhostPlugin/bin/
 /packages/
 .DS_Store
+.vs/
+.suo
+.idea/
