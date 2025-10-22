@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "Z:\\GhostPlugin\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7390840F-DA94-4A19-8B75-0D929AA6384E}|GhostPlugin\\GhostPlugin.csproj|z:\\ghostplugin\\ghostplugin\\custom\\items\\firearms\\plasmaemitter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7390840F-DA94-4A19-8B75-0D929AA6384E}|GhostPlugin\\GhostPlugin.csproj|solutionrelative:ghostplugin\\custom\\items\\firearms\\plasmaemitter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7390840F-DA94-4A19-8B75-0D929AA6384E}|GhostPlugin\\GhostPlugin.csproj|Z:\\GhostPlugin\\ghostplugin\\commands\\jukebox\\musiclist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7390840F-DA94-4A19-8B75-0D929AA6384E}|GhostPlugin\\GhostPlugin.csproj|solutionrelative:ghostplugin\\commands\\jukebox\\musiclist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlasmaEmitter.cs",
+              "DocumentMoniker": "Z:\\GhostPlugin\\GhostPlugin\\Custom\\Items\\Firearms\\PlasmaEmitter.cs",
+              "RelativeDocumentMoniker": "GhostPlugin\\Custom\\Items\\Firearms\\PlasmaEmitter.cs",
+              "ToolTip": "Z:\\GhostPlugin\\GhostPlugin\\Custom\\Items\\Firearms\\PlasmaEmitter.cs",
+              "RelativeToolTip": "GhostPlugin\\Custom\\Items\\Firearms\\PlasmaEmitter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T13:24:14.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MusicList.cs",
+              "DocumentMoniker": "Z:\\GhostPlugin\\GhostPlugin\\Commands\\Jukebox\\MusicList.cs",
+              "RelativeDocumentMoniker": "GhostPlugin\\Commands\\Jukebox\\MusicList.cs",
+              "ToolTip": "Z:\\GhostPlugin\\GhostPlugin\\Commands\\Jukebox\\MusicList.cs",
+              "RelativeToolTip": "GhostPlugin\\Commands\\Jukebox\\MusicList.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T11:41:27.093Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

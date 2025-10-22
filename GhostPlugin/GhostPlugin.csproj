@@ -273,6 +273,7 @@
         <Compile Include="Custom\Items\Perks\OverkillPerk.cs" />
         <Compile Include="Custom\Items\Perks\QuickfixPerk.cs" />
         <Compile Include="Custom\Roles\Chaos\CiPhantom.cs" />
+        <Compile Include="Custom\Roles\Chaos\Commando.cs" />
         <Compile Include="Custom\Roles\Chaos\FedoraAgent.cs" />
         <Compile Include="Custom\Roles\Chaos\Gunslinger.cs" />
         <Compile Include="Custom\Roles\Chaos\Hunter.cs" />

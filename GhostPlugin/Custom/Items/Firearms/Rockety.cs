@@ -21,7 +21,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 71;
         public override string Name { get; set; } = "HE-1";
-        public override string Description { get; set; } = "3번 사용할수 있는 사정거리가 넓은 로캣포입니다!\n(폭탄이 포물선이 아닌 직진으로 갑니다)";
+        public override string Description { get; set; } = "It's a wide range of Locatpo that you can use 3 times!";
         public override float Weight { get; set; } = 21f;
         [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GunLogicer;
@@ -77,17 +77,13 @@ namespace GhostPlugin.Custom.Items.Firearms
         }
         protected override void OnReloaded(ReloadedWeaponEventArgs ev)
         {
-            // 탄창 강제 동기화
             ev.Firearm.MagazineAmmo = ClipSize;
 
-            // ✅ 사용 횟수 감소
             var left = GetCharges(ev.Item) - 1;
             SetCharges(ev.Item, left);
 
-            // 다 쓰면 아이템 파괴
             if (left <= 0)
             {
-                // 딕셔너리 정리(선택 사항)
                 _charges.Remove(ev.Item.Serial);
                 ev.Item.Destroy();
             }

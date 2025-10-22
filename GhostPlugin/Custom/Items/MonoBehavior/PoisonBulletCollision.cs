@@ -31,7 +31,7 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 Log.Debug($"Hit Player: {target.Nickname}");
                 
                 target.EnableEffect<Decontaminating>(duration: 8,intensity:1);
-                target.EnableEffect<Poisoned>(duration: 20,intensity:2);
+                target.EnableEffect<Poisoned>(duration: 20,intensity:1);
                 target.Hurt(damage, DamageType.Com15, _attacker.Nickname);
                 target.ShowHint("<color=red>You are exposed to very serious radiation hydrochloride!</color>",10);
                 _attacker.ShowHitMarker();
