@@ -8,7 +8,6 @@ using Exiled.Events.EventArgs.Player;
 using GhostPlugin.API;
 using MEC;
 using PlayerRoles;
-using YamlDotNet.Serialization;
 
 namespace GhostPlugin.Custom.Roles.Chaos
 {

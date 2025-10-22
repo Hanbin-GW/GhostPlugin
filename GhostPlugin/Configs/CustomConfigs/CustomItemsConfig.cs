@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.ComponentModel;
-using GhostPlugin.Custom.Abilities.Active;
 using GhostPlugin.Custom.Items.Armor;
 using GhostPlugin.Custom.Items.Etc;
 using GhostPlugin.Custom.Items.Firearms;
@@ -8,8 +7,6 @@ using GhostPlugin.Custom.Items.Grenades;
 using GhostPlugin.Custom.Items.Keycard;
 using GhostPlugin.Custom.Items.Medkit;
 using GhostPlugin.Custom.Items.Perks;
-using InventorySystem.Searching;
-using ProjectMER.Commands.Utility;
 
 namespace GhostPlugin.Configs.CustomConfigs
 {

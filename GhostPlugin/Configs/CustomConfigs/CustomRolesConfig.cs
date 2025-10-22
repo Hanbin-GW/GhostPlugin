@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using GhostPlugin.Custom.Abilities.Active;
 using GhostPlugin.Custom.Roles.Chaos;
 using GhostPlugin.Custom.Roles.ClassD;
 using GhostPlugin.Custom.Roles.Foundation;
