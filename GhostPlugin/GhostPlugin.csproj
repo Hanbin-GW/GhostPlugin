@@ -208,9 +208,6 @@
     <Compile Include="Custom\Abilities\Passive\FriendlyFireRemover.cs" />
     <Compile Include="Custom\Abilities\Passive\HealOnKill.cs" />
     <Compile Include="Custom\Abilities\Passive\Martyrdom.cs" />
-    <Compile Include="Custom\EndEvent\DoomCannon.cs" />
-    <Compile Include="Custom\EndEvent\DoomOfTimeline.cs" />
-    <Compile Include="Custom\EndEvent\DoomBlaster.cs" />
     <Compile Include="Custom\Items\Armor\AssassinVest.cs" />
     <Compile Include="Custom\Items\Armor\ActiveArmor.cs" />
     <Compile Include="Custom\Items\Armor\EnergyShildArmor.cs" />
