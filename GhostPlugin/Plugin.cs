@@ -315,6 +315,7 @@ namespace GhostPlugin
             if (Config.CustomItemsConfig.IsEnabled && CurrentRunMode == RunMode.Full)
             {
                 CustomItem.UnregisterItems();
+                Server.RoundStarted -= CustomItemHandler.OnRoundStarted;
                 Exiled.Events.Handlers.Item.InspectingItem -= CustomItemHandler.OnInspectingItem;
                 CustomItemHandler = null;
             }
@@ -472,6 +473,7 @@ namespace GhostPlugin
                         //ci.BetralPerks?.Register();
                     }
 
+                    Server.RoundStarted += CustomItemHandler.OnRoundStarted;
                     Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
                 }
             });

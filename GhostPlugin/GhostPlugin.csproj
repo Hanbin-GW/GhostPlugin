@@ -165,6 +165,7 @@
         <Compile Include="API\Audio\AudioUtils.cs" />
         <Compile Include="API\CustomHint\FileDotNet.cs" />
         <Compile Include="API\ExcemptionType.cs" />
+        <Compile Include="API\ICustomItemGlow.cs" />
         <Compile Include="API\ICustomRole.cs" />
         <Compile Include="API\Map\SoundPing.cs" />
         <Compile Include="API\StartTeam.cs" />
