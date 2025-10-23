@@ -1,10 +1,13 @@
 using CustomPlayerEffects;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Items;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
 using InventorySystem.Items.Firearms.Attachments;
+using ExiledFirearm = Exiled.API.Features.Items.Firearm;
+using InvFirearm   = InventorySystem.Items.Firearms.Firearm;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
@@ -13,7 +16,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 72;
         public override string Name { get; set; } = "FR MG 03";
-        public override string Description { get; set; } = "Reinforced bersion of FR-MG-01\nIt takes a long time and uses 5.56 Low Grain Rounds, so the damage is a little low,\nThe ammunition capacity is 185 rounds.";
+        public override string Description { get; set; } = "Reinforced version of FR-MG-01\nIt uses 5.56 Low Grain Rounds, so the damage is a little low, \nThe ammunition capacity is 185 rounds.";
         public override float Weight { get; set; } = 18f;
         public override SpawnProperties SpawnProperties { get; set; }
         public override ItemType Type { get; set; } = ItemType.GunFRMG0;
@@ -35,11 +38,14 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         protected override void OnReloading(ReloadingWeaponEventArgs ev)
         {
-            base.OnReloading(ev);
             if (!Check(ev.Player.CurrentItem))
                 return;
-            ev.Player.EnableEffect<Ensnared>(duration:2f);
+            ev.Player.EnableEffect<Slowness>(duration: 75f);
+            ev.Player.ShowHint(new string('\n', 10) +"Its too heavy..." );
+            base.OnReloading(ev);
+
         }
+
 
         protected override void SubscribeEvents()
         {

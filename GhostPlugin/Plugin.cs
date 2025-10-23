@@ -13,7 +13,7 @@ using GhostPlugin.Configs;
 using GhostPlugin.EventHandlers;
 using MEC;
 using GhostPlugin.Enums;
-//using HarmonyLib;
+// using HarmonyLib;
 using Scp049Events = Exiled.Events.Handlers.Scp049;
 using ProjectMER.Features.Objects;
 using UserSettings.ServerSpecific;
@@ -35,7 +35,7 @@ namespace GhostPlugin
 
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(8, 0, 2);
+        public override Version Version { get; } = new(8, 0, 4);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin-Eng";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
@@ -63,6 +63,7 @@ namespace GhostPlugin
         public CustomItemHandler CustomItemHandler;
 
         public MusicEventHandlers MusicEventHandlers;
+        // private Harmony _harmony;
         private bool _fullUpgraded;
         //Audio Dir
         public readonly string AudioDirectory;
@@ -82,6 +83,9 @@ namespace GhostPlugin
         public override void OnEnabled()
         {
             Instance = this;
+            // _harmony = new Harmony($"Hanbin-GW.Ghost-Plugin-Eng.{DateTime.Now.Ticks}");
+            // _harmony.PatchAll();
+
             Server.WaitingForPlayers += OnWaitingPlayer;
             Run("config.load", () =>
             {
@@ -269,7 +273,7 @@ namespace GhostPlugin
                         Environment.OSVersion.Platform == PlatformID.Win32NT
                             ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                                 "EXILED", "Plugins", "tmp-audio")
-                            : "/home/hanbin/steamcmd/scpsl/tmp-audio";
+                            : "/home/Omega/steamcmd/scpsl/tmp-audio";
                     if (!Directory.Exists(tmpAudio)) Directory.CreateDirectory(tmpAudio);
 
                     // 인스턴스 기반일 때
@@ -303,7 +307,7 @@ namespace GhostPlugin
 
         public override void OnDisabled()
         {
-            
+            // _harmony.UnpatchAll();
             //BlackOut mode
             if(Config.ServerEventsMasterConfig.BlackoutModeConfig.IsEnabled && CurrentRunMode == RunMode.Limited){BlackoutMod.UnregisterEvents();}
             
@@ -531,7 +535,7 @@ namespace GhostPlugin
                         Environment.OSVersion.Platform == PlatformID.Win32NT
                             ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                                 "EXILED", "Plugins", "tmp-audio")
-                            : "/home/hanbin/steamcmd/scpsl/tmp-audio";
+                            : "/home/Omega/steamcmd/scpsl/tmp-audio";
                     if (!Directory.Exists(tmpAudio)) Directory.CreateDirectory(tmpAudio);
 
                     // 인스턴스 기반일 때
