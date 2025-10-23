@@ -28,7 +28,6 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
-            Limit = 1,
             RoleSpawnPoints = new List<RoleSpawnPoint>
             {
                 new()
@@ -42,11 +41,11 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override List<string> Inventory { get; set; } = new()
         {
             $"{ItemType.KeycardChaosInsurgency}",
+            $"{ItemType.GrenadeFlash}",
+            70.ToString(),
             $"{ItemType.GrenadeHE}",
-            $"{ItemType.ArmorHeavy}",
-            30.ToString(),
-            //21.ToString(),
-            32.ToString(),
+            $"{ItemType.GrenadeHE}",
+            5.ToString(),
             50.ToString(),
         };
 

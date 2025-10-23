@@ -27,11 +27,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         private readonly Dictionary<Player, CoroutineHandle> _altKeyCooldowns = new Dictionary<Player, CoroutineHandle>();
         private readonly float _altKeyCooldownDuration = 80f;
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 1
-        };
-
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
         public int Chance { get; set; } = 50;
         private void OnStalking(StalkingEventArgs ev)
         {

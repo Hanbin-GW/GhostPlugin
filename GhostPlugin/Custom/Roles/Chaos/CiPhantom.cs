@@ -43,7 +43,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
                 Description = "You'll became quiet for 20 seconds, it's through the door, and invisible!"
             }
         };
-        public int Chance { get; set; } = 40;
+        public int Chance { get; set; } = 80;
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {
@@ -93,10 +93,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
             { AmmoType.Nato762, 80 }
         };
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 1,
-        };
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
         protected override void SubscribeEvents()
         {
             //Exiled.Events.Handlers.Player.TogglingNoClip += OnTogglingNoClip;

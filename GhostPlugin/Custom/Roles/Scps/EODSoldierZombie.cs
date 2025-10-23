@@ -20,10 +20,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
         public int Chance { get; set; } = 40;
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 2,
-        };
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public override List<string> Inventory { get; set; } = new List<string>()
         {

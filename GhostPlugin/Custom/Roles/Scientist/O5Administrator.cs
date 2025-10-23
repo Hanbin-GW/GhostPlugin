@@ -31,10 +31,7 @@ namespace GhostPlugin.Custom.Roles.Scientist
             43.ToString(),
         };
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 1,
-        };
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
 
         private void OnEscaped(EscapedEventArgs ev)
         {

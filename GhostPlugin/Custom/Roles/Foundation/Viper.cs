@@ -31,10 +31,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
             ItemType.Radio.ToString(),
         };
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 1,
-        };
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
         {

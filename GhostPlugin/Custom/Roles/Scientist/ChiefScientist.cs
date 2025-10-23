@@ -25,11 +25,7 @@ namespace GhostPlugin.Custom.Roles.Scientist
         public override bool KeepRoleOnChangingRole { get; set; } = true;
         public override bool KeepRoleOnDeath { get; set; } = false;
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 1,
-        };
-
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
         public override List<string> Inventory { get; set; } = new List<string>()
         {
             ItemType.KeycardResearchCoordinator.ToString(),

@@ -19,10 +19,7 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override string CustomInfo { get; set; } = "Ballistic SCP-049-2";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
         public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 1,
-        };
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
 
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>
         {

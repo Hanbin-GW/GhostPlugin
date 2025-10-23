@@ -22,11 +22,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosRepressor;
         public int Chance { get; set; } = 50;
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 1,
-        };
-
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>()
         {
             new ChargeAbility(),
