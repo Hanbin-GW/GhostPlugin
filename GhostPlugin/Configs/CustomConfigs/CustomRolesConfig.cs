@@ -159,6 +159,10 @@ namespace GhostPlugin.Configs.CustomConfigs
             new ExplosiveZombie()
         };
 
+        public List<Commando> Commandos { get; set; } = new()
+        {
+            new Commando()
+        };
         public List<EodSoldierZombie> EodSoldierZombies { get; set; } = new()
         {
             new EodSoldierZombie()

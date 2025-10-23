@@ -452,6 +452,7 @@ namespace GhostPlugin
                     ci.JuggernautArmors?.Register();
                     ci.LowGravityGrenadeItems?.Register();
                     ci.Rocketies?.Register();
+                    ci.FrMg03S?.Register();
                     // ... 기타 아이템들
                     if (Config.EnablePerkEvents && PerkEventHandlers == null)
                     {
@@ -504,6 +505,7 @@ namespace GhostPlugin
                     cr.HugoBosses?.Register();
                     cr.Trackers?.Register();
                     cr.Directors?.Register();
+                    cr.Commandos?.Register();
                     cr.DwarfZombies?.Register();
                     cr.ExplosiveZombies?.Register();
                     cr.EodSoldierZombies?.Register();

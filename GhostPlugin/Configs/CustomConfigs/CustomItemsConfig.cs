@@ -259,6 +259,11 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new GrenadeLauncher()
         };
+
+        public List<FrMg03> FrMg03S { get; private set; } = new List<FrMg03>()
+        {
+            new FrMg03()
+        };
         public List<LowGravityGrenadeItem> LowGravityGrenadeItems { get; private set; } = new List<LowGravityGrenadeItem>()
         {
             new LowGravityGrenadeItem()
