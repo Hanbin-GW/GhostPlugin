@@ -50,37 +50,37 @@
           <HintPath>..\..\..\Documents\AudioPlayerAPI\AudioPlayerApi.dll</HintPath>
         </Reference>
         <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\ExMod.Exiled.9.10.0-rc.1\lib\net48\CommandSystem.Core.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.10.0\lib\net48\CommandSystem.Core.dll</HintPath>
         </Reference>
         <Reference Include="C_Squad">
           <HintPath>..\..\C-Squad\C-Squad\obj\Release\C_Squad.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.API, Version=9.10.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.10.0-rc.1\lib\net48\Exiled.API.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.10.0\lib\net48\Exiled.API.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.CreditTags, Version=9.10.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.10.0-rc.1\lib\net48\Exiled.CreditTags.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.10.0\lib\net48\Exiled.CreditTags.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.CustomItems, Version=9.10.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.10.0-rc.1\lib\net48\Exiled.CustomItems.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.10.0\lib\net48\Exiled.CustomItems.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.CustomRoles, Version=9.10.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.10.0-rc.1\lib\net48\Exiled.CustomRoles.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.10.0\lib\net48\Exiled.CustomRoles.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.Events, Version=9.10.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.10.0-rc.1\lib\net48\Exiled.Events.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.10.0\lib\net48\Exiled.Events.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.Loader, Version=9.10.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.10.0-rc.1\lib\net48\Exiled.Loader.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.10.0\lib\net48\Exiled.Loader.dll</HintPath>
         </Reference>
         <Reference Include="Exiled.Permissions, Version=9.10.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.10.0-rc.1\lib\net48\Exiled.Permissions.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.10.0\lib\net48\Exiled.Permissions.dll</HintPath>
         </Reference>
         <Reference Include="IndexRange, Version=1.0.3.0, Culture=neutral, PublicKeyToken=35e6a3c4212514c6, processorArchitecture=MSIL">
           <HintPath>..\packages\IndexRange.1.0.3\lib\net47\IndexRange.dll</HintPath>
         </Reference>
         <Reference Include="LabApi, Version=1.1.4.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.10.0-rc.1\lib\net48\LabApi.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.10.0\lib\net48\LabApi.dll</HintPath>
         </Reference>
         <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
           <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
@@ -96,7 +96,7 @@
         </Reference>
         <Reference Include="mscorlib" />
         <Reference Include="NorthwoodLib, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\ExMod.Exiled.9.10.0-rc.1\lib\net48\NorthwoodLib.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.10.0\lib\net48\NorthwoodLib.dll</HintPath>
         </Reference>
         <Reference Include="NVorbis">
           <HintPath>..\..\..\Documents\AudioPlayerAPI\NVorbis.dll</HintPath>
@@ -157,7 +157,7 @@
           <HintPath>..\..\..\Documents\14.0 dll\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
         <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-          <HintPath>..\packages\ExMod.Exiled.9.10.0-rc.1\lib\net48\YamlDotNet.dll</HintPath>
+          <HintPath>..\packages\ExMod.Exiled.9.10.0\lib\net48\YamlDotNet.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>

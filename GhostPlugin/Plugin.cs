@@ -35,7 +35,7 @@ namespace GhostPlugin
 
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(8, 1, 0);
+        public override Version Version { get; } = new(8, 1, 1);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin-Eng";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
@@ -157,7 +157,7 @@ namespace GhostPlugin
                     ci.MorsReworks?.Register();
                     ci.PortableEnergyShilds?.Register();
                     //ci.M16s?.Register();
-                    ci.ActiveArmors?.Register();
+                    //ci.ActiveArmors?.Register();
                     ci.JuggernautArmors?.Register();
                     ci.LowGravityGrenadeItems?.Register();
                     ci.Rocketies?.Register();
@@ -175,7 +175,10 @@ namespace GhostPlugin
                         ci.EnhancedVisionPerks?.Register();
                         //ci.BetralPerks?.Register();
                     }
-
+                    Server.WaitingForPlayers += CustomItemHandler.OnWaitingForPlayers;
+                    Exiled.Events.Handlers.Map.PickupAdded += CustomItemHandler.AddGlow;
+                    Exiled.Events.Handlers.Map.PickupDestroyed += CustomItemHandler.RemoveGlow;
+                    Server.RoundStarted += CustomItemHandler.OnRoundStarted;
                     Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
                 }
             });
@@ -315,6 +318,9 @@ namespace GhostPlugin
             if (Config.CustomItemsConfig.IsEnabled && CurrentRunMode == RunMode.Full)
             {
                 CustomItem.UnregisterItems();
+                Server.WaitingForPlayers -= CustomItemHandler.OnWaitingForPlayers;
+                Exiled.Events.Handlers.Map.PickupAdded -= CustomItemHandler.AddGlow;
+                Exiled.Events.Handlers.Map.PickupDestroyed -= CustomItemHandler.RemoveGlow;
                 Server.RoundStarted -= CustomItemHandler.OnRoundStarted;
                 Exiled.Events.Handlers.Item.InspectingItem -= CustomItemHandler.OnInspectingItem;
                 CustomItemHandler = null;
@@ -453,7 +459,7 @@ namespace GhostPlugin
                     ci.MorsReworks?.Register();
                     ci.PortableEnergyShilds?.Register();
                     //ci.M16s?.Register();
-                    ci.ActiveArmors?.Register();
+                    //ci.ActiveArmors?.Register();
                     ci.JuggernautArmors?.Register();
                     ci.LowGravityGrenadeItems?.Register();
                     ci.Rocketies?.Register();
@@ -472,7 +478,9 @@ namespace GhostPlugin
                         ci.EnhancedVisionPerks?.Register();
                         //ci.BetralPerks?.Register();
                     }
-
+                    Server.WaitingForPlayers += CustomItemHandler.OnWaitingForPlayers;
+                    Exiled.Events.Handlers.Map.PickupAdded += CustomItemHandler.AddGlow;
+                    Exiled.Events.Handlers.Map.PickupDestroyed += CustomItemHandler.RemoveGlow;
                     Server.RoundStarted += CustomItemHandler.OnRoundStarted;
                     Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
                 }
@@ -517,6 +525,29 @@ namespace GhostPlugin
                     cr.EodSoldierZombies?.Register();
                     cr.ShockWaveZombies?.Register();
                     cr.ReinforceZombies?.Register();
+                    foreach (CustomRole role in CustomRole.Registered)
+                    {
+                        if (role?.CustomAbilities != null)
+                            foreach (var ability in role.CustomAbilities)
+                                ability?.Register();
+
+                        if (role is ICustomRole custom)
+                        {
+                            var team =
+                                custom.StartTeam.HasFlag(StartTeam.Chaos) ? StartTeam.Chaos :
+                                custom.StartTeam.HasFlag(StartTeam.Guard) ? StartTeam.Guard :
+                                custom.StartTeam.HasFlag(StartTeam.Ntf) ? StartTeam.Ntf :
+                                custom.StartTeam.HasFlag(StartTeam.Scientist) ? StartTeam.Scientist :
+                                custom.StartTeam.HasFlag(StartTeam.ClassD) ? StartTeam.ClassD :
+                                custom.StartTeam.HasFlag(StartTeam.Scp) ? StartTeam.Scp :
+                                custom.StartTeam.HasFlag(StartTeam.Revived) ? StartTeam.Revived :
+                                StartTeam.Other;
+
+                            if (!Roles.ContainsKey(team)) Roles.Add(team, new());
+                            uint limit = role.SpawnProperties?.Limit ?? 0; // ★ 널 가드
+                            for (int i = 0; i < limit; i++) Roles[team].Add(custom);
+                        }
+                    }
                     Server.RoundStarted += CustomRoleHandler.OnRoundStarted;
                     Server.RespawningTeam += CustomRoleHandler.OnRespawningTeam;
                     Scp049Events.FinishingRecall += CustomRoleHandler.FinishingRecall;

@@ -28,7 +28,7 @@ namespace GhostPlugin.Commands.Jukebox
         // Insert Plugin Dir / Workspace Dir
         private readonly AudioCommands _audio = new AudioCommands(
             Plugin.Instance.AudioDirectory,
-            "/home/Omega/steamcmd/scpsl/tmp-audio"
+            "/home/Omega/scpsl/tmp-audio"
         );
 
 
@@ -63,6 +63,7 @@ namespace GhostPlugin.Commands.Jukebox
 
         private bool SpawnSpeaker(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
+            string schematicName = string.Empty;
             if (sender is not PlayerCommandSender playerSender)
             {
                 response = "This command is available only to players.";
@@ -76,11 +77,15 @@ namespace GhostPlugin.Commands.Jukebox
                 return false;
             }
             
-            /*if (player.Group == null || !AllowedGroups.Contains(player.Group.BadgeText))
-            {
-                response = "이 명령어를 사용할 권한이 없습니다.";
-                return false;
-            }*/
+            if (player.Group == null || !AllowedGroups.Contains(player.Group.BadgeText))
+            { 
+                schematicName = "Speaker";
+            }
+            
+            if (player.Group == null || AllowedGroups.Contains(player.Group.BadgeText))
+            { 
+                schematicName = "TitanSpeaker";
+            }
 
             if (arguments.Count < 2)
             {
@@ -88,7 +93,6 @@ namespace GhostPlugin.Commands.Jukebox
                 return false;
             }
             
-            string schematicName = "Speaker";
             Vector3 spawnPosition = player.Position + player.Transform.forward * 1 + player.Transform.up;
             Vector3 rotation = Vector3.forward;
             

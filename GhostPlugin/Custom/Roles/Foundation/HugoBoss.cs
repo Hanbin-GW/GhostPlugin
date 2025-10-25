@@ -23,9 +23,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override bool DisplayCustomItemMessages { get; set; } = false;
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfSergeant;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 1
-        };
+        { };
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>();
 
         public override List<string> Inventory { get; set; } = new List<string>()

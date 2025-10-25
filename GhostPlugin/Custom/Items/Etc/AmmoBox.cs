@@ -4,6 +4,7 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.API;
 using ProjectMER.Events.Arguments;
 using ProjectMER.Events.Handlers;
 using GhostPlugin.Methods.MER;
@@ -14,7 +15,7 @@ using UnityEngine;
 namespace GhostPlugin.Custom.Items.Etc
 {
     [CustomItem(ItemType.Coin)]
-    public class AmmoBox : CustomItem
+    public class AmmoBox : CustomItem, ICustomItemGlow
     {
         public override uint Id { get; set; } = 18;
         public override string Name { get; set; } = "Ammobox";
@@ -71,5 +72,8 @@ namespace GhostPlugin.Custom.Items.Etc
                 player.ShowHint("<color=yellow>탄약 제공 완료 받았습니다!</color>", 3f);
             }
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = Color.green;
     }
 }

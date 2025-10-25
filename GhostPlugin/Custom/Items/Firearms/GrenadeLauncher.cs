@@ -10,22 +10,24 @@ using Exiled.API.Features.Pickups.Projectiles;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.API;
 using InventorySystem.Items.Firearms.Modules;
 using JetBrains.Annotations;
 using MEC;
+using UnityEngine;
 using YamlDotNet.Serialization;
 using Firearm = Exiled.API.Features.Items.Firearm;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
     [CustomItem(ItemType.GunLogicer)]
-    public class GrenadeLauncher : CustomWeapon
+    public class GrenadeLauncher : CustomWeapon, ICustomItemGlow
     {
         [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GunLogicer;
         public override uint Id { get; set; } = 5;
-        public override string Name { get; set; } = "<color=#FF0000>ADATS 로캣 런처</color>";
-        public override string Description { get; set; } = "수류탄을 탄약으로 하는 <color=red>로캣런처</color> 입니다!";
+        public override string Name { get; set; } = "<color=#FF0000>ADATS Grenade Luncher</color>";
+        public override string Description { get; set; } = "It is <color=red>Rocket Luncher</color> that ammunition is a grenade";
         public override float Weight { get; set; } = 3;
 
         public override SpawnProperties SpawnProperties { get; set; } = new()
@@ -251,5 +253,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             Log.Debug($"VVUP Custom Items: Grenade Launcher Impact: {ev.Player.Nickname} reloaded the Grenade Launcher Impact setting Magazine Ammo to {ClipSize}.");
             ev.Firearm.MagazineAmmo = ClipSize;
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = new Color32(255, 0, 0, 191);
     }
 }

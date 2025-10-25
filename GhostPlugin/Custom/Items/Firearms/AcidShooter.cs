@@ -8,6 +8,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.API.Features.Toys;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.API;
 using GhostPlugin.Custom.Items.MonoBehavior;
 using GhostPlugin.Methods.Objects;
 using GhostPlugin.Methods.ToyUtils;
@@ -18,7 +19,7 @@ using UnityEngine;
 namespace GhostPlugin.Custom.Items.Firearms
 {
     [CustomItem(ItemType.GunCOM15)]
-    public class AcidShooter : CustomWeapon
+    public class AcidShooter : CustomWeapon, ICustomItemGlow
     {
         public override uint Id { get; set; } = 33;
         public override string Name { get; set; } = "Acid Shotter";
@@ -129,5 +130,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             if (light != null && light.gameObject != null)
                 NetworkServer.Destroy(light.gameObject);
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = new Color(0.5f, 1.0f, 0.0f, 0.1f);
     }
 }
