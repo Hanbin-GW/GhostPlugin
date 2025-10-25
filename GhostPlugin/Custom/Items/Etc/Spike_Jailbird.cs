@@ -4,12 +4,14 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
+using GhostPlugin.API;
 using InventorySystem.Items.Jailbird;
+using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Etc
 {
     [CustomItem(ItemType.Jailbird)]
-    public class SpikeJailbird : CustomItem
+    public class SpikeJailbird : CustomItem, ICustomItemGlow
     {
         public override uint Id { get; set; } = 38;
         public override string Name { get; set; } = "<color=#0095ff>Spike Jailbird</color>";
@@ -77,5 +79,8 @@ namespace GhostPlugin.Custom.Items.Etc
             //Exiled.Events.Handlers.Player.Hurting -= OnHurting;
             base.UnsubscribeEvents();
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = new Color32(25, 225,225, 191);
     }
 }

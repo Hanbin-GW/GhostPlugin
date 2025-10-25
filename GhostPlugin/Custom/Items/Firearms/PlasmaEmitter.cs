@@ -4,6 +4,7 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.API;
 using GhostPlugin.Methods.MER;
 using GhostPlugin.Methods.Objects;
 using ProjectMER.Features.Objects;
@@ -12,7 +13,7 @@ using UnityEngine;
 namespace GhostPlugin.Custom.Items.Firearms
 {
     [CustomItem(ItemType.ParticleDisruptor)]
-    public class PlasmaEmitter : CustomWeapon
+    public class PlasmaEmitter : CustomWeapon, ICustomItemGlow
     {
         public override uint Id { get; set; } = 25;
         public override string Name { get; set; } = "Hybrid Plasma Pistol";
@@ -105,5 +106,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             Exiled.Events.Handlers.Player.AimingDownSight -= OnAimDownSight;
             base.UnsubscribeEvents();
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = new Color32(25, 225,225, 191);
     }
 }

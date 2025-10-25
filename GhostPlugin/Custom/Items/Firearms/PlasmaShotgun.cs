@@ -7,6 +7,7 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.API;
 using GhostPlugin.Custom.Items.MonoBehavior;
 using GhostPlugin.Methods.Objects;
 using UnityEngine;
@@ -15,7 +16,7 @@ using Color = UnityEngine.Color;
 namespace GhostPlugin.Custom.Items.Firearms
 {
     [CustomItem(ItemType.GunShotgun)]
-    public class PlasmaShotgun : CustomWeapon
+    public class PlasmaShotgun : CustomWeapon, ICustomItemGlow
     {
         public override uint Id { get; set; } = 31;
         public override string Name { get; set; } = "<color=#00d0ff>PlasmaShotgun</color>";
@@ -64,5 +65,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             }
             base.OnShot(ev);
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = new Color32(25, 225,225, 191);
     }
 }

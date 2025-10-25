@@ -3,11 +3,13 @@ using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
+using GhostPlugin.API;
+using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Grenades
 {
     [CustomItem(ItemType.GrenadeHE)]
-    public class ImpactGrenade : CustomGrenade
+    public class ImpactGrenade : CustomGrenade, ICustomItemGlow
     {
         public override uint Id { get; set; } = 29;
         public override string Name { get; set; } = "<color=#f56342>Impact Grenade</color>";
@@ -49,5 +51,7 @@ namespace GhostPlugin.Custom.Items.Grenades
         };
         public override bool ExplodeOnCollision { get; set; } = true;
         public override float FuseTime { get; set; } = 4.5f;
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = new Color32(255, 140, 59, 200);
     }
 }

@@ -8,6 +8,7 @@ using Exiled.API.Features.Toys;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.API;
 using InventorySystem.Items.Firearms.Attachments;
 using MEC;
 using PlayerStatsSystem;
@@ -17,7 +18,7 @@ using Player = Exiled.Events.Handlers.Player;
 namespace GhostPlugin.Custom.Items.Firearms
 {
     [CustomItem(ItemType.GunE11SR)]
-    public class Ballista : CustomWeapon
+    public class Ballista : CustomWeapon, ICustomItemGlow
     {
         public override byte ClipSize { get; set; } = 1;
         public override ItemType Type { get; set; } = ItemType.GunE11SR;
@@ -150,5 +151,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             }
             Timing.CallDelayed(LaserVisibleTime, laser.Destroy);
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = Color.red;
     }
 }
