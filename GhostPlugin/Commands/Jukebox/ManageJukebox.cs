@@ -181,7 +181,7 @@ namespace GhostPlugin.Commands.Jukebox
                 }
                 Plugin.Instance.Speakers.Remove(id);
                 JukeboxManagement.StopMusicSpeaker(id);
-                response = $"Speaker(ID: {id}) is remove succesful.";
+                response = $"Speaker(ID: {id}) is remove successful.";
                 return true;
             }
 
