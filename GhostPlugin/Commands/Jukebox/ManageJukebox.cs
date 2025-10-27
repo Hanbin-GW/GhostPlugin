@@ -94,7 +94,7 @@ namespace GhostPlugin.Commands.Jukebox
             }
             
             Vector3 spawnPosition = player.Position + player.Transform.forward * 1 + player.Transform.up;
-            Vector3 rotation = Vector3.forward;
+            Quaternion rotation = player.Transform.rotation;
             
             var songTokens = arguments.Skip(1);
             string inputSong = string.Join(" ", songTokens);
