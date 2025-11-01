@@ -568,7 +568,7 @@ namespace GhostPlugin
                         Environment.OSVersion.Platform == PlatformID.Win32NT
                             ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                                 "EXILED", "Plugins", "tmp-audio")
-                            : "/home/Omega/steamcmd/scpsl/tmp-audio";
+                            : "/home/Omega/scpsl/tmp-audio";
                     if (!Directory.Exists(tmpAudio)) Directory.CreateDirectory(tmpAudio);
 
                     // 인스턴스 기반일 때
