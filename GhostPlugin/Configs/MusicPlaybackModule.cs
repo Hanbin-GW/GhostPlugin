@@ -1,4 +1,4 @@
-namespace GhostPlugin.MusicConfigs
+namespace GhostPlugin.Configs
 {
     public sealed class MusicPlaybackModule
     {
@@ -8,9 +8,9 @@ namespace GhostPlugin.MusicConfigs
 
         // 작업 디렉토리 및 최종 오디오 폴더 (SCP:SL 서버 루트 기준)
         //public string WorkDir { get; init; } = "/home/vscode/steamcmd/scpsl/tmp-audio";
-        public string WorkDir { get; init; } = "/home/hanbin/steamcmd/scpsl/tmp-audio";
-        //public string AudioDir { get; init; } = "/home/vscode/steamcmd/scpsl/Audio";
-        public string AudioDir { get; init; } = "/home/hanbin/steamcmd/scpsl/Audio";
+        public string WorkDir { get; init; } = "/home/scpsl/steamcmd/scpsl/tmp-audio";
+        //public string AudioDir { get; init; } = "/home/hanbin/steamcmd/scpsl/Audio";
+        public string AudioDir { get; init; } = "/home/scpsl/steamcmd/scpsl/Audio";
 
         // 오디오 출력 설정
         public int SampleRate { get; init; } = 48000;   // 48kHz

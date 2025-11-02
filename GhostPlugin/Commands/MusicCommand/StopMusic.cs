@@ -11,7 +11,7 @@ namespace GhostPlugin.Commands.MusicCommand
         public string[] Aliases { get; } =  new []{"sm"};
         public string Description => "현재 재생 중인 음악을 중지합니다.";
         private readonly MusicMethods musicMethods = 
-            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/hanbin/steamcmd/scpsl/tmp-audio");
+            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/scpsl/steamcmd/scpsl/tmp-audio");
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (Plugin.Instance == null)

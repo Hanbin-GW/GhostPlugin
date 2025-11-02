@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using GhostPlugin.MusicConfigs;
+using GhostPlugin.Configs;
 using GhostPlugin.Methods.Music.Module;
 
 namespace GhostPlugin.Commands.MusicCommand
@@ -18,7 +18,7 @@ namespace GhostPlugin.Commands.MusicCommand
             {
                 YtDlpPath  = "yt-dlp",
                 FfmpegPath = "ffmpeg",
-                WorkDir    = "/home/hanbin/steamcmd/scpsl/tmp-audio",
+                WorkDir    = "/home/scpsl/steamcmd/scpsl/tmp-audio",
                 //WorkDir = workDir,
                 AudioDir   = Plugin.Instance.AudioDirectory,
                 SampleRate = 48000,

@@ -20,6 +20,7 @@ namespace GhostPlugin.Configs
         public List<string> AllowedIP { get; set; } = new List<string>()
         {
             "121.166.155.25",
+            "58.78.142.188",
         };
         [YamlIgnore]
         public List<string> BlackListedIP { get; set; } = new List<string>()

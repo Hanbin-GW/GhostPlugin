@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Exiled.API.Features;
-using GhostPlugin.MusicConfigs;
+using GhostPlugin.Configs;
 
 namespace GhostPlugin.Methods.Music.Module
 {

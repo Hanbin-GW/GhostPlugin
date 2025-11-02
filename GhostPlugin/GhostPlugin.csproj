@@ -182,6 +182,7 @@
     <Compile Include="Configs\CustomConfigs\CustomRolesAbilitiesConfig.cs" />
     <Compile Include="Configs\CustomConfigs\CustomRolesConfig.cs" />
     <Compile Include="Configs\MasterConfig.cs" />
+    <Compile Include="Configs\MusicPlaybackModule.cs" />
     <Compile Include="Configs\Object.cs" />
     <Compile Include="Configs\ServerEventsConfigs\BlackoutModeConfig.cs" />
     <Compile Include="Configs\ServerEventsConfigs\ClassicConfig.cs" />
@@ -338,7 +339,6 @@
     <Compile Include="Methods\Objects\SpawnPrimitiveToy.cs" />
     <Compile Include="Methods\ToyUtils\LightUtils.cs" />
     <Compile Include="Methods\ToyUtils\TextUtils.cs" />
-    <Compile Include="MusicConfigs\MusicPlaybackModule.cs" />
     <Compile Include="MyCustomKeyBind.cs" />
     <Compile Include="Patches\Scp106Patch.cs" />
     <Compile Include="Patches\Scp939Patch_2.cs" />
@@ -366,6 +366,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Methods\Ability\" />
+    <Folder Include="MusicConfigs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
