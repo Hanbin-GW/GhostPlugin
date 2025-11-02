@@ -171,7 +171,11 @@ namespace GhostPlugin
                         ci.EnhancedVisionPerks?.Register();
                         ci.BetralPerks?.Register();
                     }
-
+                    Server.WaitingForPlayers += CustomItemHandler.OnWaitingForPlayers;
+                    Exiled.Events.Handlers.Map.PickupAdded += CustomItemHandler.AddGlow;
+                    Exiled.Events.Handlers.Map.PickupDestroyed += CustomItemHandler.RemoveGlow;
+                    Server.RoundStarted += CustomItemHandler.OnRoundStarted;
+                    Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
                     Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
                 }
             });
@@ -311,6 +315,11 @@ namespace GhostPlugin
             if (Config.CustomItemsConfig.IsEnabled && CurrentRunMode == RunMode.Full)
             {
                 CustomItem.UnregisterItems();
+                Server.WaitingForPlayers -= CustomItemHandler.OnWaitingForPlayers;
+                Exiled.Events.Handlers.Map.PickupAdded -= CustomItemHandler.AddGlow;
+                Exiled.Events.Handlers.Map.PickupDestroyed -= CustomItemHandler.RemoveGlow;
+                Server.RoundStarted -= CustomItemHandler.OnRoundStarted;
+                Exiled.Events.Handlers.Item.InspectingItem -= CustomItemHandler.OnInspectingItem;
                 Exiled.Events.Handlers.Item.InspectingItem -= CustomItemHandler.OnInspectingItem;
                 CustomItemHandler = null;
             }
@@ -467,7 +476,11 @@ namespace GhostPlugin
                         ci.EnhancedVisionPerks?.Register();
                         ci.BetralPerks?.Register();
                     }
-
+                    Server.WaitingForPlayers += CustomItemHandler.OnWaitingForPlayers;
+                    Exiled.Events.Handlers.Map.PickupAdded += CustomItemHandler.AddGlow;
+                    Exiled.Events.Handlers.Map.PickupDestroyed += CustomItemHandler.RemoveGlow;
+                    Server.RoundStarted += CustomItemHandler.OnRoundStarted;
+                    Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
                     Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
                 }
             });
