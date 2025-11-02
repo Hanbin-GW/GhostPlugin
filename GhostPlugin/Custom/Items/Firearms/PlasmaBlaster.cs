@@ -3,12 +3,13 @@ using Exiled.API.Enums;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.API;
 using GhostPlugin.Methods.Objects;
 using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
-    public class PlasmaBlaster : CustomWeapon
+    public class PlasmaBlaster : CustomWeapon, ICustomItemGlow
     {
         public override uint Id { get; set; } = 46;
         public override string Name { get; set; } = "플라스마 소총";
@@ -56,5 +57,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             ev.CanHurt = false;
             base.OnShot(ev);
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = new Color32(71, 255, 255, 121);
     }
 }

@@ -6,6 +6,7 @@ using Exiled.API.Features.Pickups;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Map;
+using GhostPlugin.API;
 using JetBrains.Annotations;
 using MEC;
 using UnityEngine;
@@ -14,7 +15,7 @@ using YamlDotNet.Serialization;
 namespace GhostPlugin.Custom.Items.Grenades
 {
     [CustomItem(ItemType.GrenadeFlash)]
-    public class SmokeGrenade : CustomGrenade
+    public class SmokeGrenade : CustomGrenade, ICustomItemGlow
     {
         [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GrenadeFlash;
@@ -80,5 +81,8 @@ namespace GhostPlugin.Custom.Items.Grenades
                 });
             }
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = Color.gray;
     }
 }

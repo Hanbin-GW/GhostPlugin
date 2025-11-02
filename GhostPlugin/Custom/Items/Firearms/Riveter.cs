@@ -3,6 +3,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.API;
 using UnityEngine;
 using YamlDotNet.Serialization;
 using GhostPlugin.Methods.Objects;
@@ -11,7 +12,7 @@ using PlayerRoles;
 namespace GhostPlugin.Custom.Items.Firearms
 {
     [CustomItem(ItemType.GunE11SR)]
-    public class Riveter : CustomWeapon
+    public class Riveter : CustomWeapon, ICustomItemGlow
     {
         public override uint Id { get; set; } = 51;
         public override string Name { get; set; } = "Riveter";
@@ -62,5 +63,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             }
             base.OnShot(ev);
         }
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = new Color32(255, 25, 25, 191);
     }
 }

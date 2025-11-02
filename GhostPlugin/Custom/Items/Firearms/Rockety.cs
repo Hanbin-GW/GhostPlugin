@@ -9,6 +9,7 @@ using Exiled.Events.EventArgs.Player;
 using InventorySystem.Items.ThrowableProjectiles;
 using System.ComponentModel;
 using Exiled.API.Features.Items;
+using GhostPlugin.API;
 using GhostPlugin.Custom.Items.MonoBehavior;
 using UnityEngine;
 using YamlDotNet.Serialization;
@@ -17,7 +18,7 @@ using Firearm = Exiled.API.Features.Items.Firearm;
 namespace GhostPlugin.Custom.Items.Firearms
 {
     [CustomItem(ItemType.GunLogicer)]
-    public class Rockety : CustomWeapon
+    public class Rockety : CustomWeapon, ICustomItemGlow
     {
         public override uint Id { get; set; } = 71;
         public override string Name { get; set; } = "HE-1";
@@ -161,5 +162,8 @@ namespace GhostPlugin.Custom.Items.Firearms
         {
             base.UnsubscribeEvents();
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = new Color32(255, 25, 25, 191);
     }
 }

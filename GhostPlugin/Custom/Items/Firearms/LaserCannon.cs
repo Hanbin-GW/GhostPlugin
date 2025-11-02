@@ -2,11 +2,13 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.API;
+using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Firearms
 {
     [CustomItem(ItemType.MicroHID)]
-    public class LaserCannon: CustomItem
+    public class LaserCannon: CustomItem, ICustomItemGlow
     {
         public override uint Id { get; set; } = 41;
         public override string Name { get; set; } = "<color=#ffd900>Laser cannon</color>";
@@ -48,5 +50,8 @@ namespace GhostPlugin.Custom.Items.Firearms
                 //ev.MicroHID.Energy += 1;
             }
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = new Color32(255, 200, 0, 121);
     }
 }

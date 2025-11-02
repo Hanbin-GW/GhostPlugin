@@ -4,6 +4,7 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.API;
 using GhostPlugin.Methods.MER;
 using InventorySystem.Items.Firearms.Attachments;
 using ProjectMER.Features.Objects;
@@ -13,7 +14,7 @@ using YamlDotNet.Serialization;
 namespace GhostPlugin.Custom.Items.Firearms
 {
     [CustomItem(ItemType.GunCrossvec)]
-    public class PortableEnergyShild : CustomWeapon
+    public class PortableEnergyShild : CustomWeapon, ICustomItemGlow
     {
         public override uint Id { get; set; } = 54;
         public override string Name { get; set; } = "Portable Energy Shield";
@@ -136,5 +137,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             Exiled.Events.Handlers.Player.AimingDownSight -= OnAimDownSight;
             base.UnsubscribeEvents();
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = Color.blue;
     }
 }
