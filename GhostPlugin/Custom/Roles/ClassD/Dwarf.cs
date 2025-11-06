@@ -18,7 +18,10 @@ namespace GhostPlugin.Custom.Roles.ClassD
         public override RoleTypeId Role { get; set; } = RoleTypeId.ClassD;
         public StartTeam StartTeam { get; set; } = StartTeam.ClassD;
         public int Chance { get; set; } = 70;
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+        };
 
         protected override void RoleAdded(Player player)
         {

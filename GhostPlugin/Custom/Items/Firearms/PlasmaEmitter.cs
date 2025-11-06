@@ -107,7 +107,17 @@ namespace GhostPlugin.Custom.Items.Firearms
             ev.CanHurt = false;
             base.OnShot(ev);
         }
+        protected override void OnReloading(ReloadingWeaponEventArgs ev)
+        {
+            if (obj != null)
+            {
+                ObjectManager.RemoveObject(obj);
+                obj = null;
+            }
+            shieldCooldowns[ev.Player.Id] = Time.time;
 
+            base.OnReloading(ev);
+        }
         protected override void SubscribeEvents()
         {
             Exiled.Events.Handlers.Player.AimingDownSight += OnAimDownSight;

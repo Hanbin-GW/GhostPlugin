@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
 using GhostPlugin.Custom.Abilities.Active;
@@ -20,6 +21,11 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public int Chance { get; set; } = 80;
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosRifleman;
         public override bool DisplayCustomItemMessages { get; set; } = false;
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+        };
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {

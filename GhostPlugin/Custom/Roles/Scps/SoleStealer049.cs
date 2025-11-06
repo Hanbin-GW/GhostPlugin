@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp049;
@@ -29,6 +30,11 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override float SpawnChance { get; set; } = 0;
         private readonly Dictionary<Player, CoroutineHandle> _altKeyCooldowns = new Dictionary<Player, CoroutineHandle>();
         public float AltKeyCooldownDuration = 90f;
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+        };
 
         public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>()
         {

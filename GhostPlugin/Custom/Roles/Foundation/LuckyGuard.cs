@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.Features;
@@ -101,6 +102,11 @@ namespace GhostPlugin.Custom.Roles.Foundation
         {
             base.RoleAdded(player);
         }
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+        };
 
         // Token: 0x06000209 RID: 521 RVA: 0x0000B73A File Offset: 0x0000993A
         protected override void SubscribeEvents()

@@ -21,7 +21,10 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public int Chance { get; set; } = 55;
         public override bool DisplayCustomItemMessages { get; set; } = false;
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+        };
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {
