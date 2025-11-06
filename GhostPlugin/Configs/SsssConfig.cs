@@ -45,5 +45,10 @@ namespace GhostPlugin.Configs
         public string SsssDetonateC4ActivationMessage { get; set; } = "C4 폭발";
         public string ResupplyActivatMessage { get; set; } = "수류탄 1개와 섬광탄 1개가 보급되었습니다.";
         public string ShockwaveActivateMessage { get; set; } = "충격파로 근처 모든 인원이 마비되었습니다!";
+        public string RoundStartRolesSsssText { get; set; } = "Enable getting Custom Roles on Round Start";
+        public string RespawnWaveRolesSsssText { get; set; } = "Enable getting Custom Roles on Respawn Waves";
+        public string Scp049ReviveRolesSsssText { get; set; } = "Enable getting Custom Roles on SCP-049-2 Revivals";
+        public string CustomRoleReceivingEnabledText { get; set; } = "True";
+        public string CustomRoleReceivingDisabledText { get; set; } = "False";
     }
 }

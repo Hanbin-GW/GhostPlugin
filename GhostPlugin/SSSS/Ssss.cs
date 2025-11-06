@@ -40,7 +40,7 @@ namespace GhostPlugin.SSSS
                 255,
                 true
             ));
-
+            settings.Add(new SSTwoButtonsSetting(Plugin.Instance.Config.SsssConfig.RoundStartRolesId, Plugin.Instance.Config.SsssConfig.RoundStartRolesSsssText, Plugin.Instance.Config.SsssConfig.CustomRoleReceivingEnabledText, Plugin.Instance.Config.SsssConfig.CustomRoleReceivingDisabledText));
             return settings.ToArray();
         }
         public static ServerSpecificSettingBase[] GetSettings()
@@ -193,6 +193,8 @@ namespace GhostPlugin.SSSS
                     KeyCode.O,true,false,"O"));
                 settings.Add(new SSKeybindSetting(Plugin.Instance.Config.SsssConfig.ShockwaveId,"Shockwave (충격파)",
                     KeyCode.B,true,false,"B"));
+                settings.Add(new SSTwoButtonsSetting(Plugin.Instance.Config.SsssConfig.RespawnWaveRolesId, Plugin.Instance.Config.SsssConfig.RespawnWaveRolesSsssText, Plugin.Instance.Config.SsssConfig.CustomRoleReceivingEnabledText, Plugin.Instance.Config.SsssConfig.CustomRoleReceivingDisabledText));
+                settings.Add(new SSTwoButtonsSetting(Plugin.Instance.Config.SsssConfig.Scp049ReviveRolesId, Plugin.Instance.Config.SsssConfig.Scp049ReviveRolesSsssText, Plugin.Instance.Config.SsssConfig.CustomRoleReceivingEnabledText, Plugin.Instance.Config.SsssConfig.CustomRoleReceivingDisabledText));
             }
 
             if (Plugin.Instance.Config.CustomItemsConfig.IsEnabled)

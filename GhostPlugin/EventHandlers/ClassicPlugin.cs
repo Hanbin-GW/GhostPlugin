@@ -302,9 +302,7 @@ namespace GhostPlugin.EventHandlers
             if (!!_printedReadyToEndOnce || !Plugin.Instance.Config.Debug)
             {
                 _printedReadyToEndOnce = true;
-                Log.Send(
-                    $"[ClassicPlugin] EndingRound fired | IsAllowed={ev.IsAllowed} | SCP={scps}, CHAOS={chaos}, MTF={mtf}, OTHERS={others}, Dclass={dboy}",
-                    LogLevel.Debug, ConsoleColor.Blue);
+                //Log.Send($"[ClassicPlugin] EndingRound fired | IsAllowed={ev.IsAllowed} | SCP={scps}, CHAOS={chaos}, MTF={mtf}, OTHERS={others}, Dclass={dboy}", LogLevel.Debug, ConsoleColor.Blue);
             }
 
             // ✅ 적대 진영(SCP/Chaos)이 전멸했고 MTF만 남았으면 강제로 허용
