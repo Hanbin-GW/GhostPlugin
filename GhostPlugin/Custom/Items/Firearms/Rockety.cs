@@ -26,6 +26,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override float Weight { get; set; } = 21f;
         [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GunLogicer;
+        private readonly float speed = 30f;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
@@ -137,20 +138,34 @@ namespace GhostPlugin.Custom.Items.Firearms
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
 
+            // ★ 발사자와의 충돌 무시 (모든 콜라이더 쌍)
+            IgnoreOwnerCollisions(player, proj.gameObject);
+
+            // 충돌 처리(자기 자신은 이미 무시되므로 OK)
             proj.gameObject.AddComponent<CollisionHandler>().Init(player.GameObject, proj);
 
-            const float straightSpeed = 20f;
+            float straightSpeed = speed;
 
-            // 카메라 전방에서 Y 성분 제거 → 완전 수평 방향
-            Vector3 dir = player.CameraTransform.forward;
-            dir.y = 0f;
-            dir = dir.sqrMagnitude > 0.0001f ? dir.normalized : Vector3.forward;
+            // ★ 카메라 pitch 포함한 forward 그대로 사용
+            Vector3 dir = player.CameraTransform.forward.normalized;
 
-            // 1) 최초 속도 부여
             rb.velocity = dir * straightSpeed;
 
-            // 2) 네트코드/다른 스크립트 간섭을 이기기 위해 매 FixedUpdate 때 속도 고정
-            proj.gameObject.AddComponent<StraightFlight>().Init(rb, dir, straightSpeed, lockHorizontal:true);
+            // 네트/외력 보정: 매 FixedUpdate마다 속도를 덮어쓰기 (수평 고정 아님!)
+            proj.gameObject.AddComponent<StraightFlight>().Init(rb, dir, straightSpeed, lockHorizontal:false);
+        }
+        
+        private static void IgnoreOwnerCollisions(Player player, GameObject projGo)
+        {
+            if (projGo == null || player?.GameObject == null) return;
+
+            var projCols  = projGo.GetComponentsInChildren<Collider>(true);
+            var ownerCols = player.GameObject.GetComponentsInChildren<Collider>(true);
+
+            foreach (var pc in projCols)
+            foreach (var oc in ownerCols)
+                if (pc != null && oc != null)
+                    Physics.IgnoreCollision(pc, oc, true);
         }
 
         protected override void SubscribeEvents()

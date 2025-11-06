@@ -7,15 +7,15 @@ using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Scp049;
 using Exiled.Events.EventArgs.Server;
 using PlayerRoles;
-using UserSettings.ServerSpecific;
 using GhostPlugin.API;
+using GhostPlugin.Methods.CustomRoles;
 
 namespace GhostPlugin.EventHandlers
 {
-    public class CustomRoleHandler
+    public class CustomRoleHandler_old
     {
         private readonly Plugin Plugin;
-        public CustomRoleHandler(Plugin plugin) => Plugin = plugin;
+        public CustomRoleHandler_old(Plugin plugin) => Plugin = plugin;
         public void OnRoundStarted()
         {
             List<ICustomRole>.Enumerator dClassRoles = new();
@@ -115,15 +115,8 @@ namespace GhostPlugin.EventHandlers
                         break;
                 }
 
-                if (player.GetCustomRoles().Count == 0 &&
-                    (Plugin.Instance.Config.SsssConfig.IsEnabled &&
-                     ServerSpecificSettingsSync.TryGetSettingOfUser<SSTwoButtonsSetting>(player.ReferenceHub,
-                         Plugin.Instance.Config.SsssConfig.RoundStartRolesId, out var setting) &&
-                     setting.SyncIsA) || !Plugin.Instance.Config.SsssConfig.IsEnabled)
-                {
-                    Log.Debug($"VVUP Custom Roles: Selected role {role} for {player.Nickname}");
+                if (player.GetCustomRoles().Count == 0)
                     role?.AddRole(player);
-                }
             }
 
             guardRoles.Dispose();
@@ -141,6 +134,8 @@ namespace GhostPlugin.EventHandlers
 
         public void OnRespawningTeam(RespawningTeamEventArgs ev)
         {
+            /*if (C_Squad.Plugin.Instance.IsSpawnable || Reinforcements.Plugin.Instance.IsSpawnable)
+                return;*/
             bool cSquadActive = false;
             bool reinfActive = false;
             try
@@ -172,6 +167,7 @@ namespace GhostPlugin.EventHandlers
             // 외부가 스폰 담당이면 그냥 빠져나감
             if (cSquadActive || reinfActive)
                 return;
+
             
             if (ev.Players.Count == 0)
             {
@@ -186,13 +182,13 @@ namespace GhostPlugin.EventHandlers
             List<ICustomRole>.Enumerator roles = new();
             switch (ev.NextKnownTeam)
             {
-                case (Faction)SpawnableFaction.ChaosWave or (Faction)SpawnableFaction.ChaosMiniWave:
+                case Faction.FoundationEnemy:
                 {
                     if (Plugin.Roles.TryGetValue(StartTeam.Chaos, out List<ICustomRole> role))
                         roles = role.GetEnumerator();
                     break;
                 }
-                case (Faction)SpawnableFaction.NtfWave or (Faction)SpawnableFaction.NtfMiniWave:
+                case Faction.FoundationStaff:
                 {
                     if (Plugin.Roles.TryGetValue(StartTeam.Ntf, out List<ICustomRole> pluginRole))
                         roles = pluginRole.GetEnumerator();
@@ -202,17 +198,10 @@ namespace GhostPlugin.EventHandlers
 
             foreach (Player player in ev.Players)
             {
-                CustomRole? role = CustomRoleMethods.GetCustomRole(ref roles);
+                CustomRole role = CustomRoleMethods.GetCustomRole(ref roles);
 
-                if (player.GetCustomRoles().Count == 0 && 
-                    (Plugin.Instance.Config.SsssConfig.IsEnabled &&
-                     ServerSpecificSettingsSync.TryGetSettingOfUser<SSTwoButtonsSetting>(player.ReferenceHub,
-                         Plugin.Instance.Config.SsssConfig.RespawnWaveRolesId, out var setting) && 
-                     setting.SyncIsA) || !Plugin.Instance.Config.SsssConfig.IsEnabled)
-                {
-                    Log.Debug($"VVUP Custom Roles: Selected role {role} for {player.Nickname}");
+                if (player.GetCustomRoles().Count == 0)
                     role?.AddRole(player);
-                }
             }
 
             roles.Dispose();
@@ -225,7 +214,7 @@ namespace GhostPlugin.EventHandlers
             {
                 Log.Debug($"VVUP Custom Roles: {nameof(FinishingRecall)}: List count {Plugin.Roles[StartTeam.Scp].Count}");
                 List<ICustomRole>.Enumerator roles = Plugin.Roles[StartTeam.Scp].GetEnumerator();
-                CustomRole? role = CustomRoleMethods.GetCustomRole(ref roles, false, true);
+                CustomRole role = CustomRoleMethods.GetCustomRole(ref roles, false, true);
 
                 Log.Debug($"VVUP Custom Roles: Got custom role {role?.Name}");
 
@@ -236,15 +225,8 @@ namespace GhostPlugin.EventHandlers
 
                     if (activeRoleCount < role.SpawnProperties.Limit)
                     {
-                        if (ev.Target.GetCustomRoles().Count == 0 && 
-                            (Plugin.Instance.Config.SsssConfig.IsEnabled &&
-                             ServerSpecificSettingsSync.TryGetSettingOfUser<SSTwoButtonsSetting>(ev.Target.ReferenceHub,
-                                 Plugin.Instance.Config.SsssConfig.Scp049ReviveRolesId, out var setting) && 
-                             setting.SyncIsA) || !Plugin.Instance.Config.SsssConfig.IsEnabled) 
-                        {
-                            Log.Debug($"VVUP Custom Roles: Selected role {role} for {ev.Target.Nickname}");
-                            role?.AddRole(ev.Target);
-                        }
+                        if (ev.Target.GetCustomRoles().Count == 0)
+                            role.AddRole(ev.Target);
                     }
                     else
                     {

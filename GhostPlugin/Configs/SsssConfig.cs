@@ -3,7 +3,7 @@ namespace GhostPlugin.Configs
     public class SsssConfig
     {
         public bool IsEnabled { get; set; } = true;
-
+        public string Header { get; set; } = "Ghost Plugin's Custom Roles";
         public int ActiveCamoId { get; set; } = 10000;
         public int ChargeId { get; set; } = 10001;
         public int DetectId { get; set; } = 10002;
@@ -23,6 +23,10 @@ namespace GhostPlugin.Configs
         public int MusicToggleId { get; set; } = 20001;
         public int ResupplyId { get; set; } = 20002;
         public int OverkillId { get; set; } = 20003;
+        public int RoundStartRolesId { get; set; } = 10111;
+        public int RespawnWaveRolesId { get; set; } = 10112;
+        public int Scp049ReviveRolesId { get; set; } = 10113;
+
         public string SsssActiveCamoActivationMessage { get; set; } = "Activated Active Camo";
         public string SsssChargeActivationMessage { get; set; } = "Activated Charge";
         public string SsssDoorPickingActivationMessage { get; set; } = "Activated Door Picking, Interact with the door you want to pick.";

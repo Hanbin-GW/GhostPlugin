@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Exiled.CustomItems.API.Features;
 using Exiled.CustomRoles.API.Features;
@@ -17,6 +18,7 @@ using UnityEngine;
 using UserSettings.ServerSpecific;
 using Reinforcements.Roles;
 using C_Squad.Roles;
+using Exiled.API.Features;
 using GhostPlugin.Custom.Items.Medkit;
 
 namespace GhostPlugin.SSSS
@@ -50,33 +52,33 @@ namespace GhostPlugin.SSSS
             {
                 var customRoles = new List<CustomRole>
                 {
-                    CustomRole.Get(typeof(CiPhantom)),
-                    CustomRole.Get(typeof(FedoraAgent)),
-                    CustomRole.Get(typeof(JuggernautChaos)),
-                    CustomRole.Get(typeof(Ninja)),
-                    CustomRole.Get(typeof(SpyAgent)),
-                    CustomRole.Get(typeof(D_Alpha)),
-                    CustomRole.Get(typeof(Dwarf)),
-                    CustomRole.Get(typeof(Demolitionist)),
-                    CustomRole.Get(typeof(Elite)),
-                    CustomRole.Get(typeof(Jailbirdman)),
-                    CustomRole.Get(typeof(Ksk)),
-                    CustomRole.Get(typeof(Viper)),
-                    CustomRole.Get(typeof(ChiefScientist)),
-                    CustomRole.Get(typeof(O5Administrator)),
-                    CustomRole.Get(typeof(DwarfZombie)),
-                    CustomRole.Get(typeof(EodSoldierZombie)),
-                    CustomRole.Get(typeof(ExplosiveZombie)),
-                    CustomRole.Get(typeof(SoleStealer049)),
-                    CustomRole.Get(typeof(Scp049AP)),
-                    CustomRole.Get(typeof(Tanker106)),
-                    CustomRole.Get(typeof(SniperAgent)),
-                    CustomRole.Get(typeof(LargeAgent)),
-                    CustomRole.Get(typeof(ReinforcementsCommander)),
-                    CustomRole.Get(typeof(Agent)),
-                    CustomRole.Get(typeof(Specialist)),
-                    CustomRole.Get(typeof(Commander)),
-                    CustomRole.Get(typeof(ShockWaveZombie)),
+                    CiPhantom.Get(typeof(CiPhantom)),
+                    FedoraAgent.Get(typeof(FedoraAgent)),
+                    JuggernautChaos.Get(typeof(JuggernautChaos)),
+                    Ninja.Get(typeof(Ninja)),
+                    SpyAgent.Get(typeof(SpyAgent)),
+                    D_Alpha.Get(typeof(D_Alpha)),
+                    Dwarf.Get(typeof(Dwarf)),
+                    Demolitionist.Get(typeof(Demolitionist)),
+                    Elite.Get(typeof(Elite)),
+                    Jailbirdman.Get(typeof(Jailbirdman)),
+                    Ksk.Get(typeof(Ksk)),
+                    Viper.Get(typeof(Viper)),
+                    ChiefScientist.Get(typeof(ChiefScientist)),
+                    O5Administrator.Get(typeof(O5Administrator)),
+                    DwarfZombie.Get(typeof(DwarfZombie)),
+                    EodSoldierZombie.Get(typeof(EodSoldierZombie)),
+                    ExplosiveZombie.Get(typeof(ExplosiveZombie)),
+                    SoleStealer049.Get(typeof(SoleStealer049)),
+                    Scp049AP.Get(typeof(Scp049AP)),
+                    Tanker106.Get(typeof(Tanker106)),
+                    SniperAgent.Get(typeof(SniperAgent)),
+                    LargeAgent.Get(typeof(LargeAgent)),
+                    ReinforcementsCommander.Get(typeof(ReinforcementsCommander)),
+                    Agent.Get(typeof(Agent)),
+                    Specialist.Get(typeof(Specialist)),
+                    Commander.Get(typeof(Commander)),
+                    ShockWaveZombie.Get(typeof(ShockWaveZombie)),
                 };
 				stringBuilder.AppendLine("<size=40>CustomRoles - [특수직업]</size>");
                 foreach (var role in customRoles)
@@ -207,6 +209,29 @@ namespace GhostPlugin.SSSS
                     ,KeyCode.Y,true,false,"라운드 중 minimap 을 토글합니다."));
             }
             return settings.ToArray();
+        }
+        public static void SafeAppendSsssSettings()
+        {
+            var mySettings = GetSettings();
+            var current = ServerSpecificSettingsSync.DefinedSettings?.ToList() ?? new List<ServerSpecificSettingBase>();
+            bool needToAddSettings = mySettings.Any(setting => current.All(s => s.SettingId != setting.SettingId));
+            if (needToAddSettings)
+            {
+                if (!current.Any(s => s is SSGroupHeader header && header.Label == Plugin.Instance.Config.SsssConfig.Header))
+                {
+                    current.Add(new SSGroupHeader(Plugin.Instance.Config.SsssConfig.Header));
+                }
+                foreach (var setting in mySettings)
+                {
+                    if (current.All(s => s.SettingId != setting.SettingId))
+                        current.Add(setting);
+                    else
+                        Log.Debug($"CR SSSS: Skipped duplicate SettingId: {setting.SettingId}");
+                }
+        
+                ServerSpecificSettingsSync.DefinedSettings = current.ToArray();
+                Log.Debug($"CR SSSS: Appended settings. Total now: {current.Count}");
+            }
         }
     }
 }

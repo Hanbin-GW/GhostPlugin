@@ -528,6 +528,29 @@ namespace GhostPlugin
                     Server.RespawningTeam += CustomRoleHandler.OnRespawningTeam;
                     Scp049Events.FinishingRecall += CustomRoleHandler.FinishingRecall;
                 }
+                foreach (CustomRole role in CustomRole.Registered)
+                {
+                    if (role?.CustomAbilities != null)
+                        foreach (var ability in role.CustomAbilities)
+                            ability?.Register();
+
+                    if (role is ICustomRole custom)
+                    {
+                        var team =
+                            custom.StartTeam.HasFlag(StartTeam.Chaos) ? StartTeam.Chaos :
+                            custom.StartTeam.HasFlag(StartTeam.Guard) ? StartTeam.Guard :
+                            custom.StartTeam.HasFlag(StartTeam.Ntf) ? StartTeam.Ntf :
+                            custom.StartTeam.HasFlag(StartTeam.Scientist) ? StartTeam.Scientist :
+                            custom.StartTeam.HasFlag(StartTeam.ClassD) ? StartTeam.ClassD :
+                            custom.StartTeam.HasFlag(StartTeam.Scp) ? StartTeam.Scp :
+                            custom.StartTeam.HasFlag(StartTeam.Revived) ? StartTeam.Revived :
+                            StartTeam.Other;
+
+                        if (!Roles.ContainsKey(team)) Roles.Add(team, new());
+                        uint limit = role.SpawnProperties?.Limit ?? 0; // ★ 널 가드
+                        for (int i = 0; i < limit; i++) Roles[team].Add(custom);
+                    }
+                }
             });
 
             Run("abilities.register", () =>
