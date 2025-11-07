@@ -17,7 +17,10 @@ namespace GhostPlugin.Custom.Roles.Scps
         public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
         public int Chance { get; set; } = 60;
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+        };
 
         private void OnHurting(HurtingEventArgs ev)
         {

@@ -3,6 +3,7 @@ using CustomPlayerEffects;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
 using PlayerRoles;
@@ -18,6 +19,11 @@ namespace GhostPlugin.Custom.Roles.Chaos
         public override string Description { get; set; } = "조용히 움직이는 닌자입니다. 연막탄과 특수 리볼버가 제공되었습니다.";
         public override string CustomInfo { get; set; } = "Ninja";
         public override RoleTypeId Role { get; set; } = RoleTypeId.ChaosRepressor;
+
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+        };
         public StartTeam StartTeam { get; set; } = StartTeam.Chaos;
         public int Chance { get; set; } = 30;
         public override bool DisplayCustomItemMessages { get; set; } = false;

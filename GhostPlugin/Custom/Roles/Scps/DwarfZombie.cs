@@ -22,7 +22,10 @@ namespace GhostPlugin.Custom.Roles.Scps
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp0492;
         public StartTeam StartTeam { get; set; } = StartTeam.Scp | StartTeam.Revived;
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+        };
 
         protected override void RoleAdded(Player player)
         {

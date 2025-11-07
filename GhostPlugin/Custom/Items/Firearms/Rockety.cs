@@ -30,6 +30,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         {
+            Limit = 3,
             DynamicSpawnPoints = new List<DynamicSpawnPoint>()
             {
                 new DynamicSpawnPoint()

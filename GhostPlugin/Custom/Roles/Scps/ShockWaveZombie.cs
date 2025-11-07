@@ -27,7 +27,10 @@ namespace GhostPlugin.Custom.Roles.Scps
             new Shockwave()
         };
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            Limit = 1,
+        };
 
         protected override void RoleAdded(Player player)
         {
