@@ -41,22 +41,22 @@ namespace GhostPlugin.Custom.Items.Firearms
                 switch (ev.Player.Role.Team)
                 {
                     case (Team.FoundationForces):
-                        glowColor = new Color(0f, 1f, 1f, 0.1f) * 50;
+                        glowColor = new Color(0f, 1f, 1f, 0.1f) * 75;
                         break;
                     case (Team.Scientists):
-                        glowColor = new Color(1f, 1f, 0f, 0.1f) * 50;
+                        glowColor = new Color(1f, 1f, 0f, 0.1f) * 75;
                         break;
                     case (Team.ChaosInsurgency):
-                        glowColor = new Color(0.1f, 1f, 0.1f, 0.1f) * 50;
+                        glowColor = new Color(0.1f, 1f, 0.1f, 0.1f) * 75;
                         break;
                     case (Team.OtherAlive):
-                        glowColor = new Color(1f, 1f, 1f, 0.1f) * 50;
+                        glowColor = new Color(1f, 1f, 1f, 0.1f) * 75;
                         break;
                 }
 
                 if (CustomRole.Get(18)?.Check(ev.Player) == true)
                 {
-                    glowColor = new Color(1f, 0f, 0f, 0.1f) * 50;
+                    glowColor = new Color(1f, 0f, 0f, 0.1f) * 75;
                 }
                 
                 SpawnPrimitive.spawnPrimitivesfire(ev.Player, 10, rotation, laserPos, glowColor,5,20);
