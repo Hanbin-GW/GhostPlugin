@@ -23,12 +23,12 @@ namespace GhostPlugin.Methods.Music
             // 폴더가 없으면 생성
             if (!Directory.Exists(path))
             {
-                Log.Warn($"음악 폴더가 존재하지 않습니다. 새로 생성합니다: {path}");
+                Log.Warn($"Music Folder Doesn't exists create new: {path}");
                 Directory.CreateDirectory(path);  // 폴더 생성
             }
             else
             {
-                Log.Info("음악 폴더가 이미 존재합니다.");
+                Log.Info("Music Folder Exists");
             }
         }
         /// <summary>
@@ -52,7 +52,7 @@ namespace GhostPlugin.Methods.Music
             // 파일 존재 여부 확인
             if (!File.Exists(path))
             {
-                Log.Error($"파일이 존재하지 않습니다: {path}");
+                Log.Error($"File Doesn't exists: {path}");
                 return;
             }
 
@@ -71,12 +71,12 @@ namespace GhostPlugin.Methods.Music
                 // 클립 추가
                 musicPlayer.AddClip("Music", 1f, false, false);
 
-                Log.Info($"음악이 재생됩니다: {filename}");
+                Log.Info($"Playing a music: {filename}");
             }
             catch (Exception ex)
             {
                 // 예외 처리
-                Log.Error($"음악 재생 명령어 중 오류가 발생했습니다: {ex.Message}");
+                Log.Error($"Error Occured playing music command: {ex.Message}");
             }
         }
         public async Task PlayPreparedAlias(string alias)
@@ -89,11 +89,11 @@ namespace GhostPlugin.Methods.Music
                 {
                     PlaySpecificMusic(fileName); // 밑의 함수 호출
                 }
-                Log.Info($"음악이 재생됩니다 (alias): {alias}");
+                Log.Info($"Music is playing (alias): {alias}");
             }
             catch (Exception ex)
             {
-                Log.Error($"음악 재생 명령어 중 오류가 발생했습니다: {ex.Message}");
+                Log.Error($"Error Occured playing music command: {ex.Message}");
             }
         }
 

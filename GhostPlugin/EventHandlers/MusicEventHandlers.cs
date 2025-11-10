@@ -99,7 +99,7 @@ namespace GhostPlugin.EventHandlers
             }
             else
             {
-                Log.Error("globalPlayer를 생성하지 못했습니다!");
+                Log.Error("Cannot spawn globalPlayer!");
             }
         }
         public void OnDetonated()
@@ -109,7 +109,7 @@ namespace GhostPlugin.EventHandlers
 
             if (!File.Exists(path))
             {
-                Log.Error("오디오 파일이 존재하지 않습니다.");
+                Log.Error("Audio Files Doesn't Exist!.");
                 return;
             }
 
@@ -117,7 +117,7 @@ namespace GhostPlugin.EventHandlers
 
             if (!AudioClipStorage.AudioClips.ContainsKey("Doom"))
             {
-                Log.Error("오디오 클립 로딩 실패");
+                Log.Error("Failed to load audio clip!");
                 return;
             }
             _music.PlaySpecificMusic(path);
@@ -307,8 +307,8 @@ namespace GhostPlugin.EventHandlers
                     float duration = API.Audio.AudioUtils.GetOggDurationInSeconds(path);
                     if (Plugin.Instance.Config.MusicConfig.Debug)
                     {
-                        Log.Send($"재생 중: {clipId}", LogLevel.Debug, ConsoleColor.DarkGreen);
-                        Log.Send($"{duration} secound", LogLevel.Debug, ConsoleColor.DarkGreen);
+                        Log.Send($"Playing: {clipId}", LogLevel.Debug, ConsoleColor.DarkGreen);
+                        Log.Send($"{duration} second", LogLevel.Debug, ConsoleColor.DarkGreen);
                     }
 
                     yield return Timing.WaitForSeconds(duration);
