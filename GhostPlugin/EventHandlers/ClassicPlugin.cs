@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Map;
@@ -22,11 +23,11 @@ namespace GhostPlugin.EventHandlers
     {
         private static int _activatedGenerators = 0;
         private static CoroutineHandle _broadcastCoroutine;
+        private static bool _printedReadyToEndOnce;
         public static void RegisterEvents()
         {
             Exiled.Events.Handlers.Scp096.AddingTarget += OnLookingAtScp096;
             Exiled.Events.Handlers.Scp096.Enraging += OnEnraging;
-            Exiled.Events.Handlers.Server.EndingRound += OnRoundEnded;
             MapEvents.AnnouncingDecontamination += OnAnnouncingDecontemination;
             MapEvents.Decontaminating += OnDecontaminating;
             MapEvents.GeneratorActivating += OnActivateGenerator;
@@ -37,7 +38,7 @@ namespace GhostPlugin.EventHandlers
             PlayerEvents.Verified += OnVerified;
             ServerEvents.RoundStarted += OnRoundStarted; 
             ServerEvents.RestartingRound += OnRestartingRound;
-            ServerEvents.RoundEnded += OnRoundEnded;
+            ServerEvents.EndingRound += OnRoundEnding;
             PlayerEvents.Left += OnPlayerLeft;
             PlayerEvents.Dying += OnDying;
         }
@@ -46,7 +47,6 @@ namespace GhostPlugin.EventHandlers
         {
             Exiled.Events.Handlers.Scp096.AddingTarget -= OnLookingAtScp096;
             Exiled.Events.Handlers.Scp096.Enraging -= OnEnraging;
-            Exiled.Events.Handlers.Server.EndingRound -= OnRoundEnded;
             MapEvents.AnnouncingDecontamination -= OnAnnouncingDecontemination;
             MapEvents.Decontaminating -= OnDecontaminating;
             MapEvents.GeneratorActivating -= OnActivateGenerator;
@@ -57,15 +57,52 @@ namespace GhostPlugin.EventHandlers
             PlayerEvents.Verified -= OnVerified;
             ServerEvents.RoundStarted -= OnRoundStarted; 
             ServerEvents.RestartingRound -= OnRestartingRound;
-            ServerEvents.RoundEnded -= OnRoundEnded;
+            ServerEvents.EndingRound -= OnRoundEnding;
             PlayerEvents.Left -= OnPlayerLeft;
             PlayerEvents.Dying -= OnDying;
         }
 
-        private static void OnRoundEnded(RoundEndedEventArgs ev)
+        private static void OnRoundEnding(EndingRoundEventArgs ev)
         {
-            if (Plugin.Instance.Config.ServerEventsMasterConfig.ClassicConfig.IsSafeMode)
-                Map.Broadcast(5,"<color=green>SafeMode</color> Is Activated...<color=orange>Restarting the Server</color>");
+            Timing.KillCoroutines(_broadcastCoroutine);
+            /*if (TeamDeathmatch.Plugin.Instance?.Config?.IsEnabled == true)
+                return;*/
+            var alive = Player.List.Where(p => p.IsAlive).ToList();
+            int scps   = alive.Count(p => p.Role.Team == Team.SCPs);
+            int chaos  = alive.Count(p => p.Role.Team == Team.ChaosInsurgency);
+            int mtf    = alive.Count(p => p.Role.Team == Team.FoundationForces );
+            int others = alive.Count(p => p.Role.Team != Team.SCPs
+                                          && p.Role.Team != Team.ChaosInsurgency
+                                          && p.Role.Team != Team.FoundationForces);
+            int scientist = alive.Count(p => p.Role.Team == Team.Scientists);
+            int dboy = alive.Count(p => p.Role.Team == Team.ClassD);
+            /*int dboy = alive.Count(p =>
+                p.Role.Team == Team.ClassD &&
+                !(p.IsCuffed && p.Cuffer != null && p.Cuffer.Role.Team == Team.FoundationForces)
+            );*/
+            if (!!_printedReadyToEndOnce || !Plugin.Instance.Config.Debug)
+            {
+                _printedReadyToEndOnce = true;
+                //Log.Send($"[ClassicPlugin] EndingRound fired | IsAllowed={ev.IsAllowed} | SCP={scps}, CHAOS={chaos}, MTF={mtf}, OTHERS={others}, Dclass={dboy}", LogLevel.Debug, ConsoleColor.Blue);
+            }
+
+            // ✅ 적대 진영(SCP/Chaos)이 전멸했고 MTF만 남았으면 강제로 허용
+            if (!_printedReadyToEndOnce || !ev.IsAllowed && dboy == 0 && scps == 0 && chaos == 0 && mtf >= 1)
+            {
+                ev.IsAllowed = true; // 핵심: 다른 플러그인의 취소를 무력화
+                _printedReadyToEndOnce = true;
+                Timing.CallDelayed(5, () => Round.Restart());
+                Log.Info("[ClassicPlugin] Forced round end allowed (MTF victory).");
+            }
+
+            // 문제 많던 커스텀 롤/튜토리얼 추적
+            var tutorials = Player.List.Where(p => p.IsAlive && p.Role.Type == RoleTypeId.Tutorial).ToList();
+            if (tutorials.Count > 0)
+                Log.Info($"[DEBUG] Alive Tutorials: {string.Join(", ", tutorials.Select(t => t.Nickname))}");
+
+            // 예: Spy/스파이 에이전트 표식이 있다면 그 기준으로도 찍어주세요.
+            // var spies = Player.List.Where(IsSpyAgentPredicate).ToList();
+            // Log.Info($"[DEBUG] Alive Spies: {spies.Count}");
         }
 
         private static void OnRestartingRound()
@@ -236,10 +273,10 @@ namespace GhostPlugin.EventHandlers
             if(!TeamDeathmatch.Plugin.Instance.Config.IsEnabled)
                 Cassie.MessageTranslated(message: "Attention Containment breach detected", isSubtitles: true, translation: "Attention <color=red>Containment breach</color> detected", isNoisy: false);
         }
-        private static void OnRoundEnded(EndingRoundEventArgs ev)
+        /*private static void OnRoundEnded(EndingRoundEventArgs ev)
         {
             Timing.KillCoroutines(_broadcastCoroutine);
-        }
+        }*/
         private static void OnWarheadStopped(StoppingEventArgs ev)
         {
             Map.Broadcast(5, "<size=30><color=#418043> ⚠ Detonation Cancelled ⚠ </color></size>",shouldClearPrevious:true);
