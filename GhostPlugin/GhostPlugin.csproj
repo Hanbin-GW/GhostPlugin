@@ -221,6 +221,7 @@
         <Compile Include="Custom\Items\Armor\JuggernautArmor.cs" />
         <Compile Include="Custom\Items\Armor\OverkillVest.cs" />
         <Compile Include="Custom\Items\Etc\AmmoBox.cs" />
+        <Compile Include="Custom\Items\Etc\EnergizedBlade.cs" />
         <Compile Include="Custom\Items\Etc\SCP500A.cs" />
         <Compile Include="Custom\Items\Etc\Spike_Jailbird.cs" />
         <Compile Include="Custom\Items\Etc\TrophySystem.cs" />

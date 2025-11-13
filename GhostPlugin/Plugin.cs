@@ -16,6 +16,7 @@ using GhostPlugin.Enums;
 // using HarmonyLib;
 using Scp049Events = Exiled.Events.Handlers.Scp049;
 using ProjectMER.Features.Objects;
+using Unity.Collections.LowLevel.Unsafe;
 using UserSettings.ServerSpecific;
 using Server = Exiled.Events.Handlers.Server;
 
@@ -35,7 +36,7 @@ namespace GhostPlugin
 
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(8, 1, 2);
+        public override Version Version { get; } = new(8, 2, 1);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin-Eng";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
@@ -160,6 +161,7 @@ namespace GhostPlugin
                     //ci.ActiveArmors?.Register();
                     ci.JuggernautArmors?.Register();
                     ci.LowGravityGrenadeItems?.Register();
+                    ci.EnergizedBlades?.Register();
                     ci.Rocketies?.Register();
 
                     if (Config?.EnablePerkEvents == true && CurrentRunMode == RunMode.Full)
@@ -464,6 +466,7 @@ namespace GhostPlugin
                     ci.LowGravityGrenadeItems?.Register();
                     ci.Rocketies?.Register();
                     ci.FrMg03S?.Register();
+                    ci.EnergizedBlades?.Register();
                     // ... 기타 아이템들
                     if (Config.EnablePerkEvents && PerkEventHandlers == null)
                     {

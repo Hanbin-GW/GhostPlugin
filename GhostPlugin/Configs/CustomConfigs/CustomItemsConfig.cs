@@ -12,13 +12,13 @@ namespace GhostPlugin.Configs.CustomConfigs
 {
     public class CustomItemsConfig
     {
-        [Description("Enables Custom Items")]
-        public bool IsEnabled { get; set; } = true;
+        [Description("Enables Custom Items")] public bool IsEnabled { get; set; } = true;
 
         public List<HackingDevice> HackingDevices { get; private set; } = new List<HackingDevice>()
         {
             new HackingDevice()
         };
+
         public List<Mors> Morses { get; private set; } = new List<Mors>()
         {
             new Mors()
@@ -33,6 +33,7 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new GernadeLuncher()
         };
+
         public List<ReconBattleRife> FtacReacon { get; private set; } = new List<ReconBattleRife>()
         {
             new ReconBattleRife()
@@ -52,6 +53,7 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new TripleFlashGrenade()
         };
+
         public List<StunGrenade> StunGrenades { get; private set; } = new List<StunGrenade>()
         {
             new StunGrenade()
@@ -61,10 +63,12 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Stim()
         };
+
         public List<BattleRage> BattleRages { get; private set; } = new List<BattleRage>()
         {
             new BattleRage()
         };
+
         public List<Svd> Svds { get; private set; } = new List<Svd>()
         {
             new Svd()
@@ -74,28 +78,33 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new EodPadding()
         };
+
         public List<SmokeGrenade> SmokeGrenades { get; private set; } = new List<SmokeGrenade>()
         {
             new SmokeGrenade()
         };
-        public List<ExplosiveRoundRevolver> ExplosiveRoundRevolvers { get; private set; } = new List<ExplosiveRoundRevolver>()
-        {
-            new ExplosiveRoundRevolver()
-        };
+
+        public List<ExplosiveRoundRevolver> ExplosiveRoundRevolvers { get; private set; } =
+            new List<ExplosiveRoundRevolver>()
+            {
+                new ExplosiveRoundRevolver()
+            };
 
         public List<ParalyzeRife> ParalyzeRifes { get; private set; } = new List<ParalyzeRife>()
         {
             new ParalyzeRife()
         };
+
         public List<PlasmaEmitter> PlasmaEmitters { get; private set; } = new List<PlasmaEmitter>()
         {
             new PlasmaEmitter()
         };
 
-        public List<PlasmaShockwaveEmitter> PlasmaShockwaveEmitters { get; private set; } = new List<PlasmaShockwaveEmitter>()
-        {
-            new PlasmaShockwaveEmitter() 
-        };
+        public List<PlasmaShockwaveEmitter> PlasmaShockwaveEmitters { get; private set; } =
+            new List<PlasmaShockwaveEmitter>()
+            {
+                new PlasmaShockwaveEmitter()
+            };
 
         public List<PhotonCannon> PhotonCannons { get; private set; } = new List<PhotonCannon>()
         {
@@ -111,10 +120,12 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new ImpactGrenade()
         };
+
         public List<StickyGrenade> StickyGrenades { get; private set; } = new List<StickyGrenade>()
         {
             new StickyGrenade()
         };
+
         public List<PlasmaShotgun> PlasmaShotguns { get; private set; } = new List<PlasmaShotgun>()
         {
             new PlasmaShotgun()
@@ -124,6 +135,7 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new Bolter()
         };
+
         public List<AcidShooter> AcidShooters { get; private set; } = new List<AcidShooter>()
         {
             new AcidShooter()
@@ -133,6 +145,7 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new C4()
         };
+
         public List<SpikeJailbird> SpikeJailbirds { get; private set; } = new List<SpikeJailbird>()
         {
             new SpikeJailbird()
@@ -172,6 +185,7 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new TrophySystem()
         };
+
         public List<OverkillVest> OverkillVests { get; private set; } = new List<OverkillVest>()
         {
             new OverkillVest()
@@ -181,6 +195,7 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new PlasmaBlaster()
         };
+
         public List<MachineGun> MachineGuns { get; private set; } = new List<MachineGun>()
         {
             new MachineGun()
@@ -205,11 +220,12 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new PortableEnergyShild()
         };
-        
+
         public List<QuickfixPerk> QuickfixPerks { get; private set; } = new List<QuickfixPerk>()
         {
             new QuickfixPerk()
         };
+
         public List<FocusPerk> FocusPerks { get; private set; } = new List<FocusPerk>()
         {
             new FocusPerk()
@@ -264,6 +280,12 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new FrMg03()
         };
+        
+        public List<EnergizedBlade> EnergizedBlades { get; private set; } = new List<EnergizedBlade>()
+        {
+            new EnergizedBlade()
+        };
+
         public List<LowGravityGrenadeItem> LowGravityGrenadeItems { get; private set; } = new List<LowGravityGrenadeItem>()
         {
             new LowGravityGrenadeItem()
