@@ -4,6 +4,7 @@ using Exiled.API.Enums;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using Exiled.Events.EventArgs.Scp1509;
 using GhostPlugin.API;
 using UnityEngine;
 
@@ -32,6 +33,14 @@ namespace GhostPlugin.Custom.Items.Etc
         };
         public override ItemType Type { get; set; } = ItemType.SCP1576;
         public bool HasCustomItemGlow { get; set; } = true;
+
+        private void OnTriggeringAttack(TriggeringAttackEventArgs ev)
+        {
+            if (Check(ev.Player.CurrentItem))
+            {
+                ev.Scp1509.MeleeCooldown = 0.5f;
+            }
+        }
         
         private void OnHurting(HurtingEventArgs ev)
         {
@@ -49,11 +58,15 @@ namespace GhostPlugin.Custom.Items.Etc
 
         protected override void SubscribeEvents()
         {
+            Exiled.Events.Handlers.Player.Hurting += OnHurting;
+            Exiled.Events.Handlers.Scp1509.TriggeringAttack += OnTriggeringAttack;
             base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
         {
+            Exiled.Events.Handlers.Player.Hurting -= OnHurting;
+            Exiled.Events.Handlers.Scp1509.TriggeringAttack -= OnTriggeringAttack;
             base.UnsubscribeEvents();
         }
 
