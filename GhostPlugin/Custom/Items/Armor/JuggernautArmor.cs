@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CustomPlayerEffects;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Spawn;
@@ -25,9 +26,9 @@ namespace GhostPlugin.Custom.Items.Armor
         private const float ExtraDrainPerSecond = 0.5f;
         private const float Tick = 0.2f;
         
-        private void OnDied(Exiled.Events.EventArgs.Player.DiedEventArgs ev) => StopDrain(ev.Player);
-        private void OnLeft(Exiled.Events.EventArgs.Player.LeftEventArgs ev) => StopDrain(ev.Player);
-        private void OnChangingRole(Exiled.Events.EventArgs.Player.ChangingRoleEventArgs ev) => StopDrain(ev.Player);
+        //private void OnDied(Exiled.Events.EventArgs.Player.DiedEventArgs ev) => StopDrain(ev.Player);
+        //private void OnLeft(Exiled.Events.EventArgs.Player.LeftEventArgs ev) => StopDrain(ev.Player);
+        //private void OnChangingRole(Exiled.Events.EventArgs.Player.ChangingRoleEventArgs ev) => StopDrain(ev.Player);
         
         protected override void OnAcquired(Player player, Item item, bool displayMessage)
         {
@@ -38,15 +39,17 @@ namespace GhostPlugin.Custom.Items.Armor
         {
             if (Check(ev.Player.CurrentArmor) && ev.NewState == PlayerMovementState.Sprinting)
             {
-                StartDrain(ev.Player);
+                ev.Player.EnableEffect<Slowness>(intensity: 60);
+                // StartDrain(ev.Player);
             }
             else
             {
-                StopDrain(ev.Player);
+                ev.Player.DisableEffect<Slowness>();
+                // StopDrain(ev.Player);
             }
         }
 
-        private void StartDrain(Player player)
+        /*private void StartDrain(Player player)
         {
             if (_drainRoutines.ContainsKey(player))
                 return;
@@ -82,7 +85,7 @@ namespace GhostPlugin.Custom.Items.Armor
                 Timing.KillCoroutines(handle);
                 _drainRoutines.Remove(player);
             }
-        }
+        }*/
         private void OnHurting(HurtingEventArgs ev)
         {
             if (Check(ev.Player.CurrentArmor))
@@ -100,9 +103,9 @@ namespace GhostPlugin.Custom.Items.Armor
         {
             Exiled.Events.Handlers.Player.ChangingMoveState += OnChangingMoveState;
             Exiled.Events.Handlers.Player.Hurting += OnHurting;
-            Exiled.Events.Handlers.Player.Died += OnDied;
+            /*Exiled.Events.Handlers.Player.Died += OnDied;
             Exiled.Events.Handlers.Player.Left += OnLeft;
-            Exiled.Events.Handlers.Player.ChangingRole += OnChangingRole;
+            Exiled.Events.Handlers.Player.ChangingRole += OnChangingRole;*/
             base.SubscribeEvents();
         }
 
@@ -110,9 +113,9 @@ namespace GhostPlugin.Custom.Items.Armor
         {
             Exiled.Events.Handlers.Player.ChangingMoveState -= OnChangingMoveState;
             Exiled.Events.Handlers.Player.Hurting -= OnHurting;
-            Exiled.Events.Handlers.Player.Died -= OnDied;
+            /*Exiled.Events.Handlers.Player.Died -= OnDied;
             Exiled.Events.Handlers.Player.Left -= OnLeft;
-            Exiled.Events.Handlers.Player.ChangingRole -= OnChangingRole;
+            Exiled.Events.Handlers.Player.ChangingRole -= OnChangingRole;*/
             base.UnsubscribeEvents();
         }
     }

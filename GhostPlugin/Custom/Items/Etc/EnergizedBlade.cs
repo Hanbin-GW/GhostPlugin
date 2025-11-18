@@ -31,14 +31,14 @@ namespace GhostPlugin.Custom.Items.Etc
                 }
             }
         };
-        public override ItemType Type { get; set; } = ItemType.SCP1576;
+        public override ItemType Type { get; set; } = ItemType.SCP1509;
         public bool HasCustomItemGlow { get; set; } = true;
 
         private void OnTriggeringAttack(TriggeringAttackEventArgs ev)
         {
             if (Check(ev.Player.CurrentItem))
             {
-                ev.Scp1509.MeleeCooldown = 0.5f;
+                ev.Scp1509.MeleeCooldown = 0.25f;
             }
         }
         
@@ -47,7 +47,7 @@ namespace GhostPlugin.Custom.Items.Etc
             if (Check(ev.Attacker.CurrentItem))
             {
                 ev.Amount = 90;
-                ev.Player.EnableEffect<Burned>(duration: 3);
+                ev.Player.EnableEffect<Burned>(duration: 2.5f);
             }
 
             if (Check(ev.Player.CurrentItem))
@@ -70,7 +70,7 @@ namespace GhostPlugin.Custom.Items.Etc
             base.UnsubscribeEvents();
         }
 
-        public Color CustomItemGlowColor { get; set; } = new Color32(255, 225,0, 191);
+        public Color CustomItemGlowColor { get; set; } = new Color32(255, 225,0, 127);
 
     }
 }

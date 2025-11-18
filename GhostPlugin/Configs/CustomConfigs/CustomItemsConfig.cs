@@ -286,6 +286,10 @@ namespace GhostPlugin.Configs.CustomConfigs
             new EnergizedBlade()
         };
 
+        public List<LowGravityArmor> LowGravityArmors { get; private set; } = new List<LowGravityArmor>()
+        {
+            new LowGravityArmor()
+        };
         public List<LowGravityGrenadeItem> LowGravityGrenadeItems { get; private set; } = new List<LowGravityGrenadeItem>()
         {
             new LowGravityGrenadeItem()
