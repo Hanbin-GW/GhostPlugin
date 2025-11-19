@@ -13,7 +13,7 @@ namespace GhostPlugin.Custom.Abilities.Active
     public class DoorPicking : ActiveAbility
     {
         public override string Name { get; set; } = "Door Picking Ability";
-        public override string Description { get; set; } = "짧은 시간 동안 어떤 문이든 열 수 있지만, 외부 요인에 의해 제한됩니다";
+        public override string Description { get; set; } = "You can open any door for a short time, but it is limited by external factors";
         public override float Duration { get; set; } = 15f;
         public override float Cooldown { get; set; } = 180f;
         public float TimeToDoorPickMin { get; set; } = 3f;

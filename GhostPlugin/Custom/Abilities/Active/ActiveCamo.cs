@@ -15,7 +15,7 @@ namespace GhostPlugin.Custom.Abilities.Active
         public override string Name { get; set; } = "Active Camo";
 
         public override string Description { get; set; } =
-        "SCP-268처럼 작동하지만 물체와의 상호작용을 방해하지 않는 위장 효과를 활성화합니다.\n총기 사용시 효과 제거";
+        "It activates a camouflage effect that works like SCP-268 but does not interfere with interaction with objects.\nRemove the effect of using a firearm";
 
         public override float Duration { get; set; } = 30f;
 

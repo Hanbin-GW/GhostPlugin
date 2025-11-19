@@ -12,7 +12,7 @@ namespace GhostPlugin.Custom.Abilities.Active
     public class Scp457 : ActiveAbility
     {
         public override string Name { get; set; } = "Scp457";
-        public override string Description { get; set; } = "주변의 있는 적을 다 불태웁니다";
+        public override string Description { get; set; } = "Burnout and receive damage nearest enemy";
         public override float Duration { get; set; } = 20f;
         public override float Cooldown { get; set; } = 60f;
         

@@ -13,7 +13,7 @@ namespace GhostPlugin.Custom.Abilities.Active
     public class Explotion : ActiveAbility
     {
         public override string Name { get; set; } = "SCP-457 Explosion";
-        public override string Description { get; set; } = "일시적으로 둔해지는대신 거의무적이 되면서 자폭합니다\n049 - Soul Stealer 의 전용 능력입니다!";
+        public override string Description { get; set; } = "Became invincible and explode yourself although your movement will be temporary slowness\n049 - Soul Stealer 의 전용 능력입니다!";
         public override float Duration { get; set; } = 6f;
         public override float Cooldown { get; set; } = 70f;
 
