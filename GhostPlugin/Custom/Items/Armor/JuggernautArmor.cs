@@ -25,9 +25,9 @@ namespace GhostPlugin.Custom.Items.Armor
         private const float ExtraDrainPerSecond = 0.5f;
         private const float Tick = 0.2f;
         
-        private void OnDied(Exiled.Events.EventArgs.Player.DiedEventArgs ev) => StopDrain(ev.Player);
-        private void OnLeft(Exiled.Events.EventArgs.Player.LeftEventArgs ev) => StopDrain(ev.Player);
-        private void OnChangingRole(Exiled.Events.EventArgs.Player.ChangingRoleEventArgs ev) => StopDrain(ev.Player);
+        //private void OnDied(Exiled.Events.EventArgs.Player.DiedEventArgs ev) => StopDrain(ev.Player);
+        //private void OnLeft(Exiled.Events.EventArgs.Player.LeftEventArgs ev) => StopDrain(ev.Player);
+        //private void OnChangingRole(Exiled.Events.EventArgs.Player.ChangingRoleEventArgs ev) => StopDrain(ev.Player);
         
         protected override void OnAcquired(Player player, Item item, bool displayMessage)
         {
@@ -38,12 +38,13 @@ namespace GhostPlugin.Custom.Items.Armor
         {
             if (Check(ev.Player.CurrentArmor) && ev.NewState == PlayerMovementState.Sprinting)
             {
-                StartDrain(ev.Player);
+                ev.Player.Stamina -= 0.35f;
+                //StartDrain(ev.Player);
             }
-            else
+            /*else
             {
-                StopDrain(ev.Player);
-            }
+                //StopDrain(ev.Player);
+            }*/
         }
 
         private void StartDrain(Player player)
@@ -66,7 +67,7 @@ namespace GhostPlugin.Custom.Items.Armor
                 {
                     // Tick마다 깎을 양 = (초당깎는양 / 1초) * Tick
                     float delta = (ExtraDrainPerSecond * Tick);
-                    stamina.ModifyAmount(-delta);
+                    stamina.MaxValue = -delta;
                 }
 
                 yield return Timing.WaitForSeconds(Tick);
@@ -100,9 +101,9 @@ namespace GhostPlugin.Custom.Items.Armor
         {
             Exiled.Events.Handlers.Player.ChangingMoveState += OnChangingMoveState;
             Exiled.Events.Handlers.Player.Hurting += OnHurting;
-            Exiled.Events.Handlers.Player.Died += OnDied;
+            /*Exiled.Events.Handlers.Player.Died += OnDied;
             Exiled.Events.Handlers.Player.Left += OnLeft;
-            Exiled.Events.Handlers.Player.ChangingRole += OnChangingRole;
+            Exiled.Events.Handlers.Player.ChangingRole += OnChangingRole;*/
             base.SubscribeEvents();
         }
 
@@ -110,9 +111,9 @@ namespace GhostPlugin.Custom.Items.Armor
         {
             Exiled.Events.Handlers.Player.ChangingMoveState -= OnChangingMoveState;
             Exiled.Events.Handlers.Player.Hurting -= OnHurting;
-            Exiled.Events.Handlers.Player.Died -= OnDied;
+            /*Exiled.Events.Handlers.Player.Died -= OnDied;
             Exiled.Events.Handlers.Player.Left -= OnLeft;
-            Exiled.Events.Handlers.Player.ChangingRole -= OnChangingRole;
+            Exiled.Events.Handlers.Player.ChangingRole -= OnChangingRole;*/
             base.UnsubscribeEvents();
         }
     }

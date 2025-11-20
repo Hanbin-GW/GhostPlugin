@@ -133,18 +133,23 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new HugoBoss()
         };
-        public List<Tracker> Trackers { get; set; } = new List<Tracker>()
+        public List<Tracker> Trackers { get; set; } = new()
         {
             new Tracker()
         };
-        public List<Director> Directors { get; set; } = new List<Director>()
+        public List<Director> Directors { get; set; } = new()
         {
             new Director()
         };
 
-        public List<Commando> Commandos { get; set; } = new List<Commando>()
+        public List<Commando> Commandos { get; set; } = new()
         {
             new Commando()
+        };
+
+        public List<ReconJuggernaut> ReconJuggernauts { get; set; } = new()
+        {
+            new ReconJuggernaut()
         };
         public List<DwarfZombie> DwarfZombies { get; set; } = new()
         {
