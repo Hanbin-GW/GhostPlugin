@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Spawn;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
-using Exiled.API.Structs;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using MEC;
@@ -38,7 +36,7 @@ namespace GhostPlugin.Custom.Items.Armor
         {
             if (Check(ev.Player.CurrentArmor) && ev.NewState == PlayerMovementState.Sprinting)
             {
-                ev.Player.Stamina -= 0.35f;
+                ev.Player.Stamina -= 0.9f;
                 //StartDrain(ev.Player);
             }
             /*else
