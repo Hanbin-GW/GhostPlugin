@@ -247,7 +247,7 @@
     <Compile Include="Custom\Items\Firearms\PortableEnergyShild.cs" />
     <Compile Include="Custom\Items\Firearms\ReconBattleRife.cs" />
     <Compile Include="Custom\Items\Firearms\Riveter.cs" />
-    <Compile Include="Custom\Items\Firearms\Rockety.cs" />
+    <Compile Include="Custom\Items\Firearms\HE1.cs" />
     <Compile Include="Custom\Items\Firearms\ShockwaveGun.cs" />
     <Compile Include="Custom\Items\Firearms\Svd.cs" />
     <Compile Include="Custom\Items\Grenades\C4.cs" />

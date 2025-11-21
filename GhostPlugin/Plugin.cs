@@ -35,7 +35,7 @@ namespace GhostPlugin
 
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(8, 1, 8);
+        public override Version Version { get; } = new(8, 2, 0);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
@@ -156,7 +156,7 @@ namespace GhostPlugin
                     ci.ActiveArmors?.Register();
                     ci.JuggernautArmors?.Register();
                     ci.LowGravityGrenadeItems?.Register();
-                    ci.Rocketies?.Register();
+                    ci.He1s?.Register();
 
                     if (Config?.EnablePerkEvents == true && CurrentRunMode == RunMode.Full)
                     {
@@ -462,9 +462,9 @@ namespace GhostPlugin
                     ci.ActiveArmors?.Register();
                     ci.JuggernautArmors?.Register();
                     ci.LowGravityGrenadeItems?.Register();
-                    ci.Rocketies?.Register();
+                    ci.He1s?.Register();
                     ci.FrMg03S?.Register();
-                    // ... 기타 아이템들
+                    ci.CombatKnives.Register();
                     if (Config.EnablePerkEvents && PerkEventHandlers == null)
                     {
                         PerkEventHandlers = new PerkEventHandlers(this);
