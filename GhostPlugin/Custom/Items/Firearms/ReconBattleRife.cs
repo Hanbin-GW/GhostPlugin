@@ -10,6 +10,7 @@ using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
 using InventorySystem.Items.Firearms.Attachments;
+using LabApi.Events.Arguments.PlayerEvents;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -20,7 +21,7 @@ namespace GhostPlugin.Custom.Items.Firearms
     {
         public override uint Id { get; set; } = 3;
         public override string Name { get; set; } = "<color=#5c7aff>FTAC Recon</color>";
-        public override string Description { get; set; } = "[R] 키를 눌를시 피격당한 적을 추적할수있습니다";
+        public override string Description { get; set; } = "[T] 키를 눌를시 피격당한 적을 추적할수있습니다";
         public override float Weight { get; set; } = 12.5f;
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
@@ -83,33 +84,40 @@ namespace GhostPlugin.Custom.Items.Firearms
 
             ev.Player.CameraTransform.eulerAngles = currentRotation;
         }
-        protected override void OnReloading(ReloadingWeaponEventArgs ev)
+
+        protected override void OnDroppingItem(DroppingItemEventArgs ev)
         {
             if (ev.Player == null || ev.Player.CurrentItem == null)
             {
                 return;
             }
             
-            if (Check(ev.Player.CurrentItem))
+            if (Check(ev.Item))
             {
-                // 가장 최근에 공격당한 플레이어의 현재 위치한 방의 이름을 가져옵니다.
-                //var roomName = lastHitPlayer.CurrentRoom.Name;
-                if (lastHitPlayer == null)
+                if (ev.IsThrown)
                 {
-                    ev.Player.ShowHint("추적 대상자를 찾을 수 없습니다.", 5);
-                    return; // lastHitPlayer가 null이면 여기서 처리를 중단합니다.
-                }
-                if (lastHitPlayer.IsDead)
-                {
-                    ev.Player.ShowHint("추적대상자 생명신호 감지 안됨..",5);
-                }
-                if (lastHitPlayer.CurrentRoom == null)
-                {
-                    ev.Player.ShowHint("추적대상자의 현재 위치를 확인할 수 없습니다.", 5);
-                }
-                else
-                {
-                    ev.Player.ShowHint($"추적 대상자는 현재 {lastHitPlayer.CurrentRoom.Name}에 있습니다.", 5);
+                    ev.IsThrown = false;
+                    // 가장 최근에 공격당한 플레이어의 현재 위치한 방의 이름을 가져옵니다.
+                    //var roomName = lastHitPlayer.CurrentRoom.Name;
+                    if (lastHitPlayer == null)
+                    {
+                        ev.Player.ShowHint("추적 대상자를 찾을 수 없습니다.", 5);
+                        return; // lastHitPlayer가 null이면 여기서 처리를 중단합니다.
+                    }
+
+                    if (lastHitPlayer.IsDead)
+                    {
+                        ev.Player.ShowHint("추적대상자 생명신호 감지 안됨..", 5);
+                    }
+
+                    if (lastHitPlayer.CurrentRoom == null)
+                    {
+                        ev.Player.ShowHint("추적대상자의 현재 위치를 확인할 수 없습니다.", 5);
+                    }
+                    else
+                    {
+                        ev.Player.ShowHint($"추적 대상자는 현재 {lastHitPlayer.CurrentRoom.Name}에 있습니다.", 5);
+                    }
                 }
             }
         }
@@ -136,32 +144,8 @@ namespace GhostPlugin.Custom.Items.Firearms
             }
 
         }
-        /*private void OnChangingAttachment(ChangingAttachmentsEventArgs ev)
-        {
-            if(!Check(ev.Player.CurrentItem))
-                return;
-            if (ev.Firearm.Attachments.Any(attachment => attachment.Name == AttachmentName.LowcapMagAP))
-            {
-                Damage *= 1.05f;
-                ev.Firearm.MaxMagazineAmmo = 5;
-                Log.Info("LowcapMagAP 적용됨: 탄창 크기 5");
-            }
-            else if (ev.Firearm.Attachments.Any(attachment => attachment.Name == AttachmentName.DrumMagFMJ))
-            {
-                Damage = 45;
-                ev.Firearm.MaxMagazineAmmo = 15;
-                Log.Info("DrumMagFMJ 적용됨: 탄창 크기 15");
-            }
-
-            else if (ev.Firearm.Attachments.Any(attachment => attachment.Name == AttachmentName.StandardMagFMJ))
-            {
-                Damage = 45;
-                ev.Firearm.MaxMagazineAmmo = 10;
-                Log.Info("StandardMagFMJ 적용됨: 탄창 크기 10");
-            }
-        }*/
-
-        private void OnChangingAttachment(ChangingAttachmentsEventArgs ev)
+        
+        private void OnChangingAttachments(ChangingAttachmentsEventArgs ev)
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
