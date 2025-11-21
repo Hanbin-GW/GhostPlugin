@@ -18,7 +18,7 @@ using Firearm = Exiled.API.Features.Items.Firearm;
 namespace GhostPlugin.Custom.Items.Firearms
 {
     [CustomItem(ItemType.GunLogicer)]
-    public class Rockety : CustomWeapon, ICustomItemGlow
+    public class HE1 : CustomWeapon, ICustomItemGlow
     {
         public override uint Id { get; set; } = 71;
         public override string Name { get; set; } = "HE-1";

@@ -255,16 +255,20 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new JuggernautArmor()
         };
-        public List<Rockety> Rocketies { get; private set; } = new List<Rockety>()
+        public List<HE1> He1s { get; private set; } = new List<HE1>()
         {
-            new Rockety()
+            new HE1()
         };
 
         public List<FrMg03> FrMg03S { get; private set; } = new List<FrMg03>()
         {
             new FrMg03()
         };
-        
+
+        public List<CombatKnife> CombatKnives { get; private set; } = new List<CombatKnife>()
+        {
+            new CombatKnife()
+        };
         public List<LowGravityGrenadeItem> LowGravityGrenadeItems { get; private set; } = new List<LowGravityGrenadeItem>()
         {
             new LowGravityGrenadeItem()
