@@ -35,7 +35,7 @@ namespace GhostPlugin
 
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(8, 2, 0);
+        public override Version Version { get; } = new(9, 0, 0,1);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
@@ -63,6 +63,9 @@ namespace GhostPlugin
         public CustomItemHandler CustomItemHandler;
 
         public MusicEventHandlers MusicEventHandlers;
+        
+        public KillStreakEventHandlers KillStreakEventHandlers;
+        
         private bool _fullUpgraded;
         //Audio Dir
         public readonly string AudioDirectory;
@@ -303,6 +306,18 @@ namespace GhostPlugin
                     CasualFPSModeHandler.RegisterEvents();
                 }
             });
+            
+            Run("killsteak.register", () =>
+            {
+                if (Config?.ServerEventsMasterConfig?.KillStreakConfig?.Enabled == true &&
+                    CurrentRunMode == RunMode.Full)
+                {
+                    KillStreakEventHandlers = new KillStreakEventHandlers();
+                    Exiled.Events.Handlers.Player.Died += KillStreakEventHandlers.OnDied;
+                    Server.RoundStarted +=  KillStreakEventHandlers.OnRoundStarted;
+                    Server.RoundEnded += KillStreakEventHandlers.OnRoundEnded;
+                }
+            });
 
             base.OnEnabled();
         }
@@ -373,7 +388,15 @@ namespace GhostPlugin
                 PerkEventHandlers.UnregisterEvents();
                 PerkEventHandlers = null; 
             }
-
+            
+            if (Instance?.Config.ServerEventsMasterConfig?.KillStreakConfig?.Enabled == true &&
+                CurrentRunMode == RunMode.Full)
+            {
+                Exiled.Events.Handlers.Player.Died -= KillStreakEventHandlers.OnDied;
+                Server.RoundStarted -=  KillStreakEventHandlers.OnRoundStarted;
+                Server.RoundEnded -= KillStreakEventHandlers.OnRoundEnded;
+                KillStreakEventHandlers = null;
+            }
             //SSSS - REWORK
             Server.RoundStarted -= SsssEventHandler.OnRoundStarted;
             Exiled.Events.Handlers.Player.Verified -= SsssEventHandler.OnVerified;
@@ -464,7 +487,7 @@ namespace GhostPlugin
                     ci.LowGravityGrenadeItems?.Register();
                     ci.He1s?.Register();
                     ci.FrMg03S?.Register();
-                    ci.CombatKnives.Register();
+                    ci.CombatKnives?.Register();
                     if (Config.EnablePerkEvents && PerkEventHandlers == null)
                     {
                         PerkEventHandlers = new PerkEventHandlers(this);
@@ -586,6 +609,18 @@ namespace GhostPlugin
                 {
                     CasualFPSModeHandler = new CasualFPSModeHandler(this);
                     CasualFPSModeHandler.RegisterEvents();
+                }
+            });
+            
+            Run("killsteak.register", () =>
+            {
+                if (Config?.ServerEventsMasterConfig?.KillStreakConfig?.Enabled == true &&
+                    CurrentRunMode == RunMode.Full)
+                {
+                    KillStreakEventHandlers = new KillStreakEventHandlers();
+                    Exiled.Events.Handlers.Player.Died += KillStreakEventHandlers.OnDied;
+                    Server.RoundStarted +=  KillStreakEventHandlers.OnRoundStarted;
+                    Server.RoundEnded += KillStreakEventHandlers.OnRoundEnded;
                 }
             });
 

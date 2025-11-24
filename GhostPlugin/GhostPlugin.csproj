@@ -189,6 +189,7 @@
     <Compile Include="Configs\Object.cs" />
     <Compile Include="Configs\ServerEventsConfigs\BlackoutModeConfig.cs" />
     <Compile Include="Configs\ServerEventsConfigs\ClassicConfig.cs" />
+    <Compile Include="Configs\ServerEventsConfigs\KillStreakConfig.cs" />
     <Compile Include="Configs\ServerEventsConfigs\MusicConfig.cs" />
     <Compile Include="Configs\ServerEventsConfigs\NoobSupportConfig.cs" />
     <Compile Include="Configs\ServerEventsConfigs\Scp914Config.cs" />
@@ -324,6 +325,7 @@
     <Compile Include="EventHandlers\CustomItemHandler.cs" />
     <Compile Include="EventHandlers\CustomRoleHandler.cs" />
     <Compile Include="EventHandlers\CustomRoleHandler_Old.cs" />
+    <Compile Include="EventHandlers\KillStreakEventHandlers.cs" />
     <Compile Include="EventHandlers\MusicEventHandlers.cs" />
     <Compile Include="EventHandlers\CustomRoleMethods.cs" />
     <Compile Include="EventHandlers\NoobSupport.cs" />

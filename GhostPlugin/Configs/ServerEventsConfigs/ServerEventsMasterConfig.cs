@@ -12,6 +12,8 @@ namespace GhostPlugin.Configs.ServerEventsConfigs
         public BlackoutModeConfig BlackoutModeConfig { get; set; } = new();
         public ClassicConfig ClassicConfig { get; set; } = new();
         public NoobSupportConfig NoobSupportConfig { get; set; } = new();
+        
+        public KillStreakConfig KillStreakConfig { get; set; } = new();
         //public SsssConfig SsssConfig { get; set; } = new SsssConfig();
     }
 }

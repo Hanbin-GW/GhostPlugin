@@ -79,6 +79,42 @@ namespace GhostPlugin.Methods.Music
                 Log.Error($"Error Occured playing music command: {ex.Message}");
             }
         }
+        public void PlaySoundPlayer(string filename, Player player)
+        {
+            var path = Path.Combine(Plugin.Instance.AudioDirectory, filename);
+            if (!File.Exists(path))
+            {
+                Log.Error($"File Doesn't exists: {path}");
+                return;
+            }
+
+            try
+            {
+                // 오디오 클립 로드
+                StopMusic();
+                AudioClipStorage.LoadClip(path, "Music");
+
+                // 오디오 플레이어 생성 또는 가져오기
+                AudioPlayer musicPlayer = AudioPlayer.CreateOrGet("GlobalAudioPlayer", condition:(hub =>
+                {
+                    return hub.PlayerId == player.Id;
+                }), onIntialCreation: (p) =>
+                {
+                    p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
+                });
+
+                // 클립 추가
+                musicPlayer.AddClip("Music", 1f, false, false);
+
+                Log.Info($"Playing a music: {filename}");
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리
+                Log.Error($"Error Occured playing music command: {ex.Message}");
+            }
+        }
+        
         public async Task PlayPreparedAlias(string alias)
         {
             try
