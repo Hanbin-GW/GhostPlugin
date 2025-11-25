@@ -86,19 +86,19 @@ namespace GhostPlugin.EventHandlers
             {
                 case 2:
                     player.Broadcast(4, $"<color=#947b00>더블킬</color>");
-                    MusicMethods.PlaySoundPlayer("Crazy.ogg",player);
+                    MusicMethods.PlaySoundPlayer("Crazy.ogg",player,2);
                     break;
                 case 3:
                     player.Broadcast(4, $"<color=#36d1b7>트리플킬</color>");
-                    MusicMethods.PlaySoundPlayer("Badass.ogg",player);
+                    MusicMethods.PlaySoundPlayer("Badass.ogg",player,2);
                     break;
                 case 4:
                     player.Broadcast(4, $"<color=#b7ed2f>쿼드피드</color>");
-                    MusicMethods.PlaySoundPlayer("Headshot.ogg",player);
+                    MusicMethods.PlaySoundPlayer("Headshot.ogg",player,2);
                     break;
                 case 5:
                     player.Broadcast(4, $"<color=#ed492f>분노의킬</color>");
-                    MusicMethods.PlaySoundPlayer("SAVAGE.ogg",player);
+                    MusicMethods.PlaySoundPlayer("SAVAGE.ogg",player, 2);
                     break;
             }
         }

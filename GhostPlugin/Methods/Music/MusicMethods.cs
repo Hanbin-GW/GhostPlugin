@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Exiled.API.Features;
 using GhostPlugin.Commands.MusicCommand;
+using MEC;
 
 namespace GhostPlugin.Methods.Music
 {
@@ -38,7 +39,7 @@ namespace GhostPlugin.Methods.Music
         {
             if(!AudioPlayer.AudioPlayerByName.TryGetValue("GlobalAudioPlayer",out AudioPlayer ap))
                 return;
-            //ap.ClipsById.Clear();
+            ap.ClipsById.Clear();
             ap.RemoveAllClips();
         }
         /// <summary>
@@ -79,7 +80,7 @@ namespace GhostPlugin.Methods.Music
                 Log.Error($"Error Occured playing music command: {ex.Message}");
             }
         }
-        public static void PlaySoundPlayer(string filename, Player player)
+        public static void PlaySoundPlayer(string filename, Player player, float duration)
         {
             var path = Path.Combine(Plugin.Instance.AudioDirectory, filename);
             if (!File.Exists(path))
@@ -90,30 +91,47 @@ namespace GhostPlugin.Methods.Music
 
             try
             {
-                // 오디오 클립 로드
-                StopMusic();
-                AudioClipStorage.LoadClip(path, "Music");
+                // 파일 이름(확장자 제거)을 클립 이름으로 사용
+                var clipName = Path.GetFileNameWithoutExtension(filename);
 
-                // 오디오 플레이어 생성 또는 가져오기
-                AudioPlayer musicPlayer = AudioPlayer.CreateOrGet("GlobalAudioPlayer", condition:(hub =>
+                // 이미 로드된 클립이면 다시 로드 안 하도록 (선택)
+                // bool loaded = AudioClipStorage.LoadClip(path, clipName);
+                // if (!loaded) { Log.Error($"Failed to load clip: {clipName}"); return; }
+
+                AudioClipStorage.LoadClip(path, clipName);
+
+                AudioPlayer musicPlayer = AudioPlayer.CreateOrGet(
+                    "GlobalAudioPlayer",
+                    condition: hub => hub.PlayerId == player.Id,
+                    onIntialCreation: p =>
+                    {
+                        p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
+                    });
+
+                // 여기서도 "Music"이 아니라 clipName 사용
+                musicPlayer.AddClip(clipName, 1f, false, true);
+
+                // 일정 시간 뒤에 언로드 하고 싶으면
+                Timing.CallDelayed(duration, () =>
                 {
-                    return hub.PlayerId == player.Id;
-                }), onIntialCreation: (p) =>
-                {
-                    p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
+                    try
+                    {
+                        AudioClipStorage.DestroyClip(clipName);
+                    }
+                    catch
+                    {
+                        // 이미 언로드 됐으면 무시
+                    }
                 });
-
-                // 클립 추가
-                musicPlayer.AddClip("Music", 1f, false, false);
 
                 Log.Info($"Playing a music: {filename}");
             }
             catch (Exception ex)
             {
-                // 예외 처리
                 Log.Error($"Error Occured playing music command: {ex.Message}");
             }
         }
+
         
         public async Task PlayPreparedAlias(string alias)
         {
