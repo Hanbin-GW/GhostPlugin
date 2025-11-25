@@ -79,7 +79,7 @@ namespace GhostPlugin.Methods.Music
                 Log.Error($"Error Occured playing music command: {ex.Message}");
             }
         }
-        public void PlaySoundPlayer(string filename, Player player)
+        public static void PlaySoundPlayer(string filename, Player player)
         {
             var path = Path.Combine(Plugin.Instance.AudioDirectory, filename);
             if (!File.Exists(path))

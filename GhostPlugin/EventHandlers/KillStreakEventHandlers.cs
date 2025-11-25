@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Server;
+using GhostPlugin.Methods.Music;
 using UnityEngine;
 
 namespace GhostPlugin.EventHandlers
@@ -84,16 +85,20 @@ namespace GhostPlugin.EventHandlers
             switch (combo)
             {
                 case 2:
-                    Map.Broadcast(4, $"{player.Nickname} - <color=cyan>더블킬!</color>");
+                    player.Broadcast(4, $"<color=#947b00>더블킬</color>");
+                    MusicMethods.PlaySoundPlayer("Crazy.ogg",player);
                     break;
                 case 3:
-                    Map.Broadcast(4, $"{player.Nickname} - <color=cyan>트리플킬!!</color>");
+                    player.Broadcast(4, $"<color=#36d1b7>트리플킬</color>");
+                    MusicMethods.PlaySoundPlayer("Badass.ogg",player);
                     break;
                 case 4:
-                    Map.Broadcast(4, $"{player.Nickname} - <color=cyan>쿼드라킬!!!</color>");
+                    player.Broadcast(4, $"<color=#b7ed2f>쿼드피드</color>");
+                    MusicMethods.PlaySoundPlayer("Headshot.ogg",player);
                     break;
                 case 5:
-                    Map.Broadcast(4, $"{player.Nickname} - <color=cyan>펜타킬!!!!</color>");
+                    player.Broadcast(4, $"<color=#ed492f>분노의킬</color>");
+                    MusicMethods.PlaySoundPlayer("SAVAGE.ogg",player);
                     break;
             }
         }
@@ -102,17 +107,20 @@ namespace GhostPlugin.EventHandlers
         {
             switch (count)
             {
+                case 1:
+                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} <color=red>처치</color> \n<size=25>💀</size>",5);
+                    break;
                 case 2:
-                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} 처치 \n<size=20>💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} <color=red>처치</color> \n<size=25>💀💀</size>",5);
                     break;
                 case 3:
-                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} 처치 \n<size=20>💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} <color=red>처치</color> \n<size=25>💀💀💀</size>",5);
                     break;
                 case 4:
-                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} 처치 \n<size=20>💀💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} <color=red>처치</color> \n<size=25>💀💀💀💀</size>",5);
                     break;
                 case 5:
-                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} 처치 \n<size=20>💀💀💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} 처치 \n<size=25>💀💀💀💀💀</size>",5);
                     break;
             }
         }
