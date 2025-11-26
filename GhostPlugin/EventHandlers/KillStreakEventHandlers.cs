@@ -12,7 +12,7 @@ namespace GhostPlugin.EventHandlers
         public Dictionary<Player, int> KillStreak = new();
         public Dictionary<Player, float> LastKillTime = new();
         public Dictionary<Player, int> ComboKill = new();
-        private const float ComboWindow = 8f;
+        private const float ComboWindow = 4.5f;
         
         public void OnRoundStarted()
         {
@@ -86,19 +86,19 @@ namespace GhostPlugin.EventHandlers
             {
                 case 2:
                     player.Broadcast(4, $"<color=#947b00>더블킬</color>");
-                    MusicMethods.PlaySoundPlayer("Crazy.ogg",player,2);
+                    MusicMethods.PlaySoundPlayer("Crazy.ogg",player,5);
                     break;
                 case 3:
-                    player.Broadcast(4, $"<color=#36d1b7>트리플킬</color>");
-                    MusicMethods.PlaySoundPlayer("Badass.ogg",player,2);
+                    player.Broadcast(4, "<size=35>💀</size>\n<color=#36d1b7>트리플킬</color>");
+                    MusicMethods.PlaySoundPlayer("Badass.ogg",player,5);
                     break;
                 case 4:
-                    player.Broadcast(4, $"<color=#b7ed2f>쿼드피드</color>");
-                    MusicMethods.PlaySoundPlayer("Headshot.ogg",player,2);
+                    player.Broadcast(4, $"<size=35>🔪</size>\n<color=#b7ed2f>쿼드피드</color>");
+                    MusicMethods.PlaySoundPlayer("Headshot.ogg",player,5);
                     break;
                 case 5:
-                    player.Broadcast(4, $"<color=#ed492f>분노의킬</color>");
-                    MusicMethods.PlaySoundPlayer("SAVAGE.ogg",player, 2);
+                    player.Broadcast(4, $"<size=35>🔥</size>\n<color=#ed492f>분노의킬</color>");
+                    MusicMethods.PlaySoundPlayer("SAVAGE.ogg",player, 5);
                     break;
             }
         }
@@ -108,19 +108,45 @@ namespace GhostPlugin.EventHandlers
             switch (count)
             {
                 case 1:
-                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} <color=red>처치</color> \n<size=25>💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} <color=red>처치</color> \n<size=25>💀</size>",5);
+                    MusicMethods.PlaySoundPlayer("OneKill.ogg",player, 5);
                     break;
                 case 2:
-                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} <color=red>처치</color> \n<size=25>💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} <color=red>처치</color> \n<size=25>💀💀</size>",5);
+                    MusicMethods.PlaySoundPlayer("TwoKill.ogg",player, 5);
                     break;
                 case 3:
-                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} <color=red>처치</color> \n<size=25>💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} <color=red>처치</color> \n<size=25>💀💀💀</size>",5);
+                    MusicMethods.PlaySoundPlayer("ThreeKill.ogg",player, 5);
                     break;
                 case 4:
-                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} <color=red>처치</color> \n<size=25>💀💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} <color=red>처치</color> \n<size=25>💀💀💀💀</size>",5);
+                    MusicMethods.PlaySoundPlayer("FourKill.ogg",player, 5);
                     break;
                 case 5:
-                    player.ShowHint($"{victim.Nickname} | {victim.UnitName} 처치 \n<size=25>💀💀💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} 처치 \n<size=25>💀💀💀💀💀</size>",5);
+                    MusicMethods.PlaySoundPlayer("ACE.ogg",player, 5);
+                    break;
+                case 6:
+                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} 처치 \n<size=25>💀💀💀💀💀💀</size>",5);
+                    MusicMethods.PlaySoundPlayer("killsound.ogg",player, 1);
+
+                    break;
+                case 7:
+                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} 처치 \n<size=25>💀💀💀💀💀💀💀</size>",5);
+                    MusicMethods.PlaySoundPlayer("killsound.ogg",player, 1);
+                    break;
+                case 8:
+                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} 처치 \n<size=25>💀💀💀💀💀💀💀💀</size>",5);
+                    MusicMethods.PlaySoundPlayer("killsound.ogg",player, 1);
+                    break;
+                case 9:
+                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} 처치 \n<size=25>💀💀💀💀💀💀💀💀💀</size>",5);
+                    MusicMethods.PlaySoundPlayer("killsound.ogg",player, 1);
+                    break;
+                case 10:
+                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} 처치 \n<size=25>💀💀💀💀💀💀💀💀💀💀</size>",5);
+                    MusicMethods.PlaySoundPlayer("killsound.ogg",player, 1);
                     break;
             }
         }
