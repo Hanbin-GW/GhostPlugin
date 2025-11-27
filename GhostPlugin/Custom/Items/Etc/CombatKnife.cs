@@ -6,6 +6,8 @@ using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp1509;
 using GhostPlugin.API;
+using InventorySystem.Items.Scp1509;
+using PlayerRoles.Subroutines;
 using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Etc
@@ -36,7 +38,18 @@ namespace GhostPlugin.Custom.Items.Etc
         {
             if (Check(ev.Player.CurrentItem))
             {
-                ev.Scp1509.MeleeCooldown = 1.2f;
+                var item = (Scp1509Item)ev.Scp1509.Base;
+                item._meleeDelay = 3f;
+                item._meleeCooldown = 3f;
+
+                // 3. 실제 쿨다운 타이머 리셋
+                item._clientAttackCooldown.Trigger(3);
+                item._clientDelayCooldown.Trigger(3);
+                item._serverAttackCooldown.Trigger(3);
+                
+                ev.Scp1509.RespawnEligibility.enabled = false;
+                //ev.Scp1509.Base._meleeCooldown = 3f;
+                ev.Scp1509.MeleeCooldown = 3f;
             }
         }
         

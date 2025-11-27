@@ -108,44 +108,44 @@ namespace GhostPlugin.EventHandlers
             switch (count)
             {
                 case 1:
-                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} <color=red>처치</color> \n<size=25>💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.PreviousRole} <color=red>처치</color> \n<size=25>💀</size>",5);
                     MusicMethods.PlaySoundPlayer("OneKill.ogg",player, 5);
                     break;
                 case 2:
-                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} <color=red>처치</color> \n<size=25>💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.PreviousRole} <color=red>처치</color> \n<size=25>💀💀</size>",5);
                     MusicMethods.PlaySoundPlayer("TwoKill.ogg",player, 5);
                     break;
                 case 3:
-                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} <color=red>처치</color> \n<size=25>💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.PreviousRole} <color=red>처치</color> \n<size=25>💀💀💀</size>",5);
                     MusicMethods.PlaySoundPlayer("ThreeKill.ogg",player, 5);
                     break;
                 case 4:
-                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} <color=red>처치</color> \n<size=25>💀💀💀💀</size>",5);
-                    MusicMethods.PlaySoundPlayer("FourKill.ogg",player, 5);
+                    player.ShowHint($"{victim.Nickname} | {victim.PreviousRole} <color=red>처치</color> \n<size=25>💀💀💀💀</size>",5);
+                    MusicMethods.PlaySoundPlayer("`.ogg",player, 5);
                     break;
                 case 5:
-                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} 처치 \n<size=25>💀💀💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.PreviousRole} 처치 \n<size=25>💀💀💀💀💀</size>",5);
                     MusicMethods.PlaySoundPlayer("ACE.ogg",player, 5);
                     break;
                 case 6:
-                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} 처치 \n<size=25>💀💀💀💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.PreviousRole} 처치 \n<size=25>💀💀💀💀💀💀</size>",5);
                     MusicMethods.PlaySoundPlayer("killsound.ogg",player, 1);
 
                     break;
                 case 7:
-                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} 처치 \n<size=25>💀💀💀💀💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.PreviousRole} 처치 \n<size=25>💀💀💀💀💀💀💀</size>",5);
                     MusicMethods.PlaySoundPlayer("killsound.ogg",player, 1);
                     break;
                 case 8:
-                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} 처치 \n<size=25>💀💀💀💀💀💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.PreviousRole} 처치 \n<size=25>💀💀💀💀💀💀💀💀</size>",5);
                     MusicMethods.PlaySoundPlayer("killsound.ogg",player, 1);
                     break;
                 case 9:
-                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} 처치 \n<size=25>💀💀💀💀💀💀💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.PreviousRole} 처치 \n<size=25>💀💀💀💀💀💀💀💀💀</size>",5);
                     MusicMethods.PlaySoundPlayer("killsound.ogg",player, 1);
                     break;
                 case 10:
-                    player.ShowHint($"{victim.Nickname} | {victim.Role.Name} 처치 \n<size=25>💀💀💀💀💀💀💀💀💀💀</size>",5);
+                    player.ShowHint($"{victim.Nickname} | {victim.PreviousRole} 처치 \n<size=25>💀💀💀💀💀💀💀💀💀💀</size>",5);
                     MusicMethods.PlaySoundPlayer("killsound.ogg",player, 1);
                     break;
             }
