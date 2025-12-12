@@ -18,10 +18,13 @@ using UnityEngine;
 using YamlDotNet.Serialization;
 using PlayerEvent = Exiled.Events.Handlers.Player;
 using System.Globalization;
+using GhostPlugin.API;
+using GhostPlugin.API.CustomItem;
+
 namespace GhostPlugin.Custom.Items.Grenades
 {
     [CustomItem(ItemType.GrenadeHE)]
-    public class C4 : CustomGrenade
+    public class C4 : CustomGrenade, ICustomItemGlow
     {
         public enum C4RemoveMethod
         {
@@ -92,6 +95,7 @@ namespace GhostPlugin.Custom.Items.Grenades
         public override bool ExplodeOnCollision { get; set; } = false;
         [YamlIgnore]
         public override ItemType Type { get; set; } = ItemType.GrenadeHE;
+        public bool Sticky { get; set; } = true;
         public void C4Handler(Pickup charge, C4RemoveMethod removeMethod = C4RemoveMethod.Detonate)
         {
             if (charge == null || charge.Position == null)
@@ -126,6 +130,8 @@ namespace GhostPlugin.Custom.Items.Grenades
         {
             Instance = this;
 
+            StickyGrenadeApi.RegisterStickyGrenade("C4", pickup => Sticky && PlacedCharges.ContainsKey(pickup));
+            
             PlayerEvent.Destroying += OnDestroying;
             PlayerEvent.Died += OnDied;
             PlayerEvent.Shooting += OnShooting;
@@ -136,6 +142,7 @@ namespace GhostPlugin.Custom.Items.Grenades
         
         protected override void UnsubscribeEvents()
         {
+            StickyGrenadeApi.UnregisterStickyGrenade("C4");
             PlayerEvent.Destroying -= OnDestroying;
             PlayerEvent.Died -= OnDied;
             PlayerEvent.Shooting -= OnShooting;
@@ -155,7 +162,7 @@ namespace GhostPlugin.Custom.Items.Grenades
             if (!PlacedCharges.ContainsKey(ev.Projectile))
             {
                 PlacedCharges.Add(ev.Projectile, ev.Player);
-                ev.Projectile.GameObject.AddComponent<StickyGrenadeBehavior>();
+                //ev.Projectile.GameObject.AddComponent<StickyGrenadeBehavior>();
             }
             base.OnThrownProjectile(ev);
         }
@@ -220,5 +227,8 @@ namespace GhostPlugin.Custom.Items.Grenades
         {
             base.OnAcquired(player, item, displayMessage);
         }
+
+        public bool HasCustomItemGlow { get; set; } = true;
+        public Color CustomItemGlowColor { get; set; } = new Color(235f / 255f, 125f / 255f, 52f / 255f) * 3f;
     }
 }

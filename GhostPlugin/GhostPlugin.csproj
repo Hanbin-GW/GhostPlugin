@@ -164,6 +164,7 @@
         <Compile Include="API\API.cs" />
         <Compile Include="API\Audio\AudioUtils.cs" />
         <Compile Include="API\CustomHint\FileDotNet.cs" />
+        <Compile Include="API\CustomItem\StickyGrenadeApi.cs" />
         <Compile Include="API\ExcemptionType.cs" />
         <Compile Include="API\ICustomItemGlow.cs" />
         <Compile Include="API\ICustomRole.cs" />
@@ -349,6 +350,7 @@
         <Compile Include="MusicConfigs\MusicPlayback.cs" />
         <Compile Include="MyCustomKeyBind.cs" />
         <Compile Include="Patches\Scp106Patch.cs" />
+        <Compile Include="Patches\StickyGrenadeCollision.cs" />
         <Compile Include="Plugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="SSSS\SpecificMenu.cs" />

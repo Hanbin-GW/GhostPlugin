@@ -19,10 +19,10 @@ namespace GhostPlugin.Custom.Items.MonoBehavior
                 hasCollided = true;
 
                 rb.isKinematic = true;
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
+                //rb.velocity = Vector3.zero;
+                //rb.angularVelocity = Vector3.zero;
                 
-                transform.position += transform.forward * 0.1f;
+                transform.position += transform.forward * 0.0f;
             }
         }
     }
