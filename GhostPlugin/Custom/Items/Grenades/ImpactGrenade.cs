@@ -53,5 +53,6 @@ namespace GhostPlugin.Custom.Items.Grenades
         public override float FuseTime { get; set; } = 4.5f;
         public bool HasCustomItemGlow { get; set; } = true;
         public Color CustomItemGlowColor { get; set; } = new Color32(255, 140, 59, 200);
+        public float GlowRange { get; set; } = 0.15f;
     }
 }

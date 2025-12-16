@@ -75,5 +75,6 @@ namespace GhostPlugin.Custom.Items.Etc
 
         public bool HasCustomItemGlow { get; set; } = true;
         public Color CustomItemGlowColor { get; set; } = Color.green;
+        public float GlowRange { get; set; } = 0.2f;
     }
 }

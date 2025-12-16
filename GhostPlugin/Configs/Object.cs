@@ -48,7 +48,7 @@ namespace GhostPlugin.Configs
 
         public void Send()
         {
-            Cassie.MessageTranslated(Message, Translation.IsEmpty() ? Message : Translation, isSubtitles: ShowSubtitles);
+            Exiled.API.Features.Cassie.MessageTranslated(Message, Translation.IsEmpty() ? Message : Translation, isSubtitles: ShowSubtitles);
         }
     }
 }

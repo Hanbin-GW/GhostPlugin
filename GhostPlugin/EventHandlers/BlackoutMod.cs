@@ -79,7 +79,7 @@ namespace GhostPlugin.EventHandlers
                 
                 if (IsBlackout)
                 {
-                    Cassie.Message(Plugin.Instance.Config.ServerEventsMasterConfig.BlackoutModeConfig.CassieMessage, false, 
+                    Exiled.API.Features.Cassie.Message(Plugin.Instance.Config.ServerEventsMasterConfig.BlackoutModeConfig.CassieMessage, false, 
                         false, true);
                     Log.Info("The Facility will be blackout for 100 seconds...");
                     Map.TurnOffAllLights(100);
@@ -104,7 +104,7 @@ namespace GhostPlugin.EventHandlers
                     Timing.CallDelayed(100, () =>
                     {
                         IsBlackout = false;
-                        Cassie.MessageTranslated(
+                        Exiled.API.Features.Cassie.MessageTranslated(
                             Plugin.Instance.Config.ServerEventsMasterConfig.BlackoutModeConfig.CassieOperationalMessage,
                             Plugin.Instance.Config.ServerEventsMasterConfig.BlackoutModeConfig
                                 .CassieOperationalMessageTranslation, false, false, true);

@@ -230,5 +230,6 @@ namespace GhostPlugin.Custom.Items.Grenades
 
         public bool HasCustomItemGlow { get; set; } = true;
         public Color CustomItemGlowColor { get; set; } = new Color(235f / 255f, 125f / 255f, 52f / 255f) * 3f;
+        public float GlowRange { get; set; } = 0.15f;
     }
 }

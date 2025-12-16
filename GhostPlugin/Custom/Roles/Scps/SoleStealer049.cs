@@ -140,7 +140,7 @@ namespace GhostPlugin.Custom.Roles.Scps
             if (SteamUserIds.Contains(player.UserId))
             {
                 base.RoleAdded(player);
-                Cassie.MessageTranslated(".G4 .G4 Error detected PITCH_.2 evacuate immediately","<color=red>Error</color> <color=#ff2200>[Rejected]</color> detected evacuate immediately",false,true,true);
+                Exiled.API.Features.Cassie.MessageTranslated(".G4 .G4 Error detected PITCH_.2 evacuate immediately","<color=red>Error</color> <color=#ff2200>[Rejected]</color> detected evacuate immediately",false,true,true);
                 player.Broadcast(15,$"<size=30>{player.Nickname} 님 고스트 서버에 <color=gold>후원</color>해주셔서 감사드립니다!\n지금 걸린 진영은 다양한 능력을 가지고 있는 <color=red>특수직업</color> 입니다!</size>");
                 // 전체 플레이어에게 보드캐스트 메시지 전송
                 //Map.Broadcast(7, "신원미상의 존재가 시설내에 존재합니다."); // 7초 동안 메시지 표시

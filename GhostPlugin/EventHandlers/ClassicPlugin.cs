@@ -271,7 +271,7 @@ namespace GhostPlugin.EventHandlers
             if (BlackoutMod.IsBlackout)
                 return;
             if(!TeamDeathmatch.Plugin.Instance.Config.IsEnabled)
-                Cassie.MessageTranslated(message: "Attention Containment breach detected", isSubtitles: true, translation: "Attention <color=red>Containment breach</color> detected", isNoisy: false);
+                Exiled.API.Features.Cassie.MessageTranslated(message: "Attention Containment breach detected", isSubtitles: true, translation: "Attention <color=red>Containment breach</color> detected", isNoisy: false);
         }
         /*private static void OnRoundEnded(EndingRoundEventArgs ev)
         {

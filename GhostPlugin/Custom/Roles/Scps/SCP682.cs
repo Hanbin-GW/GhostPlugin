@@ -80,7 +80,8 @@ namespace GhostPlugin.Custom.Roles.Scps
                         scp.Role.Set(roleReference, RoleSpawnFlags.UseSpawnpoint); // Change role to ClassD
                         scp.ShowHint("SCP 682가 있는 관계로 당신의 진영이 인간진영으로 변환되었습니다..!", 10); // Notify the player
                         scp.Broadcast(5,"<color=red>SCP 682</color>가 있는 관계로 당신의 진영이 인간진영으로 변환되었습니다..!"); // Notify the player
-                        Cassie.MessageTranslated(
+                        // Cassie.MessageTranslated(
+                        Exiled.API.Features.Cassie.MessageTranslated(
                             message: "Attention SCP 6 8 2 detected", 
                             isSubtitles: true,
                             translation: "Attention <color=red>SCP682</color> detected",
