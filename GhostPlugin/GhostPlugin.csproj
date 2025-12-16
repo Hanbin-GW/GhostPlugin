@@ -191,6 +191,7 @@
         <Compile Include="Configs\Object.cs" />
         <Compile Include="Configs\ServerEventsConfigs\BlackoutModeConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\ClassicConfig.cs" />
+        <Compile Include="Configs\ServerEventsConfigs\KillStreakConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\MusicConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\NoobSupportConfig.cs" />
         <Compile Include="Configs\ServerEventsConfigs\Scp914Config.cs" />
@@ -324,6 +325,7 @@
         <Compile Include="EventHandlers\ClassicPlugin.cs" />
         <Compile Include="EventHandlers\CustomItemHandler.cs" />
         <Compile Include="EventHandlers\CustomRoleHandler.cs" />
+        <Compile Include="EventHandlers\KillStreakEventHandlers.cs" />
         <Compile Include="EventHandlers\MusicEventHandlers.cs" />
         <Compile Include="EventHandlers\NoobSupport.cs" />
         <Compile Include="EventHandlers\PerkEventHandlers.cs" />
@@ -336,7 +338,7 @@
         <Compile Include="Methods\MER\ObjectManager.cs" />
         <Compile Include="Methods\Music\Downloder\YouTubeAudioService.cs" />
         <Compile Include="Methods\Music\JukeboxManagement.cs" />
-        <Compile Include="Methods\Music\MusicManager.cs" />
+        <Compile Include="Methods\Music\MusicMethods.cs" />
         <Compile Include="Methods\Music\ProcUtil.cs" />
         <Compile Include="Methods\Objects\PlasmaCube.cs" />
         <Compile Include="Methods\Objects\SpawnDoorType.cs" />

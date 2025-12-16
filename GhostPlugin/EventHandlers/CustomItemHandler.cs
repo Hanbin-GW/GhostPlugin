@@ -62,15 +62,21 @@ namespace GhostPlugin.EventHandlers
             ClearAllGlowEffects();
         }
 
-        private void ApplyGlowEffect(Pickup pickup, Color32 glowColor)
+        private void ApplyGlowEffect(Pickup pickup, Color glowColor, float range = 0.25f)
         {
+            if (ActiveGlowEffects.ContainsKey(pickup))
+            {
+                RemoveGlowEffect(pickup);
+            }
+            
             var light = Light.Create(pickup.Position);
             light.Color = glowColor;
-            light.Range = 0.25f;
-            light.ShadowType = LightShadows.None;
+            light.Range = range;
+            light.ShadowType = LightShadows.Soft;
             light.Base.gameObject.transform.SetParent(pickup.Base.gameObject.transform);
             ActiveGlowEffects[pickup] = light;
         }
+
 
         private void RemoveGlowEffect(Pickup pickup)
         {

@@ -3,16 +3,17 @@ using System.IO;
 using System.Threading.Tasks;
 using Exiled.API.Features;
 using GhostPlugin.Commands.MusicCommand;
+using MEC;
 
 namespace GhostPlugin.Methods.Music
 {
-    public class MusicManager
+    public class MusicMethods
     {
         /// <summary>
         /// check a directory when the music file is exists.
         /// </summary>
         public readonly AudioCommands audioCommands;
-        public MusicManager(string audioDir, string workDir) {
+        public MusicMethods(string audioDir, string workDir) {
             Directory.CreateDirectory(audioDir);
             audioCommands = new AudioCommands(audioDir, workDir); // 생성자에서 주입
         }
@@ -23,7 +24,7 @@ namespace GhostPlugin.Methods.Music
             // 폴더가 없으면 생성
             if (!Directory.Exists(path))
             {
-                Log.Warn($"음악 폴더가 존재하지 않습니다. 새로 생성합니다: {path}");
+                Log.Warn($"File Folder does not exists. Create one: {path}");
                 Directory.CreateDirectory(path);  // 폴더 생성
             }
             else
@@ -41,6 +42,56 @@ namespace GhostPlugin.Methods.Music
             //ap.ClipsById.Clear();
             ap.RemoveAllClips();
         }
+        public static void PlaySoundPlayer(string filename, Player player, float duration)
+        {
+            var path = Path.Combine(Plugin.Instance.AudioDirectory, filename);
+            if (!File.Exists(path))
+            {
+                Log.Error($"File Doesn't exists: {path}");
+                return;
+            }
+
+            try
+            {
+                var clipName = Path.GetFileNameWithoutExtension(filename);
+
+                // bool loaded = AudioClipStorage.LoadClip(path, clipName);
+                // if (!loaded) { Log.Error($"Failed to load clip: {clipName}"); return; }
+
+                AudioClipStorage.LoadClip(path, clipName);
+
+                AudioPlayer musicPlayer = AudioPlayer.CreateOrGet(
+                    "GlobalAudioPlayer",
+                    condition: hub => hub.PlayerId == player.Id,
+                    onIntialCreation: p =>
+                    {
+                        p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
+                    });
+
+                // Use clipName here as well, not "Music"
+                musicPlayer.AddClip(clipName, 1f, false, true);
+
+                // If you want to unload after a certain period of time
+                Timing.CallDelayed(duration, () =>
+                {
+                    try
+                    {
+                        AudioClipStorage.DestroyClip(clipName);
+                    }
+                    catch
+                    {
+                        // Ignore if it is already uploded
+                    }
+                });
+
+                Log.Info($"Playing a music: {filename}");
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error Occured playing music command: {ex.Message}");
+            }
+        }
+        
         /// <summary>
         /// play a music
         /// </summary>
@@ -52,30 +103,30 @@ namespace GhostPlugin.Methods.Music
             // 파일 존재 여부 확인
             if (!File.Exists(path))
             {
-                Log.Error($"파일이 존재하지 않습니다: {path}");
+                Log.Error($"File does not exists: {path}");
                 return;
             }
 
             try
             {
-                // 오디오 클립 로드
+                // Load Audio Clip
                 StopMusic();
                 AudioClipStorage.LoadClip(path, "Music");
 
-                // 오디오 플레이어 생성 또는 가져오기
+                // Create or import an audio player
                 AudioPlayer musicPlayer = AudioPlayer.CreateOrGet("GlobalAudioPlayer", onIntialCreation: (p) =>
                 {
                     p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
                 });
 
-                // 클립 추가
+                // Add clip
                 musicPlayer.AddClip("Music", 1f, false, false);
 
-                Log.Info($"음악이 재생됩니다: {filename}");
+                Log.Info($"Playing a music: {filename}");
             }
             catch (Exception ex)
             {
-                // 예외 처리
+                // Exception
                 Log.Error($"음악 재생 명령어 중 오류가 발생했습니다: {ex.Message}");
             }
         }
@@ -89,11 +140,11 @@ namespace GhostPlugin.Methods.Music
                 {
                     PlaySpecificMusic(fileName); // 밑의 함수 호출
                 }
-                Log.Info($"음악이 재생됩니다 (alias): {alias}");
+                Log.Info($"Playing a music (alias): {alias}");
             }
             catch (Exception ex)
             {
-                Log.Error($"음악 재생 명령어 중 오류가 발생했습니다: {ex.Message}");
+                Log.Error($"Error occured during playing a music: {ex.Message}");
             }
         }
 

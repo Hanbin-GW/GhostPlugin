@@ -15,9 +15,7 @@ namespace GhostPlugin.Custom.Items.Etc
         public override uint Id { get; set; } = 73;
         public override string Name { get; set; } = "Energized Blade";
 
-        public override string Description { get; set; } =
-            "This blade has a massive damage and also it can <color=green>reflect / deduct</color> the bullet damage";
-
+        public override string Description { get; set; } = "A sharp blade used for close combat.";
         public override float Weight { get; set; } = 3f;
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
@@ -28,6 +26,14 @@ namespace GhostPlugin.Custom.Items.Etc
                 {
                     Location = SpawnLocationType.Inside106Primary,
                     Chance = 100,
+                }
+            },
+            LockerSpawnPoints = new()
+            {
+                new()
+                {
+                    Chance = 10,
+                    Type = LockerType.LargeGun
                 }
             }
         };
@@ -40,6 +46,12 @@ namespace GhostPlugin.Custom.Items.Etc
             {
                 ev.Scp1509.MeleeCooldown = 0.25f;
             }
+        }
+        private void On1509Resurrecting(ResurrectingEventArgs ev)
+        {
+            if (!Check(ev.Player))
+                return;
+            ev.IsAllowed = false;
         }
         
         private void OnHurting(HurtingEventArgs ev)
@@ -58,19 +70,21 @@ namespace GhostPlugin.Custom.Items.Etc
 
         protected override void SubscribeEvents()
         {
-            Exiled.Events.Handlers.Player.Hurting += OnHurting;
+            //Exiled.Events.Handlers.Player.Hurting += OnHurting;
+            Exiled.Events.Handlers.Scp1509.Resurrecting += On1509Resurrecting;
             Exiled.Events.Handlers.Scp1509.TriggeringAttack += OnTriggeringAttack;
             base.SubscribeEvents();
         }
 
         protected override void UnsubscribeEvents()
         {
-            Exiled.Events.Handlers.Player.Hurting -= OnHurting;
+            //Exiled.Events.Handlers.Player.Hurting -= OnHurting;
+            Exiled.Events.Handlers.Scp1509.Resurrecting -= On1509Resurrecting;
             Exiled.Events.Handlers.Scp1509.TriggeringAttack -= OnTriggeringAttack;
             base.UnsubscribeEvents();
         }
 
         public Color CustomItemGlowColor { get; set; } = new Color32(255, 225,0, 127);
-
+        public float GlowRange { get; set; }  = 0.2f;
     }
 }

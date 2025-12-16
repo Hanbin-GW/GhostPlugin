@@ -16,13 +16,13 @@ namespace GhostPlugin.EventHandlers
     public class MusicEventHandlers
     {
         private readonly Plugin _plugin;
-        private readonly MusicManager _music;
+        private readonly MusicMethods _music;
         private readonly AudioManagemanet _audioMgmt = new AudioManagemanet();
 
         public MusicEventHandlers(Plugin plugin, string tmpAudio)
         {
             _plugin = plugin;
-            _music = new MusicManager(plugin.AudioDirectory, tmpAudio);
+            _music = new MusicMethods(plugin.AudioDirectory, tmpAudio);
         }
 
         private static CoroutineHandle loopCoroutine;
@@ -68,7 +68,7 @@ namespace GhostPlugin.EventHandlers
         }*/
         public static void OnWaitingPlayers()
         { 
-            MusicManager.EnsureMusicDirectoryExists();
+            MusicMethods.EnsureMusicDirectoryExists();
             string[] playlist = Plugin.Instance.Config.MusicConfig.MusicPlayList;
 
             /*var path = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.LobbySongPath);
@@ -115,11 +115,11 @@ namespace GhostPlugin.EventHandlers
                 Log.Error("Filed to load AudioClip");
                 return;
             }
-            MusicManager.PlaySpecificMusic(path);
+            MusicMethods.PlaySpecificMusic(path);
 
             Timing.CallDelayed(24f, () =>
             {
-                MusicManager.StopMusic();
+                MusicMethods.StopMusic();
             });
         }
 
@@ -158,8 +158,8 @@ namespace GhostPlugin.EventHandlers
                 }
                 else
                 {
-                    MusicManager.PlaySpecificMusic(filePath);
-                    Timing.CallDelayed(50f, () => MusicManager.StopMusic());
+                    MusicMethods.PlaySpecificMusic(filePath);
+                    Timing.CallDelayed(50f, () => MusicMethods.StopMusic());
                 }
             }
 
@@ -167,8 +167,8 @@ namespace GhostPlugin.EventHandlers
             {
                 //MusicManager.StopMusic();
                 string filePath = Path.Combine(Plugin.Instance.AudioDirectory, Plugin.Instance.Config.MusicConfig.ChaosSpawmBgm);
-                MusicManager.PlaySpecificMusic(filePath);
-                Timing.CallDelayed(50f, () => MusicManager.StopMusic());
+                MusicMethods.PlaySpecificMusic(filePath);
+                Timing.CallDelayed(50f, () => MusicMethods.StopMusic());
             }
         }
         

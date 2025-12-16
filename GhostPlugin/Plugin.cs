@@ -64,6 +64,9 @@ namespace GhostPlugin
         public CustomItemHandler CustomItemHandler;
 
         public MusicEventHandlers MusicEventHandlers;
+        
+        public KillStreakEventHandlers KillStreakEventHandlers;
+
         // private Harmony _harmony;
         private bool _fullUpgraded;
         //Audio Dir
@@ -307,6 +310,19 @@ namespace GhostPlugin
                     CasualFPSModeHandler.RegisterEvents();
                 }
             });
+            
+            Run("killsteak.register", () =>
+            {
+                if (Config?.ServerEventsMasterConfig?.KillStreakConfig?.Enabled == true &&
+                    CurrentRunMode == RunMode.Full)
+                {
+                    KillStreakEventHandlers = new KillStreakEventHandlers();
+                    Exiled.Events.Handlers.Player.Died += KillStreakEventHandlers.OnDied;
+                    Server.RoundStarted +=  KillStreakEventHandlers.OnRoundStarted;
+                    Server.RoundEnded += KillStreakEventHandlers.OnRoundEnded;
+                }
+            });
+
 
             base.OnEnabled();
         }

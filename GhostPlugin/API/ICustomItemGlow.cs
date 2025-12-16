@@ -6,5 +6,6 @@ namespace GhostPlugin.API
     {
         public bool HasCustomItemGlow { get; set; }
         public Color CustomItemGlowColor { get; set; }
+        public float GlowRange { get; set; }
     }
 }
