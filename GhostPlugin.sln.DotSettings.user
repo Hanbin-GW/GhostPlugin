@@ -100,5 +100,6 @@
   &lt;Assembly Path="/Users/hanbin/Documents/1403/LabApi.dll" /&gt;
   &lt;Assembly Path="/Users/hanbin/RiderProjects/GhostPlugin/packages/ExMod.Exiled.9.6.0-beta4/lib/net48/NorthwoodLib.dll" /&gt;
   &lt;Assembly Path="/Users/hanbinkim/Documents/Dll/Assembly-CSharp.dll" /&gt;
+  &lt;Assembly Path="/Users/hanbinkim/RiderProjects/GhostPlugin/packages/ExMod.Exiled.9.12.1/lib/net48/Assembly-CSharp-Publicized.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/Environment/InlayHints/GeneralInlayHintsOptions/EnableInlayHints/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>
