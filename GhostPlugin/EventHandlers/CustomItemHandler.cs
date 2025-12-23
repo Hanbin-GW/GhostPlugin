@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Exiled.API.Features;
 using Exiled.API.Features.Pickups;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
@@ -62,14 +63,21 @@ namespace GhostPlugin.EventHandlers
             ClearAllGlowEffects();
         }
 
-        private void ApplyGlowEffect(Pickup pickup, Color32 glowColor)
+        private void ApplyGlowEffect(Pickup pickup, Color glowColor, float range = 0.25f, float intensity = 1f)
         {
+            if (ActiveGlowEffects.ContainsKey(pickup))
+            {
+                RemoveGlowEffect(pickup);
+            }
+            
             var light = Light.Create(pickup.Position);
             light.Color = glowColor;
-            light.Range = 0.25f;
-            light.ShadowType = LightShadows.None;
+            light.Intensity = intensity;
+            light.Range = range;
+            light.ShadowType = LightShadows.Soft;
             light.Base.gameObject.transform.SetParent(pickup.Base.gameObject.transform);
             ActiveGlowEffects[pickup] = light;
+            Log.Debug($"VVUP Base: Applied glow effect to pickup {pickup} with color {glowColor} and range {range}");
         }
 
         private void RemoveGlowEffect(Pickup pickup)

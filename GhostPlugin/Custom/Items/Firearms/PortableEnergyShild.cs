@@ -140,5 +140,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         public bool HasCustomItemGlow { get; set; } = true;
         public Color CustomItemGlowColor { get; set; } = Color.blue;
+        public float GlowRange { get; set; }
+        public float GlowIntensity { get; set; }
     }
 }

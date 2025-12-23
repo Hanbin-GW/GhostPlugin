@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using CustomPlayerEffects;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
@@ -19,15 +21,30 @@ namespace GhostPlugin.Custom.Items.Etc
 
         public override string Description { get; set; } = "칼날이 매우 치명적인 나이프 입니다.";
         public override float Weight { get; set; } = 3f;
+        private readonly Dictionary<Player, float> _lastSwingTime = new();
+        [Description("Cooldown time in seconds between swings.")]
+        public float SwingCooldown { get; set; } = 1.5f;
+        [Description("Use {time} to fetch the remaining cooldown time.")]
+        public string CooldownMessage { get; set; } = "컴뱃 나이프가 {time} 초동안 쿨다운중입니다.";
+        public float MessageDuration { get; set; } = 5f;
+        public bool UseHints { get; set; } = true;
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
             Limit = 1,
-            DynamicSpawnPoints = new List<DynamicSpawnPoint>()
+            DynamicSpawnPoints = new()
             {
-                new DynamicSpawnPoint()
+                new()
                 {
-                    Location = SpawnLocationType.Inside106Primary,
-                    Chance = 100,
+                    Chance = 10,
+                    Location = SpawnLocationType.Inside049Armory
+                },
+            },
+            LockerSpawnPoints = new()
+            {
+                new()
+                {
+                    Chance = 10,
+                    Type = LockerType.LargeGun
                 }
             }
         };
@@ -36,21 +53,30 @@ namespace GhostPlugin.Custom.Items.Etc
 
         private void OnTriggeringAttack(TriggeringAttackEventArgs ev)
         {
-            if (Check(ev.Player.CurrentItem))
+            if (!Check(ev.Player))
+                return;
+            float currentTime = Time.time;
+            
+            if (_lastSwingTime.TryGetValue(ev.Player, out float lastTime))
             {
-                var item = (Scp1509Item)ev.Scp1509.Base;
-                item._meleeDelay = 3f;
-                item._meleeCooldown = 3f;
-
-                // 3. 실제 쿨다운 타이머 리셋
-                item._clientAttackCooldown.Trigger(3);
-                item._clientDelayCooldown.Trigger(3);
-                item._serverAttackCooldown.Trigger(3);
-                
-                ev.Scp1509.RespawnEligibility.enabled = false;
-                //ev.Scp1509.Base._meleeCooldown = 3f;
-                ev.Scp1509.MeleeCooldown = 3f;
+                if (currentTime - lastTime < SwingCooldown)
+                {
+                    var cooldownTimeRemaining = SwingCooldown - currentTime - lastTime;
+                    ev.IsAllowed = false;
+                    if (!string.IsNullOrWhiteSpace(CooldownMessage))
+                        if (UseHints)
+                            ev.Player.ShowHint(CooldownMessage.Replace("{percent}", cooldownTimeRemaining.ToString()), MessageDuration);
+                        else
+                            ev.Player.Broadcast((ushort)MessageDuration, CooldownMessage.Replace("{percent}", cooldownTimeRemaining.ToString()));
+                    
+                    Log.Debug($"VVUP Custom Items, Knife: Attack by {ev.Player} blocked due to cooldown");
+                    return;
+                }
             }
+    
+            _lastSwingTime[ev.Player] = currentTime;
+            Log.Debug($"VVUP Custom Items, Knife: Allowed swing by {ev.Player}");
+            ev.IsAllowed = true;
         }
         
         private void OnHurting(HurtingEventArgs ev)
@@ -60,10 +86,17 @@ namespace GhostPlugin.Custom.Items.Etc
                 ev.Amount = 95;
             }
         }
-
+        private void On1509Resurrecting(Exiled.Events.EventArgs.Scp1509.ResurrectingEventArgs ev)
+        {
+            if (!Check(ev.Player))
+                return;
+            Log.Debug($"GhostPlugin Custom Items, Knife: Prevented resurrection of {ev.Target} by {ev.Player}");
+            ev.IsAllowed = false;
+        }
         protected override void SubscribeEvents()
         {
             Exiled.Events.Handlers.Player.Hurting += OnHurting;
+            Exiled.Events.Handlers.Scp1509.Resurrecting += On1509Resurrecting;
             Exiled.Events.Handlers.Scp1509.TriggeringAttack += OnTriggeringAttack;
             base.SubscribeEvents();
         }
@@ -71,11 +104,13 @@ namespace GhostPlugin.Custom.Items.Etc
         protected override void UnsubscribeEvents()
         {
             Exiled.Events.Handlers.Player.Hurting -= OnHurting;
+            Exiled.Events.Handlers.Scp1509.Resurrecting -= On1509Resurrecting;
             Exiled.Events.Handlers.Scp1509.TriggeringAttack -= OnTriggeringAttack;
             base.UnsubscribeEvents();
         }
 
         public Color CustomItemGlowColor { get; set; } = new Color32(255, 225,0, 127);
-
+        public float GlowRange { get; set; }
+        public float GlowIntensity { get; set; }
     }
 }
