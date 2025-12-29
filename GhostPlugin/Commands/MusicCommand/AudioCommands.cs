@@ -18,7 +18,7 @@ namespace GhostPlugin.Commands.MusicCommand
             {
                 YtDlpPath  = "yt-dlp",
                 FfmpegPath = "ffmpeg",
-                WorkDir    = "/home/scpsl/steamcmd/scpsl/tmp-audio",
+                WorkDir    = "/data/scpsl/tmp-audio",
                 //WorkDir = workDir,
                 AudioDir   = Plugin.Instance.AudioDirectory,
                 SampleRate = 48000,

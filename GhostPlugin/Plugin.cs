@@ -73,7 +73,7 @@ namespace GhostPlugin
         public Plugin()
         {
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            EffectDirectory = Path.Combine(appDataPath, "EXILED", "Plugins", "Effects_Audio");
+            EffectDirectory = Path.Combine(appDataPath, "EXILED", "Plugins", "effects");
             AudioDirectory = Path.Combine(appDataPath, "EXILED", "Plugins", "audio");
         }
         
@@ -278,7 +278,7 @@ namespace GhostPlugin
                         Environment.OSVersion.Platform == PlatformID.Win32NT
                             ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                                 "EXILED", "Plugins", "tmp-audio")
-                            : "/home/scpsl/steamcmd/scpsl/tmp-audio";
+                            : "/data/scpsl/tmp-audio";
                     if (!Directory.Exists(tmpAudio)) Directory.CreateDirectory(tmpAudio);
 
                     // 인스턴스 기반일 때
@@ -593,7 +593,7 @@ namespace GhostPlugin
                         Environment.OSVersion.Platform == PlatformID.Win32NT
                             ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                                 "EXILED", "Plugins", "tmp-audio")
-                            : "/home/scpsl/steamcmd/scpsl/tmp-audio";
+                            : "/data/scpsl/tmp-audio";
                     if (!Directory.Exists(tmpAudio)) Directory.CreateDirectory(tmpAudio);
 
                     // 인스턴스 기반일 때

@@ -28,7 +28,7 @@ namespace GhostPlugin.Commands.Jukebox
         // 플러그인 경로/워크디렉토리 주입
         private readonly AudioCommands _audio = new AudioCommands(
             Plugin.Instance.AudioDirectory,
-            "/home/scpsl/steamcmd/scpsl/tmp-audio"
+            "/data/scpsl/tmp-audio"
         );
         /*static string audioDir = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),

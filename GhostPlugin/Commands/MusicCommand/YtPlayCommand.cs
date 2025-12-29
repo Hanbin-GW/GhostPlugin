@@ -14,7 +14,7 @@ namespace GhostPlugin.Commands.MusicCommand
         public string Description { get; } = "유튜브 URL을 다운로드하여 음악을 재생합니다.";
 
         private readonly MusicMethods musicMethods = 
-            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/scpsl/steamcmd/scpsl/tmp-audio");
+            new MusicMethods(Plugin.Instance.AudioDirectory, "/data/scpsl/tmp-audio");
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
