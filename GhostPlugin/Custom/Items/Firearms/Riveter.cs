@@ -31,26 +31,51 @@ namespace GhostPlugin.Custom.Items.Firearms
                 ev.CanHurt = false;
                 //Color glowColor = new Color(1.0f, 0.0f, 0.0f, 0.1f) * 50f;
                 Color glowColor = new ();
+                Color baseColor = new Color();
                 //var direction = ev.Position - ev.Player.Position;
                 var direction = ev.Player.CameraTransform.forward.normalized;
                 var laserPos = ev.Player.CameraTransform.position + direction * 0.5f;
                 //var laserPos = ev.Player.Position + direction * 0.25f;
                 var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
                 //PlasmaCube.SpawmSparkBuckshot(ev.Player, ev.Firearm.Base.transform.position,13,15f,0.05f,glowColor); 
-                
+                float intensity = 50f;
                 switch (ev.Player.Role.Team)
                 {
                     case (Team.FoundationForces):
-                        glowColor = new Color(0f, 1f, 1f, 0.1f) * 75;
+                        baseColor = new Color32(0, 255, 255, 121);
+
+                        glowColor = new Color(
+                            baseColor.r * intensity,
+                            baseColor.g * intensity,
+                            baseColor.b * intensity,
+                            baseColor.a
+                        );
                         break;
                     case (Team.Scientists):
-                        glowColor = new Color(1f, 1f, 0f, 0.1f) * 75;
+                        baseColor = new Color32(255, 255, 0, 121);
+                        glowColor = new Color(
+                            baseColor.r * intensity,
+                            baseColor.g * intensity,
+                            baseColor.b * intensity,
+                            baseColor.a
+                        );
                         break;
                     case (Team.ChaosInsurgency):
-                        glowColor = new Color(0.1f, 1f, 0.1f, 0.1f) * 75;
+                        // glowColor = new Color(0.1f, 1f, 0.1f, 0.1f) * 75;
+                        baseColor = new Color32(25, 255, 25, 121);
+                        glowColor = new Color(
+                            baseColor.r * intensity,
+                            baseColor.g * intensity,
+                            baseColor.b * intensity,
+                            baseColor.a);
                         break;
                     case (Team.OtherAlive):
-                        glowColor = new Color(1f, 1f, 1f, 0.1f) * 75;
+                        baseColor = new Color32(255, 255, 255, 121);
+                        glowColor = new Color(
+                            baseColor.r * intensity,
+                            baseColor.g * intensity,
+                            baseColor.b * intensity,
+                            baseColor.a);
                         break;
                 }
 

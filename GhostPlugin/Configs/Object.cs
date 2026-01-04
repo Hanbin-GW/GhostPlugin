@@ -45,10 +45,5 @@ namespace GhostPlugin.Configs
         public string Translation { get; set; } = "";
         [Description("Whether or not to hide the subtitle for the cassie message")]
         public bool ShowSubtitles { get; set; } = true;
-
-        public void Send()
-        {
-            Cassie.MessageTranslated(Message, Translation.IsEmpty() ? Message : Translation, isSubtitles: ShowSubtitles);
-        }
     }
 }
