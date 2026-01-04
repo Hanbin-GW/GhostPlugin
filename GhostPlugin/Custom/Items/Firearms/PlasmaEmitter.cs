@@ -87,17 +87,31 @@ namespace GhostPlugin.Custom.Items.Firearms
                 ev.Player.ShowHint("조준 사격 불가능");
                 return;
             }
-            Color glowColor = new Color(1f, 0.5f, 0f, 0.1f) * 50;
+
+            Color glowColor = new Color();
+            Color baseColor;
+            float intensity = 50f;
             switch (ev.Player.LeadingTeam)
             {
                 case (LeadingTeam.FacilityForces):
-                    glowColor = new Color(0f, 1f, 1f, 0.1f) * 50;
+                    baseColor = new Color32(0,255,255,121);
+                    glowColor = new Color(baseColor.r * intensity,baseColor.g * intensity, baseColor.b * intensity, baseColor.a);
                     break;
                 case (LeadingTeam.ChaosInsurgency):
-                    glowColor = new Color(1f, 0.5f, 0f, 0.1f) * 50;
+                    baseColor = new Color32(255,178,0,121);
+                    glowColor = new Color(
+                        baseColor.r * intensity, 
+                        baseColor.g * intensity,
+                        baseColor.b * intensity,
+                        baseColor.a);
                     break;
                 case LeadingTeam.Anomalies:
-                    glowColor = new Color(1f, 0f, 0f, 0.1f) * 50;
+                    baseColor = new Color32(255, 0, 0, 121);
+                    glowColor = new Color(
+                        baseColor.r * intensity,
+                        baseColor.g * intensity,
+                        baseColor.b * intensity,
+                        baseColor.a);
                     break;
             }
             var direction = ev.Position - ev.Player.Position;
