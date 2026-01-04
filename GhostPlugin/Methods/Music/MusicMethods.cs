@@ -109,9 +109,10 @@ namespace GhostPlugin.Methods.Music
                     {
                         AudioClipStorage.DestroyClip(clipName);
                     }
-                    catch
+                    catch (Exception e)
                     {
                         // Ignore it if already unloaded
+                        Log.Warn($"DestroyClip failed for {clipName}: {e}");
                     }
                 });
 
