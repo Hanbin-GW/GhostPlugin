@@ -80,6 +80,47 @@ namespace GhostPlugin.Methods.Music
                 Log.Error($"Error Occured playing music command: {ex.Message}");
             }
         }
+
+        public static void PlaySoundEffect(string filename, Player player, float duration, float maxDistance)
+        {
+            var path = Path.Combine(Plugin.Instance.EffectDirectory, filename);
+            if (!File.Exists(path))
+            {
+                Log.Error($"File don't exists: {path}");
+                return;
+            }
+
+            try
+            {
+                var clipName = Path.GetFileNameWithoutExtension(filename);
+                
+                AudioClipStorage.LoadClip(path, clipName);
+                
+                AudioPlayer audioPlayer = AudioPlayer.CreateOrGet("Effect", condition: hub => hub.PlayerId == player.Id, onIntialCreation:
+                    p =>
+                    {
+                        p.AddSpeaker("Main", isSpatial: false, maxDistance: maxDistance,position:player.Position);
+                    });
+                audioPlayer.AddClip(clipName, 1f, false, false);
+                
+                Timing.CallDelayed(duration, () =>
+                {
+                    try
+                    {
+                        AudioClipStorage.DestroyClip(clipName);
+                    }
+                    catch
+                    {
+                        // Ignore it if already unloaded
+                    }
+                });
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error Occured playing music command: {ex.Message}");
+            }
+        }
         public static void PlaySoundPlayer(string filename, Player player, float duration)
         {
             var path = Path.Combine(Plugin.Instance.AudioDirectory, filename);
@@ -105,7 +146,7 @@ namespace GhostPlugin.Methods.Music
                     condition: hub => hub.PlayerId == player.Id,
                     onIntialCreation: p =>
                     {
-                        p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
+                        p.AddSpeaker("Main", isSpatial: false, maxDistance: 20f);
                     });
 
                 // 여기서도 "Music"이 아니라 clipName 사용

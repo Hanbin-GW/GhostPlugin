@@ -17,6 +17,7 @@ namespace GhostPlugin.Methods.Objects
                 rotation.eulerAngles,
                 scale, true, laserColor);
             var bulletcollision = pt.GameObject.AddComponent<BulletCollision>();
+            pt.Color = laserColor;
             bulletcollision.Initialize(damage, player);
             var rb = pt.GameObject.AddComponent<Rigidbody>();
             rb.isKinematic = false;

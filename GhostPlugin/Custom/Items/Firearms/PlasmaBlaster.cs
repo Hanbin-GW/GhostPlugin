@@ -4,6 +4,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using GhostPlugin.API;
+using GhostPlugin.Methods.Music;
 using GhostPlugin.Methods.Objects;
 using UnityEngine;
 
@@ -37,17 +38,40 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         protected override void OnShot(ShotEventArgs ev)
         {
+            if(!Check(ev.Player.CurrentItem))
+                return;
+            MusicMethods.PlaySoundEffect("Blaster.ogg",ev.Player,0.35f,7.5f);
             Color glowColor = new Color(1f, 0.5f, 0f, 0.1f) * 50;
+            float intensity = 50f;
             switch (ev.Player.LeadingTeam)
             {
                 case (LeadingTeam.FacilityForces):
-                    glowColor = new Color(0f, 1f, 1f, 0.1f) * 50;
+                    Color baseColor = (Color) new Color32(71, 255, 255, 121);
+                    glowColor = new Color(
+                        baseColor.r * intensity,
+                        baseColor.g * intensity,
+                        baseColor.b * intensity,
+                        baseColor.a
+                    );
+                    // glowColor = new Color(0f, 1f, 1f, 0.1f) * 50;
                     break;
                 case (LeadingTeam.ChaosInsurgency):
-                    glowColor = new Color(0.1f, 1f, 0.1f, 0.1f) * 50;
+                    baseColor = (Color) new Color32(80, 255, 80, 121);
+                    glowColor = new Color(
+                        baseColor.r * intensity,
+                        baseColor.g * intensity,
+                        baseColor.b * intensity,
+                        baseColor.a
+                    );
                     break;
                 case LeadingTeam.Anomalies:
-                    glowColor = new Color(1f, 0f, 0f, 0.1f) * 50;
+                    baseColor = new Color32(255, 80, 80, 121);
+                    glowColor = new Color(
+                        baseColor.r * intensity,
+                        baseColor.g * intensity,
+                        baseColor.b * intensity,
+                        baseColor.a
+                    );
                     break;
             }
             var direction = ev.Position - ev.Player.Position;
