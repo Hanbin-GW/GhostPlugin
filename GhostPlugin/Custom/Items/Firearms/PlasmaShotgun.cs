@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Drawing;
-using AdminToys;
 using CustomPlayerEffects;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
@@ -8,7 +6,6 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using GhostPlugin.API;
-using GhostPlugin.Custom.Items.MonoBehavior;
 using GhostPlugin.Methods.Objects;
 using UnityEngine;
 using Color = UnityEngine.Color;
@@ -55,7 +52,9 @@ namespace GhostPlugin.Custom.Items.Firearms
             if (Check(ev.Player.CurrentItem))
             {
                 ev.CanHurt = false;
-                Color glowColor = new Color(0f, 1f, 1f, 0.1f) * 50;
+                float intensity = 50f;
+                Color baseColor = new Color32(0, 255, 255, 121);
+                Color glowColor = new Color(baseColor.r * intensity, baseColor.g * intensity, baseColor.b * intensity, baseColor.a);
                 var direction = ev.Player.CameraTransform.forward.normalized;
                 var laserPos = ev.Player.CameraTransform.position + direction * 0.5f;
                 var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
