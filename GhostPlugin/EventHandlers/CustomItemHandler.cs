@@ -1,13 +1,18 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.API.Features.Pickups;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
+using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Map;
 using GhostPlugin.API;
+using GhostPlugin.Methods.Music;
+using InventorySystem.Items.Firearms;
 using Mirror;
 using UnityEngine;
+using Firearm = Exiled.API.Features.Items.Firearm;
 using Light = Exiled.API.Features.Toys.Light;
 
 namespace GhostPlugin.EventHandlers
@@ -37,6 +42,25 @@ namespace GhostPlugin.EventHandlers
                 }
             }
         }
+
+        public void OnChangingItem(ChangingItemEventArgs ev)
+        {
+            if (ev.Item == null || ev.Item.Base == null || ev.Item.Base.gameObject == null)
+            {
+                return;
+            }
+
+            CustomItem.TryGet(ev.Item, out CustomItem customItem);
+            if (ev.Item.Category == ItemCategory.Firearm && customItem != null )
+            {
+                string fileName = "smg_equip.ogg";
+                string path = Path.Combine(Plugin.Instance.EffectDirectory, fileName);
+                float duration = API.Audio.AudioUtils.GetOggDurationInSeconds(path);
+                MusicMethods.PlaySoundEffect(fileName,ev.Player,duration,7.5f);
+            }
+        }
+
+
         public void AddGlow(PickupAddedEventArgs ev)
         {
             CustomItem.TryGet(ev.Pickup, out CustomItem ci);
