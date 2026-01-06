@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using Exiled.API.Enums;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
@@ -40,7 +41,10 @@ namespace GhostPlugin.Custom.Items.Firearms
         {
             if(!Check(ev.Player.CurrentItem))
                 return;
-            MusicMethods.PlaySoundEffect("Blaster.ogg",ev.Player,0.35f,7.5f);
+            string fileName = "Blaster.ogg";
+            string path = Path.Combine(Plugin.Instance.EffectDirectory, fileName);
+            float duration = API.Audio.AudioUtils.GetOggDurationInSeconds(path);
+            MusicMethods.PlaySoundEffect(fileName,ev.Player,duration,7.5f);
             Color glowColor = new Color(1f, 0.5f, 0f, 0.1f) * 50;
             float intensity = 50f;
             switch (ev.Player.LeadingTeam)

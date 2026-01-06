@@ -35,7 +35,7 @@ namespace GhostPlugin
 
         public Dictionary<int, bool> musicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(9, 1, 1);
+        public override Version Version { get; } = new(9, 1, 9);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
@@ -180,6 +180,7 @@ namespace GhostPlugin
                     Server.RoundStarted += CustomItemHandler.OnRoundStarted;
                     Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
                     Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
+                    Exiled.Events.Handlers.Player.ChangingItem += CustomItemHandler.OnChangingItem;
                 }
             });
             Run("classic.register", () =>
@@ -338,6 +339,7 @@ namespace GhostPlugin
                 Server.RoundStarted -= CustomItemHandler.OnRoundStarted;
                 Exiled.Events.Handlers.Item.InspectingItem -= CustomItemHandler.OnInspectingItem;
                 Exiled.Events.Handlers.Item.InspectingItem -= CustomItemHandler.OnInspectingItem;
+                Exiled.Events.Handlers.Player.ChangingItem -= CustomItemHandler.OnChangingItem;
                 CustomItemHandler = null;
             }
             
@@ -507,6 +509,7 @@ namespace GhostPlugin
                     Server.RoundStarted += CustomItemHandler.OnRoundStarted;
                     Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
                     Exiled.Events.Handlers.Item.InspectingItem += CustomItemHandler.OnInspectingItem;
+                    Exiled.Events.Handlers.Player.ChangingItem += CustomItemHandler.OnChangingItem;
                 }
             });
 

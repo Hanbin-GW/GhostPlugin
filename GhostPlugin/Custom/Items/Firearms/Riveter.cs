@@ -81,7 +81,12 @@ namespace GhostPlugin.Custom.Items.Firearms
 
                 if (CustomRole.Get(18)?.Check(ev.Player) == true)
                 {
-                    glowColor = new Color(1f, 0f, 0f, 0.1f) * 75;
+                    baseColor = new Color32(255, 30, 30, 121);
+                    glowColor = new Color(
+                        baseColor.r * intensity,
+                        baseColor.g * intensity,
+                        baseColor.b * intensity,
+                        baseColor.a);
                 }
                 
                 SpawnPrimitive.spawnPrimitivesfire(ev.Player, 10, rotation, laserPos, glowColor,5,20);

@@ -1,10 +1,14 @@
 using System.Collections.Generic;
+using System.IO;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Items;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using GhostPlugin.Methods.MER;
+using GhostPlugin.Methods.Music;
 using GhostPlugin.Methods.Objects;
 using ProjectMER.Features.Objects;
 using UnityEngine;
@@ -117,6 +121,10 @@ namespace GhostPlugin.Custom.Items.Firearms
             var direction = ev.Position - ev.Player.Position;
             var laserPos = ev.Player.Position + direction * 0.5f;
             var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
+            string fileName = "blaster aee.ogg";
+            string path = Path.Combine(Plugin.Instance.EffectDirectory, fileName);
+            float duration = API.Audio.AudioUtils.GetOggDurationInSeconds(path);
+            MusicMethods.PlaySoundEffect(fileName,ev.Player,duration,5.5f);
             SpawnPrimitive.spawnPrimitive(ev.Player, PrimitiveType.Cube, rotation, laserPos, glowColor,25, 70);
             ev.CanHurt = false;
             base.OnShot(ev);

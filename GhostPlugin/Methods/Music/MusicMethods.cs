@@ -92,36 +92,35 @@ namespace GhostPlugin.Methods.Music
 
             try
             {
-                var clipName = Path.GetFileNameWithoutExtension(filename);
-                
-                AudioClipStorage.LoadClip(path, clipName);
-                
-                AudioPlayer audioPlayer = AudioPlayer.CreateOrGet("Effect", condition: hub => hub.PlayerId == player.Id, onIntialCreation:
-                    p =>
-                    {
-                        p.AddSpeaker("Main", isSpatial: false, maxDistance: maxDistance,position:player.Position);
-                    });
-                audioPlayer.AddClip(clipName, 1f, false, false);
-                
-                Timing.CallDelayed(duration, () =>
-                {
-                    try
-                    {
-                        AudioClipStorage.DestroyClip(clipName);
-                    }
-                    catch (Exception e)
-                    {
-                        // Ignore it if already unloaded
-                        Log.Warn($"DestroyClip failed for {clipName}: {e}");
-                    }
-                });
+                var baseName = Path.GetFileNameWithoutExtension(filename);
+                var clipName = $"{baseName}_{player.Id}_{Guid.NewGuid():N}";
 
+                AudioClipStorage.LoadClip(path, clipName);
+
+                var playerKey = $"Effect_{player.Id}";
+                var audioPlayer = AudioPlayer.CreateOrGet(
+                    playerKey,
+                    condition: hub => hub.PlayerId == player.Id,
+                    onIntialCreation: p =>
+                    {
+                        p.AddSpeaker("Main", isSpatial: false, maxDistance: maxDistance, position: player.Position);
+                    });
+
+                audioPlayer.AddClip(clipName, 1f, false, false);
+
+                var destroyAfter = Math.Max(duration + 0.3f, 2.0f);
+                Timing.CallDelayed(destroyAfter, () =>
+                {
+                    try { AudioClipStorage.DestroyClip(clipName); }
+                    catch (Exception e) { Log.Warn($"DestroyClip failed for {clipName}: {e.Message}"); }
+                });
             }
             catch (Exception ex)
             {
-                Log.Error($"Error Occured playing music command: {ex.Message}");
+                Log.Error($"Error Occured playing effect command: {ex}");
             }
         }
+
         public static void PlaySoundPlayer(string filename, Player player, float duration)
         {
             var path = Path.Combine(Plugin.Instance.AudioDirectory, filename);
@@ -151,7 +150,7 @@ namespace GhostPlugin.Methods.Music
                     });
 
                 // 여기서도 "Music"이 아니라 clipName 사용
-                musicPlayer.AddClip(clipName, 1f, false, true);
+                musicPlayer.AddClip(clipName, 1f, false, false);
 
                 // 일정 시간 뒤에 언로드 하고 싶으면
                 Timing.CallDelayed(duration, () =>
