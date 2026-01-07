@@ -103,13 +103,14 @@ namespace GhostPlugin.Methods.Music
                     condition: hub => hub.PlayerId == player.Id,
                     onIntialCreation: p =>
                     {
-                        p.AddSpeaker("Main", isSpatial: false, maxDistance: maxDistance, position: player.Position);
+                        p.AddSpeaker("Main", isSpatial: true, maxDistance: maxDistance, position: player.Position);
                     });
-
+                Log.Debug($"[Debug] Playing a ID: Effect_{player.Id}");
+                audioPlayer.SetSpeakerPosition("Main", player.Position);
                 audioPlayer.AddClip(clipName, 1f, false, false);
 
-                var destroyAfter = Math.Max(duration + 0.3f, 2.0f);
-                Timing.CallDelayed(destroyAfter, () =>
+                // var destroyAfter = Math.Max(duration + 0.3f, 2.0f);
+                Timing.CallDelayed(duration, () =>
                 {
                     try { AudioClipStorage.DestroyClip(clipName); }
                     catch (Exception e) { Log.Warn($"DestroyClip failed for {clipName}: {e.Message}"); }
@@ -142,7 +143,7 @@ namespace GhostPlugin.Methods.Music
                 AudioClipStorage.LoadClip(path, clipName);
 
                 AudioPlayer musicPlayer = AudioPlayer.CreateOrGet(
-                    "GlobalAudioPlayer",
+                    "KillstreakAudioPlayer",
                     condition: hub => hub.PlayerId == player.Id,
                     onIntialCreation: p =>
                     {
