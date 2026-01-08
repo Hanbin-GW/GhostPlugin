@@ -1,9 +1,11 @@
+using System.IO;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.CustomRoles.API.Features;
 using Exiled.Events.EventArgs.Player;
 using GhostPlugin.API;
+using GhostPlugin.Methods.Music;
 using UnityEngine;
 using YamlDotNet.Serialization;
 using GhostPlugin.Methods.Objects;
@@ -19,7 +21,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Description { get; set; } = "AR 이지만 <color=#ebc934>.410게이지 용의 숨결</color> 을 사용하는 연발 샷건입니다.";
         public override float Weight { get; set; } = 7.5f;
         public override SpawnProperties SpawnProperties { get; set; }
-        public override byte ClipSize { get; set; } = 10;
+        public override byte ClipSize { get; set; } = 20;
         public override ItemType Type { get; set; } = ItemType.GunE11SR;
         [YamlIgnore] 
         public override float Damage { get; set; }
@@ -38,6 +40,10 @@ namespace GhostPlugin.Custom.Items.Firearms
                 //var laserPos = ev.Player.Position + direction * 0.25f;
                 var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
                 //PlasmaCube.SpawmSparkBuckshot(ev.Player, ev.Firearm.Base.transform.position,13,15f,0.05f,glowColor); 
+                string fileName = "ShotgunSound.ogg";
+                string path = Path.Combine(Plugin.Instance.EffectDirectory, fileName);
+                float duration = API.Audio.AudioUtils.GetOggDurationInSeconds(path);
+                MusicMethods.PlaySoundEffect(fileName,ev.Player,duration,7.5f);
                 float intensity = 50f;
                 switch (ev.Player.Role.Team)
                 {
@@ -81,7 +87,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
                 if (CustomRole.Get(18)?.Check(ev.Player) == true)
                 {
-                    baseColor = new Color32(255, 30, 30, 121);
+                    baseColor = new Color32(255, 0, 0, 121);
                     glowColor = new Color(
                         baseColor.r * intensity,
                         baseColor.g * intensity,
@@ -89,7 +95,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                         baseColor.a);
                 }
                 
-                SpawnPrimitive.spawnPrimitivesfire(ev.Player, 10, rotation, laserPos, glowColor,5,20);
+                SpawnPrimitive.spawnPrimitivesfire(ev.Player, 15, rotation, laserPos, glowColor,5,45);
             }
             base.OnShot(ev);
         }

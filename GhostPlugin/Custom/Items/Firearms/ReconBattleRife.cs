@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Discord;
 using Exiled.API.Enums;
@@ -9,6 +10,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.Methods.Music;
 using InventorySystem.Items.Firearms.Attachments;
 using LabApi.Events.Arguments.PlayerEvents;
 using UnityEngine;
@@ -94,6 +96,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             
             if (Check(ev.Item))
             {
+                ev.IsAllowed = false;
                 if (ev.IsThrown)
                 {
                     ev.IsThrown = false;
@@ -124,6 +127,10 @@ namespace GhostPlugin.Custom.Items.Firearms
 
         protected override void OnShot(ShotEventArgs ev)
         {
+            string fileName = "GunShot1.ogg";
+            string path = Path.Combine(Plugin.Instance.EffectDirectory, fileName);
+            float duration = API.Audio.AudioUtils.GetOggDurationInSeconds(path);
+            MusicMethods.PlaySoundEffect(fileName,ev.Player,duration,7.5f);
             ev.Firearm.DamageFalloffDistance = 200f;
             base.OnShot(ev);
         }

@@ -22,7 +22,7 @@ namespace GhostPlugin.Custom.Items.Firearms
         public override string Name { get; set; } = "<color=#edd900>하이브리드 플라즈마 권총</color>";
         public override string Description { get; set; } = "15발 플라즈마 권총입니다.\n조준시 <color=#edd900>에너지 방패가</color> 생성됩니다!";
         public override float Weight { get; set; } = 5.5f;
-        public SchematicObject obj = null;
+        private SchematicObject obj = null;
         private Dictionary<int, float> shieldCooldowns = new();
 
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
@@ -53,7 +53,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             }
         };
         public override float Damage { get; set; }
-        public override byte ClipSize { get; set; } = 15;
+        public override byte ClipSize { get; set; } = 12;
         public override ItemType Type { get; set; } = ItemType.GunCOM18;
 
         private void OnAimDownSight(AimingDownSightEventArgs ev)
@@ -125,7 +125,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             string path = Path.Combine(Plugin.Instance.EffectDirectory, fileName);
             float duration = API.Audio.AudioUtils.GetOggDurationInSeconds(path);
             MusicMethods.PlaySoundEffect(fileName,ev.Player,duration,5.5f);
-            SpawnPrimitive.spawnPrimitive(ev.Player, PrimitiveType.Cube, rotation, laserPos, glowColor,25, 70);
+            SpawnPrimitive.spawnPrimitive(ev.Player, PrimitiveType.Cube, rotation, laserPos, glowColor,45, 80);
             ev.CanHurt = false;
             base.OnShot(ev);
         }
