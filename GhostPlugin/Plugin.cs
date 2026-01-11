@@ -33,7 +33,7 @@ namespace GhostPlugin
         public Dictionary<int, SchematicObject> Speakers { get; private set; } = new();
         public RunMode CurrentRunMode { get; private set; } 
 
-        public Dictionary<int, bool> musicDisabledPlayers = new();
+        public Dictionary<int, bool> MusicDisabledPlayers = new();
         public int CurrentId = 1;
         public override Version Version { get; } = new(9, 2, 0);
         public override string Author { get; } = "Hanbin-GW";

@@ -123,12 +123,12 @@ namespace GhostPlugin.EventHandlers
 
                 if (musicSetting.SyncIsA)
                 {
-                    Plugin.Instance.musicDisabledPlayers[player.Id] = false;
+                    Plugin.Instance.MusicDisabledPlayers[player.Id] = false;
                     player.ShowHint("<color=green>🎵 음악 듣기 설정됨</color>", 2f);
                 }
                 else if (musicSetting.SyncIsB)
                 {
-                    Plugin.Instance.musicDisabledPlayers[player.Id] = true;
+                    Plugin.Instance.MusicDisabledPlayers[player.Id] = true;
                     player.ShowHint("<color=red>🔇 음악 끄기 설정됨</color>", 2f);
                 }
                 return;
