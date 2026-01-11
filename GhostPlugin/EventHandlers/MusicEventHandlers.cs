@@ -81,7 +81,7 @@ namespace GhostPlugin.EventHandlers
             AudioPlayer globalPlayer = AudioPlayer.CreateOrGet("Lobby", condition: (hub) =>
             {
                 var plr = Player.Get(hub);
-                return !Plugin.Instance.musicDisabledPlayers.TryGetValue(plr.Id, out bool disabled) || !disabled;
+                return !Plugin.Instance.MusicDisabledPlayers.TryGetValue(plr.Id, out bool disabled) || !disabled;
             });
 
             // AudioPlayer가 완전히 준비된 이후에 스피커 추가
