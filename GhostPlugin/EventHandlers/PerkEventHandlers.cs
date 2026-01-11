@@ -85,7 +85,8 @@ namespace GhostPlugin.EventHandlers
             if (playerActives.TryGetValue(ev.Player, out var activeAbilitieslist))
             {
                 foreach (var ability in activeAbilitieslist)
-                    ability.RemoveAbility(ev.Player);
+                    RemoveAllPassives(ev.Player);
+                    // ability.RemoveAbility(ev.Player);
 
                 playerActives.Remove(ev.Player);
             }
@@ -93,7 +94,8 @@ namespace GhostPlugin.EventHandlers
             if (playerPassives.TryGetValue(ev.Player, out var passiveAbilitieslist))
             {
                 foreach (var ability in passiveAbilitieslist)
-                    ability.RemoveAbility(ev.Player);
+                    RemoveAllAbilities(ev.Player);
+                    // ability.RemoveAbility(ev.Player);
                 playerPassives.Remove(ev.Player);
             }
         }
