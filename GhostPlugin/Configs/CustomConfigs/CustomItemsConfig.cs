@@ -269,6 +269,17 @@ namespace GhostPlugin.Configs.CustomConfigs
         {
             new CombatKnife()
         };
+
+        public List<EnergyBlade> EnergyBlades { get; private set; } = new List<EnergyBlade>()
+        {
+            new EnergyBlade()
+        };
+
+        public List<DoomBlade> DoomBlades { get; private set; } = new List<DoomBlade>()
+        {
+            new DoomBlade()
+        };
+        
         public List<LowGravityGrenadeItem> LowGravityGrenadeItems { get; private set; } = new List<LowGravityGrenadeItem>()
         {
             new LowGravityGrenadeItem()

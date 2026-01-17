@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.ComponentModel;
-using CustomPlayerEffects;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Spawn;
@@ -8,8 +7,6 @@ using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp1509;
 using GhostPlugin.API;
-using InventorySystem.Items.Scp1509;
-using PlayerRoles.Subroutines;
 using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Etc

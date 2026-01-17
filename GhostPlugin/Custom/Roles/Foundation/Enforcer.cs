@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
 using GhostPlugin.Custom.Abilities.Passive;
+using GhostPlugin.Methods.ParticlePrimitives;
 using PlayerRoles;
+using UnityEngine;
 
 namespace GhostPlugin.Custom.Roles.Foundation
 {
@@ -52,5 +55,28 @@ namespace GhostPlugin.Custom.Roles.Foundation
             { AmmoType.Nato556, 60 },
             { AmmoType.Nato9 , 30},
         };
+
+        protected override void RoleAdded(Player player)
+        {
+            Color color = new Color32(255, 0, 0, 121);
+            Color glowColor = new Color(color.r * 75f, color.g * 75f, color.b * 75f, color.a);
+            OrbitPrimitiveMethods.StartOrbit(
+                player,
+                count: 10,
+                color: glowColor,
+                motion: OrbitPrimitiveMethods.MotionMode.Circle,
+                pattern: OrbitPrimitiveMethods.PatternMode.BackRing,
+                speed: 15f,
+                ringRadius: 0.85f,
+                ringThickness: 0.03f
+            );
+            OrbitPrimitiveMethods.StartTrail(player);
+            base.RoleAdded(player);
+        }
+
+        protected override void RoleRemoved(Player player)
+        {
+            OrbitPrimitiveMethods.StopOrbit(player);
+        }
     }
 }

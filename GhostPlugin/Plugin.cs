@@ -35,7 +35,7 @@ namespace GhostPlugin
 
         public Dictionary<int, bool> MusicDisabledPlayers = new();
         public int CurrentId = 1;
-        public override Version Version { get; } = new(9, 2, 0);
+        public override Version Version { get; } = new(9, 3, 0);
         public override string Author { get; } = "Hanbin-GW";
         public override string Name { get; } = "Ghost-Plugin";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
@@ -490,6 +490,8 @@ namespace GhostPlugin
                     ci.He1s?.Register();
                     ci.FrMg03S?.Register();
                     ci.CombatKnives?.Register();
+                    ci.EnergyBlades?.Register();
+                    ci.DoomBlades?.Register();
                     if (Config.EnablePerkEvents && PerkEventHandlers == null)
                     {
                         PerkEventHandlers = new PerkEventHandlers(this);
