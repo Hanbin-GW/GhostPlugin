@@ -1,4 +1,3 @@
-using System;
 using CameraShaking;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
@@ -49,7 +48,7 @@ namespace GhostPlugin.Custom.Items.Firearms
             base.OnShot(ev);
         }
 
-        private void Onaimimg(AimingDownSightEventArgs ev)
+        private void OnAiming(AimingDownSightEventArgs ev)
         {
             if (Check(ev.Player.CurrentItem))
             {

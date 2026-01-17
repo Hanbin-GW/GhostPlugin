@@ -1,13 +1,14 @@
 using System.Collections.Generic;
+using System.IO;
 using AdminToys;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
-using Exiled.API.Features.DamageHandlers;
 using Exiled.API.Features.Spawn;
 using Exiled.API.Features.Toys;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Item;
 using Exiled.Events.EventArgs.Player;
+using GhostPlugin.Methods.Music;
 using InventorySystem.Items.Firearms.Attachments;
 using InventorySystem.Items.Firearms.Extensions;
 using MEC;
@@ -118,13 +119,18 @@ namespace GhostPlugin.Custom.Items.Firearms
 
             var color = GetRandomLaserColor();
             //var laserColor = new Color(color.Red, color.Green, color.Blue, 0.1f) * 50;
-            var laserColor = new Color(1f, 0f, 0f, 0.1f) * 50;
+            var ogColor = new Color32(255,0,0,121);
+            var laserColor = new Color(ogColor.r * 50f, ogColor.g * 50f, ogColor.b * 50f, ogColor.a);
             /*var direction = ev.Position - ev.Player.Position;
             var r_direction = ev.Player.CameraTransform.forward;
             var distance = direction.magnitude;
             var scale = new Vector3(LaserScale.x, distance * 0.5f, LaserScale.z);
             var laserPos = ev.Player.Position + direction * 0.5f;
             var rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);*/
+            string fileName = "PlasmaShot.ogg";
+            string path = Path.Combine(Plugin.Instance.EffectDirectory, fileName);
+            float duration = API.Audio.AudioUtils.GetOggDurationInSeconds(path);
+            MusicMethods.PlaySoundEffect(fileName,ev.Player,1f,5.5f);
             Vector3 origin;
             if (BarrelTipExtension.TryFindWorldmodelBarrelTip(ev.Player.CurrentItem.Serial, out BarrelTipExtension ext))
                 origin = ext.WorldspacePosition;
@@ -224,7 +230,7 @@ namespace GhostPlugin.Custom.Items.Firearms
                 Quaternion spiralRotation = Quaternion.LookRotation(segmentDirection);
                 //Quaternion spiralRotation = Quaternion.FromToRotation(Vector3.up, dir);
 
-                Vector3 cubeScale = new Vector3(SpiralParticleSize * 0.2f, SpiralParticleSize * 0.2f, segmentLength);
+                Vector3 cubeScale = new Vector3(SpiralParticleSize * 0.05f, SpiralParticleSize * 0.05f, segmentLength);
 
                 Primitive spiralSegment = Primitive.Create(
                     PrimitiveType.Cube,
