@@ -5,6 +5,7 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
+using GhostPlugin.Custom.Abilities.Active;
 using GhostPlugin.Custom.Abilities.Passive;
 using GhostPlugin.Methods.ParticlePrimitives;
 using PlayerRoles;
@@ -36,7 +37,8 @@ namespace GhostPlugin.Custom.Roles.Foundation
             {
                 Name = "Boost On Kill",
                 Description = "적을 처치할 때마다 이동속도가 증가합니다.",
-            }
+            },
+            new ChargeAbility()
         };
         
         public override List<string> Inventory { get; set; } = new List<string>()
@@ -69,14 +71,16 @@ namespace GhostPlugin.Custom.Roles.Foundation
                 speed: 15f,
                 ringRadius: 0.85f,
                 ringThickness: 0.03f
-            );
-            OrbitPrimitiveMethods.StartTrail(player);
+            ); 
+            OrbitPrimitiveMethods.StartTrail(player, segmentCount: 10, color: glowColor);
             base.RoleAdded(player);
         }
 
         protected override void RoleRemoved(Player player)
         {
             OrbitPrimitiveMethods.StopOrbit(player);
+            OrbitPrimitiveMethods.StopTrail(player);
+
         }
     }
 }

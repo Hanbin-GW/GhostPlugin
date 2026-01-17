@@ -130,7 +130,10 @@ namespace GhostPlugin.Custom.Items.Etc
         private void OnDropping(DroppingItemEventArgs ev)
         {
             if (ev.Item != null && Check(ev.Item))
-                OrbitPrimitiveMethods.StopTrail(ev.Player);
+            {
+                OrbitPrimitiveMethods.StopOrbit(ev.Player);
+                OrbitPrimitiveMethods.StartTrailOverOrbit(ev.Player);
+            }
         }
 
         protected override void OnChanging(ChangingItemEventArgs ev)
@@ -140,23 +143,38 @@ namespace GhostPlugin.Custom.Items.Etc
             {
                 Color color = new Color32(255, 15, 255, 121);
                 Color glowColor = new Color(color.r * 50f, color.g * 50f, color.b * 50f, color.a);
+                // OrbitPrimitiveMethods.StartOrbit(
+                //     ev.Player,
+                //     primitiveType: PrimitiveType.Cube,
+                //     count: 24,
+                //     color: glowColor,
+                //     pattern: OrbitPrimitiveMethods.PatternMode.Orbit,
+                //     motion: OrbitPrimitiveMethods.MotionMode.Chaos,
+                //     speed: 1.5f,
+                //     ringRadius: 0.85f,
+                //     ringThickness: 0.03f
+                // );
                 OrbitPrimitiveMethods.StartOrbit(
                     ev.Player,
+                    count: 12,
                     primitiveType: PrimitiveType.Cube,
-                    count: 24,
                     color: glowColor,
-                    pattern: OrbitPrimitiveMethods.PatternMode.BackRing,
-                    speed: 1.5f,
-                    ringRadius: 0.85f,
-                    ringThickness: 0.03f
+                    pattern: OrbitPrimitiveMethods.PatternMode.Orbit,
+                    anchorMode: OrbitPrimitiveMethods.AnchorMode.HandRight,
+                    motion: OrbitPrimitiveMethods.MotionMode.Chaos,
+                    // chaosRadius: 0.35f,
+                    chaosRadius: 0.45f,
+                    chaosSpeed: 1.5f,
+                    chaosHeight: 0.17f
                 );
-
-
+                Color colorTrail = new Color32(255, 30, 255, 121);
+                Color glowColorTrail = new Color(colorTrail.r * 50f, colorTrail.g * 50f, colorTrail.b * 50f, colorTrail.a);
+                OrbitPrimitiveMethods.StartTrailOverOrbit(ev.Player, color: glowColorTrail);
 
             }
             else
             {
-                OrbitPrimitiveMethods.StopTrail(ev.Player);
+                OrbitPrimitiveMethods.StartTrailOverOrbit(ev.Player);
             }
 
             base.OnChanging(ev);

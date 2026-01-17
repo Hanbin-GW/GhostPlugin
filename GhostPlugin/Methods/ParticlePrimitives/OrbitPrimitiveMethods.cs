@@ -33,6 +33,7 @@ namespace GhostPlugin.Methods.ParticlePrimitives
             public int Index;
             public Vector3 LastPos;
             public bool HasLast;
+            public Primitive Target;
         }
 
         private static readonly Dictionary<int, OrbitData> ActiveOrbit = new();
@@ -151,10 +152,12 @@ namespace GhostPlugin.Methods.ParticlePrimitives
                 // ================= BACK RING =================
                 if (pattern == PatternMode.BackRing)
                 {
-                    Vector3 center =
-                        player.Position
-                        + Vector3.up * 1.25f
-                        - player.Transform.forward * 0.45f;
+                    // Vector3 center =
+                    //     player.Position
+                    //     + Vector3.up * 1.25f
+                    //     - player.Transform.forward * 0.45f;
+                    
+                    Vector3 center = GetAnchor(player, anchorMode) + player.Transform.forward * -0.9f;
 
                     Quaternion baseRot = Quaternion.LookRotation(-player.Transform.forward, Vector3.up);
 
@@ -281,6 +284,56 @@ namespace GhostPlugin.Methods.ParticlePrimitives
 
             ActiveTrail.Remove(player.Id);
         }
+        
+        public static void StartTrailOverOrbit(Player player, int targetIndex = 0,
+            int segmentCount = 12, float interval = 0.06f, float thickness = 0.03f,
+            float maxSegmentLength = 0.9f, Color? color = null, PrimitiveFlags flags = PrimitiveFlags.Visible)
+        {
+            if (player == null || !player.IsAlive)
+                return;
+
+            // Orbit이 켜져 있어야 대상 prim을 찾을 수 있음
+            if (!ActiveOrbit.TryGetValue(player.Id, out var orbitData))
+                return;
+
+            if (orbitData.Prims.Count == 0)
+                return;
+
+            // 인덱스 안전 처리
+            if (targetIndex < 0) targetIndex = 0;
+            if (targetIndex >= orbitData.Prims.Count) targetIndex = orbitData.Prims.Count - 1;
+
+            StopTrail(player);
+
+            var data = new TrailData();
+            data.Target = orbitData.Prims[targetIndex];
+
+            Color col = color ?? Color.magenta;
+
+            // 트레일 세그먼트 풀 생성
+            for (int i = 0; i < segmentCount; i++)
+            {
+                var seg = Primitive.Create(
+                    PrimitiveType.Cube,
+                    flags,
+                    data.Target.Position,
+                    Vector3.zero,
+                    new Vector3(thickness, thickness, 0.01f),
+                    spawn: true,
+                    color: col
+                );
+
+                seg.Flags = flags;
+                data.Segments.Add(seg);
+            }
+
+            data.Coroutine = Timing.RunCoroutine(
+                TrailCoroutine_TargetPrimitive(player, data, interval, thickness, maxSegmentLength)
+            );
+
+            ActiveTrail[player.Id] = data;
+        }
+
 
         private static IEnumerator<float> TrailCoroutine(
             Player player,
@@ -293,7 +346,8 @@ namespace GhostPlugin.Methods.ParticlePrimitives
         {
             while (player != null && player.IsAlive)
             {
-                Vector3 pos = GetAnchor(player, anchorMode);
+                // change
+                Vector3 pos = GetAnchor(player, anchorMode) + player.Transform.forward * -0.9f;
 
                 if (!data.HasLast)
                 {
@@ -338,6 +392,63 @@ namespace GhostPlugin.Methods.ParticlePrimitives
             StopTrail(player);
         }
 
+        
+        private static IEnumerator<float> TrailCoroutine_TargetPrimitive(
+            Player player,
+            TrailData data,
+            float interval,
+            float thickness,
+            float maxSegmentLength
+        )
+        {
+            while (player != null && player.IsAlive && data.Target != null)
+            {
+                Vector3 pos = data.Target.Position; // ✅ 플레이어가 아니라 prim 위치
+
+                if (!data.HasLast)
+                {
+                    data.LastPos = pos;
+                    data.HasLast = true;
+                    yield return Timing.WaitForSeconds(interval);
+                    continue;
+                }
+
+                Vector3 a = data.LastPos;
+                Vector3 b = pos;
+                float dist = Vector3.Distance(a, b);
+
+                if (dist < 0.02f)
+                {
+                    yield return Timing.WaitForSeconds(interval);
+                    continue;
+                }
+
+                if (dist > maxSegmentLength)
+                {
+                    Vector3 dirClamp = (b - a).normalized;
+                    b = a + dirClamp * maxSegmentLength;
+                    dist = maxSegmentLength;
+                }
+
+                var seg = data.Segments[data.Index];
+                data.Index = (data.Index + 1) % data.Segments.Count;
+
+                Vector3 mid = (a + b) * 0.5f;
+                Vector3 dir = (b - a);
+
+                seg.Rotation = Quaternion.LookRotation(dir);
+                seg.Scale = new Vector3(thickness, thickness, dist);
+                seg.Position = mid;
+
+                data.LastPos = pos;
+
+                yield return Timing.WaitForSeconds(interval);
+            }
+
+            StopTrail(player);
+        }
+
+        
         // =========================
         // Anchor
         // =========================
