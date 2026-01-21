@@ -22,8 +22,17 @@ namespace GhostPlugin.Custom.Items.Etc
         public override string Name { get; set; } = "Energy Blade";
         public override string Description { get; set; } = "엄청난 파괴력을 가진 에너지 블래이드입니다.";
         public override float Weight { get; set; } = 18f;
-        public override SpawnProperties SpawnProperties { get; set; }
-        public bool HasCustomItemGlow { get; set; } = true;
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
+        {
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>()
+            {
+                new DynamicSpawnPoint()
+                {
+                    Location = SpawnLocationType.InsideLczArmory,
+                    Chance = 70
+                }
+            }
+        };        public bool HasCustomItemGlow { get; set; } = true;
         public Color CustomItemGlowColor { get; set; } = new Color32(255, 15, 255, 121);
         public float GlowRange { get; set; } = 3.5f;
         public float GlowIntensity { get; set; } = 50f;
