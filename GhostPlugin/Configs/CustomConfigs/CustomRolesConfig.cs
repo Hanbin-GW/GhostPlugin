@@ -120,9 +120,9 @@ namespace GhostPlugin.Configs.CustomConfigs
             new Medic()
         };
 
-        public List<AdvancedMTF> AdvancedMtfs { get; set; } = new()
+        public List<AdvancedMtf> AdvancedMtfs { get; set; } = new()
         {
-            new AdvancedMTF()
+            new AdvancedMtf()
         };
         public List<Hunter> Hunters { get; set; } = new()
         {

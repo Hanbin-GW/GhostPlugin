@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using CustomPlayerEffects;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Spawn;
@@ -15,29 +16,18 @@ using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Etc
 {
-    public class DoomBlade : CustomItem, ICustomItemGlow
+    public class ExecutorBlade : CustomItem, ICustomItemGlow
     {
-        public override uint Id { get; set; } = 75;
-        public override string Name { get; set; } = "Doom Blade";
-        public override string Description { get; set; } = "엄청난 파괴력을 가진 에너지 블래이드입니다.";
+        public override uint Id { get; set; } = 76;
+        public override string Name { get; set; } = "Executor Blade";
+        public override string Description { get; set; } = "엄청난 파괴력을 가진 처형자 가 사용하는 블래이드입니다.";
         public override float Weight { get; set; } = 18f;
-
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            DynamicSpawnPoints = new List<DynamicSpawnPoint>()
-            {
-                new DynamicSpawnPoint()
-                {
-                    Location = SpawnLocationType.InsideGateA,
-                    Chance = 50
-                }
-            }
-        };
+        public override SpawnProperties SpawnProperties { get; set; }
         public bool HasCustomItemGlow { get; set; } = true;
-        public Color CustomItemGlowColor { get; set; } = new Color32(255, 165, 0, 121);
-        public float GlowRange { get; set; } = 3.5f;
-        public float GlowIntensity { get; set; } = 50f;
-        public float SwingCooldown { get; set; } = 30f;
+        public Color CustomItemGlowColor { get; set; } = new Color32(255, 0, 0, 121);
+        public float GlowRange { get; set; } = 4.5f;
+        public float GlowIntensity { get; set; } = 75f;
+        public float SwingCooldown { get; set; } = 10f;
         private readonly Dictionary<Player, float> _lastSwingTime = new();
         public string CooldownMessage { get; set; } = "에너지 블래이드가 {time} 초동안 쿨다운중입니다.";
         public float MessageDuration { get; set; } = 5f;
@@ -58,10 +48,10 @@ namespace GhostPlugin.Custom.Items.Etc
                 {
                     var cooldownTimeRemaining = SwingCooldown - currentTime - lastTime;
                     ev.IsAllowed = false;
-                    string fileName = "Titan tvman sword sound 2.ogg";
-                    string path = Path.Combine(Plugin.Instance.EffectDirectory, fileName);
-                    float duration = API.Audio.AudioUtils.GetOggDurationInSeconds(path);
-                    MusicMethods.PlaySoundEffect(fileName,ev.Player,duration,7.5f);
+                    // string fileName = "Titan tvman sword sound 2.ogg";
+                    // string path = Path.Combine(Plugin.Instance.EffectDirectory, fileName);
+                    // float duration = API.Audio.AudioUtils.GetOggDurationInSeconds(path);
+                    // MusicMethods.PlaySoundEffect(fileName,ev.Player,duration,7.5f);
 
                     if (!string.IsNullOrWhiteSpace(CooldownMessage))
                         if (UseHints)
@@ -109,7 +99,10 @@ namespace GhostPlugin.Custom.Items.Etc
                 Timing.CallDelayed(0f, () =>
                 {
                     if (ev.Attacker != null && ev.Player != null)
+                    {
                         ev.Player.Explode(ProjectileType.FragGrenade, attacker: ev.Attacker);
+                        ev.Player.EnableEffect<Burned>(duration:2.5f);
+                    }
                 });
 
                 Timing.CallDelayed(0.5f, () => { if (ev.Attacker != null) ev.Attacker.IsGodModeEnabled = false; });
@@ -122,7 +115,10 @@ namespace GhostPlugin.Custom.Items.Etc
                 Timing.CallDelayed(0f, () =>
                 {
                     if (ev.Attacker != null && ev.Player != null)
+                    {
                         ev.Player.Explode(ProjectileType.Flashbang, attacker: ev.Attacker);
+                        Timing.CallDelayed(2f, ()=>ev.Player.DisableEffect<Flashed>());
+                    }
                 });
 
                 Timing.CallDelayed(0.5f, () => { if (ev.Attacker != null) ev.Attacker.IsGodModeEnabled = false; });
@@ -141,7 +137,7 @@ namespace GhostPlugin.Custom.Items.Etc
             // 바뀐 뒤에 들게 될 아이템이 타겟이면 켜고, 아니면 끔
             if (ev.Item != null && Check(ev.Item))
             {
-                Color color = new Color32(255, 165, 0, 121);;
+                Color color = new Color32(255, 0, 0, 121);;
                 Color glowColor = new Color(color.r * 50f, color.g * 50f, color.b * 50f, color.a);
                 // OrbitPrimitiveMethods.StartOrbit(
                 //     ev.Player,
@@ -174,7 +170,7 @@ namespace GhostPlugin.Custom.Items.Etc
             base.OnChanging(ev);
         }
 
-        private void On1509Resurrecting(Exiled.Events.EventArgs.Scp1509.ResurrectingEventArgs ev)
+        private void On1509Resurrecting(ResurrectingEventArgs ev)
         {
             if (!Check(ev.Player))
                 return;

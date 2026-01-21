@@ -14,9 +14,9 @@ using UnityEngine;
 namespace GhostPlugin.Custom.Abilities.Active
 {
     [CustomAbility]
-    public class ChargeAbility : ActiveAbility
+    public class Warp : ActiveAbility
     {
-        public override string Name { get; set; } = "Charge";
+        public override string Name { get; set; } = "Warp_Charge";
          
         public override string Description { get; set; } = "Charges towards the target location.";
 
@@ -35,9 +35,10 @@ namespace GhostPlugin.Custom.Abilities.Active
 
         protected override void AbilityUsed(Player player)
         {
-            Color color = new Color32(255, 165, 0, 121);;
+            Color color = new Color32(255, 0, 0, 121);
             Color glowColor = new Color(color.r * 75f, color.g * 75f, color.b * 75f, color.a);
             OrbitPrimitiveMethods.StartTrail(player, segmentCount: 10, color: glowColor);
+
             if (RunRaycast(player, out RaycastHit hit))
             {
                 Log.Debug($"{player.Nickname} -- {player.Position} - {hit.point}");
@@ -103,7 +104,6 @@ namespace GhostPlugin.Custom.Abilities.Active
             return true;
         }
 
-
         /*private bool RunRaycast(Player player, out RaycastHit hit)
         {
             Vector3 forward = player.CameraTransform.forward;
@@ -141,6 +141,7 @@ namespace GhostPlugin.Custom.Abilities.Active
             target.Hurt(new ScpDamageHandler(player.ReferenceHub, ContactDamage * AccuracyMultiplier, DeathTranslations.Zombie));
             target.EnableEffect(EffectType.Ensnared, EnsnareDuration);
         }
+
         protected override void AbilityEnded(Player player)
         {
             OrbitPrimitiveMethods.StopTrail(player);

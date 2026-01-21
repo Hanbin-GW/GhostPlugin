@@ -207,6 +207,7 @@
     <Compile Include="Custom\Abilities\Active\Scp457.cs" />
     <Compile Include="Custom\Abilities\Active\Shockwave.cs" />
     <Compile Include="Custom\Abilities\Active\Speedy096.cs" />
+    <Compile Include="Custom\Abilities\Active\Warp.cs" />
     <Compile Include="Custom\Abilities\Passive\BoostOnKill.cs" />
     <Compile Include="Custom\Abilities\Passive\FriendlyFireRemover.cs" />
     <Compile Include="Custom\Abilities\Passive\HealOnKill.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Custom\Items\Etc\CombatKnife.cs" />
     <Compile Include="Custom\Items\Etc\DoomBlade.cs" />
     <Compile Include="Custom\Items\Etc\EnergyBlade.cs" />
+    <Compile Include="Custom\Items\Etc\ExecutorBlade.cs" />
     <Compile Include="Custom\Items\Etc\ReviveKit.cs" />
     <Compile Include="Custom\Items\Etc\SCP500A.cs" />
     <Compile Include="Custom\Items\Etc\Spike_Jailbird.cs" />

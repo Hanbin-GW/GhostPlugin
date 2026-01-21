@@ -24,10 +24,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfPrivate;
         public override bool DisplayCustomItemMessages { get; set; } = false;
 
-        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
-        {
-            Limit = 1,
-        };
+        public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties();
         public StartTeam StartTeam { get; set; } = StartTeam.Ntf;
         public int Chance { get; set; } = 40;
 
@@ -38,7 +35,7 @@ namespace GhostPlugin.Custom.Roles.Foundation
                 Name = "Boost On Kill",
                 Description = "적을 처치할 때마다 이동속도가 증가합니다.",
             },
-            new ChargeAbility()
+            new Warp()
         };
         
         public override List<string> Inventory { get; set; } = new List<string>()
@@ -72,14 +69,14 @@ namespace GhostPlugin.Custom.Roles.Foundation
                 ringRadius: 0.85f,
                 ringThickness: 0.03f
             ); 
-            OrbitPrimitiveMethods.StartTrail(player, segmentCount: 10, color: glowColor);
+            // OrbitPrimitiveMethods.StartTrail(player, segmentCount: 10, color: glowColor);
             base.RoleAdded(player);
         }
 
         protected override void RoleRemoved(Player player)
         {
             OrbitPrimitiveMethods.StopOrbit(player);
-            OrbitPrimitiveMethods.StopTrail(player);
+            // OrbitPrimitiveMethods.StopTrail(player);
 
         }
     }

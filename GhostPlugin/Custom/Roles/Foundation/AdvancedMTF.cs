@@ -9,7 +9,7 @@ using PlayerRoles;
 namespace GhostPlugin.Custom.Roles.Foundation
 {
     [CustomRole(RoleTypeId.NtfPrivate)]
-    public class AdvancedMTF : CustomRole, ICustomRole
+    public class AdvancedMtf : CustomRole, ICustomRole
     {
         public override uint Id { get; set; } = 22;
         public override int MaxHealth { get; set; } = 125;
@@ -30,15 +30,16 @@ namespace GhostPlugin.Custom.Roles.Foundation
         {
             ItemType.KeycardMTFOperative.ToString(),
             ItemType.ArmorCombat.ToString(),
-            52.ToString(),
+            46.ToString(),
             ItemType.SCP500.ToString(),
-            ItemType.GunCrossvec.ToString(),
+            31.ToString(),
             9.ToString(),
             ItemType.Radio.ToString(),
         };
 
         public override Dictionary<AmmoType, ushort> Ammo { get; set; } = new Dictionary<AmmoType, ushort>()
         {
+            { AmmoType.Ammo12Gauge , 24},
             { AmmoType.Nato556, 120 },
             { AmmoType.Nato9 ,150},
         };

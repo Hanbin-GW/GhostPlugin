@@ -228,25 +228,29 @@ namespace GhostPlugin.Methods.ParticlePrimitives
         // TRAIL
         // =========================
         public static void StartTrail(
-            Player player,
+        Player player,
             AnchorMode anchorMode = AnchorMode.HandRight,
-            int segmentCount = 12,
-            float interval = 0.06f,
-            float thickness = 0.03f,
-            float maxSegmentLength = 0.9f,
+        int segmentCount = 12,
+        int strands = 4,
+        float spread = 0.04f,
+        float interval = 0.06f,
+        float thickness = 0.02f,
+        float maxSegmentLength = 0.9f,
             Color? color = null,
-            PrimitiveFlags flags = PrimitiveFlags.Visible
-        )
+        PrimitiveFlags flags = PrimitiveFlags.Visible
+            )
         {
-            if (player == null || !player.IsAlive)
-                return;
+            if (player == null || !player.IsAlive) return;
 
             StopTrail(player);
 
             var data = new TrailData();
+            data.Index = 0;
+
             Color col = color ?? Color.magenta;
 
-            for (int i = 0; i < segmentCount; i++)
+            // ✅ 세그먼트 풀 = segmentCount * strands
+            for (int i = 0; i < segmentCount * strands; i++)
             {
                 var seg = Primitive.Create(
                     PrimitiveType.Cube,
@@ -263,12 +267,86 @@ namespace GhostPlugin.Methods.ParticlePrimitives
             }
 
             data.Coroutine = Timing.RunCoroutine(
-                TrailCoroutine(player, data, anchorMode, interval, thickness, maxSegmentLength)
+                TrailCoroutine_MultiStrand(player, data, anchorMode, interval, thickness, maxSegmentLength, strands, spread)
             );
 
             ActiveTrail[player.Id] = data;
         }
 
+
+        private static IEnumerator<float> TrailCoroutine_MultiStrand(
+            Player player,
+            TrailData data,
+            AnchorMode anchorMode,
+            float interval,
+            float thickness,
+            float maxSegmentLength,
+            int strands,
+            float spread
+        )
+        {
+            while (player != null && player.IsAlive)
+            {
+                Vector3 pos = GetAnchor(player, anchorMode);
+
+                if (!data.HasLast)
+                {
+                    data.LastPos = pos;
+                    data.HasLast = true;
+                    yield return Timing.WaitForSeconds(interval);
+                    continue;
+                }
+
+                Vector3 a = data.LastPos;
+                Vector3 b = pos;
+
+                float dist = Vector3.Distance(a, b);
+                if (dist < 0.01f)
+                {
+                    yield return Timing.WaitForSeconds(interval);
+                    continue;
+                }
+
+                if (dist > maxSegmentLength)
+                {
+                    Vector3 dirClamp = (b - a).normalized;
+                    b = a + dirClamp * maxSegmentLength;
+                    dist = maxSegmentLength;
+                }
+
+                Vector3 dir = (b - a);
+                Quaternion rot = Quaternion.LookRotation(dir);
+
+                // 선에 수직인 방향(가닥을 옆으로 벌리는 방향)
+                Vector3 side = Vector3.Cross(dir.normalized, Vector3.up).normalized;
+                if (side.sqrMagnitude < 0.0001f)
+                    side = player.Transform.right;
+
+                Vector3 mid = (a + b) * 0.5f;
+
+                // ✅ 가닥 수만큼 한 번에 찍기
+                for (int s = 0; s < strands; s++)
+                {
+                    // -spread~+spread 범위로 분산
+                    float t = (strands == 1) ? 0f : (s / (float)(strands - 1)) * 2f - 1f;
+                    Vector3 offset = side * (t * spread);
+
+                    var seg = data.Segments[data.Index];
+                    data.Index = (data.Index + 1) % data.Segments.Count;
+
+                    seg.Rotation = rot;
+                    seg.Scale = new Vector3(thickness, thickness, dist);
+                    seg.Position = mid + offset;
+                }
+
+                data.LastPos = pos;
+                yield return Timing.WaitForSeconds(interval);
+            }
+
+            StopTrail(player);
+        }
+
+        
         public static void StopTrail(Player player)
         {
             if (player == null)
@@ -335,62 +413,62 @@ namespace GhostPlugin.Methods.ParticlePrimitives
         }
 
 
-        private static IEnumerator<float> TrailCoroutine(
-            Player player,
-            TrailData data,
-            AnchorMode anchorMode,
-            float interval,
-            float thickness,
-            float maxSegmentLength
-        )
-        {
-            while (player != null && player.IsAlive)
-            {
-                // change
-                Vector3 pos = GetAnchor(player, anchorMode) + player.Transform.forward * -0.9f;
-
-                if (!data.HasLast)
-                {
-                    data.LastPos = pos;
-                    data.HasLast = true;
-                    yield return Timing.WaitForSeconds(interval);
-                    continue;
-                }
-
-                Vector3 a = data.LastPos;
-                Vector3 b = pos;
-                float dist = Vector3.Distance(a, b);
-
-                if (dist < 0.02f)
-                {
-                    yield return Timing.WaitForSeconds(interval);
-                    continue;
-                }
-
-                if (dist > maxSegmentLength)
-                {
-                    Vector3 dirClamp = (b - a).normalized;
-                    b = a + dirClamp * maxSegmentLength;
-                    dist = maxSegmentLength;
-                }
-
-                var seg = data.Segments[data.Index];
-                data.Index = (data.Index + 1) % data.Segments.Count;
-
-                Vector3 mid = (a + b) * 0.5f;
-                Vector3 dir = (b - a);
-
-                seg.Rotation = Quaternion.LookRotation(dir);
-                seg.Scale = new Vector3(thickness, thickness, dist);
-                seg.Position = mid;
-
-                data.LastPos = pos;
-
-                yield return Timing.WaitForSeconds(interval);
-            }
-
-            StopTrail(player);
-        }
+        // private static IEnumerator<float> TrailCoroutine(
+        //     Player player,
+        //     TrailData data,
+        //     AnchorMode anchorMode,
+        //     float interval,
+        //     float thickness,
+        //     float maxSegmentLength
+        // )
+        // {
+        //     while (player != null && player.IsAlive)
+        //     {
+        //         // change
+        //         Vector3 pos = GetAnchor(player, anchorMode) + player.Transform.forward * -0.9f;
+        //
+        //         if (!data.HasLast)
+        //         {
+        //             data.LastPos = pos;
+        //             data.HasLast = true;
+        //             yield return Timing.WaitForSeconds(interval);
+        //             continue;
+        //         }
+        //
+        //         Vector3 a = data.LastPos;
+        //         Vector3 b = pos;
+        //         float dist = Vector3.Distance(a, b);
+        //
+        //         if (dist < 0.02f)
+        //         {
+        //             yield return Timing.WaitForSeconds(interval);
+        //             continue;
+        //         }
+        //
+        //         if (dist > maxSegmentLength)
+        //         {
+        //             Vector3 dirClamp = (b - a).normalized;
+        //             b = a + dirClamp * maxSegmentLength;
+        //             dist = maxSegmentLength;
+        //         }
+        //
+        //         var seg = data.Segments[data.Index];
+        //         data.Index = (data.Index + 1) % data.Segments.Count;
+        //
+        //         Vector3 mid = (a + b) * 0.5f;
+        //         Vector3 dir = (b - a);
+        //
+        //         seg.Rotation = Quaternion.LookRotation(dir);
+        //         seg.Scale = new Vector3(thickness, thickness, dist);
+        //         seg.Position = mid;
+        //
+        //         data.LastPos = pos;
+        //
+        //         yield return Timing.WaitForSeconds(interval);
+        //     }
+        //
+        //     StopTrail(player);
+        // }
 
         
         private static IEnumerator<float> TrailCoroutine_TargetPrimitive(
