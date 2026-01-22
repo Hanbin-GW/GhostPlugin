@@ -49,7 +49,7 @@ namespace GhostPlugin.Custom.Items.Etc
         }
         private void On1509Resurrecting(ResurrectingEventArgs ev)
         {
-            if (!Check(ev.Player))
+            if (!Check(ev.Player.CurrentItem))
                 return;
             ev.IsAllowed = false;
         }
