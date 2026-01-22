@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using AdminToys;
 using Exiled.API.Enums;
-using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.API.Features.Toys;
@@ -110,8 +109,10 @@ namespace GhostPlugin.Custom.Items.Firearms
             if (!Check(ev.Player.CurrentItem)) return;
             ev.CanHurt = false;
             ev.Firearm.Inaccuracy = 0f;
+            float intensity = 75f;
+            Color ogColor = new Color32(255, 0, 0, 121);
 
-            var laserColor = new Color(1f, 0.3f, 0.2f, 0.1f) * 50f;
+            var laserColor = new Color(ogColor.r * intensity, ogColor.g * intensity, ogColor.b * intensity, 0.1f) * 50f;
             var origin = ev.Player.CameraTransform.position + ev.Player.CameraTransform.forward * 0.3f;
             var direction = ev.Player.CameraTransform.forward;
             float distance = 200f;
@@ -147,7 +148,7 @@ namespace GhostPlugin.Custom.Items.Firearms
 
                 damagedPlayers.Add(target); // Avoid duplication
                 ev.Player.ShowHitMarker(1.5f);
-                target.Hurt(new CustomReasonDamageHandler("레이저 관통", 100));
+                target.Hurt(new CustomReasonDamageHandler("penetrated by laser", 100));
             }
             Timing.CallDelayed(LaserVisibleTime, laser.Destroy);
         }
