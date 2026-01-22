@@ -66,7 +66,6 @@ namespace GhostPlugin.Custom.Abilities.Active
                 }
             }
 
-            // fallback: 아무 플레이어도 못 찾았지만 뭔가에 맞긴 함
             return Physics.Raycast(ray, out validHit, 200f, HitscanHitregModuleBase.HitregMask);
         }
 
@@ -84,10 +83,8 @@ namespace GhostPlugin.Custom.Abilities.Active
                 yield return Timing.WaitForSeconds(0.00025f);
             }
 
-            // 필요하면 돌진 후 잠시 속박
             Timing.CallDelayed(0.5f, () => player.EnableEffect(EffectType.Ensnared, 0.5f));
 
-            // ReferenceHub 가져오기: 더 확실한 방식
             var hub = hit.transform.root.GetComponent<ReferenceHub>();
             if (hub == null)
             {
