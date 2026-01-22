@@ -6,6 +6,7 @@ using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomRoles.API.Features;
 using GhostPlugin.API;
+using GhostPlugin.Custom.Abilities.Passive;
 using PlayerRoles;
 
 namespace GhostPlugin.Custom.Roles.Foundation
@@ -24,14 +25,16 @@ namespace GhostPlugin.Custom.Roles.Foundation
         public override RoleTypeId Role { get; set; } = RoleTypeId.NtfSergeant;
         public override SpawnProperties SpawnProperties { get; set; } = new SpawnProperties()
         { };
-        public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>();
+        public override List<CustomAbility> CustomAbilities { get; set; } = new List<CustomAbility>()
+        {
+            new UltraBoostOnKill()
+        };
 
         public override List<string> Inventory { get; set; } = new List<string>()
         {
             ItemType.KeycardMTFOperative.ToString(),
             25.ToString(),
-            ItemType.Jailbird.ToString(),
-            ItemType.Jailbird.ToString(),
+            73.ToString(),
             ItemType.Painkillers.ToString(),
             ItemType.SCP500.ToString(),
             ItemType.ArmorHeavy.ToString(),

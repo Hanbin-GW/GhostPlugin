@@ -37,7 +37,7 @@ namespace GhostPlugin.Custom.Roles.Chaos
             ItemType.ArmorCombat.ToString(),
             ItemType.Jailbird.ToString(),
             ItemType.SCP500.ToString(),
-            ItemType.SCP500.ToString(),
+            73.ToString(),
             ItemType.GunA7.ToString(),
             44.ToString(),
         };
