@@ -221,7 +221,8 @@
         <Compile Include="Custom\Items\Armor\LowGravityArmor.cs" />
         <Compile Include="Custom\Items\Armor\OverkillVest.cs" />
         <Compile Include="Custom\Items\Etc\AmmoBox.cs" />
-        <Compile Include="Custom\Items\Etc\EnergizedBlade.cs" />
+        <Compile Include="Custom\Items\Etc\knife.cs" />
+        <Compile Include="Custom\Items\Etc\EnergyBlade.cs" />
         <Compile Include="Custom\Items\Etc\SCP500A.cs" />
         <Compile Include="Custom\Items\Etc\Spike_Jailbird.cs" />
         <Compile Include="Custom\Items\Etc\TrophySystem.cs" />
@@ -344,6 +345,7 @@
         <Compile Include="Methods\Objects\SpawnParticleSpark.cs" />
         <Compile Include="Methods\Objects\SpawnPrimitive.cs" />
         <Compile Include="Methods\Objects\SpawnPrimitiveToy.cs" />
+        <Compile Include="Methods\ParticlePrimitives\OrbitPrimitiveMethods.cs" />
         <Compile Include="Methods\ToyUtils\LightUtils.cs" />
         <Compile Include="Methods\ToyUtils\TextUtils.cs" />
         <Compile Include="MusicConfigs\MusicPlayback.cs" />

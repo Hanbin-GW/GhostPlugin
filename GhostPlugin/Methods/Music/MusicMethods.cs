@@ -130,6 +130,48 @@ namespace GhostPlugin.Methods.Music
                 Log.Error($"음악 재생 명령어 중 오류가 발생했습니다: {ex.Message}");
             }
         }
+        
+        public static void PlaySoundEffect(string filename, Player player, float duration, float maxDistance)
+        {
+            var path = Path.Combine(Plugin.Instance.EffectDirectory, filename);
+            if (!File.Exists(path))
+            {
+                Log.Error($"File don't exists: {path}");
+                return;
+            }
+
+            try
+            {
+                var baseName = Path.GetFileNameWithoutExtension(filename);
+                var clipName = $"{baseName}_{player.Id}_{Guid.NewGuid():N}";
+
+                AudioClipStorage.LoadClip(path, clipName);
+
+                var playerKey = $"Effect_{player.Id}";
+                var audioPlayer = AudioPlayer.CreateOrGet(
+                    playerKey,
+                    condition: hub => hub.PlayerId == player.Id,
+                    onIntialCreation: p =>
+                    {
+                        p.AddSpeaker("Main", isSpatial: true, maxDistance: maxDistance, position: player.Position);
+                    });
+                Log.Debug($"[Debug] Playing a ID: Effect_{player.Id}");
+                audioPlayer.SetSpeakerPosition("Main", player.Position);
+                audioPlayer.AddClip(clipName, 1f, false, false);
+
+                // var destroyAfter = Math.Max(duration + 0.3f, 2.0f);
+                Timing.CallDelayed(duration, () =>
+                {
+                    try { AudioClipStorage.DestroyClip(clipName); }
+                    catch (Exception e) { Log.Warn($"DestroyClip failed for {clipName}: {e.Message}"); }
+                });
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error Occured playing effect command: {ex}");
+            }
+        }
+        
         public async Task PlayPreparedAlias(string alias)
         {
             try

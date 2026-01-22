@@ -281,9 +281,9 @@ namespace GhostPlugin.Configs.CustomConfigs
             new FrMg03()
         };
         
-        public List<EnergizedBlade> EnergizedBlades { get; private set; } = new List<EnergizedBlade>()
+        public List<Knife> EnergizedBlades { get; private set; } = new List<Knife>()
         {
-            new EnergizedBlade()
+            new Knife()
         };
 
         public List<LowGravityArmor> LowGravityArmors { get; private set; } = new List<LowGravityArmor>()

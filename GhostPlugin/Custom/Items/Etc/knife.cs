@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace GhostPlugin.Custom.Items.Etc
 {
-    public class EnergizedBlade : CustomItem, ICustomItemGlow
+    public class Knife : CustomItem, ICustomItemGlow
     {
         public override uint Id { get; set; } = 73;
         public override string Name { get; set; } = "Energized Blade";
