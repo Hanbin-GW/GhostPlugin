@@ -111,8 +111,10 @@ namespace GhostPlugin.Custom.Items.Firearms
 
             ev.CanHurt = false;
 
-            var color = GetRandomLaserColor();
-            var laserColor = new Color(color.Red, color.Green, color.Blue, 0.1f) * 50;
+            // var color = GetRandomLaserColor();
+            // var laserColor = new Color(color.Red, color.Green, color.Blue, 0.1f) * 50;
+            var ogColor = new Color32(255,0,0,121);
+            var laserColor = new Color(ogColor.r * 50f, ogColor.g * 50f, ogColor.b * 50f, ogColor.a);
             var direction = ev.Position - ev.Player.Position;
             var r_direction = ev.Player.CameraTransform.forward;
             var distance = direction.magnitude;
