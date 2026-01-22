@@ -221,6 +221,7 @@
         <Compile Include="Custom\Items\Armor\LowGravityArmor.cs" />
         <Compile Include="Custom\Items\Armor\OverkillVest.cs" />
         <Compile Include="Custom\Items\Etc\AmmoBox.cs" />
+        <Compile Include="Custom\Items\Etc\DoomBlade.cs" />
         <Compile Include="Custom\Items\Etc\knife.cs" />
         <Compile Include="Custom\Items\Etc\EnergyBlade.cs" />
         <Compile Include="Custom\Items\Etc\SCP500A.cs" />
