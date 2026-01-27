@@ -429,7 +429,13 @@ namespace GhostPlugin
             CurrentRunMode = RunMode.Full;
             _fullUpgraded = true;
             Log.Warn("[GhostPlugin] Upgrading to FULL mode after IP resolved.");
-
+            Run("classic.register", () =>
+            {
+                if (Config.ServerEventsMasterConfig.ClassicConfig.OnEnabled && CurrentRunMode == RunMode.Limited)
+                {
+                    ClassicPlugin.RegisterEvents();
+                }
+            });
             // 이제 Run() 함수로 감싸서 단계별 로그 찍기
             Run("items.register", () =>
             {
