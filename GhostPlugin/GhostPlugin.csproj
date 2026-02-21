@@ -167,6 +167,7 @@
         <Compile Include="API\ICustomRole.cs" />
         <Compile Include="API\Map\SoundPing.cs" />
         <Compile Include="API\StartTeam.cs" />
+        <Compile Include="Commands\AdminOnly\Explode.cs" />
         <Compile Include="Commands\Chat.cs" />
         <Compile Include="Commands\Chat_RueI.cs" />
         <Compile Include="Commands\Jukebox\ManageJukebox.cs" />
