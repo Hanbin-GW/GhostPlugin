@@ -11,7 +11,7 @@ namespace GhostPlugin.Commands.MusicCommand
         public string[] Aliases { get; } =  new []{"sm"};
         public string Description => "Stop the music that is currently playing.";
         private readonly MusicMethods _musicMethods = 
-            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/vscode/steamcmd/scpsl/tmp-audio");
+            new MusicMethods(Plugin.Instance.AudioDirectory, "/home/Omega/steamcmd/scpsl/tmp-audio");
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (Plugin.Instance == null)
