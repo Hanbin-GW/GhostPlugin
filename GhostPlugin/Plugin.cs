@@ -172,7 +172,7 @@ namespace GhostPlugin
                         ci.EngineerPerks?.Register();
                         ci.OverkillPerks?.Register();
                         ci.EnhancedVisionPerks?.Register();
-                        ci.BetralPerks?.Register();
+cl                        ci.BetralPerks?.Register();
                     }
                     Server.WaitingForPlayers += CustomItemHandler.OnWaitingForPlayers;
                     Exiled.Events.Handlers.Map.PickupAdded += CustomItemHandler.AddGlow;

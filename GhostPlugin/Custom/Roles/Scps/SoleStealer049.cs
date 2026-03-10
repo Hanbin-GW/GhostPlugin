@@ -8,6 +8,7 @@ using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp049;
 using GhostPlugin.API;
 using GhostPlugin.Custom.Abilities.Active;
+using GhostPlugin.Custom.Abilities.Passive;
 using InventorySystem;
 using InventorySystem.Items;
 using MEC;
@@ -20,12 +21,12 @@ namespace GhostPlugin.Custom.Roles.Scps
     public class SoleStealer049 : CustomRole, ICustomRole
     {
         public override uint Id { get; set; } = 10;
-        public override int MaxHealth { get; set; } = 2000;
+        public override int MaxHealth { get; set; } = 2400;
         public override string Name { get; set; } = "<color=#aa2bff>Scp049 The Soul Stealer</color>";
-        public override string Description { get; set; } = "SCP049 의 각성버전입니다.\n다양한 능력이 있으며, 다양한 SCP 능력을 이용하여 시설을 파괴하십시요.";
+        public override string Description { get; set; } = "SCP049 의 각성버전입니다.\n다양한 능력이 있으며, 다양한 SCP 능력을 이용하여 세상을 파괴하십시요.\n\n-------------------능력리스트-------------------\n[ Speedy096, Explotion, SCP106, Scp457, Overkill, HealOnKill, Martyrdom, Detect]";
         public override string CustomInfo { get; set; } = "The Soul Stealer";
         public override RoleTypeId Role { get; set; } = RoleTypeId.Scp049;
-        public StartTeam StartTeam { get; set; } = StartTeam.Scp049;
+        public StartTeam StartTeam { get; set; } = StartTeam.Scp;
         public int Chance { get; set; } = 40;
         public override float SpawnChance { get; set; } = 0;
         private readonly Dictionary<Player, CoroutineHandle> _altKeyCooldowns = new Dictionary<Player, CoroutineHandle>();
@@ -43,6 +44,9 @@ namespace GhostPlugin.Custom.Roles.Scps
             new SCP106(),
             new Scp457(),
             new Overkill(),
+            new HealOnKill(),
+            new Martyrdom(),
+            new Detect(),
         };
 
         public List<string> SteamUserIds { get; set; } = new List<string>
@@ -82,7 +86,7 @@ namespace GhostPlugin.Custom.Roles.Scps
             if (ev.Target != null && ev.Player != null && Check(ev.Player))
             {
                 ev.Scp049.CallCooldown = 0.25f;
-                ev.Target.Vaporize();
+                ev.Target.Vaporize(ev.Player);
                 //ev.Target.Kill("your soul is blow up on your body");
                 ev.Target.Broadcast(5,"<color=red><size>당신은 SCP049 영혼 탈취자에게 제거되었습니다.</size></color>");
             }
@@ -140,33 +144,34 @@ namespace GhostPlugin.Custom.Roles.Scps
 
         protected override void RoleAdded(Player player)
         {
-            if (SteamUserIds.Contains(player.UserId))
-            {
-                base.RoleAdded(player);
-                Exiled.API.Features.Cassie.MessageTranslated(".G4 .G4 Error detected PITCH_.2 evacuate immediately","<color=red>Error</color> <color=#ff2200>[Rejected]</color> detected evacuate immediately",false,true,true);
-                player.Broadcast(15,$"<size=30>{player.Nickname} 님 고스트 서버에 <color=gold>후원</color>해주셔서 감사드립니다!\n지금 걸린 진영은 다양한 능력을 가지고 있는 <color=red>특수직업</color> 입니다!</size>");
-                // 전체 플레이어에게 보드캐스트 메시지 전송
-                //Map.Broadcast(7, "신원미상의 존재가 시설내에 존재합니다."); // 7초 동안 메시지 표시
-                CoroutineHandle handle = Timing.RunCoroutine(CooldownCorutine(player));
-                _altKeyCooldowns[player] = handle;
-            }
-            else if (BetaAccess.Contains(player.UserId))
-            {
-                player.Broadcast(10,"<color=green>베타 태스터의 권한으로 슈퍼 직업이 제공되었습니다</color>");
-                base.RoleAdded(player);
-            }
-            else
-            {
-                // 특정 유저가 아닐 경우 아무 작업도 하지 않음
-                // 필요시 로그를 추가하거나 다른 동작을 추가할 수 있음
-                RoleTypeId roleReference = RoleTypeIdData();
-                player.Broadcast(5,$"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 해제될 예정입니다.");
-                //player.Kill($"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 적용되지 않았습니다.");
-                Log.Info($"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 적용되지 않았습니다.");
-                player.ShowHint($"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 적용되지 않았습니다.");
-                Timing.CallDelayed(5, () => player.Role.Set(roleReference));
-                Log.Warn($"Replace a role to {roleReference.ToString()}");
-            }
+            //if (SteamUserIds.Contains(player.UserId))
+            //{
+            //    base.RoleAdded(player);
+            //    Exiled.API.Features.Cassie.MessageTranslated(".G4 .G4 Error detected PITCH_.2 evacuate immediately","<color=red>Error</color> <color=#ff2200>[Rejected]</color> detected evacuate immediately",false,true,true);
+            //    player.Broadcast(15,$"<size=30>{player.Nickname} 님 고스트 서버에 <color=gold>후원</color>해주셔서 감사드립니다!\n지금 걸린 진영은 다양한 능력을 가지고 있는 <color=red>특수직업</color> 입니다!</size>");
+            //    // 전체 플레이어에게 보드캐스트 메시지 전송
+            //    //Map.Broadcast(7, "신원미상의 존재가 시설내에 존재합니다."); // 7초 동안 메시지 표시
+            //    CoroutineHandle handle = Timing.RunCoroutine(CooldownCorutine(player));
+            //    _altKeyCooldowns[player] = handle;
+            //}
+            //else if (BetaAccess.Contains(player.UserId))
+            //{
+            //    player.Broadcast(10,"<color=green>베타 태스터의 권한으로 슈퍼 직업이 제공되었습니다</color>");
+            //    base.RoleAdded(player);
+            //}
+            //else
+            //{
+            //    // 특정 유저가 아닐 경우 아무 작업도 하지 않음
+            //    // 필요시 로그를 추가하거나 다른 동작을 추가할 수 있음
+            //    RoleTypeId roleReference = RoleTypeIdData();
+            //    player.Broadcast(5,$"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 해제될 예정입니다.");
+            //    //player.Kill($"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 적용되지 않았습니다.");
+            //    Log.Info($"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 적용되지 않았습니다.");
+            //    player.ShowHint($"{player.Nickname}은(는) 지정된 유저가 아니므로 커스텀 롤이 적용되지 않았습니다.");
+            //    Timing.CallDelayed(5, () => player.Role.Set(roleReference));
+            //    Log.Warn($"Replace a role to {roleReference.ToString()}");
+            //}
+            base.RoleAdded(player);
         }
         
         private RoleTypeId RoleTypeIdData()
